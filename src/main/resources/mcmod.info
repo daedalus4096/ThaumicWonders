@@ -1,0 +1,16 @@
+[
+{
+  "modid": "thaumicwonders",
+  "name": "Thaumic Wonders",
+  "description": "Create wonders with Thaumcraft 6!",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Daedalus4096"],
+  "credits": "Thanks to Azanor for Thaumcraft.",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": ["thaumcraft"]
+}
+]
