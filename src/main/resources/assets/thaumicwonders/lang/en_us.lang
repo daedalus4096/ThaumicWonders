@@ -3,3 +3,7 @@ tc.research_category.THAUMIC_WONDERS=Thaumic Wonders
 
 thaumicwonders.research.base.title=Thaumic Wonders
 thaumicwonders.research.base.text.stage.1=Lorem ipsum
+
+thaumicwonders.research.nether_hedge.title=Infernal Hedge Alchemy
+thaumicwonders.research.nether_hedge.text.stage.1=Lorem ipsum
+thaumicwonders.research.nether_hedge.text.stage.2=Lorem ipsum dolor

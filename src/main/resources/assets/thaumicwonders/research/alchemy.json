@@ -1,0 +1,32 @@
+{
+    "entries": [
+        {
+            "key": "TWOND_NETHER_HEDGE",
+            "name": "thaumicwonders.research.nether_hedge.title",
+            "icons": ["minecraft:soul_sand"],
+            "category": "THAUMIC_WONDERS",
+            "parents": ["TWOND_BASE"],
+            "siblings": [],
+            "meta": [],
+            "location": [0, 2],
+            "reward_item": [],
+            "reward_knowledge": [],
+            "stages": [
+                {
+                    "text": "thaumicwonders.research.nether_hedge.text.stage.1",
+                    "required_knowledge": ["OBSERVATION;ALCHEMY;1"],
+                    "required_research": ["m_hellandback"]
+                },
+                {
+                    "text": "thaumicwonders.research.nether_hedge.text.stage.2",
+                    "recipes": [
+                        "thaumicwonders:hedge_soul_sand",
+                        "thaumicwonders:hedge_ghast_tear",
+                        "thaumicwonders:hedge_wither_skull"
+                    ]
+                }
+            ],
+            "addenda": []
+        }
+    ]
+}
