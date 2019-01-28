@@ -1,0 +1,22 @@
+{
+    "entries": [
+        {
+            "key": "TWOND_BASE",
+            "name": "thaumicwonders.research.base.title",
+            "icons": ["thaumcraft:textures/items/thaumonomicon.png"],
+            "category": "THAUMIC_WONDERS",
+            "parents": ["FIRSTSTEPS"],
+            "siblings": [],
+            "meta": ["ROUND"],
+            "location": [0, 0],
+            "reward_item": [],
+            "reward_knowledge": [],
+            "stages": [
+                {
+                    "text": "thaumicwonders.research.base.text.stage.1"
+                }
+            ],
+            "addenda": []
+        }
+    ]
+}
