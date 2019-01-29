@@ -11,7 +11,7 @@ import thaumcraft.api.research.ResearchCategories;
 
 import org.apache.logging.log4j.Logger;
 
-import com.verdantartifice.thaumicwonders.common.recipes.ModRecipes;
+import com.verdantartifice.thaumicwonders.common.config.ConfigRecipes;
 
 @Mod(modid = ThaumicWonders.MODID, name = ThaumicWonders.NAME, version = ThaumicWonders.VERSION, dependencies = ThaumicWonders.DEPENDENCIES)
 public class ThaumicWonders
@@ -32,7 +32,7 @@ public class ThaumicWonders
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
-        ModRecipes.initializeRecipes();
+        ConfigRecipes.initializeRecipes();
         ResearchCategories.registerCategory("THAUMIC_WONDERS", "FIRSTSTEPS", new AspectList(), new ResourceLocation("thaumcraft","textures/items/thaumonomicon.png"), new ResourceLocation("thaumcraft", "textures/gui/gui_research_back_1.jpg"), new ResourceLocation("thaumcraft", "textures/gui/gui_research_back_over.png"));
         ThaumcraftApi.registerResearchLocation(new ResourceLocation("thaumicwonders", "research/misc" ));
         ThaumcraftApi.registerResearchLocation(new ResourceLocation("thaumicwonders", "research/alchemy" ));

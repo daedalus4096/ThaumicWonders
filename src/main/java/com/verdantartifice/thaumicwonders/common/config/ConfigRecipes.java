@@ -1,4 +1,4 @@
-package com.verdantartifice.thaumicwonders.common.recipes;
+package com.verdantartifice.thaumicwonders.common.config;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -9,7 +9,7 @@ import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.crafting.CrucibleRecipe;
 
-public class ModRecipes {
+public class ConfigRecipes {
     public static void initializeRecipes() {
         initializeCrucibleRecipes();
     }

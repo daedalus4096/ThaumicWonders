@@ -1,3 +1,6 @@
+// Devices
+tile.everburning_urn.name=Everburning Urn
+
 // Research
 tc.research_category.THAUMIC_WONDERS=Thaumic Wonders
 
@@ -11,3 +14,6 @@ thaumicwonders.research.nether_hedge.text.stage.2=As I hoped, the Nether does in
 thaumicwonders.research.end_hedge.title=Alien Hedge Alchemy
 thaumicwonders.research.end_hedge.text.stage.1=My travels have hinted at yet another world to explore.  I'll have to study what I find there.
 thaumicwonders.research.end_hedge.text.stage.2=This "End" is an incredibly dangerous place, but it does contain a few materials that respond well to hedge alchemy. 
+
+// Misc
+itemGroup.thaumicwonders=Thaumic Wonders
