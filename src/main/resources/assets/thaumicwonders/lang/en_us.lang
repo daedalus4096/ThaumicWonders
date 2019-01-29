@@ -2,12 +2,12 @@
 tc.research_category.THAUMIC_WONDERS=Thaumic Wonders
 
 thaumicwonders.research.base.title=Thaumic Wonders
-thaumicwonders.research.base.text.stage.1=Lorem ipsum
+thaumicwonders.research.base.text.stage.1=What wonders can the arts of thaumaturgy reveal to me?
 
 thaumicwonders.research.nether_hedge.title=Infernal Hedge Alchemy
-thaumicwonders.research.nether_hedge.text.stage.1=Lorem ipsum
-thaumicwonders.research.nether_hedge.text.stage.2=Lorem ipsum dolor
+thaumicwonders.research.nether_hedge.text.stage.1=It bothers me a little that the principles of hedge alchemy are applicable to so few materials in this world.  Perhaps other worlds contain things that this art can be used to create...
+thaumicwonders.research.nether_hedge.text.stage.2=As I hoped, the Nether does indeed contain materials that my arts can replicate.  Strangely, not all of them follow quite the same rules that I've come to expect in this world.  I'll need to be mindful of the recipes as I work with them.
 
 thaumicwonders.research.end_hedge.title=Alien Hedge Alchemy
-thaumicwonders.research.end_hedge.text.stage.1=Lorem ipsum
-thaumicwonders.research.end_hedge.text.stage.2=Lorem ipsum dolor
+thaumicwonders.research.end_hedge.text.stage.1=My travels have hinted at yet another world to explore.  I'll have to study what I find there.
+thaumicwonders.research.end_hedge.text.stage.2=This "End" is an incredibly dangerous place, but it does contain a few materials that respond well to hedge alchemy. 

@@ -5,7 +5,7 @@
             "name": "thaumicwonders.research.nether_hedge.title",
             "icons": ["minecraft:soul_sand"],
             "category": "THAUMIC_WONDERS",
-            "parents": ["TWOND_BASE"],
+            "parents": ["TWOND_BASE", "~HEDGEALCHEMY"],
             "siblings": [],
             "meta": [],
             "location": [0, 2],
