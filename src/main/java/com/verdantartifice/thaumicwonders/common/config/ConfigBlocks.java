@@ -1,5 +1,6 @@
 package com.verdantartifice.thaumicwonders.common.config;
 
+import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.blocks.BlocksTW;
 import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockLavaJug;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileLavaJug;
@@ -15,7 +16,9 @@ public class ConfigBlocks {
         BlocksTW.everburningUrn = registerBlock(new BlockLavaJug());
     }
     
+    @SuppressWarnings("deprecation")
     public static void initTileEntities() {
+        // TODO register with event instead
         GameRegistry.registerTileEntity(TileLavaJug.class, "thaumicwonders:TileLavaJug");
     }
     
@@ -27,7 +30,7 @@ public class ConfigBlocks {
         ForgeRegistries.BLOCKS.register(block);
         itemBlock.setRegistryName(block.getRegistryName());
         ForgeRegistries.ITEMS.register(itemBlock);
-        // TODO register model with proxy
+        ThaumicWonders.proxy.registerModel(itemBlock);
         return block;
     }
 }
