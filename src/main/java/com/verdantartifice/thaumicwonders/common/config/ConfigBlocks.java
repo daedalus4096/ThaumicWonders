@@ -18,7 +18,6 @@ public class ConfigBlocks {
     
     @SuppressWarnings("deprecation")
     public static void initTileEntities() {
-        // TODO register with event instead
         GameRegistry.registerTileEntity(TileLavaJug.class, "thaumicwonders:TileLavaJug");
     }
     
