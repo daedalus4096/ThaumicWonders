@@ -1,6 +1,6 @@
 package com.verdantartifice.thaumicwonders.common.tiles.devices;
 
-import com.verdantartifice.thaumicwonders.common.tiles.TileTW;
+import com.verdantartifice.thaumicwonders.common.tiles.base.TileTW;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ITickable;
@@ -9,7 +9,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import thaumcraft.api.aura.AuraHelper;
 
-public class TileLavaJug extends TileTW implements ITickable {
+public class TileEverburningUrn extends TileTW implements ITickable {
     protected static final int CAPACITY = 1000;
     protected static final int MAX_PER_FILL = 40;
     

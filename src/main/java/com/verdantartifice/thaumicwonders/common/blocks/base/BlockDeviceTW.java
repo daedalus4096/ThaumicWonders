@@ -1,4 +1,4 @@
-package com.verdantartifice.thaumicwonders.common.blocks;
+package com.verdantartifice.thaumicwonders.common.blocks.base;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;

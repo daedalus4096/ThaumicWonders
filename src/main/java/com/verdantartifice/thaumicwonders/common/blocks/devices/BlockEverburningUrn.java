@@ -2,8 +2,8 @@ package com.verdantartifice.thaumicwonders.common.blocks.devices;
 
 import java.util.Random;
 
-import com.verdantartifice.thaumicwonders.common.blocks.BlockDeviceTW;
-import com.verdantartifice.thaumicwonders.common.tiles.devices.TileLavaJug;
+import com.verdantartifice.thaumicwonders.common.blocks.base.BlockDeviceTW;
+import com.verdantartifice.thaumicwonders.common.tiles.devices.TileEverburningUrn;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -29,9 +29,9 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockLavaJug extends BlockDeviceTW<TileLavaJug> {
-    public BlockLavaJug() {
-        super(Material.ROCK, TileLavaJug.class, "everburning_urn");
+public class BlockEverburningUrn extends BlockDeviceTW<TileEverburningUrn> {
+    public BlockEverburningUrn() {
+        super(Material.ROCK, TileEverburningUrn.class, "everburning_urn");
         setSoundType(SoundType.STONE);
     }
 
@@ -59,8 +59,8 @@ public class BlockLavaJug extends BlockDeviceTW<TileLavaJug> {
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (!worldIn.isRemote) {
             TileEntity tileEntity = worldIn.getTileEntity(pos);
-            if (tileEntity != null && tileEntity instanceof TileLavaJug) {
-                TileLavaJug tile = (TileLavaJug)tileEntity;
+            if (tileEntity != null && tileEntity instanceof TileEverburningUrn) {
+                TileEverburningUrn tile = (TileEverburningUrn)tileEntity;
                 if (playerIn.getHeldItem(hand).getItem() == Items.BUCKET && tile.getTank().getFluidAmount() >= 1000) {
                     ItemStack currentItemStack = playerIn.getHeldItem(hand);
                     ItemStack newItemStack = new ItemStack(Items.LAVA_BUCKET);
@@ -88,8 +88,8 @@ public class BlockLavaJug extends BlockDeviceTW<TileLavaJug> {
         Block block = stateIn.getBlock();
         if (block.hasTileEntity(stateIn)) {
             TileEntity tileEntity = worldIn.getTileEntity(pos);
-            if (tileEntity != null && tileEntity instanceof TileLavaJug) {
-                TileLavaJug tile = (TileLavaJug)tileEntity;
+            if (tileEntity != null && tileEntity instanceof TileEverburningUrn) {
+                TileEverburningUrn tile = (TileEverburningUrn)tileEntity;
                 if (tile.getTank().getFluidAmount() >= tile.getTank().getCapacity()) {
                     double xp = (double)pos.getX() + 0.5D + (rand.nextDouble() * 0.2D - 0.1D);
                     double yp = (double)pos.getY() + 1.1D;

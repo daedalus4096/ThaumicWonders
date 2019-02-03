@@ -1,6 +1,6 @@
-package com.verdantartifice.thaumicwonders.common.blocks;
+package com.verdantartifice.thaumicwonders.common.blocks.base;
 
-import com.verdantartifice.thaumicwonders.common.config.ConfigItems;
+import com.verdantartifice.thaumicwonders.ThaumicWonders;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -11,7 +11,7 @@ public class BlockTW extends Block {
         super(material);
         setUnlocalizedName(name);
         setRegistryName("thaumicwonders", name);
-        setCreativeTab(ConfigItems.TABTW);
+        setCreativeTab(ThaumicWonders.CREATIVE_TAB);
         setResistance(2.0F);
         setHardness(1.5F);
     }

@@ -1,4 +1,4 @@
-package com.verdantartifice.thaumicwonders.common.config;
+package com.verdantartifice.thaumicwonders.common.init;
 
 import com.verdantartifice.thaumicwonders.common.blocks.BlocksTW;
 
@@ -14,13 +14,13 @@ import thaumcraft.api.blocks.BlocksTC;
 import thaumcraft.api.crafting.CrucibleRecipe;
 import thaumcraft.api.crafting.InfusionRecipe;
 
-public class ConfigRecipes {
-    public static void initializeRecipes() {
-        initializeCrucibleRecipes();
-        initializeInfusionRecipes();
+public class InitRecipes {
+    public static void initRecipes() {
+        initCrucibleRecipes();
+        initInfusionRecipes();
     }
 
-    private static void initializeCrucibleRecipes() {
+    private static void initCrucibleRecipes() {
         ThaumcraftApi.addCrucibleRecipe(new ResourceLocation("thaumicwonders", "hedge_soul_sand"), new CrucibleRecipe(
                 "TWOND_NETHER_HEDGE",
                 new ItemStack(Blocks.SOUL_SAND),
@@ -59,7 +59,7 @@ public class ConfigRecipes {
         ));
     }
     
-    private static void initializeInfusionRecipes() {
+    private static void initInfusionRecipes() {
         ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation("thaumicwonders", "everburning_urn"), new InfusionRecipe(
                 "TWOND_EVERBURNING_URN",
                 new ItemStack(BlocksTW.everburningUrn),

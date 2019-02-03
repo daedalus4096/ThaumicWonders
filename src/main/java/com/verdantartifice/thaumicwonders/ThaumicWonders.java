@@ -1,5 +1,6 @@
 package com.verdantartifice.thaumicwonders;
 
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -12,7 +13,8 @@ import thaumcraft.api.research.ResearchCategories;
 
 import org.apache.logging.log4j.Logger;
 
-import com.verdantartifice.thaumicwonders.common.config.ConfigRecipes;
+import com.verdantartifice.thaumicwonders.common.init.InitRecipes;
+import com.verdantartifice.thaumicwonders.common.misc.CreativeTabTW;
 import com.verdantartifice.thaumicwonders.proxy.IProxyTW;
 
 @Mod(modid = ThaumicWonders.MODID, name = ThaumicWonders.NAME, version = ThaumicWonders.VERSION, dependencies = ThaumicWonders.DEPENDENCIES)
@@ -28,6 +30,8 @@ public class ThaumicWonders
     @SidedProxy(clientSide="com.verdantartifice.thaumicwonders.proxy.ClientProxy", serverSide="com.verdantartifice.thaumicwonders.proxy.ServerProxy")
     public static IProxyTW proxy;
 
+    public static CreativeTabs CREATIVE_TAB = new CreativeTabTW(CreativeTabs.getNextID(), "thaumicwonders");
+
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
@@ -37,7 +41,7 @@ public class ThaumicWonders
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
-        ConfigRecipes.initializeRecipes();
+        InitRecipes.initRecipes();
         ResearchCategories.registerCategory("THAUMIC_WONDERS", "FIRSTSTEPS", new AspectList(), new ResourceLocation("thaumcraft","textures/items/thaumonomicon.png"), new ResourceLocation("thaumcraft", "textures/gui/gui_research_back_1.jpg"), new ResourceLocation("thaumcraft", "textures/gui/gui_research_back_over.png"));
         ThaumcraftApi.registerResearchLocation(new ResourceLocation("thaumicwonders", "research/misc" ));
         ThaumcraftApi.registerResearchLocation(new ResourceLocation("thaumicwonders", "research/alchemy" ));

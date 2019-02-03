@@ -1,24 +1,24 @@
-package com.verdantartifice.thaumicwonders.common.config;
+package com.verdantartifice.thaumicwonders.common.init;
 
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.blocks.BlocksTW;
-import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockLavaJug;
-import com.verdantartifice.thaumicwonders.common.tiles.devices.TileLavaJug;
+import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockEverburningUrn;
+import com.verdantartifice.thaumicwonders.common.tiles.devices.TileEverburningUrn;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 
-public class ConfigBlocks {
+public class InitBlocks {
     public static void initBlocks(IForgeRegistry<Block> forgeRegistry) {
-        BlocksTW.everburningUrn = registerBlock(new BlockLavaJug());
+        BlocksTW.everburningUrn = registerBlock(new BlockEverburningUrn());
     }
     
-    @SuppressWarnings("deprecation")
     public static void initTileEntities() {
-        GameRegistry.registerTileEntity(TileLavaJug.class, "thaumicwonders:TileLavaJug");
+        GameRegistry.registerTileEntity(TileEverburningUrn.class, new ResourceLocation("thaumicwonders", "TileEverburningUrn"));
     }
     
     private static Block registerBlock(Block block) {

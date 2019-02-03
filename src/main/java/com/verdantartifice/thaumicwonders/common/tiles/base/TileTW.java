@@ -1,4 +1,4 @@
-package com.verdantartifice.thaumicwonders.common.tiles;
+package com.verdantartifice.thaumicwonders.common.tiles.base;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
