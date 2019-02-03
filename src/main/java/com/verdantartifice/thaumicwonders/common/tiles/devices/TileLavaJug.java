@@ -11,7 +11,7 @@ import thaumcraft.api.aura.AuraHelper;
 
 public class TileLavaJug extends TileTW implements ITickable {
     protected static final int CAPACITY = 1000;
-    protected static final int MAX_PER_FILL = 20;
+    protected static final int MAX_PER_FILL = 40;
     
     protected int counter = 0;
     protected FluidTank tank = new FluidTank(new FluidStack(FluidRegistry.LAVA, 0), CAPACITY);
@@ -24,7 +24,7 @@ public class TileLavaJug extends TileTW implements ITickable {
     public void update() {
         this.counter++;
         if (!this.world.isRemote && this.counter % 5 == 0 && this.tank.getFluidAmount() < CAPACITY) {
-            float visToDrain = (CAPACITY - this.tank.getFluidAmount()) / (float)MAX_PER_FILL;     // A full tank costs 50 vis
+            float visToDrain = (CAPACITY - this.tank.getFluidAmount()) / (float)MAX_PER_FILL;     // A full tank costs 25 vis
             if (visToDrain > 0.1F) {
                 // Cap drain per op at 0.1 vis
                 visToDrain = 0.1F;
