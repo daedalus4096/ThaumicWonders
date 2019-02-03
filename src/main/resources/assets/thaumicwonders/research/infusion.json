@@ -1,0 +1,27 @@
+{
+    "entries": [
+        {
+            "key": "TWOND_EVERBURNING_URN",
+            "name": "thaumicwonders.research.everburning_urn.title",
+            "icons": ["thaumicwonders:everburning_urn"],
+            "category": "THAUMIC_WONDERS",
+            "parents": ["TWOND_NETHER_HEDGE", "~EVERFULLURN", "~INFUSION"],
+            "siblings": [],
+            "meta": [],
+            "location": [2, 2],
+            "reward_item": [],
+            "reward_knowledge": [],
+            "stages": [
+                {
+                    "text": "thaumicwonders.research.everburning_urn.text.stage.1",
+                    "required_knowledge":["THEORY;ALCHEMY;1","OBSERVATION;INFUSION;1"]
+                },
+                {
+                    "text": "thaumicwonders.research.everburning_urn.text.stage.2", 
+                    "recipes": ["thaumicwonders:everburning_urn"]
+                }
+            ],
+            "addenda": []
+        }
+    ]
+}

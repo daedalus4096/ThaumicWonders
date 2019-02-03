@@ -41,5 +41,6 @@ public class ThaumicWonders
         ResearchCategories.registerCategory("THAUMIC_WONDERS", "FIRSTSTEPS", new AspectList(), new ResourceLocation("thaumcraft","textures/items/thaumonomicon.png"), new ResourceLocation("thaumcraft", "textures/gui/gui_research_back_1.jpg"), new ResourceLocation("thaumcraft", "textures/gui/gui_research_back_over.png"));
         ThaumcraftApi.registerResearchLocation(new ResourceLocation("thaumicwonders", "research/misc" ));
         ThaumcraftApi.registerResearchLocation(new ResourceLocation("thaumicwonders", "research/alchemy" ));
+        ThaumcraftApi.registerResearchLocation(new ResourceLocation("thaumicwonders", "research/infusion" ));
     }
 }

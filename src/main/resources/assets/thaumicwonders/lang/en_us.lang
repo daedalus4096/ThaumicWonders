@@ -15,5 +15,9 @@ thaumicwonders.research.end_hedge.title=Alien Hedge Alchemy
 thaumicwonders.research.end_hedge.text.stage.1=My travels have hinted at yet another world to explore.  I'll have to study what I find there.
 thaumicwonders.research.end_hedge.text.stage.2=This "End" is an incredibly dangerous place, but it does contain a few materials that respond well to hedge alchemy. 
 
+thaumicwonders.research.everburning_urn.title=Everburning Urn
+thaumicwonders.research.everburning_urn.text.stage.1=The Everfull Urn is an incredibly useful device, but I'm convinced that I can do better.  Something similar, but for other types of fluids.  Fluids like, say... lava?
+thaumicwonders.research.everburning_urn.text.stage.2=By infusing the Everfull Urn with a series of microscopic portals to the Nether, I'm able to siphon all the lava that I could ever need.  The process is not perfect, however.<BR>For one thing, it's slow.  Whereas its watery brethren fills up in moments, this device, which I've dubbed the Everburning Urn, takes about a minute to generate a single bucket.<BR>The process is much more draining to the aura, as well.  My calculations indicate that maintaining the portal mesh consumes about 25 points of vis from the aura.<BR>Finally, for safety's sake, I've disabled the urn's ability to automatically fill nearby vessels.  Can't have liquid hot magma just flying around the place.  If I want lava from it, I'll just have to use a bucket.
+
 // Misc
 itemGroup.thaumicwonders=Thaumic Wonders
