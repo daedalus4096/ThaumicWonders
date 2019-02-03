@@ -1,7 +1,11 @@
 package com.verdantartifice.thaumicwonders.common.blocks;
 
-import net.minecraft.block.Block;
+import com.verdantartifice.thaumicwonders.ThaumicWonders;
 
+import net.minecraft.block.Block;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+
+@GameRegistry.ObjectHolder(ThaumicWonders.MODID)
 public class BlocksTW {
-    public static Block everburningUrn;
+    public static final Block EVERBURNING_URN = null;
 }

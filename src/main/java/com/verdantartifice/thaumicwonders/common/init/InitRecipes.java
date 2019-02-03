@@ -62,7 +62,7 @@ public class InitRecipes {
     private static void initInfusionRecipes() {
         ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation("thaumicwonders", "everburning_urn"), new InfusionRecipe(
                 "TWOND_EVERBURNING_URN",
-                new ItemStack(BlocksTW.everburningUrn),
+                new ItemStack(BlocksTW.EVERBURNING_URN),
                 4,
                 new AspectList().add(Aspect.FIRE, 40).add(Aspect.EARTH, 20).add(Aspect.ENERGY, 10).add(Aspect.CRAFT, 10),
                 new ItemStack(BlocksTC.everfullUrn),
