@@ -3,7 +3,6 @@ package com.verdantartifice.thaumicwonders.common.init;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockEverburningUrn;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileEverburningUrn;
 
@@ -15,7 +14,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 
 public class InitBlocks {
-    private static final Set<Block> BLOCKS = new HashSet<Block>();
+    public static final Set<ItemBlock> ITEM_BLOCKS = new HashSet<ItemBlock>();
     
     public static void initBlocks(IForgeRegistry<Block> forgeRegistry) {
         registerBlock(forgeRegistry, new BlockEverburningUrn());
@@ -23,15 +22,14 @@ public class InitBlocks {
     
     private static void registerBlock(IForgeRegistry<Block> forgeRegistry, Block block) {
         forgeRegistry.register(block);
-        InitBlocks.BLOCKS.add(block);
+        InitBlocks.ITEM_BLOCKS.add(new ItemBlock(block));
     }
     
     public static void initItemBlocks(IForgeRegistry<Item> forgeRegistry) {
-        for (Block block : InitBlocks.BLOCKS) {
-            ItemBlock itemBlock = new ItemBlock(block);
+        for (ItemBlock itemBlock : InitBlocks.ITEM_BLOCKS) {
+            Block block = itemBlock.getBlock();
             itemBlock.setRegistryName(block.getRegistryName());
             forgeRegistry.register(itemBlock);
-            ThaumicWonders.proxy.registerModel(itemBlock);
         }
     }
     

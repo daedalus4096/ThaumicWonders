@@ -25,12 +25,12 @@ public class ThaumicWonders
     public static final String VERSION = "0.0.1";
     public static final String DEPENDENCIES = "required-after:thaumcraft";
 
+    public static final CreativeTabs CREATIVE_TAB = new CreativeTabTW(CreativeTabs.getNextID(), "thaumicwonders");
+
     public static Logger LOGGER;
     
     @SidedProxy(clientSide="com.verdantartifice.thaumicwonders.proxy.ClientProxy", serverSide="com.verdantartifice.thaumicwonders.proxy.ServerProxy")
     public static IProxyTW proxy;
-
-    public static CreativeTabs CREATIVE_TAB = new CreativeTabTW(CreativeTabs.getNextID(), "thaumicwonders");
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
