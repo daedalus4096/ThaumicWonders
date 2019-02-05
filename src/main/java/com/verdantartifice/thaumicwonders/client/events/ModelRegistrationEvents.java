@@ -2,8 +2,10 @@ package com.verdantartifice.thaumicwonders.client.events;
 
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.init.InitBlocks;
+import com.verdantartifice.thaumicwonders.common.init.InitItems;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
@@ -16,11 +18,22 @@ public class ModelRegistrationEvents {
     @SubscribeEvent
     public static void registerAllModels(ModelRegistryEvent event) {
         registerItemBlockModels();
+        registerItemModels();
     }
 
     private static void registerItemBlockModels() {
         for (ItemBlock itemBlock : InitBlocks.ITEM_BLOCKS) {
-            ModelLoader.setCustomModelResourceLocation(itemBlock, 0, new ModelResourceLocation(itemBlock.getRegistryName(), "inventory"));
+            registerItemModel(itemBlock);
         }
+    }
+    
+    private static void registerItemModels() {
+        for (Item item : InitItems.ITEMS) {
+            registerItemModel(item);
+        }
+    }
+    
+    private static void registerItemModel(Item item) {
+        ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
     }
 }

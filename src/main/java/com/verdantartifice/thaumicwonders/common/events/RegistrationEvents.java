@@ -2,6 +2,7 @@ package com.verdantartifice.thaumicwonders.common.events;
 
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.init.InitBlocks;
+import com.verdantartifice.thaumicwonders.common.init.InitItems;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -18,7 +19,8 @@ public class RegistrationEvents {
     }
     
     @SubscribeEvent
-    public static void registerItemBlocks(RegistryEvent.Register<Item> event) {
+    public static void registerItems(RegistryEvent.Register<Item> event) {
         InitBlocks.initItemBlocks(event.getRegistry());
+        InitItems.initItems(event.getRegistry());
     }
 }

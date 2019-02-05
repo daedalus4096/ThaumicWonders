@@ -1,6 +1,9 @@
 // Devices
 tile.everburning_urn.name=Everburning Urn
 
+// Items
+item.disjunction_cloth.name=Disjunction Cloth
+
 // Research
 tc.research_category.THAUMIC_WONDERS=Thaumic Wonders
 
