@@ -1,11 +1,14 @@
 package com.verdantartifice.thaumicwonders.common.init;
 
 import com.verdantartifice.thaumicwonders.common.blocks.BlocksTW;
+import com.verdantartifice.thaumicwonders.common.crafting.recipes.RecipeDisjunctionClothUse;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.registries.IForgeRegistry;
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.ThaumcraftApiHelper;
 import thaumcraft.api.aspects.Aspect;
@@ -15,9 +18,14 @@ import thaumcraft.api.crafting.CrucibleRecipe;
 import thaumcraft.api.crafting.InfusionRecipe;
 
 public class InitRecipes {
-    public static void initRecipes() {
+    public static void initRecipes(IForgeRegistry<IRecipe> forgeRegistry) {
+        initNormalRecipes(forgeRegistry);
         initCrucibleRecipes();
         initInfusionRecipes();
+    }
+    
+    private static void initNormalRecipes(IForgeRegistry<IRecipe> forgeRegistry) {
+        forgeRegistry.register(new RecipeDisjunctionClothUse());
     }
 
     private static void initCrucibleRecipes() {
