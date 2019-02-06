@@ -5,6 +5,7 @@ import javax.annotation.Nonnull;
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.items.ItemsTW;
 
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
@@ -19,6 +20,10 @@ public class RecipeDisjunctionClothUse extends IForgeRegistryEntry.Impl<IRecipe>
     
     @Override
     public boolean matches(@Nonnull InventoryCrafting inv, @Nonnull World worldIn) {
+        return RecipeDisjunctionClothUse.matches(inv);
+    }
+    
+    public static boolean matches(@Nonnull IInventory inv) {
         boolean foundCloth = false;
         boolean foundTarget = false;
         
