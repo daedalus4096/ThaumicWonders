@@ -24,7 +24,7 @@ public class ThaumicWonders
     public static final String VERSION = "0.0.1";
     public static final String DEPENDENCIES = "required-after:thaumcraft";
 
-    public static final CreativeTabs CREATIVE_TAB = new CreativeTabTW(CreativeTabs.getNextID(), "thaumicwonders");
+    public static final CreativeTabs CREATIVE_TAB = new CreativeTabTW(CreativeTabs.getNextID(), ThaumicWonders.MODID);
 
     public static Logger LOGGER;
     
@@ -41,8 +41,8 @@ public class ThaumicWonders
     public void init(FMLInitializationEvent event)
     {
         ResearchCategories.registerCategory("THAUMIC_WONDERS", "FIRSTSTEPS", new AspectList(), new ResourceLocation("thaumcraft","textures/items/thaumonomicon.png"), new ResourceLocation("thaumcraft", "textures/gui/gui_research_back_1.jpg"), new ResourceLocation("thaumcraft", "textures/gui/gui_research_back_over.png"));
-        ThaumcraftApi.registerResearchLocation(new ResourceLocation("thaumicwonders", "research/misc" ));
-        ThaumcraftApi.registerResearchLocation(new ResourceLocation("thaumicwonders", "research/alchemy" ));
-        ThaumcraftApi.registerResearchLocation(new ResourceLocation("thaumicwonders", "research/infusion" ));
+        ThaumcraftApi.registerResearchLocation(new ResourceLocation(ThaumicWonders.MODID, "research/misc" ));
+        ThaumcraftApi.registerResearchLocation(new ResourceLocation(ThaumicWonders.MODID, "research/alchemy" ));
+        ThaumcraftApi.registerResearchLocation(new ResourceLocation(ThaumicWonders.MODID, "research/infusion" ));
     }
 }

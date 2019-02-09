@@ -8,7 +8,7 @@ public class ItemTW extends Item {
     public ItemTW(String name) {
         super();
         setUnlocalizedName(name);
-        setRegistryName("thaumicwonders", name);
+        setRegistryName(ThaumicWonders.MODID, name);
         setCreativeTab(ThaumicWonders.CREATIVE_TAB);
     }
 }

@@ -10,7 +10,7 @@ public class BlockTW extends Block {
     public BlockTW(Material material, String name) {
         super(material);
         setUnlocalizedName(name);
-        setRegistryName("thaumicwonders", name);
+        setRegistryName(ThaumicWonders.MODID, name);
         setCreativeTab(ThaumicWonders.CREATIVE_TAB);
         setResistance(2.0F);
         setHardness(1.5F);

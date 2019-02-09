@@ -3,6 +3,7 @@ package com.verdantartifice.thaumicwonders.common.init;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockEverburningUrn;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileEverburningUrn;
 
@@ -34,6 +35,6 @@ public class InitBlocks {
     }
     
     public static void initTileEntities() {
-        GameRegistry.registerTileEntity(TileEverburningUrn.class, new ResourceLocation("thaumicwonders", "TileEverburningUrn"));
+        GameRegistry.registerTileEntity(TileEverburningUrn.class, new ResourceLocation(ThaumicWonders.MODID, "TileEverburningUrn"));
     }
 }
