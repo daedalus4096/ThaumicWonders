@@ -2,6 +2,7 @@ package com.verdantartifice.thaumicwonders.common.init;
 
 import com.verdantartifice.thaumicwonders.common.blocks.BlocksTW;
 import com.verdantartifice.thaumicwonders.common.crafting.recipes.RecipeDisjunctionClothUse;
+import com.verdantartifice.thaumicwonders.common.items.ItemsTW;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -16,6 +17,7 @@ import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.blocks.BlocksTC;
 import thaumcraft.api.crafting.CrucibleRecipe;
 import thaumcraft.api.crafting.InfusionRecipe;
+import thaumcraft.api.items.ItemsTC;
 
 public class InitRecipes {
     public static void initRecipes(IForgeRegistry<IRecipe> forgeRegistry) {
@@ -64,6 +66,12 @@ public class InitRecipes {
                 new ItemStack(Items.ENDER_PEARL, 2),
                 new ItemStack(Items.ENDER_PEARL),
                 new AspectList().add(Aspect.MOTION, 15).add(Aspect.ELDRITCH, 10)
+        ));
+        ThaumcraftApi.addCrucibleRecipe(new ResourceLocation("thaumicwonders", "disjunction_cloth"), new CrucibleRecipe(
+                "TWOND_DISJUNCTION_CLOTH",
+                new ItemStack(ItemsTW.DISJUNCTION_CLOTH),
+                new ItemStack(ItemsTC.fabric),
+                new AspectList().add(Aspect.MAGIC, 40).add(Aspect.VOID, 40).add(Aspect.AURA, 20)
         ));
     }
     

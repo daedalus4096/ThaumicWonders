@@ -8,7 +8,7 @@
             "parents": ["TWOND_NETHER_HEDGE", "~EVERFULLURN", "~INFUSION"],
             "siblings": [],
             "meta": [],
-            "location": [2, 2],
+            "location": [-2, 2],
             "reward_item": [],
             "reward_knowledge": [],
             "stages": [

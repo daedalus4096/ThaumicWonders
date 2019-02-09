@@ -55,6 +55,33 @@
                 }
             ],
             "addenda": []
+        },
+        {
+            "key": "TWOND_DISJUNCTION_CLOTH",
+            "name": "thaumicwonders.research.disjunction_cloth.title",
+            "icons": ["thaumicwonders:disjunction_cloth"],
+            "category": "THAUMIC_WONDERS",
+            "parents": ["TWOND_BASE"],
+            "siblings": [],
+            "meta": [],
+            "location": [2, 0],
+            "reward_item": [],
+            "reward_knowledge": [],
+            "stages": [
+                {
+                    "text": "thaumicwonders.research.disjunction_cloth.text.stage.1",
+                    "required_knowledge": ["THEORY;ALCHEMY;1"],
+                    "required_research":["!auram"],
+                    "required_item": ["thaumcraft:enchanted_placeholder;1;0;{ench:[{id:0s,lvl:1s}]}"]
+                },
+                {
+                    "text": "thaumicwonders.research.disjunction_cloth.text.stage.2",
+                    "recipes": [
+                        "thaumicwonders:disjunction_cloth"
+                    ]
+                }
+            ],
+            "addenda": []
         }
     ]
 }
