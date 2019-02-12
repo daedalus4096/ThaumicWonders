@@ -8,4 +8,6 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 @GameRegistry.ObjectHolder(ThaumicWonders.MODID)
 public class BlocksTW {
     public static final Block EVERBURNING_URN = null;
+    public static final Block DIMENSIONAL_RIPPER = null;
+    public static final Block CREATIVE_ESSENTIA_JAR = null;
 }

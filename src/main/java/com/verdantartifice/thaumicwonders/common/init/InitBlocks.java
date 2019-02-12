@@ -4,9 +4,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
+import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockDimensionalRipper;
 import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockEverburningUrn;
 import com.verdantartifice.thaumicwonders.common.blocks.essentia.BlockCreativeEssentiaJar;
 import com.verdantartifice.thaumicwonders.common.blocks.essentia.ItemBlockCreativeEssentiaJar;
+import com.verdantartifice.thaumicwonders.common.tiles.devices.TileDimensionalRipper;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileEverburningUrn;
 import com.verdantartifice.thaumicwonders.common.tiles.essentia.TileCreativeEssentiaJar;
 
@@ -22,6 +24,7 @@ public class InitBlocks {
     
     public static void initBlocks(IForgeRegistry<Block> forgeRegistry) {
         registerBlock(forgeRegistry, new BlockEverburningUrn());
+        registerBlock(forgeRegistry, new BlockDimensionalRipper());
         registerBlock(forgeRegistry, new BlockCreativeEssentiaJar(), ItemBlockCreativeEssentiaJar.class);
     }
     
@@ -50,6 +53,7 @@ public class InitBlocks {
     
     public static void initTileEntities() {
         GameRegistry.registerTileEntity(TileEverburningUrn.class, new ResourceLocation(ThaumicWonders.MODID, "TileEverburningUrn"));
+        GameRegistry.registerTileEntity(TileDimensionalRipper.class, new ResourceLocation(ThaumicWonders.MODID, "TileDimensionalRipper"));
         GameRegistry.registerTileEntity(TileCreativeEssentiaJar.class, new ResourceLocation(ThaumicWonders.MODID, "TileCreativeEssentiaJar"));
     }
 }
