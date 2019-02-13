@@ -27,7 +27,7 @@ public class BlockDeviceTW<T extends TileEntity> extends BlockTileTW<T> {
             blockState.withProperty(IBlockOrientable.FACING, EnumFacing.UP);
         }
         if (this instanceof IBlockEnableable) {
-            blockState.withProperty(IBlockEnableable.ENABLED, true);
+            blockState.withProperty(IBlockEnableable.ENABLED, ((IBlockEnableable)this).getEnableableDefault());
         }
         this.setDefaultState(blockState);
     }
@@ -65,7 +65,7 @@ public class BlockDeviceTW<T extends TileEntity> extends BlockTileTW<T> {
             state = state.withProperty(IBlockOrientable.FACING, placer.isSneaking() ? direction.getOpposite() : direction);
         }
         if (this instanceof IBlockEnableable) {
-            state = state.withProperty(IBlockEnableable.ENABLED, true);
+            state = state.withProperty(IBlockEnableable.ENABLED, ((IBlockEnableable)this).getEnableableDefault());
         }
         return state;
     }
