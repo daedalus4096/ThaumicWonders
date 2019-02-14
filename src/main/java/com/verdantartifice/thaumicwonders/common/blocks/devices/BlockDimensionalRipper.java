@@ -61,6 +61,11 @@ public class BlockDimensionalRipper extends BlockDeviceTW<TileDimensionalRipper>
                         ThaumicWonders.LOGGER.info("Matching ripper found!");
                         if (blockEnabled && otherBlockEnabled) {
                             ThaumicWonders.LOGGER.info("Both rippers are enabled!");
+                            if (tile.getAmount() >= TileDimensionalRipper.CAPACITY && otherTile.getAmount() >= TileDimensionalRipper.CAPACITY) {
+                                ThaumicWonders.LOGGER.info("Both rippers fueled!  It's rift time!");
+                            } else {
+                                ThaumicWonders.LOGGER.info("One or both rippers are under-fueled");
+                            }
                         } else {
                             ThaumicWonders.LOGGER.info("One or both rippers are disabled");
                         }
