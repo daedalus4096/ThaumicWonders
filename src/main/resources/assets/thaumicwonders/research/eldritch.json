@@ -1,0 +1,29 @@
+{
+    "entries": [
+        {
+            "key": "TWOND_DIMENSIONAL_RIPPER",
+            "name": "thaumicwonders.research.dimensional_ripper.title",
+            "icons": ["thaumicwonders:dimensional_ripper"],
+            "category": "THAUMIC_WONDERS",
+            "parents": ["TWOND_BASE", "~FLUX", "~ARCANEBORE", "~BASEELDRITCH", "~PRIMPEARL"],
+            "siblings": [],
+            "meta": ["SPIKY", "HIDDEN"],
+            "location": [-4, -1],
+            "reward_item": [],
+            "reward_knowledge": [],
+            "stages": [
+                {
+                    "text": "thaumicwonders.research.dimensional_ripper.text.stage.1",
+                    "required_knowledge": ["OBSERVATION;ELDRITCH;1", "THEORY;ELDRITCH;1", "THEORY;ARTIFICE;1"],
+                    "required_research":["!vitium"],
+                    "warp": 4
+                },
+                {
+                    "text": "thaumicwonders.research.dimensional_ripper.text.stage.2",
+                    "recipes": ["thaumicwonders:dimensional_ripper"]
+                }
+            ],
+            "addenda": []
+        }
+    ]
+}

@@ -9,6 +9,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.IForgeRegistry;
 import thaumcraft.api.ThaumcraftApi;
@@ -18,17 +19,41 @@ import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.blocks.BlocksTC;
 import thaumcraft.api.crafting.CrucibleRecipe;
 import thaumcraft.api.crafting.InfusionRecipe;
+import thaumcraft.api.crafting.ShapedArcaneRecipe;
 import thaumcraft.api.items.ItemsTC;
 
 public class InitRecipes {
+    private static ResourceLocation defaultGroup = new ResourceLocation("");
+    
     public static void initRecipes(IForgeRegistry<IRecipe> forgeRegistry) {
         initNormalRecipes(forgeRegistry);
+        initArcaneRecipes();
         initCrucibleRecipes();
         initInfusionRecipes();
     }
     
     private static void initNormalRecipes(IForgeRegistry<IRecipe> forgeRegistry) {
         forgeRegistry.register(new RecipeDisjunctionClothUse());
+    }
+    
+    private static void initArcaneRecipes() {
+        ThaumcraftApi.addArcaneCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "dimensional_ripper"), new ShapedArcaneRecipe(
+                defaultGroup,
+                "TWOND_DIMENSIONAL_RIPPER",
+                250,
+                new AspectList().add(Aspect.AIR, 3).add(Aspect.ENTROPY, 3),
+                BlocksTW.DIMENSIONAL_RIPPER,
+                new Object[] {
+                        "BPB",
+                        "VAV",
+                        "VMV",
+                        Character.valueOf('B'), "plateBrass",
+                        Character.valueOf('P'), Ingredient.fromItem(ItemsTC.primordialPearl),
+                        Character.valueOf('V'), "plateVoid",
+                        Character.valueOf('A'), new ItemStack(ItemsTC.turretPlacer, 1, 2),
+                        Character.valueOf('M'), new ItemStack(ItemsTC.mechanismComplex)
+                }
+        ));
     }
 
     private static void initCrucibleRecipes() {
