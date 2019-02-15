@@ -1,6 +1,7 @@
 package com.verdantartifice.thaumicwonders.common.tiles.devices;
 
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
+import com.verdantartifice.thaumicwonders.common.blocks.base.IBlockEnableable;
 import com.verdantartifice.thaumicwonders.common.blocks.base.IBlockOrientable;
 import com.verdantartifice.thaumicwonders.common.tiles.base.TileTW;
 
@@ -9,15 +10,19 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
 import thaumcraft.api.ThaumcraftApiHelper;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.aspects.IAspectContainer;
 import thaumcraft.api.aspects.IEssentiaTransport;
 import thaumcraft.api.aura.AuraHelper;
+import thaumcraft.common.entities.EntityFluxRift;
+import thaumcraft.common.lib.utils.EntityUtils;
 
 public class TileDimensionalRipper extends TileTW implements IAspectContainer, IEssentiaTransport, ITickable {
-    public static final int CAPACITY = 50;
+    private static final int CAPACITY = 50;
+    private static final int DISTANCE = 10;
     
     protected int amount = 0;
     protected int tickCounter = 0;
@@ -190,8 +195,11 @@ public class TileDimensionalRipper extends TileTW implements IAspectContainer, I
 
     @Override
     public void update() {
-        if (!this.world.isRemote && (++this.tickCounter % 5 == 0) && (this.amount < CAPACITY)) {
-            fill();
+        if (!this.world.isRemote && (++this.tickCounter % 5 == 0)) {
+            if (this.amount < CAPACITY) {
+                this.fill();
+            }
+            this.checkForActivation();
         }
     }
     
@@ -223,6 +231,49 @@ public class TileDimensionalRipper extends TileTW implements IAspectContainer, I
                     }
                 }
             }
+        }
+    }
+    
+    protected void checkForActivation() {
+        IBlockState state = this.world.getBlockState(this.pos);
+        EnumFacing blockFacing = state.getValue(IBlockOrientable.FACING);
+        boolean blockEnabled = state.getValue(IBlockEnableable.ENABLED);
+        BlockPos otherPos = this.pos.offset(blockFacing, DISTANCE);
+        TileEntity otherTe = this.world.getTileEntity(otherPos);
+        
+        if (otherTe != null && otherTe instanceof TileDimensionalRipper) {
+            TileDimensionalRipper otherTile = (TileDimensionalRipper)otherTe;
+            IBlockState otherState = this.world.getBlockState(otherPos);
+            EnumFacing otherBlockFacing = otherState.getValue(IBlockOrientable.FACING);
+            boolean otherBlockEnabled = otherState.getValue(IBlockEnableable.ENABLED);
+
+            if ( otherBlockFacing == blockFacing.getOpposite() &&
+                 blockEnabled &&
+                 otherBlockEnabled &&
+                 this.amount >= CAPACITY &&
+                 otherTile.getAmount() >= CAPACITY ) {
+                BlockPos middlePos = new BlockPos(
+                    (this.pos.getX() + otherPos.getX()) / 2,
+                    (this.pos.getY() + otherPos.getY()) / 2,
+                    (this.pos.getZ() + otherPos.getZ()) / 2
+                );
+                this.createRift(middlePos);
+                this.takeFromContainer(Aspect.FLUX, CAPACITY);
+                otherTile.takeFromContainer(Aspect.FLUX, CAPACITY);
+            }
+        }
+    }
+
+    protected void createRift(BlockPos pos) {
+        if (EntityUtils.getEntitiesInRange(world, pos, null, EntityFluxRift.class, 32.0D).size() > 0) {
+            return;
+        }
+        EntityFluxRift rift = new EntityFluxRift(this.world);
+        rift.setRiftSeed(this.world.rand.nextInt());
+        rift.setLocationAndAngles(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, (float)this.world.rand.nextInt(360), 0.0F);
+        double size = Math.sqrt((2 * CAPACITY) * 3.0F);
+        if (this.world.spawnEntity(rift)) {
+            rift.setRiftSize((int)size);
         }
     }
 }
