@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.verdantartifice.thaumicwonders.common.items.misc.ItemDisjunctionCloth;
+import com.verdantartifice.thaumicwonders.common.items.tools.ItemPrimalDestroyer;
 
 import net.minecraft.item.Item;
 import net.minecraftforge.registries.IForgeRegistry;
@@ -13,6 +14,7 @@ public class InitItems {
     
     public static void initItems(IForgeRegistry<Item> forgeRegistry) {
         registerItem(forgeRegistry, new ItemDisjunctionCloth());
+        registerItem(forgeRegistry, new ItemPrimalDestroyer());
     }
     
     private static void registerItem(IForgeRegistry<Item> forgeRegistry, Item item) {

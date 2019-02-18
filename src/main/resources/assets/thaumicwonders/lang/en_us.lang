@@ -5,6 +5,7 @@ tile.creative_essentia_jar.name=Creative Essentia Jar
 
 // Items
 item.disjunction_cloth.name=Disjunction Cloth
+item.primal_destroyer.name=Primal Destroyer
 
 // Research
 tc.research_category.THAUMIC_WONDERS=Thaumic Wonders
@@ -31,6 +32,10 @@ thaumicwonders.research.disjunction_cloth.text.stage.2=My research has borne fru
 thaumicwonders.research.dimensional_ripper.title=Dimensional Ripper
 thaumicwonders.research.dimensional_ripper.text.stage.1=I can't believe I'm seriously considering this, but...<BR>If I'm going to continue to study these flux rifts, I'll need better tools.  Right now, I just dump a bunch of flux into the aura and hope a rift forms somewhere nearby.  That's far too haphazard.<BR>I need something more precise, more controlled.<BR>Less costly would be nice, too.
 thaumicwonders.research.dimensional_ripper.text.stage.2=I do believe I've outdone myself.  By channeling the destructive power of an Arcane Bore through a Primordial Pearl, I'm able to breach the walls of reality itself!<BR>A single Dimensional Ripper isn't enough, however, nor could it ever be.  The energies required would be completely infeasible.  Rather, a pair of the devices must be used.  By placing them precisely ten blocks apart and facing each other, the machines can resonate together, amplifying their power enough to serve my needs.<BR>Each of the two devices must be fueled with fifty Vitium essentia to reach critical mass.  Applying a redstone signal to either ripper will disable the pair and prevent any reaction from taking place.<BR>Finally, as a safety measaure, the Rippers will not activate if they sense another rift already open nearby.  The veil between us and the void can only take so much tampering before it fails completely, and I'm not *that* crazy.
+
+// Enchantments
+enchantment.special.sapgreat=Greater Sapping
+enchantment.special.voidflame=Voidflame
 
 // Misc
 itemGroup.thaumicwonders=Thaumic Wonders
