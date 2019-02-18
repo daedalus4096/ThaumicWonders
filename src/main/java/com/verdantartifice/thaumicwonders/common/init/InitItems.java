@@ -3,7 +3,7 @@ package com.verdantartifice.thaumicwonders.common.init;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.verdantartifice.thaumicwonders.common.items.ItemDisjunctionCloth;
+import com.verdantartifice.thaumicwonders.common.items.misc.ItemDisjunctionCloth;
 
 import net.minecraft.item.Item;
 import net.minecraftforge.registries.IForgeRegistry;

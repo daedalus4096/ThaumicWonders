@@ -1,4 +1,4 @@
-package com.verdantartifice.thaumicwonders.common.items;
+package com.verdantartifice.thaumicwonders.common.items.misc;
 
 import javax.annotation.Nonnull;
 
