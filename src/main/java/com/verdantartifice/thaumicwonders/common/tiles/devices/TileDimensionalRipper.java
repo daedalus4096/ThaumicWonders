@@ -1,5 +1,7 @@
 package com.verdantartifice.thaumicwonders.common.tiles.devices;
 
+import java.awt.Color;
+
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.blocks.base.IBlockEnableable;
 import com.verdantartifice.thaumicwonders.common.blocks.base.IBlockOrientable;
@@ -10,6 +12,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import thaumcraft.api.ThaumcraftApiHelper;
 import thaumcraft.api.aspects.Aspect;
@@ -17,7 +20,9 @@ import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.aspects.IAspectContainer;
 import thaumcraft.api.aspects.IEssentiaTransport;
 import thaumcraft.api.aura.AuraHelper;
+import thaumcraft.client.fx.FXDispatcher;
 import thaumcraft.common.entities.EntityFluxRift;
+import thaumcraft.common.lib.SoundsTC;
 import thaumcraft.common.lib.utils.EntityUtils;
 
 public class TileDimensionalRipper extends TileTW implements IAspectContainer, IEssentiaTransport, ITickable {
@@ -252,14 +257,50 @@ public class TileDimensionalRipper extends TileTW implements IAspectContainer, I
                  otherBlockEnabled &&
                  this.amount >= CAPACITY &&
                  otherTile.getAmount() >= CAPACITY ) {
-                BlockPos middlePos = new BlockPos(
+                BlockPos targetPos = new BlockPos(
                     (this.pos.getX() + otherPos.getX()) / 2,
                     (this.pos.getY() + otherPos.getY()) / 2,
                     (this.pos.getZ() + otherPos.getZ()) / 2
                 );
-                this.createRift(middlePos);
+
+                // Deduct reaction fuel
                 this.takeFromContainer(Aspect.FLUX, CAPACITY);
                 otherTile.takeFromContainer(Aspect.FLUX, CAPACITY);
+
+                // Play special effects
+                FXDispatcher.INSTANCE.beamBore(
+                    this.pos.getX() + 0.5D + (blockFacing.getFrontOffsetX() / 2.0D), 
+                    this.pos.getY() + 0.5D + (blockFacing.getFrontOffsetY() / 2.0D), 
+                    this.pos.getZ() + 0.5D + (blockFacing.getFrontOffsetZ() / 2.0D), 
+                    targetPos.getX() + 0.5D, 
+                    targetPos.getY() + 0.5D, 
+                    targetPos.getZ() + 0.5D, 
+                    1, 
+                    Color.RED.getRGB(), 
+                    false, 
+                    1.0F, 
+                    null, 
+                    1
+                );
+                FXDispatcher.INSTANCE.beamBore(
+                    otherPos.getX() + 0.5D + (otherBlockFacing.getFrontOffsetX() / 2.0D), 
+                    otherPos.getY() + 0.5D + (otherBlockFacing.getFrontOffsetY() / 2.0D), 
+                    otherPos.getZ() + 0.5D + (otherBlockFacing.getFrontOffsetZ() / 2.0D), 
+                    targetPos.getX() + 0.5D, 
+                    targetPos.getY() + 0.5D, 
+                    targetPos.getZ() + 0.5D, 
+                    1, 
+                    Color.RED.getRGB(), 
+                    false, 
+                    1.0F, 
+                    null, 
+                    1
+                );
+                this.world.playSound(null, this.pos, SoundsTC.zap, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                this.world.playSound(null, otherPos, SoundsTC.zap, SoundCategory.BLOCKS, 1.0F, 1.0F);
+
+                // Create the rift
+                this.createRift(targetPos);
             }
         }
     }
