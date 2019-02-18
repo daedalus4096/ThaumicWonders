@@ -30,7 +30,7 @@ public class ItemPrimalDestroyer extends ItemSword implements IWarpingGear {
         super(toolMatVoidflame);
         this.setCreativeTab(ThaumicWonders.CREATIVE_TAB);
         this.setRegistryName(ThaumicWonders.MODID, "primal_destroyer");
-        this.setUnlocalizedName("primal_destroyer");
+        this.setUnlocalizedName(ThaumicWonders.MODID + "." + this.getRegistryName().getResourcePath());
     }
 
     @Override

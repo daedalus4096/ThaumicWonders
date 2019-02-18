@@ -3,6 +3,7 @@ package com.verdantartifice.thaumicwonders.common.blocks.essentia;
 import java.util.List;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
@@ -19,11 +20,11 @@ public class ItemBlockCreativeEssentiaJar extends BlockJarItem {
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-        tooltip.add(TextFormatting.DARK_PURPLE + "Creative only");
-        tooltip.add("Returns infinite amount of");
-        tooltip.add("contained essentia type.");
-        tooltip.add("Empty by shift-right-clicking");
-        tooltip.add("with an empty hand.");
+        tooltip.add(TextFormatting.DARK_PURPLE + I18n.format("item.creative_only"));
+        tooltip.add(I18n.format("tile.thaumicwonders.creative_essentia_jar.tooltip.1"));
+        tooltip.add(I18n.format("tile.thaumicwonders.creative_essentia_jar.tooltip.2"));
+        tooltip.add(I18n.format("tile.thaumicwonders.creative_essentia_jar.tooltip.3"));
+        tooltip.add(I18n.format("tile.thaumicwonders.creative_essentia_jar.tooltip.4"));
         super.addInformation(stack, worldIn, tooltip, flagIn);
     }
 }

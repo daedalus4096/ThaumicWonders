@@ -9,8 +9,8 @@ import net.minecraft.block.state.IBlockState;
 public class BlockTW extends Block {
     public BlockTW(Material material, String name) {
         super(material);
-        setUnlocalizedName(name);
         setRegistryName(ThaumicWonders.MODID, name);
+        setUnlocalizedName(ThaumicWonders.MODID + "." + this.getRegistryName().getResourcePath());
         setCreativeTab(ThaumicWonders.CREATIVE_TAB);
         setResistance(2.0F);
         setHardness(1.5F);

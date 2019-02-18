@@ -7,8 +7,8 @@ import net.minecraft.item.Item;
 public class ItemTW extends Item {
     public ItemTW(String name) {
         super();
-        setUnlocalizedName(name);
         setRegistryName(ThaumicWonders.MODID, name);
+        setUnlocalizedName(ThaumicWonders.MODID + "." + this.getRegistryName().getResourcePath());
         setCreativeTab(ThaumicWonders.CREATIVE_TAB);
     }
 }
