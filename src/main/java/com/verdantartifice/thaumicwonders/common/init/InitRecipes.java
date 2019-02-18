@@ -21,6 +21,7 @@ import thaumcraft.api.crafting.CrucibleRecipe;
 import thaumcraft.api.crafting.InfusionRecipe;
 import thaumcraft.api.crafting.ShapedArcaneRecipe;
 import thaumcraft.api.items.ItemsTC;
+import thaumcraft.common.lib.enchantment.EnumInfusionEnchantment;
 
 public class InitRecipes {
     private static ResourceLocation defaultGroup = new ResourceLocation("");
@@ -115,6 +116,24 @@ public class InitRecipes {
                         new ItemStack(Items.LAVA_BUCKET),
                         ThaumcraftApiHelper.makeCrystal(Aspect.FIRE),
                         new ItemStack(Blocks.OBSIDIAN)
+                }
+        ));
+        
+        ItemStack destroyer = new ItemStack(ItemsTW.PRIMAL_DESTROYER);
+        EnumInfusionEnchantment.addInfusionEnchantment(destroyer, EnumInfusionEnchantment.ESSENCE, 3);
+        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "primal_destroyer"), new InfusionRecipe(
+                "TWOND_PRIMAL_DESTROYER",
+                destroyer,
+                8,
+                new AspectList().add(Aspect.FIRE, 100).add(Aspect.ENTROPY, 50).add(Aspect.VOID, 50).add(Aspect.AVERSION, 100).add(Aspect.ELDRITCH, 75).add(Aspect.DARKNESS, 75).add(Aspect.DEATH, 100),
+                Ingredient.fromItem(ItemsTC.voidSword),
+                new Object[] {
+                        Ingredient.fromItem(ItemsTC.primordialPearl),
+                        new ItemStack(Items.NETHER_STAR),
+                        "plateVoid",
+                        "plateVoid",
+                        ThaumcraftApiHelper.makeCrystal(Aspect.FIRE),
+                        ThaumcraftApiHelper.makeCrystal(Aspect.FIRE)
                 }
         ));
     }

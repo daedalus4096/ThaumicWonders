@@ -24,6 +24,30 @@
                 }
             ],
             "addenda": []
+        },
+        {
+            "key": "TWOND_PRIMAL_DESTROYER",
+            "name": "thaumicwonders.research.primal_destroyer.title",
+            "icons": ["thaumicwonders:primal_destroyer"],
+            "category": "THAUMIC_WONDERS",
+            "parents": ["TWOND_BASE", "~BASEELDRITCH", "~PRIMPEARL"],
+            "siblings": [],
+            "meta": ["HIDDEN"],
+            "location": [-4, 1],
+            "reward_item": [],
+            "reward_knowledge": [],
+            "stages": [
+                {
+                    "text": "thaumicwonders.research.primal_destroyer.text.stage.1",
+                    "required_knowledge": ["OBSERVATION;ELDRITCH;1", "THEORY;ELDRITCH;1", "THEORY;INFUSION;1"],
+                    "warp": 3
+                },
+                {
+                    "text": "thaumicwonders.research.primal_destroyer.text.stage.2",
+                    "recipes": ["thaumicwonders:primal_destroyer"]
+                }
+            ],
+            "addenda": []
         }
     ]
 }
