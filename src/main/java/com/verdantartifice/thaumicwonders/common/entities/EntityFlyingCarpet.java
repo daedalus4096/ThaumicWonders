@@ -24,9 +24,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntityFlyingCarpet extends Entity {
-    private static final DataParameter<Integer> TIME_SINCE_HIT = EntityDataManager.<Integer>createKey(EntityFlyingCarpet.class, DataSerializers.VARINT);
     private static final DataParameter<Integer> FORWARD_DIRECTION = EntityDataManager.<Integer>createKey(EntityFlyingCarpet.class, DataSerializers.VARINT);
-    private static final DataParameter<Float> DAMAGE_TAKEN = EntityDataManager.<Float>createKey(EntityFlyingCarpet.class, DataSerializers.FLOAT);
 
     private int lerpSteps;
     private double lerpX;
@@ -59,9 +57,7 @@ public class EntityFlyingCarpet extends Entity {
     
     @Override
     protected void entityInit() {
-        this.dataManager.register(TIME_SINCE_HIT, Integer.valueOf(0));
         this.dataManager.register(FORWARD_DIRECTION, Integer.valueOf(1));
-        this.dataManager.register(DAMAGE_TAKEN, Float.valueOf(0.0F));
     }
 
     @Override
@@ -94,29 +90,13 @@ public class EntityFlyingCarpet extends Entity {
 
     @Override
     public double getMountedYOffset() {
-        // FIXME confirm or replace this value
-//        return -0.1D;
-        return 0.0D;
-    }
-
-    @Override
-    public boolean attackEntityFrom(DamageSource source, float amount) {
-        // TODO Auto-generated method stub
-        return super.attackEntityFrom(source, amount);
+        return -0.15D;
     }
 
     @Override
     public void applyEntityCollision(Entity entityIn) {
         // TODO Auto-generated method stub
         super.applyEntityCollision(entityIn);
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void performHurtAnimation() {
-        this.setForwardDirection(-this.getForwardDirection());
-        this.setTimeSinceHit(10);
-        this.setDamageTaken(this.getDamageTaken() * 11.0F);
     }
 
     @Override
@@ -180,14 +160,14 @@ public class EntityFlyingCarpet extends Entity {
      * Applies this carpet's yaw to the given entity. Used to update the orientation of its passenger.
      */
     protected void applyYawToEntity(Entity entityToUpdate) {
-        
+        // TODO
     }
     
     /**
      * Applies this carpet's pitch to the given entity. Used to update the orientation of its passenger.
      */
     protected void applyPitchToEntity(Entity entityToUpdate) {
-        
+        // TODO
     }
 
     @Override
@@ -216,34 +196,6 @@ public class EntityFlyingCarpet extends Entity {
         super.updateFallState(y, onGroundIn, state, pos);
     }
     
-    /**
-     * Sets the damage taken from the last hit.
-     */
-    public void setDamageTaken(float damageTaken) {
-        this.dataManager.set(DAMAGE_TAKEN, Float.valueOf(damageTaken));
-    }
-
-    /**
-     * Gets the damage taken from the last hit.
-     */
-    public float getDamageTaken() {
-        return this.dataManager.get(DAMAGE_TAKEN).floatValue();
-    }
-
-    /**
-     * Sets the time to count down from since the last time entity was hit.
-     */
-    public void setTimeSinceHit(int timeSinceHit) {
-        this.dataManager.set(TIME_SINCE_HIT, Integer.valueOf(timeSinceHit));
-    }
-
-    /**
-     * Gets the time since the last hit.
-     */
-    public int getTimeSinceHit() {
-        return this.dataManager.get(TIME_SINCE_HIT).intValue();
-    }
-
     /**
      * Sets the forward direction of the entity.
      */

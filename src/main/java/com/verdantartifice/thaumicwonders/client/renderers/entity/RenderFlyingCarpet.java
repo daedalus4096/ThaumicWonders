@@ -9,7 +9,6 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
 
 public class RenderFlyingCarpet extends Render<EntityFlyingCarpet> {
     private static final ResourceLocation TEXTURE = new ResourceLocation(ThaumicWonders.MODID, "textures/entities/flying_carpet.png");
@@ -53,17 +52,6 @@ public class RenderFlyingCarpet extends Render<EntityFlyingCarpet> {
     
     public void setupRotation(EntityFlyingCarpet entity, float entityYaw, float partialTicks) {
         GlStateManager.rotate(180.0F - entityYaw, 0.0F, 1.0F, 0.0F);
-        float f = (float)entity.getTimeSinceHit() - partialTicks;
-        float f1 = entity.getDamageTaken() - partialTicks;
-
-        if (f1 < 0.0F) {
-            f1 = 0.0F;
-        }
-
-        if (f > 0.0F) {
-            GlStateManager.rotate(MathHelper.sin(f) * f * f1 / 10.0F * (float)entity.getForwardDirection(), 1.0F, 0.0F, 0.0F);
-        }
-
         GlStateManager.scale(-1.0F, -1.0F, 1.0F);
     }
 
