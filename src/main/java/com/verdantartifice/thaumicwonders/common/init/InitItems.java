@@ -3,6 +3,7 @@ package com.verdantartifice.thaumicwonders.common.init;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.verdantartifice.thaumicwonders.common.items.entities.ItemFlyingCarpet;
 import com.verdantartifice.thaumicwonders.common.items.misc.ItemDisjunctionCloth;
 import com.verdantartifice.thaumicwonders.common.items.tools.ItemPrimalDestroyer;
 
@@ -15,6 +16,7 @@ public class InitItems {
     public static void initItems(IForgeRegistry<Item> forgeRegistry) {
         registerItem(forgeRegistry, new ItemDisjunctionCloth());
         registerItem(forgeRegistry, new ItemPrimalDestroyer());
+        registerItem(forgeRegistry, new ItemFlyingCarpet());
     }
     
     private static void registerItem(IForgeRegistry<Item> forgeRegistry, Item item) {

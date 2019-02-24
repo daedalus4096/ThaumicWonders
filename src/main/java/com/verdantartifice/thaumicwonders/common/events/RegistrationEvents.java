@@ -2,6 +2,7 @@ package com.verdantartifice.thaumicwonders.common.events;
 
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.init.InitBlocks;
+import com.verdantartifice.thaumicwonders.common.init.InitEntities;
 import com.verdantartifice.thaumicwonders.common.init.InitItems;
 import com.verdantartifice.thaumicwonders.common.init.InitRecipes;
 
@@ -11,6 +12,7 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.EntityEntry;
 
 @Mod.EventBusSubscriber(modid = ThaumicWonders.MODID)
 public class RegistrationEvents {
@@ -29,5 +31,10 @@ public class RegistrationEvents {
     @SubscribeEvent
     public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
         InitRecipes.initRecipes(event.getRegistry());
+    }
+    
+    @SubscribeEvent
+    public static void registerEntities(RegistryEvent.Register<EntityEntry> event) {
+        InitEntities.initEntities(event.getRegistry());
     }
 }

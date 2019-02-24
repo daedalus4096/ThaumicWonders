@@ -1,5 +1,7 @@
 package com.verdantartifice.thaumicwonders.proxy;
 
-public interface IProxyTW {
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
+public interface IProxyTW {
+    public void preInit(FMLPreInitializationEvent event);
 }

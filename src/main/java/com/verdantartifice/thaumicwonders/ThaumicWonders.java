@@ -28,6 +28,9 @@ public class ThaumicWonders
 
     public static Logger LOGGER;
     
+    @Mod.Instance(ThaumicWonders.MODID)
+    public static ThaumicWonders INSTANCE;
+    
     @SidedProxy(clientSide="com.verdantartifice.thaumicwonders.proxy.ClientProxy", serverSide="com.verdantartifice.thaumicwonders.proxy.ServerProxy")
     public static IProxyTW proxy;
 
@@ -35,6 +38,7 @@ public class ThaumicWonders
     public void preInit(FMLPreInitializationEvent event)
     {
         LOGGER = event.getModLog();
+        proxy.preInit(event);
     }
 
     @EventHandler

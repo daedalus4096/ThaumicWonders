@@ -10,6 +10,10 @@ tile.thaumicwonders.creative_essentia_jar.tooltip.4=with an empty hand.
 // Items
 item.thaumicwonders.disjunction_cloth.name=Disjunction Cloth
 item.thaumicwonders.primal_destroyer.name=Primal Destroyer
+item.thaumicwonders.flying_carpet.name=Flying Carpet
+
+// Entities
+entity.flying_carpet.name=Flying Carpet
 
 // Research
 tc.research_category.THAUMIC_WONDERS=Thaumic Wonders

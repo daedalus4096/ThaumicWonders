@@ -10,4 +10,5 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class ItemsTW {
     public static final Item DISJUNCTION_CLOTH = null;
     public static final ItemSword PRIMAL_DESTROYER = null;
+    public static final Item FLYING_CARPET = null;
 }
