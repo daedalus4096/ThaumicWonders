@@ -51,7 +51,7 @@ public class RenderFlyingCarpet extends Render<EntityFlyingCarpet> {
     }
     
     public void setupRotation(EntityFlyingCarpet entity, float entityYaw, float partialTicks) {
-        GlStateManager.rotate(180.0F - entityYaw, 0.0F, 1.0F, 0.0F);
+        GlStateManager.rotate(90.0F - entityYaw, 0.0F, 1.0F, 0.0F);
         GlStateManager.scale(-1.0F, -1.0F, 1.0F);
     }
 
