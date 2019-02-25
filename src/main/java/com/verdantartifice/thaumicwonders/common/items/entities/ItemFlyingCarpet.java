@@ -20,10 +20,13 @@ public class ItemFlyingCarpet extends ItemTW {
     @Override
     public EnumActionResult onItemUseFirst(EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, EnumHand hand) {
         if (!world.isRemote) {
-            EntityFlyingCarpet entityCarpet = new EntityFlyingCarpet(world, pos.offset(side, 1));
+            double posX = (double)pos.getX() + (double)hitX;
+            double posY = (double)pos.getY() + (double)hitY;
+            double posZ = (double)pos.getZ() + (double)hitZ;
+            EntityFlyingCarpet entityCarpet = new EntityFlyingCarpet(world, posX, posY, posZ);
             entityCarpet.rotationYaw = player.rotationYaw;
             world.spawnEntity(entityCarpet);
-            world.playSound(null, pos.offset(side, 1), SoundEvents.BLOCK_CLOTH_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            world.playSound(null, posX, posY, posZ, SoundEvents.BLOCK_CLOTH_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);
             player.getHeldItem(hand).shrink(1);
             return EnumActionResult.SUCCESS;
         } else {
