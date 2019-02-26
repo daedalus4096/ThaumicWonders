@@ -49,6 +49,13 @@ thaumicwonders.research.primal_destroyer.text.stage.2=I fear that I've made a te
 enchantment.special.sapgreat=Greater Sapping
 enchantment.special.voidflame=Voidflame
 
+// Config
+key.categories.thaumicwonders=Thaumic Wonders
+key.carpet_forward=Flying Carpet Forwards
+key.carpet_backward=Flying Carpet Backwards
+key.carpet_left=Flying Carpet Turn Left
+key.carpet_right=Flying Carpet Turn Right
+
 // Misc
 itemGroup.thaumicwonders=Thaumic Wonders
 item.creative_only=Creative only

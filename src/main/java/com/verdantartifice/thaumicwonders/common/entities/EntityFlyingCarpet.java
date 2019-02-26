@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.items.ItemsTW;
 
 import net.minecraft.block.state.IBlockState;
@@ -135,11 +136,16 @@ public class EntityFlyingCarpet extends Entity {
         
         if (this.canPassengerSteer()) {
             this.updateMotion();
-            if (this.world.isRemote) {
+            if (!this.world.isRemote) {
+                ThaumicWonders.LOGGER.info("Calling control carpet");
                 this.controlCarpet();
+            } else {
+                ThaumicWonders.LOGGER.info("Skipping control carpet!");
             }
+            ThaumicWonders.LOGGER.info("Calling move: mx = {}, my = {}, mz = {}", this.motionX, this.motionY, this.motionZ);
             this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
         } else {
+            ThaumicWonders.LOGGER.info("Skipping move!");
             this.motionX = 0.0D;
             this.motionY = 0.0D;
             this.motionZ = 0.0D;
@@ -198,9 +204,20 @@ public class EntityFlyingCarpet extends Entity {
             if (this.backInputDown) {
                 f -= 0.005F;
             }
-            this.motionX += (double)(MathHelper.sin(-this.rotationYaw * 0.017453292F) * f);
-            this.motionZ += (double)(MathHelper.cos(this.rotationYaw * 0.017453292F) * f);
+            this.motionX += (double)(MathHelper.sin(-this.rotationYaw * ((float)Math.PI / 180.0F)) * f);
+            this.motionZ += (double)(MathHelper.cos(this.rotationYaw * ((float)Math.PI / 180.0F)) * f);
+            ThaumicWonders.LOGGER.info("Controlling carpet, mx = {}, mz = {}", this.motionX, this.motionZ);
+        } else {
+            ThaumicWonders.LOGGER.info("Not being ridden!");
         }
+    }
+    
+    public void updateInputs(boolean forwardDown, boolean backwardDown, boolean leftDown, boolean rightDown) {
+//        ThaumicWonders.LOGGER.info("Received input update, forward = {}, backward = {}, left = {}, right = {}", forwardDown, backwardDown, leftDown, rightDown);
+        this.forwardInputDown = forwardDown;
+        this.backInputDown = backwardDown;
+        this.leftInputDown = leftDown;
+        this.rightInputDown = rightDown;
     }
 
     @Override
@@ -277,7 +294,9 @@ public class EntityFlyingCarpet extends Entity {
     @Nullable
     public Entity getControllingPassenger() {
         List<Entity> list = this.getPassengers();
-        return list.isEmpty() ? null : list.get(0);
+        Entity retVal = list.isEmpty() ? null : list.get(0);
+        ThaumicWonders.LOGGER.info("Controlling passenger: {}", retVal);
+        return retVal;
     }
 
     @Override
