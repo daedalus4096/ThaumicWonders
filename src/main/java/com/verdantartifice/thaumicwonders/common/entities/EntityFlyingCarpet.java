@@ -8,12 +8,12 @@ import com.verdantartifice.thaumicwonders.common.items.ItemsTW;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.MoverType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -26,12 +26,18 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class EntityFlyingCarpet extends Entity {
     private static final DataParameter<Integer> FORWARD_DIRECTION = EntityDataManager.<Integer>createKey(EntityFlyingCarpet.class, DataSerializers.VARINT);
 
+    private float momentum;
+    private float deltaRotation;
     private int lerpSteps;
     private double lerpX;
     private double lerpY;
     private double lerpZ;
     private double lerpYaw;
     private double lerpPitch;
+    private boolean leftInputDown;
+    private boolean rightInputDown;
+    private boolean forwardInputDown;
+    private boolean backInputDown;
 
     public EntityFlyingCarpet(World worldIn) {
         super(worldIn);
@@ -121,8 +127,26 @@ public class EntityFlyingCarpet extends Entity {
 
     @Override
     public void onUpdate() {
-        // TODO Auto-generated method stub
+        this.prevPosX = this.posX;
+        this.prevPosY = this.posY;
+        this.prevPosZ = this.posZ;
         super.onUpdate();
+        this.tickLerp();
+        
+        if (this.canPassengerSteer()) {
+            this.updateMotion();
+            if (this.world.isRemote) {
+                this.controlCarpet();
+            }
+            this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
+        } else {
+            this.motionX = 0.0D;
+            this.motionY = 0.0D;
+            this.motionZ = 0.0D;
+        }
+        
+        this.doBlockCollisions();
+//        List<Entity> list = this.world.getEntitiesInAABBexcluding(this, this.getEntityBoundingBox().grow(0.2D, -0.01D, 0.2D), EntitySelectors.getTeamCollisionPredicate(this));
     }
     
     private void tickLerp() {
@@ -143,11 +167,40 @@ public class EntityFlyingCarpet extends Entity {
      * Update the carpet's speed, based on momentum
      */
     private void updateMotion() {
-        // TODO Stub
+//        double d0 = -0.04D;
+        double d1 = this.hasNoGravity() ? 0.0D : -0.04D;
+//        double d2 = 0.0D;
+        this.momentum = 0.9F;
+
+        this.motionX *= (double)this.momentum;
+        this.motionZ *= (double)this.momentum;
+        this.deltaRotation *= this.momentum;
+        this.motionY += d1;
     }
     
     private void controlCarpet() {
-        // TODO Stub
+        if (this.isBeingRidden()) {
+            if (this.leftInputDown) {
+                this.deltaRotation -= 1.0F;
+            }
+            if (this.rightInputDown) {
+                this.deltaRotation += 1.0F;
+            }
+            this.rotationYaw += this.deltaRotation;
+            
+            float f = 0.0F;
+            if (this.rightInputDown != this.leftInputDown && !this.forwardInputDown && !this.backInputDown) {
+                f += 0.005F;
+            }
+            if (this.forwardInputDown) {
+                f += 0.04F;
+            }
+            if (this.backInputDown) {
+                f -= 0.005F;
+            }
+            this.motionX += (double)(MathHelper.sin(-this.rotationYaw * 0.017453292F) * f);
+            this.motionZ += (double)(MathHelper.cos(this.rotationYaw * 0.017453292F) * f);
+        }
     }
 
     @Override
