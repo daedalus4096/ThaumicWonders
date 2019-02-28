@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.items.ItemsTW;
 
 import net.minecraft.block.state.IBlockState;
@@ -137,22 +136,22 @@ public class EntityFlyingCarpet extends Entity {
         if (this.canPassengerSteer()) {
             this.updateMotion();
             if (!this.world.isRemote) {
-                ThaumicWonders.LOGGER.info("Calling control carpet");
                 this.controlCarpet();
-            } else {
-                ThaumicWonders.LOGGER.info("Skipping control carpet!");
             }
-            ThaumicWonders.LOGGER.info("Calling move: mx = {}, my = {}, mz = {}", this.motionX, this.motionY, this.motionZ);
             this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
         } else {
-            ThaumicWonders.LOGGER.info("Skipping move!");
             this.motionX = 0.0D;
             this.motionY = 0.0D;
             this.motionZ = 0.0D;
         }
         
         this.doBlockCollisions();
-//        List<Entity> list = this.world.getEntitiesInAABBexcluding(this, this.getEntityBoundingBox().grow(0.2D, -0.01D, 0.2D), EntitySelectors.getTeamCollisionPredicate(this));
+    }
+    
+    @Override
+    public boolean canPassengerSteer() {
+        Entity entity = this.getControllingPassenger();
+        return (entity != null && entity instanceof EntityPlayer);
     }
     
     private void tickLerp() {
@@ -173,15 +172,11 @@ public class EntityFlyingCarpet extends Entity {
      * Update the carpet's speed, based on momentum
      */
     private void updateMotion() {
-//        double d0 = -0.04D;
-        double d1 = this.hasNoGravity() ? 0.0D : -0.04D;
-//        double d2 = 0.0D;
         this.momentum = 0.9F;
-
         this.motionX *= (double)this.momentum;
         this.motionZ *= (double)this.momentum;
         this.deltaRotation *= this.momentum;
-        this.motionY += d1;
+        this.motionY += (this.hasNoGravity() ? 0.0D : -0.04D);
     }
     
     private void controlCarpet() {
@@ -204,16 +199,12 @@ public class EntityFlyingCarpet extends Entity {
             if (this.backInputDown) {
                 f -= 0.005F;
             }
-            this.motionX += (double)(MathHelper.sin(-this.rotationYaw * ((float)Math.PI / 180.0F)) * f);
-            this.motionZ += (double)(MathHelper.cos(this.rotationYaw * ((float)Math.PI / 180.0F)) * f);
-            ThaumicWonders.LOGGER.info("Controlling carpet, mx = {}, mz = {}", this.motionX, this.motionZ);
-        } else {
-            ThaumicWonders.LOGGER.info("Not being ridden!");
+            this.motionX += (double)(MathHelper.sin(-this.rotationYaw * (float)(Math.PI / 180.0D)) * f);
+            this.motionZ += (double)(MathHelper.cos(this.rotationYaw * (float)(Math.PI / 180.0D)) * f);
         }
     }
     
     public void updateInputs(boolean forwardDown, boolean backwardDown, boolean leftDown, boolean rightDown) {
-//        ThaumicWonders.LOGGER.info("Received input update, forward = {}, backward = {}, left = {}, right = {}", forwardDown, backwardDown, leftDown, rightDown);
         this.forwardInputDown = forwardDown;
         this.backInputDown = backwardDown;
         this.leftInputDown = leftDown;
@@ -295,7 +286,6 @@ public class EntityFlyingCarpet extends Entity {
     public Entity getControllingPassenger() {
         List<Entity> list = this.getPassengers();
         Entity retVal = list.isEmpty() ? null : list.get(0);
-        ThaumicWonders.LOGGER.info("Controlling passenger: {}", retVal);
         return retVal;
     }
 
