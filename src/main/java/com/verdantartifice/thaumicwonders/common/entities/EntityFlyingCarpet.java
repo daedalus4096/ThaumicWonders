@@ -27,15 +27,12 @@ public class EntityFlyingCarpet extends Entity {
     private static final DataParameter<Integer> FORWARD_DIRECTION = EntityDataManager.<Integer>createKey(EntityFlyingCarpet.class, DataSerializers.VARINT);
 
     private float momentum;
-    private float deltaRotation;
     private int lerpSteps;
     private double lerpX;
     private double lerpY;
     private double lerpZ;
     private double lerpYaw;
     private double lerpPitch;
-    private boolean leftInputDown;
-    private boolean rightInputDown;
     private boolean forwardInputDown;
     private boolean backInputDown;
 
@@ -43,6 +40,7 @@ public class EntityFlyingCarpet extends Entity {
         super(worldIn);
         this.preventEntitySpawning = true;
         this.setSize(1.375F, 0.0625F);
+        this.setNoGravity(true);
     }
 
     public EntityFlyingCarpet(World worldIn, double x, double y, double z)
@@ -175,24 +173,16 @@ public class EntityFlyingCarpet extends Entity {
         this.momentum = 0.9F;
         this.motionX *= (double)this.momentum;
         this.motionZ *= (double)this.momentum;
-        this.deltaRotation *= this.momentum;
         this.motionY += (this.hasNoGravity() ? 0.0D : -0.04D);
     }
     
     private void controlCarpet() {
         if (this.isBeingRidden()) {
-            if (this.leftInputDown) {
-                this.deltaRotation -= 1.0F;
-            }
-            if (this.rightInputDown) {
-                this.deltaRotation += 1.0F;
-            }
-            this.rotationYaw += this.deltaRotation;
+            Entity pilot = this.getControllingPassenger();
+            this.prevRotationYaw = this.rotationYaw;
+            this.rotationYaw = pilot.rotationYaw;
             
             float f = 0.0F;
-            if (this.rightInputDown != this.leftInputDown && !this.forwardInputDown && !this.backInputDown) {
-                f += 0.005F;
-            }
             if (this.forwardInputDown) {
                 f += 0.04F;
             }
@@ -204,11 +194,9 @@ public class EntityFlyingCarpet extends Entity {
         }
     }
     
-    public void updateInputs(boolean forwardDown, boolean backwardDown, boolean leftDown, boolean rightDown) {
+    public void updateInputs(boolean forwardDown, boolean backwardDown) {
         this.forwardInputDown = forwardDown;
         this.backInputDown = backwardDown;
-        this.leftInputDown = leftDown;
-        this.rightInputDown = rightDown;
     }
 
     @Override

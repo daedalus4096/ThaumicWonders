@@ -53,8 +53,6 @@ enchantment.special.voidflame=Voidflame
 key.categories.thaumicwonders=Thaumic Wonders
 key.carpet_forward=Flying Carpet Forwards
 key.carpet_backward=Flying Carpet Backwards
-key.carpet_left=Flying Carpet Turn Left
-key.carpet_right=Flying Carpet Turn Right
 
 // Misc
 itemGroup.thaumicwonders=Thaumic Wonders

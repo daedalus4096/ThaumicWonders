@@ -24,9 +24,7 @@ public class InputEvents {
             if (ridingEntity != null && ridingEntity instanceof EntityFlyingCarpet) {
                 ((EntityFlyingCarpet)ridingEntity).updateInputs(
                     KeyBindings.carpetForwardKey.isKeyDown(), 
-                    KeyBindings.carpetBackwardKey.isKeyDown(), 
-                    KeyBindings.carpetLeftKey.isKeyDown(), 
-                    KeyBindings.carpetRightKey.isKeyDown()
+                    KeyBindings.carpetBackwardKey.isKeyDown()
                 );
             }
         }
