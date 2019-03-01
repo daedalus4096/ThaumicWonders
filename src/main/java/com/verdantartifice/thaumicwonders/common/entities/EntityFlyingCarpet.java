@@ -146,12 +146,6 @@ public class EntityFlyingCarpet extends Entity {
         this.doBlockCollisions();
     }
     
-    @Override
-    public boolean canPassengerSteer() {
-        Entity entity = this.getControllingPassenger();
-        return (entity != null && entity instanceof EntityPlayer);
-    }
-    
     private void tickLerp() {
         if (this.lerpSteps > 0 && !this.canPassengerSteer()) {
             double newX = this.posX + ((this.lerpX - this.posX) / (double)this.lerpSteps);
@@ -172,6 +166,7 @@ public class EntityFlyingCarpet extends Entity {
     private void updateMotion() {
         this.momentum = 0.9F;
         this.motionX *= (double)this.momentum;
+        this.motionY *= (double)this.momentum;
         this.motionZ *= (double)this.momentum;
         this.motionY += (this.hasNoGravity() ? 0.0D : -0.04D);
     }
@@ -190,6 +185,7 @@ public class EntityFlyingCarpet extends Entity {
                 f -= 0.005F;
             }
             this.motionX += (double)(MathHelper.sin(-this.rotationYaw * (float)(Math.PI / 180.0D)) * f);
+            this.motionY += (double)(MathHelper.sin(-pilot.rotationPitch * (float)(Math.PI / 180.0D)) * f);
             this.motionZ += (double)(MathHelper.cos(this.rotationYaw * (float)(Math.PI / 180.0D)) * f);
         }
     }
