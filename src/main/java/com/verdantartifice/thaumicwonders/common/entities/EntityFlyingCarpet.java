@@ -4,13 +4,16 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.items.ItemsTW;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagInt;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -22,9 +25,12 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import thaumcraft.api.items.RechargeHelper;
 
 public class EntityFlyingCarpet extends Entity {
     private static final DataParameter<Integer> FORWARD_DIRECTION = EntityDataManager.<Integer>createKey(EntityFlyingCarpet.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> VIS_CHARGE = EntityDataManager.<Integer>createKey(EntityFlyingCarpet.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> ENERGY = EntityDataManager.<Integer>createKey(EntityFlyingCarpet.class, DataSerializers.VARINT);
 
     private float momentum;
     private int lerpSteps;
@@ -62,6 +68,8 @@ public class EntityFlyingCarpet extends Entity {
     @Override
     protected void entityInit() {
         this.dataManager.register(FORWARD_DIRECTION, Integer.valueOf(1));
+        this.dataManager.register(VIS_CHARGE, Integer.valueOf(0));
+        this.dataManager.register(ENERGY, Integer.valueOf(0));
     }
 
     @Override
@@ -130,8 +138,11 @@ public class EntityFlyingCarpet extends Entity {
         this.prevPosZ = this.posZ;
         super.onUpdate();
         this.tickLerp();
-        
-        if (this.canPassengerSteer()) {
+
+        if (this.isBeingRidden() && !this.world.isRemote && this.ticksExisted % 20 == 0) {
+            this.consumeEnergy();
+        }
+        if (this.isBeingRidden() && this.canPassengerSteer()) {
             this.updateMotion();
             if (this.world.isRemote) {
                 this.controlCarpet();
@@ -147,6 +158,25 @@ public class EntityFlyingCarpet extends Entity {
         }
         
         this.doBlockCollisions();
+    }
+    
+    private void consumeEnergy() {
+        int energy = this.getEnergy();
+        if (energy > 0) {
+            energy--;
+        } else {
+            int visCharge = this.getVisCharge();
+            if (visCharge > 0) {
+                energy = 60;
+                this.setVisCharge(visCharge - 1); 
+                ThaumicWonders.LOGGER.info("Flying carpet consuming vis, new charge = {}", this.getVisCharge());
+            }
+        }
+        this.setEnergy(energy);
+    }
+    
+    private boolean hasEnergy() {
+        return (this.getEnergy() > 0 || this.getVisCharge() > 0);
     }
     
     private void tickLerp() {
@@ -232,9 +262,13 @@ public class EntityFlyingCarpet extends Entity {
 
     @Override
     public boolean processInitialInteract(EntityPlayer player, EnumHand hand) {
+        ThaumicWonders.LOGGER.info("On interact, vis charge = {}, energy = {}", this.getVisCharge(), this.getEnergy());
         if (!this.world.isRemote) {
             if (player.isSneaking()) {
-                this.dropItem(ItemsTW.FLYING_CARPET, 1);
+                ItemStack itemStack = new ItemStack(ItemsTW.FLYING_CARPET, 1, 0);
+                itemStack.setTagInfo(RechargeHelper.NBT_TAG, new NBTTagInt(this.getVisCharge()));
+                itemStack.setTagInfo("energy", new NBTTagInt(this.getEnergy()));
+                this.entityDropItem(itemStack, 0.0F);
                 this.setDead();
             } else {
                 player.startRiding(this);
@@ -261,6 +295,22 @@ public class EntityFlyingCarpet extends Entity {
      */
     public int getForwardDirection() {
         return this.dataManager.get(FORWARD_DIRECTION).intValue();
+    }
+    
+    public void setVisCharge(int visCharge) {
+        this.dataManager.set(VIS_CHARGE, Integer.valueOf(visCharge));
+    }
+    
+    public int getVisCharge() {
+        return this.dataManager.get(VIS_CHARGE).intValue();
+    }
+    
+    public void setEnergy(int energy) {
+        this.dataManager.set(ENERGY, Integer.valueOf(energy));
+    }
+    
+    public int getEnergy() {
+        return this.dataManager.get(ENERGY).intValue();
     }
 
     @Override
