@@ -28,7 +28,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import thaumcraft.api.items.RechargeHelper;
 
 public class EntityFlyingCarpet extends Entity {
-    private static final DataParameter<Integer> FORWARD_DIRECTION = EntityDataManager.<Integer>createKey(EntityFlyingCarpet.class, DataSerializers.VARINT);
     private static final DataParameter<Integer> VIS_CHARGE = EntityDataManager.<Integer>createKey(EntityFlyingCarpet.class, DataSerializers.VARINT);
     private static final DataParameter<Integer> ENERGY = EntityDataManager.<Integer>createKey(EntityFlyingCarpet.class, DataSerializers.VARINT);
 
@@ -67,7 +66,6 @@ public class EntityFlyingCarpet extends Entity {
     
     @Override
     protected void entityInit() {
-        this.dataManager.register(FORWARD_DIRECTION, Integer.valueOf(1));
         this.dataManager.register(VIS_CHARGE, Integer.valueOf(0));
         this.dataManager.register(ENERGY, Integer.valueOf(0));
     }
@@ -103,12 +101,6 @@ public class EntityFlyingCarpet extends Entity {
     @Override
     public double getMountedYOffset() {
         return -0.15D;
-    }
-
-    @Override
-    public void applyEntityCollision(Entity entityIn) {
-        // TODO Auto-generated method stub
-        super.applyEntityCollision(entityIn);
     }
 
     @Override
@@ -229,12 +221,6 @@ public class EntityFlyingCarpet extends Entity {
         this.backInputDown = backwardDown;
     }
 
-    @Override
-    public void updatePassenger(Entity passenger) {
-        // TODO Auto-generated method stub
-        super.updatePassenger(passenger);
-    }
-    
     /**
      * Applies this carpet's yaw to the given entity. Used to update the orientation of its passenger.
      */
@@ -247,18 +233,10 @@ public class EntityFlyingCarpet extends Entity {
         entityToUpdate.setRotationYawHead(entityToUpdate.rotationYaw);
     }
     
-    /**
-     * Applies this carpet's pitch to the given entity. Used to update the orientation of its passenger.
-     */
-    protected void applyPitchToEntity(Entity entityToUpdate) {
-        // TODO
-    }
-
     @Override
     @SideOnly(Side.CLIENT)
     public void applyOrientationToEntity(Entity entityToUpdate) {
         this.applyYawToEntity(entityToUpdate);
-        this.applyPitchToEntity(entityToUpdate);
     }
 
     @Override
@@ -278,26 +256,6 @@ public class EntityFlyingCarpet extends Entity {
         return true;
     }
 
-    @Override
-    protected void updateFallState(double y, boolean onGroundIn, IBlockState state, BlockPos pos) {
-        // TODO Auto-generated method stub
-        super.updateFallState(y, onGroundIn, state, pos);
-    }
-    
-    /**
-     * Sets the forward direction of the entity.
-     */
-    public void setForwardDirection(int forwardDirection) {
-        this.dataManager.set(FORWARD_DIRECTION, Integer.valueOf(forwardDirection));
-    }
-
-    /**
-     * Gets the forward direction of the entity.
-     */
-    public int getForwardDirection() {
-        return this.dataManager.get(FORWARD_DIRECTION).intValue();
-    }
-    
     public void setVisCharge(int visCharge) {
         this.dataManager.set(VIS_CHARGE, Integer.valueOf(visCharge));
     }
@@ -312,11 +270,6 @@ public class EntityFlyingCarpet extends Entity {
     
     public int getEnergy() {
         return this.dataManager.get(ENERGY).intValue();
-    }
-
-    @Override
-    protected boolean canFitPassenger(Entity passenger) {
-        return this.getPassengers().size() < 2;
     }
 
     @Override
