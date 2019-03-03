@@ -141,6 +141,9 @@ public class EntityFlyingCarpet extends Entity {
             this.motionX = 0.0D;
             this.motionY = 0.0D;
             this.motionZ = 0.0D;
+            if (this.world.isRemote) {
+                this.updateInputs(false, false);
+            }
         }
         
         this.doBlockCollisions();
