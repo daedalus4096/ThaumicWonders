@@ -141,10 +141,11 @@ public class EntityFlyingCarpet extends Entity {
 
         if (this.isBeingRidden() && !this.world.isRemote && this.ticksExisted % 20 == 0) {
             this.consumeEnergy();
+            this.setNoGravity(this.hasEnergy());
         }
         if (this.isBeingRidden() && this.canPassengerSteer()) {
             this.updateMotion();
-            if (this.world.isRemote) {
+            if (this.world.isRemote && this.hasEnergy()) {
                 this.controlCarpet();
             }
             this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
