@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.items.ItemsTW;
 
 import net.minecraft.entity.Entity;
@@ -161,7 +160,6 @@ public class EntityFlyingCarpet extends Entity {
             if (visCharge > 0) {
                 energy = 60;
                 this.setVisCharge(visCharge - 1); 
-                ThaumicWonders.LOGGER.info("Flying carpet consuming vis, new charge = {}", this.getVisCharge());
             }
         }
         this.setEnergy(energy);
@@ -240,7 +238,6 @@ public class EntityFlyingCarpet extends Entity {
 
     @Override
     public boolean processInitialInteract(EntityPlayer player, EnumHand hand) {
-        ThaumicWonders.LOGGER.info("On interact, vis charge = {}, energy = {}", this.getVisCharge(), this.getEnergy());
         if (!this.world.isRemote) {
             if (player.isSneaking()) {
                 ItemStack itemStack = new ItemStack(ItemsTW.FLYING_CARPET, 1, 0);
