@@ -22,6 +22,29 @@
                 }
             ],
             "addenda": []
-        }
+        },
+        {
+            "key": "TWOND_FLYING_CARPET",
+            "name": "thaumicwonders.research.flying_carpet.title",
+            "icons": ["thaumicwonders:flying_carpet"],
+            "category": "THAUMIC_WONDERS",
+            "parents": ["TWOND_BASE", "~LEVITATOR", "~RECHARGEPEDESTAL"],
+            "siblings": [],
+            "meta": [],
+            "location": [0, -2],
+            "reward_item": [],
+            "reward_knowledge": [],
+            "stages": [
+                {
+                    "text": "thaumicwonders.research.flying_carpet.text.stage.1",
+                    "required_knowledge":["THEORY;INFUSION;1","OBSERVATION;GOLEMANCY;1"]
+                },
+                {
+                    "text": "thaumicwonders.research.flying_carpet.text.stage.2", 
+                    "recipes": ["thaumicwonders:flying_carpet"]
+                }
+            ],
+            "addenda": []
+        }        
     ]
 }

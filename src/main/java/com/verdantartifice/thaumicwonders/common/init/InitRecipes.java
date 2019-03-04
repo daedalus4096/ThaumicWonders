@@ -136,5 +136,20 @@ public class InitRecipes {
                         ThaumcraftApiHelper.makeCrystal(Aspect.FIRE)
                 }
         ));
+        
+        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "flying_carpet"), new InfusionRecipe(
+                "TWOND_FLYING_CARPET",
+                new ItemStack(ItemsTW.FLYING_CARPET),
+                6,
+                new AspectList().add(Aspect.FLIGHT, 150).add(Aspect.MOTION, 100).add(Aspect.AIR, 100).add(Aspect.MAGIC, 50).add(Aspect.ENERGY, 50),
+                new ItemStack(Blocks.CARPET, 1, 32767),
+                new Object[] {
+                        new ItemStack(BlocksTC.levitator),
+                        new ItemStack(Items.SADDLE),
+                        new ItemStack(ItemsTC.visResonator),
+                        ThaumcraftApiHelper.makeCrystal(Aspect.AIR),
+                        ThaumcraftApiHelper.makeCrystal(Aspect.AIR)
+                }
+        ));
     }
 }
