@@ -6,6 +6,7 @@ import javax.annotation.Nullable;
 
 import com.verdantartifice.thaumicwonders.common.items.ItemsTW;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.player.EntityPlayer;
@@ -286,6 +287,15 @@ public class EntityFlyingCarpet extends Entity {
             this.posZ = this.lerpZ;
             this.rotationYaw = (float)this.lerpYaw;
             this.rotationPitch = (float)this.lerpPitch;
+        }
+    }
+    
+    @Override
+    protected void updateFallState(double y, boolean onGroundIn, IBlockState state, BlockPos pos) {
+        // Shield the carpet and passenger from falling damage
+        this.fallDistance = 0;
+        if (this.isBeingRidden()) {
+            this.getControllingPassenger().fallDistance = 0;
         }
     }
 }
