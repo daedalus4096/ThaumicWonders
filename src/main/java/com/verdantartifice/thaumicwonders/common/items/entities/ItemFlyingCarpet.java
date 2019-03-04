@@ -27,6 +27,9 @@ public class ItemFlyingCarpet extends ItemTW implements IRechargable {
     @Override
     public EnumActionResult onItemUseFirst(EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, EnumHand hand) {
         if (!world.isRemote && world.getBlockState(pos).getBlock() != BlocksTC.rechargePedestal) {
+            if (side != EnumFacing.UP) {
+                return EnumActionResult.PASS;
+            }
             double posX = (double)pos.getX() + (double)hitX;
             double posY = (double)pos.getY() + (double)hitY;
             double posZ = (double)pos.getZ() + (double)hitZ;
