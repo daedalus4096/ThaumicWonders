@@ -18,6 +18,8 @@ import thaumcraft.api.items.IRechargable;
 import thaumcraft.api.items.RechargeHelper;
 
 public class ItemFlyingCarpet extends ItemTW implements IRechargable {
+    public static final int CAPACITY = 240;
+    
     public ItemFlyingCarpet() {
         super("flying_carpet");
     }
@@ -45,7 +47,7 @@ public class ItemFlyingCarpet extends ItemTW implements IRechargable {
 
     @Override
     public int getMaxCharge(ItemStack stack, EntityLivingBase player) {
-        return 240;
+        return CAPACITY;
     }
 
     @Override

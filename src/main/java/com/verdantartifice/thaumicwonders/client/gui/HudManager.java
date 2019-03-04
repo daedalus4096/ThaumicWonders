@@ -4,6 +4,7 @@ import org.lwjgl.opengl.GL11;
 
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.entities.EntityFlyingCarpet;
+import com.verdantartifice.thaumicwonders.common.items.entities.ItemFlyingCarpet;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
@@ -87,7 +88,7 @@ public class HudManager {
         UtilsFX.drawTexturedQuad(1.0F, 1.0F, 152.0F, 0.0F, 20.0F, 76.0F, -90.0D);
         
         int vis = carpet.getVisCharge();
-        int gap = (int)((100.0F - vis) / 100.0F * 48.0F);
+        int gap = (int)(((float)ItemFlyingCarpet.CAPACITY - vis) / (float)ItemFlyingCarpet.CAPACITY * 48.0F);
         
         // Draw vis level
         if (vis > 0) {
