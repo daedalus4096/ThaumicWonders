@@ -43,7 +43,7 @@ public class EntityFlyingCarpet extends Entity {
     public EntityFlyingCarpet(World worldIn) {
         super(worldIn);
         this.preventEntitySpawning = true;
-        this.setSize(1.375F, 0.0625F);
+        this.setSize(1.0F, 0.0625F);
         this.setNoGravity(true);
     }
 
