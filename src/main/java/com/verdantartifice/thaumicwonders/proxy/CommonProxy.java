@@ -1,5 +1,6 @@
 package com.verdantartifice.thaumicwonders.proxy;
 
+import com.verdantartifice.thaumicwonders.common.init.InitResearch;
 import com.verdantartifice.thaumicwonders.common.network.PacketHandler;
 
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -12,5 +13,6 @@ public class CommonProxy implements IProxyTW {
     @Override
     public void init(FMLInitializationEvent event) {
         PacketHandler.registerMessages();
+        InitResearch.initResearch();
     }
 }
