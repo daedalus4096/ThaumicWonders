@@ -22,7 +22,7 @@ repositories {
     }
 }
 
-version = "0.0.1"
+version = "1.0.0"
 group = "com.verdantartifice.thaumicwonders" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "thaumicwonders"
 
