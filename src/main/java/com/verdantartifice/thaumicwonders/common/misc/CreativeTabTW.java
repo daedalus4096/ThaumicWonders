@@ -1,8 +1,9 @@
 package com.verdantartifice.thaumicwonders.common.misc;
 
+import com.verdantartifice.thaumicwonders.common.items.ItemsTW;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
-import thaumcraft.api.items.ItemsTC;
 
 public class CreativeTabTW extends CreativeTabs {
 
@@ -16,7 +17,7 @@ public class CreativeTabTW extends CreativeTabs {
 
     @Override
     public ItemStack getTabIconItem() {
-        return new ItemStack(ItemsTC.thaumonomicon);
+        return new ItemStack(ItemsTW.FLYING_CARPET);
     }
 
 }

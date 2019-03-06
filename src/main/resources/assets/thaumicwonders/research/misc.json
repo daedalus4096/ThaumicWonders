@@ -3,7 +3,7 @@
         {
             "key": "TWOND_BASE",
             "name": "thaumicwonders.research.base.title",
-            "icons": ["thaumcraft:textures/items/thaumonomicon.png"],
+            "icons": ["thaumicwonders:textures/gui/wonder_chest.png"],
             "category": "THAUMIC_WONDERS",
             "parents": ["FIRSTSTEPS"],
             "siblings": [],
