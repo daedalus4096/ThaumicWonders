@@ -1,12 +1,19 @@
 package com.verdantartifice.thaumicwonders.proxy;
 
+import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.init.InitResearch;
 import com.verdantartifice.thaumicwonders.common.network.PacketHandler;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.IGuiHandler;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 
-public class CommonProxy implements IProxyTW {
+public class CommonProxy implements IProxyTW, IGuiHandler {
+    private ProxyGUI proxyGUI = new ProxyGUI();
+    
     @Override
     public void preInit(FMLPreInitializationEvent event) {}
     
@@ -14,5 +21,16 @@ public class CommonProxy implements IProxyTW {
     public void init(FMLInitializationEvent event) {
         PacketHandler.registerMessages();
         InitResearch.initResearch();
+        NetworkRegistry.INSTANCE.registerGuiHandler(ThaumicWonders.INSTANCE, this);
+    }
+
+    @Override
+    public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+        return this.proxyGUI.getServerGuiElement(ID, player, world, x, y, z);
+    }
+
+    @Override
+    public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+        return this.proxyGUI.getClientGuiElement(ID, player, world, x, y, z);
     }
 }

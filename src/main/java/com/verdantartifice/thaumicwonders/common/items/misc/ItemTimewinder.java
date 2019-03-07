@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.items.base.ItemTW;
+import com.verdantartifice.thaumicwonders.common.misc.GuiIds;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -70,7 +71,7 @@ public class ItemTimewinder extends ItemTW {
     
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-        ThaumicWonders.LOGGER.info("Using Timewinder!");
-        return new ActionResult<ItemStack>(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
+        playerIn.openGui(ThaumicWonders.INSTANCE, GuiIds.TIMEWINDER, worldIn, 0, 0, 0);
+        return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
     }
 }
