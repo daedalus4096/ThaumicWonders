@@ -59,6 +59,17 @@ key.categories.thaumicwonders=Thaumic Wonders
 key.carpet_forward=Flying Carpet Forwards
 key.carpet_backward=Flying Carpet Backwards
 
+// GUI
+thaumicwonders.gui.timewinder.0=Full Moon
+thaumicwonders.gui.timewinder.1=Waning Gibbous
+thaumicwonders.gui.timewinder.2=Third Quarter
+thaumicwonders.gui.timewinder.3=Waning Crescent
+thaumicwonders.gui.timewinder.4=New Moon
+thaumicwonders.gui.timewinder.5=Waxing Crescent
+thaumicwonders.gui.timewinder.6=First Quarter
+thaumicwonders.gui.timewinder.7=Waxing Gibbous
+thaumicwonders.gui.timewinder.8=Day
+
 // Misc
 itemGroup.thaumicwonders=Thaumic Wonders
 item.creative_only=Creative only
