@@ -19,18 +19,19 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class GuiTimewinder extends GuiScreen {    
+    private static final ResourceLocation BG_TEXTURE = new ResourceLocation(ThaumicWonders.MODID, "textures/gui/gui_timewinder_background.png");
+    
     public GuiTimewinder() {
         super();
     }
     
     @Override
     public void initGui() {
-        ThaumicWonders.LOGGER.info("Opening Timewinder GUI!");
         if (this.mc == null) {
             this.mc = Minecraft.getMinecraft();
         }
         this.buttonList.clear();
-
+        
         int baseX = (this.width - 16) / 2;
         int baseY = (this.height - 16) / 2;
         this.buttonList.add(new GuiSelectorButton(0, baseX, baseY - 32, 120, 88, 16, 16, I18n.format("thaumicwonders.gui.timewinder.0")));
@@ -42,6 +43,23 @@ public class GuiTimewinder extends GuiScreen {
         this.buttonList.add(new GuiSelectorButton(5, baseX - 23, baseY + 23, 97, 143, 16, 16, I18n.format("thaumicwonders.gui.timewinder.5")));
         this.buttonList.add(new GuiSelectorButton(6, baseX - 32, baseY, 88, 120, 16, 16, I18n.format("thaumicwonders.gui.timewinder.6")));
         this.buttonList.add(new GuiSelectorButton(7, baseX - 23, baseY - 23, 97, 97, 16, 16, I18n.format("thaumicwonders.gui.timewinder.7")));
+    }
+    
+    @Override
+    public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+        // Render background
+        GL11.glPushMatrix();
+        GlStateManager.enableBlend();
+        GL11.glEnable(GL11.GL_BLEND);
+        GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+        this.mc.renderEngine.bindTexture(BG_TEXTURE);
+        this.drawTexturedModalRect((this.width - 256) / 2, (this.height - 256) / 2, 0, 0, 256, 256);
+        GlStateManager.disableBlend();
+        GL11.glPopMatrix();
+        
+        // Draw everything else
+        super.drawScreen(mouseX, mouseY, partialTicks);
     }
     
     @Override

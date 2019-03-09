@@ -1,7 +1,5 @@
 package com.verdantartifice.thaumicwonders.common.network.packets;
 
-import com.verdantartifice.thaumicwonders.ThaumicWonders;
-
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.world.World;
