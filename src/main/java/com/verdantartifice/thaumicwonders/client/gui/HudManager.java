@@ -5,6 +5,7 @@ import org.lwjgl.opengl.GL11;
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.entities.EntityFlyingCarpet;
 import com.verdantartifice.thaumicwonders.common.items.entities.ItemFlyingCarpet;
+import com.verdantartifice.thaumicwonders.common.items.tools.ItemPrimalDestroyer;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
@@ -66,6 +67,16 @@ public class HudManager {
                 yStart += 75;
             }
             
+            // Show the Primal Destroyer GUI if applicable
+            if (mhStackItem instanceof ItemPrimalDestroyer) {
+                this.renderPrimalDestroyerHud(mc, renderTickTime, player, mhStack, time, yStart);
+                yStart += 77;
+            }
+            if (ohStackItem instanceof ItemPrimalDestroyer) {
+                this.renderPrimalDestroyerHud(mc, renderTickTime, player, ohStack, time, yStart);
+                yStart += 77;
+            }
+            
             // Show the carpet GUI if applicable
             Entity ridingEntity = player.getRidingEntity();
             if (ridingEntity != null && ridingEntity instanceof EntityFlyingCarpet) {
@@ -75,6 +86,36 @@ public class HudManager {
         }
         
         GL11.glDisable(GL11.GL_BLEND);
+        GL11.glPopMatrix();
+    }
+    
+    private void renderPrimalDestroyerHud(Minecraft mc, float partialTicks, EntityPlayer player, ItemStack itemStack, long time, int yStart) {
+        // Draw background bars
+        GL11.glPushMatrix();
+        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+        GL11.glTranslated(0.0D, yStart, 0.0D);
+        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+        UtilsFX.drawTexturedQuad(1.0F, 1.0F, 152.0F, 0.0F, 20.0F, 78.0F, -90.0D);
+        
+        int hunger = itemStack.hasTagCompound() ? itemStack.getTagCompound().getInteger("hunger") : 0;
+        int gap = (int)(((float)ItemPrimalDestroyer.MAX_HUNGER - hunger) / (float)ItemPrimalDestroyer.MAX_HUNGER * 48.0F);
+        
+        // Draw hunger level
+        if (hunger > 0) {
+            GL11.glPushMatrix();
+            GL11.glColor4f(0.5F, 0.0F, 0.5F, 1.0F);
+            UtilsFX.drawTexturedQuad(7.0F, 23 + gap, 200.0F, gap, 8.0F, 48.0F, -90.0D);
+            GL11.glPopMatrix();
+        }
+        
+        // Draw foreground meter
+        GL11.glPushMatrix();
+        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+        UtilsFX.drawTexturedQuad(1.0F, 1.0F, 128.0F, 0.0F, 20.0F, 78.0F, -90.0D);
+        GL11.glPopMatrix();
+     
+        // Pop initially pushed matrix
         GL11.glPopMatrix();
     }
 
