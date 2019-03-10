@@ -70,7 +70,7 @@ public class HudManager {
             Entity ridingEntity = player.getRidingEntity();
             if (ridingEntity != null && ridingEntity instanceof EntityFlyingCarpet) {
                 this.renderCarpetHud(mc, renderTickTime, player, (EntityFlyingCarpet)ridingEntity, time, yStart);
-                yStart += 75;
+                yStart += 77;
             }
         }
         
@@ -85,7 +85,7 @@ public class HudManager {
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         GL11.glTranslated(0.0D, yStart, 0.0D);
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        UtilsFX.drawTexturedQuad(1.0F, 1.0F, 152.0F, 0.0F, 20.0F, 76.0F, -90.0D);
+        UtilsFX.drawTexturedQuad(1.0F, 1.0F, 152.0F, 0.0F, 20.0F, 78.0F, -90.0D);
         
         int vis = carpet.getVisCharge();
         int gap = (int)(((float)ItemFlyingCarpet.CAPACITY - vis) / (float)ItemFlyingCarpet.CAPACITY * 48.0F);
@@ -94,14 +94,14 @@ public class HudManager {
         if (vis > 0) {
             GL11.glPushMatrix();
             GL11.glColor4f(1.0F, 0.5F, 1.0F, 1.0F);
-            UtilsFX.drawTexturedQuad(7.0F, 21 + gap, 200.0F, gap, 8.0F, 48.0F, -90.0D);
+            UtilsFX.drawTexturedQuad(7.0F, 23 + gap, 200.0F, gap, 8.0F, 48.0F, -90.0D);
             GL11.glPopMatrix();
         }
         
         // Draw foreground meter
         GL11.glPushMatrix();
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        UtilsFX.drawTexturedQuad(1.0F, 1.0F, 176.0F, 0.0F, 20.0F, 76.0F, -90.0D);
+        UtilsFX.drawTexturedQuad(1.0F, 1.0F, 176.0F, 0.0F, 20.0F, 78.0F, -90.0D);
         GL11.glPopMatrix();
      
         // Pop initially pushed matrix
