@@ -13,6 +13,7 @@ import net.minecraft.init.MobEffects;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
+import net.minecraft.nbt.NBTTagInt;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
@@ -24,6 +25,8 @@ import thaumcraft.api.items.IWarpingGear;
 import thaumcraft.api.items.ItemsTC;
 
 public class ItemPrimalDestroyer extends ItemSword implements IWarpingGear {
+    public static final int MAX_HUNGER = 20;
+    
     public static Item.ToolMaterial toolMatVoidflame = EnumHelper.addToolMaterial("VOIDFLAME", 4, 200, 8.0F, 6.0F, 20).setRepairItem(new ItemStack(ItemsTC.ingots, 1, 1));
     
     public ItemPrimalDestroyer() {
@@ -41,8 +44,37 @@ public class ItemPrimalDestroyer extends ItemSword implements IWarpingGear {
     @Override
     public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
         super.onUpdate(stack, worldIn, entityIn, itemSlot, isSelected);
-        if (stack.isItemDamaged() && entityIn != null && (entityIn.ticksExisted % 20 == 0) && entityIn instanceof EntityLivingBase) {
-            stack.damageItem(-1, (EntityLivingBase)entityIn);
+        if (!worldIn.isRemote && entityIn != null && (entityIn.ticksExisted % 20 == 0) && entityIn instanceof EntityLivingBase) {
+            if (stack.isItemDamaged()) {
+                stack.damageItem(-1, (EntityLivingBase)entityIn);
+            }
+            
+            int hunger = 0;
+            boolean held = isSelected || (itemSlot == 0);
+            if (held) {
+                if (stack.hasTagCompound()) {
+                    hunger = stack.getTagCompound().getInteger("hunger");
+                }
+                if (hunger >= MAX_HUNGER) {
+                    // TODO Damage player and drop hunger
+                    ThaumicWonders.LOGGER.info("Damaging player!");
+                    hunger = 0;
+                } else {
+                    hunger++;
+                }
+                ThaumicWonders.LOGGER.info("New Primal Destroyer hunger: {}", hunger);
+                stack.setTagInfo("hunger", new NBTTagInt(hunger));
+            }
+        }
+    }
+    
+    @Override
+    public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
+        if (oldStack.getItem() == newStack.getItem() && !slotChanged) {
+            // Suppress the re-equip animation if only the NBT data has changed
+            return false;
+        } else {
+            return super.shouldCauseReequipAnimation(oldStack, newStack, slotChanged);
         }
     }
 
