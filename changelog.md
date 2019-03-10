@@ -1,3 +1,8 @@
+v1.1.0
+------
+* The Primal Destroyer now truly hungers; keep it fed, or else
+* Increased Primal Destroyer damage to compensate
+
 v1.0.0
 ------
 * Added Everburning Urn, an infinite lava source

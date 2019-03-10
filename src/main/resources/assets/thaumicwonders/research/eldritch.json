@@ -47,7 +47,12 @@
                     "recipes": ["thaumicwonders:primal_destroyer"]
                 }
             ],
-            "addenda": []
+            "addenda": [
+                {
+                    "text": "thaumicwonders.research.primal_destroyer.text.addenda.1",
+                    "required_research": ["f_thevoidhungers"]
+                }
+            ]
         }
     ]
 }
