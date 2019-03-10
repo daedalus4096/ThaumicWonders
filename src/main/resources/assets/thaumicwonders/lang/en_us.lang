@@ -44,6 +44,7 @@ thaumicwonders.research.dimensional_ripper.text.stage.2=I do believe I've outdon
 thaumicwonders.research.primal_destroyer.title=Primal Destroyer
 thaumicwonders.research.primal_destroyer.text.stage.1=A void sword is deadly, yes, but aside from the nature of the metal it's a simple tool.  Surely it can be made even more powerful with the application of the right magics.
 thaumicwonders.research.primal_destroyer.text.stage.2=I fear that I've made a terrible mistake...<BR>I have indeed created a tool of incredible destruction, one more powerful than I may be able to keep contained.  This Primal Destroyer is a construct of shadow and flame, and it seems almost alive, eager to drink of the essence of living beings.<BR>I fear what will occur if I don't keep it satiated...
+thaumicwonders.research.primal_destroyer.text.addenda.1=Well, now I know.<BR>The Primal Destroyer does indeed hunger.  Whether for blood, souls, life energy, or something more esoteric I cannot say.  What is clear is that if I don't kill with it regularly, it will slake its hunger on me instead.<BR>Perhaps it would be best to put this unholy creation away and forget I ever made it...
 
 thaumicwonders.research.flying_carpet.title=Flying Carpet
 thaumicwonders.research.flying_carpet.text.stage.1=Levitation is all well and good, but I yearn for true flight.  Surely a thaumaturge of my skill and knowledge can find a way.
@@ -61,3 +62,5 @@ key.carpet_backward=Flying Carpet Backwards
 // Misc
 itemGroup.thaumicwonders=Thaumic Wonders
 item.creative_only=Creative only
+event.primal_destroyer.hunger_full=The Primal Destroyer twists of its own will and cuts you!
+death.attack.primalDestroyerHunger=%s was devoured by their own Primal Destroyer
