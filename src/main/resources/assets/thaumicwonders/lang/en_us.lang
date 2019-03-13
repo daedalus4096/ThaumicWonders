@@ -75,4 +75,5 @@ thaumicwonders.gui.timewinder.8=Day
 itemGroup.thaumicwonders=Thaumic Wonders
 item.creative_only=Creative only
 event.primal_destroyer.hunger_full=The Primal Destroyer twists of its own will and cuts you!
+event.timewinder.offworld=The Timewinder doesn't seem to function here.
 death.attack.primalDestroyerHunger=%s was devoured by their own Primal Destroyer
