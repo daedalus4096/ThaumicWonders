@@ -51,6 +51,10 @@ thaumicwonders.research.flying_carpet.title=Flying Carpet
 thaumicwonders.research.flying_carpet.text.stage.1=Levitation is all well and good, but I yearn for true flight.  Surely a thaumaturge of my skill and knowledge can find a way.
 thaumicwonders.research.flying_carpet.text.stage.2=While I haven't learned how to make myself fly under my own power, I do believe that I've created the next best thing: a Flying Carpet!<BR>When placed on the ground, it can be mounted by right-clicking.  Once seated, the carpet will respond to my commands, moving forward or backward in the direction that I'm looking.<BR>The carpet is not able to draw directly from the aura, and must be charged directly on a recharge pedestal.  I must be careful to monitor my remaining charge while flying, as once it runs out the carpet will fall from the sky.  It should retain enough of its protective magic to shield me from the impact, however.
 
+thaumicwonders.research.timewinder.title=Timewinder
+thaumicwonders.research.timewinder.text.stage.1=Time seems to flow strangely in some of the alien places that I've visited.  I wonder if I can harness that strangeness back in my home dimension...
+thaumicwonders.research.timewinder.text.stage.2=While the possibility of traveling back in time remains frustratingly elusive, I've learned how to skip forwards.  To this end, I have drawn up plans for a device that I've dubbed the Timewinder.  Not only does it tell time, like any clock should, but it can manipulate it as well!<BR>A set of buttons on the back of the device allow me to skip forward to certain celestial events.  Sunrise and moonrise, specifically.  Clicking the day button will transport me instantly to the next morning, just as if I'd gotten a good night's sleep in my bed.  The other buttons will skip me to the rise of the specified phase of the moon.<BR>This process produces some strain on the local fabric of spacetime, however.  The Timewinder will generate a small quantity of flux in the aura each time it's used.
+
 // Enchantments
 enchantment.special.sapgreat=Greater Sapping
 enchantment.special.voidflame=Voidflame

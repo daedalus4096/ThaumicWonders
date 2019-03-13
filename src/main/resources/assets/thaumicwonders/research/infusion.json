@@ -45,6 +45,29 @@
                 }
             ],
             "addenda": []
-        }        
+        },
+        {
+            "key": "TWOND_TIMEWINDER",
+            "name": "thaumicwonders.research.timewinder.title",
+            "icons": ["thaumicwonders:timewinder"],
+            "category": "THAUMIC_WONDERS",
+            "parents": ["TWOND_END_HEDGE", "~CELESTIALSCANNING"],
+            "siblings": [],
+            "meta": [],
+            "location": [2, 4],
+            "reward_item": [],
+            "reward_knowledge": [],
+            "stages": [
+                {
+                    "text": "thaumicwonders.research.timewinder.text.stage.1",
+                    "required_knowledge":["THEORY;INFUSION;1","THEORY;AUROMANCY;1","OBSERVATION;ELDRITCH;1"]
+                },
+                {
+                    "text": "thaumicwonders.research.timewinder.text.stage.2", 
+                    "recipes": ["thaumicwonders:timewinder"]
+                }
+            ],
+            "addenda": []
+        }
     ]
 }
