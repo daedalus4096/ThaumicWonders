@@ -1,5 +1,7 @@
 package com.verdantartifice.thaumicwonders.common.network.packets;
 
+import com.verdantartifice.thaumicwonders.common.network.PacketHandler;
+
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.world.World;
@@ -55,14 +57,17 @@ public class PacketTimewinderAction implements IMessage {
                     daysToAdvance = 8;
                 }
                 long targetTime = dayStart + (daysToAdvance * 24000L) + 13500L;
-                world.setWorldTime(targetTime);
-                AuraHelper.polluteAura(world, entityPlayer.getPosition(), 1.0F, true);
+                this.doTimeJump(world, entityPlayer, targetTime);
             } else if (message.targetPhase == 8) {
                 // Advance to next sunrise
-                long targetTime = dayStart + 24000L;
-                world.setWorldTime(targetTime);
-                AuraHelper.polluteAura(world, entityPlayer.getPosition(), 1.0F, true);
+                this.doTimeJump(world, entityPlayer, dayStart + 24000L);
             }
+        }
+        
+        private void doTimeJump(World world, EntityPlayerMP entityPlayer, long targetTime) {
+            world.setWorldTime(targetTime);
+            AuraHelper.polluteAura(world, entityPlayer.getPosition(), 1.0F, true);
+            PacketHandler.INSTANCE.sendToAll(new PacketTimewinderUsed());
         }
     }
 }
