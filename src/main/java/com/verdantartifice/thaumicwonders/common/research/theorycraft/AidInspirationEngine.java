@@ -11,9 +11,10 @@ public class AidInspirationEngine implements ITheorycraftAid {
         return BlocksTW.INSPIRATION_ENGINE;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public Class<TheorycraftCard>[] getCards() {
-        // TODO Deduct essentia and return cards
-        return new Class[] {};
+        // TODO Deduct essentia
+        return new Class[] { CardInducedInspiration.class, CardInducedInspiration.class, CardInducedInspiration.class };
     }
 }

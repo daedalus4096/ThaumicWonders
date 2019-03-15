@@ -2,6 +2,7 @@ package com.verdantartifice.thaumicwonders.common.init;
 
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.research.theorycraft.AidInspirationEngine;
+import com.verdantartifice.thaumicwonders.common.research.theorycraft.CardInducedInspiration;
 
 import net.minecraft.util.ResourceLocation;
 import thaumcraft.api.ThaumcraftApi;
@@ -36,5 +37,6 @@ public class InitResearch {
     
     private static void initTheorycraft() {
         TheorycraftManager.registerAid(new AidInspirationEngine());
+        TheorycraftManager.registerCard(CardInducedInspiration.class);
     }
 }

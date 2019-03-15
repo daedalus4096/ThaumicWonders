@@ -15,6 +15,7 @@ import thaumcraft.api.aspects.IEssentiaTransport;
 import thaumcraft.api.aura.AuraHelper;
 
 public class TileInspirationEngine extends TileTW implements IAspectContainer, IEssentiaTransport, ITickable {
+    public static final int COST = 5;
     private static final int CAPACITY = 25;
 
     protected int amount = 0;
