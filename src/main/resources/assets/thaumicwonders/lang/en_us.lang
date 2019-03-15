@@ -6,6 +6,7 @@ tile.thaumicwonders.creative_essentia_jar.tooltip.1=Returns infinite amount of
 tile.thaumicwonders.creative_essentia_jar.tooltip.2=contained essentia type.
 tile.thaumicwonders.creative_essentia_jar.tooltip.3=Empty by shift-right-clicking
 tile.thaumicwonders.creative_essentia_jar.tooltip.4=with an empty hand.
+tile.thaumicwonders.inspiration_engine.name=Inspiration Engine
 
 // Items
 item.thaumicwonders.disjunction_cloth.name=Disjunction Cloth
