@@ -14,7 +14,6 @@ public class AidInspirationEngine implements ITheorycraftAid {
     @SuppressWarnings("unchecked")
     @Override
     public Class<TheorycraftCard>[] getCards() {
-        // TODO Deduct essentia
         return new Class[] { CardInducedInspiration.class, CardInducedInspiration.class, CardInducedInspiration.class };
     }
 }
