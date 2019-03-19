@@ -56,6 +56,10 @@ thaumicwonders.research.timewinder.title=Timewinder
 thaumicwonders.research.timewinder.text.stage.1=Time seems to flow strangely in some of the alien places that I've visited.  I wonder if I can harness that strangeness back in my home dimension...
 thaumicwonders.research.timewinder.text.stage.2=While the possibility of traveling back in time remains frustratingly elusive, I've learned how to skip forwards.  To this end, I have drawn up plans for a device that I've dubbed the Timewinder.  Not only does it tell time, like any clock should, but it can manipulate it as well!<BR>A set of buttons on the back of the device allow me to skip forward to certain celestial events.  Sunrise and moonrise, specifically.  Clicking the day button will transport me instantly to the next morning, just as if I'd gotten a good night's sleep in my bed.  The other buttons will skip me to the rise of the specified phase of the moon.<BR>This process produces some strain on the local fabric of spacetime, however.  The Timewinder will generate a small quantity of flux in the aura each time it's used.
 
+thaumicwonders.research.inspiration_engine.title=Inspiration Engine
+thaumicwonders.research.inspiration_engine.text.stage.1=Crafting thaumaturgical theories is a laborious process.  I know that certain items can aid me with my research, but they feel so... limited in scope.  Perhaps I can create a superior research aid with my magic.
+thaumicwonders.research.inspiration_engine.text.stage.2=I've drawn up plans for a device I've dubbed the Inspiration Engine.  When fueled with Cognitio essentia, it will generate ideas to help me with my theorycrafting and transmit them into my mind.  It's a strange sensation, these foreign thoughts, almost ticklish, but from all my testing a benign one.
+
 // Theorycraft Cards
 card.induced_inspiration.name=Induced Inspiration
 card.induced_inspiration.text=The Inspiration Engine feeds ideas directly into your mind, ones highly relevant to the research you're currently pursuing. You gain %1$s %2$s, 1 inspiration, and a bonus draw.

@@ -1,0 +1,30 @@
+{
+    "entries": [
+        {
+            "key": "TWOND_INSPIRATION_ENGINE",
+            "name": "thaumicwonders.research.inspiration_engine.title",
+            "icons": ["thaumicwonders:inspiration_engine"],
+            "category": "THAUMIC_WONDERS",
+            "parents": ["TWOND_BASE", "~METALLURGY@2", "~BASEARTIFICE", "~BASEAUROMANCY@1"],
+            "siblings": [],
+            "meta": [],
+            "location": [2, 2],
+            "reward_item": [],
+            "reward_knowledge": [],
+            "stages": [
+                {
+                    "text": "thaumicwonders.research.inspiration_engine.text.stage.1",
+                    "required_knowledge": ["THEORY;BASICS;1","OBSERVATION;ALCHEMY;1","OBSERVATION;AUROMANCY;1"],
+                    "required_research": ["!cognitio"]
+                },
+                {
+                    "text": "thaumicwonders.research.inspiration_engine.text.stage.2",
+                    "recipes": [
+                        "thaumicwonders:inspiration_engine"
+                    ]
+                }
+            ],
+            "addenda": []
+        }
+    ]
+}
