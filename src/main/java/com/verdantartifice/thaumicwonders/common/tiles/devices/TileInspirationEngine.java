@@ -25,6 +25,14 @@ public class TileInspirationEngine extends TileTW implements IAspectContainer, I
         return this.amount;
     }
     
+    public boolean isFueled() {
+        return this.getAmount() >= COST;
+    }
+    
+    public boolean deductCost() {
+        return this.takeFromContainer(Aspect.MIND, COST);
+    }
+    
     @Override
     protected void readFromTileNBT(NBTTagCompound compound) {
         this.amount = compound.getShort("essentia");
