@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.verdantartifice.thaumicwonders.common.items.entities.ItemFlyingCarpet;
 import com.verdantartifice.thaumicwonders.common.items.misc.ItemDisjunctionCloth;
+import com.verdantartifice.thaumicwonders.common.items.misc.ItemTimewinder;
 import com.verdantartifice.thaumicwonders.common.items.tools.ItemPrimalDestroyer;
 
 import net.minecraft.item.Item;
@@ -17,6 +18,7 @@ public class InitItems {
         registerItem(forgeRegistry, new ItemDisjunctionCloth());
         registerItem(forgeRegistry, new ItemPrimalDestroyer());
         registerItem(forgeRegistry, new ItemFlyingCarpet());
+        registerItem(forgeRegistry, new ItemTimewinder());
     }
     
     private static void registerItem(IForgeRegistry<Item> forgeRegistry, Item item) {

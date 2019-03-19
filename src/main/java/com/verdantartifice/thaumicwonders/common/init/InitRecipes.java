@@ -151,5 +151,27 @@ public class InitRecipes {
                         ThaumcraftApiHelper.makeCrystal(Aspect.AIR)
                 }
         ));
+        
+        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "timewinder"), new InfusionRecipe(
+                "TWOND_TIMEWINDER",
+                new ItemStack(ItemsTW.TIMEWINDER),
+                7,
+                new AspectList().add(Aspect.ELDRITCH, 100).add(Aspect.DARKNESS, 100).add(Aspect.LIGHT, 100),
+                new ItemStack(Items.CLOCK),
+                new Object[] {
+                        new ItemStack(Items.DIAMOND),
+                        new ItemStack(Items.ENDER_PEARL),
+                        new ItemStack(ItemsTC.quicksilver),
+                        new ItemStack(ItemsTC.celestialNotes, 1, 5),
+                        new ItemStack(ItemsTC.celestialNotes, 1, 6),
+                        new ItemStack(ItemsTC.celestialNotes, 1, 7),
+                        new ItemStack(ItemsTC.celestialNotes, 1, 8),
+                        new ItemStack(ItemsTC.celestialNotes, 1, 9),
+                        new ItemStack(ItemsTC.celestialNotes, 1, 10),
+                        new ItemStack(ItemsTC.celestialNotes, 1, 11),
+                        new ItemStack(ItemsTC.celestialNotes, 1, 12),
+                        new ItemStack(ItemsTC.celestialNotes, 1, 0),
+                }
+        ));
     }
 }
