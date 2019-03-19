@@ -1,6 +1,7 @@
 v1.1.0
 ------
 * Added Timewinder, a device that lets you skip forward in time
+* Added Inspiration Engine, an essentia-powered research aid
 * The Primal Destroyer now truly hungers; keep it fed, or else
 * Increased Primal Destroyer damage to compensate
 

@@ -55,6 +55,24 @@ public class InitRecipes {
                         Character.valueOf('M'), new ItemStack(ItemsTC.mechanismComplex)
                 }
         ));
+        ThaumcraftApi.addArcaneCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "inspiration_engine"), new ShapedArcaneRecipe(
+                defaultGroup,
+                "TWOND_INSPIRATION_ENGINE",
+                50,
+                new AspectList().add(Aspect.AIR, 1).add(Aspect.WATER, 1).add(Aspect.ORDER, 1),
+                BlocksTW.INSPIRATION_ENGINE,
+                new Object[] {
+                        "BRB",
+                        "VMV",
+                        "SZS",
+                        Character.valueOf('B'), "plateBrass",
+                        Character.valueOf('R'), new ItemStack(ItemsTC.morphicResonator),
+                        Character.valueOf('V'), new ItemStack(ItemsTC.visResonator),
+                        Character.valueOf('M'), new ItemStack(ItemsTC.mechanismSimple),
+                        Character.valueOf('S'), new ItemStack(BlocksTC.stoneArcane),
+                        Character.valueOf('Z'), new ItemStack(ItemsTC.brain)
+                }
+        ));
     }
 
     private static void initCrucibleRecipes() {
