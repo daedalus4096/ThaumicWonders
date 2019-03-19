@@ -12,6 +12,7 @@ tile.thaumicwonders.inspiration_engine.name=Inspiration Engine
 item.thaumicwonders.disjunction_cloth.name=Disjunction Cloth
 item.thaumicwonders.primal_destroyer.name=Primal Destroyer
 item.thaumicwonders.flying_carpet.name=Flying Carpet
+item.thaumicwonders.timewinder.name=Timewinder
 
 // Entities
 entity.flying_carpet.name=Flying Carpet
@@ -51,6 +52,10 @@ thaumicwonders.research.flying_carpet.title=Flying Carpet
 thaumicwonders.research.flying_carpet.text.stage.1=Levitation is all well and good, but I yearn for true flight.  Surely a thaumaturge of my skill and knowledge can find a way.
 thaumicwonders.research.flying_carpet.text.stage.2=While I haven't learned how to make myself fly under my own power, I do believe that I've created the next best thing: a Flying Carpet!<BR>When placed on the ground, it can be mounted by right-clicking.  Once seated, the carpet will respond to my commands, moving forward or backward in the direction that I'm looking.<BR>The carpet is not able to draw directly from the aura, and must be charged directly on a recharge pedestal.  I must be careful to monitor my remaining charge while flying, as once it runs out the carpet will fall from the sky.  It should retain enough of its protective magic to shield me from the impact, however.
 
+thaumicwonders.research.timewinder.title=Timewinder
+thaumicwonders.research.timewinder.text.stage.1=Time seems to flow strangely in some of the alien places that I've visited.  I wonder if I can harness that strangeness back in my home dimension...
+thaumicwonders.research.timewinder.text.stage.2=While the possibility of traveling back in time remains frustratingly elusive, I've learned how to skip forwards.  To this end, I have drawn up plans for a device that I've dubbed the Timewinder.  Not only does it tell time, like any clock should, but it can manipulate it as well!<BR>A set of buttons on the back of the device allow me to skip forward to certain celestial events.  Sunrise and moonrise, specifically.  Clicking the day button will transport me instantly to the next morning, just as if I'd gotten a good night's sleep in my bed.  The other buttons will skip me to the rise of the specified phase of the moon.<BR>This process produces some strain on the local fabric of spacetime, however.  The Timewinder will generate a small quantity of flux in the aura each time it's used.
+
 // Theorycraft Cards
 card.induced_inspiration.name=Induced Inspiration
 card.induced_inspiration.text=The Inspiration Engine feeds ideas directly into your mind, ones highly relevant to the research you're currently pursuing. You gain %1$s %2$s, 1 inspiration, and a bonus draw.
@@ -64,8 +69,21 @@ key.categories.thaumicwonders=Thaumic Wonders
 key.carpet_forward=Flying Carpet Forwards
 key.carpet_backward=Flying Carpet Backwards
 
+// GUI
+thaumicwonders.gui.timewinder.0=Full Moon
+thaumicwonders.gui.timewinder.1=Waning Gibbous
+thaumicwonders.gui.timewinder.2=Third Quarter
+thaumicwonders.gui.timewinder.3=Waning Crescent
+thaumicwonders.gui.timewinder.4=New Moon
+thaumicwonders.gui.timewinder.5=Waxing Crescent
+thaumicwonders.gui.timewinder.6=First Quarter
+thaumicwonders.gui.timewinder.7=Waxing Gibbous
+thaumicwonders.gui.timewinder.8=Day
+
 // Misc
 itemGroup.thaumicwonders=Thaumic Wonders
 item.creative_only=Creative only
 event.primal_destroyer.hunger_full=The Primal Destroyer twists of its own will and cuts you!
+event.timewinder.offworld=The Timewinder doesn't seem to function here.
+event.timewinder.used=Time suddenly skips forward.
 death.attack.primalDestroyerHunger=%s was devoured by their own Primal Destroyer
