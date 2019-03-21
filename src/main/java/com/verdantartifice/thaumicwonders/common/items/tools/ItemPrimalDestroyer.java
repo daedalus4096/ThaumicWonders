@@ -30,7 +30,7 @@ import thaumcraft.api.items.IWarpingGear;
 import thaumcraft.api.items.ItemsTC;
 
 public class ItemPrimalDestroyer extends ItemSword implements IWarpingGear {
-    public static final int MAX_HUNGER = 1800;
+    public static final int MAX_HUNGER = 600;
     
     public static Item.ToolMaterial toolMatVoidflame = EnumHelper.addToolMaterial("VOIDFLAME", 4, 200, 8.0F, 8.0F, 20).setRepairItem(new ItemStack(ItemsTC.ingots, 1, 1));
     
