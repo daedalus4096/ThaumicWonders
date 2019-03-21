@@ -159,7 +159,7 @@ public class EntityFlyingCarpet extends Entity {
         } else {
             int visCharge = this.getVisCharge();
             if (visCharge > 0) {
-                energy = 60;
+                energy = 30;
                 this.setVisCharge(visCharge - 1); 
             }
         }
@@ -203,7 +203,7 @@ public class EntityFlyingCarpet extends Entity {
             
             float f = 0.0F;
             if (this.forwardInputDown) {
-                f += 0.04F;
+                f += 0.03F;
             }
             if (this.backInputDown) {
                 f -= 0.005F;

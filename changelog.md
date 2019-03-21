@@ -4,6 +4,7 @@ v1.1.0
 * Added Inspiration Engine, an essentia-powered research aid
 * The Primal Destroyer now truly hungers; keep it fed, or else
 * Increased Primal Destroyer damage to compensate
+* Reduced Flying Carpet speed and flight-time-per-vis.
 
 v1.0.0
 ------
