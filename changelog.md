@@ -1,3 +1,7 @@
+v1.1.1
+------
+* Fixed crash bug on server load
+
 v1.1.0
 ------
 * Added Timewinder, a device that lets you skip forward in time
