@@ -53,6 +53,33 @@
                     "required_research": ["f_thevoidhungers"]
                 }
             ]
+        },
+        {
+            "key": "TWOND_MADNESS_ENGINE",
+            "name": "thaumicwonders.research.madness_engine.title",
+            "icons": ["thaumicwonders:madness_engine"],
+            "category": "THAUMIC_WONDERS",
+            "parents": ["TWOND_INSPIRATION_ENGINE", "~BASEELDRITCH", "~MINDBIOTHAUMIC"],
+            "siblings": [],
+            "meta": ["SPIKY", "HIDDEN"],
+            "location": [4, 2],
+            "reward_item": [],
+            "reward_knowledge": [],
+            "stages": [
+                {
+                    "text": "thaumicwonders.research.madness_engine.text.stage.1",
+                    "required_knowledge": ["THEORY;BASICS;2", "THEORY;INFUSION;1", "OBSERVATION;ELDRITCH;1"],
+                    "required_research": ["!alienis"],
+                    "warp": 3
+                },
+                {
+                    "text": "thaumicwonders.research.madness_engine.text.stage.2",
+                    "recipes": [
+                        "thaumicwonders:madness_engine"
+                    ]
+                }
+            ],
+            "addenda": []
         }
     ]
 }

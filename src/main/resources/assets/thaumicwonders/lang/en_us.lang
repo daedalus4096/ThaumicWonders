@@ -61,6 +61,10 @@ thaumicwonders.research.inspiration_engine.title=Inspiration Engine
 thaumicwonders.research.inspiration_engine.text.stage.1=Crafting thaumaturgical theories is a laborious process.  I know that certain items can aid me with my research, but they feel so... limited in scope.  Perhaps I can create a superior research aid with my magic.
 thaumicwonders.research.inspiration_engine.text.stage.2=I've drawn up plans for a device I've dubbed the Inspiration Engine.  When fueled with Cognitio essentia, it will generate ideas to help me with my theorycrafting and transmit them into my mind.  It's a strange sensation, these foreign thoughts, almost ticklish, but from all my testing a benign one.
 
+thaumicwonders.research.madness_engine.title=Madness Engine
+thaumicwonders.research.madness_engine.text.stage.1=My Inspiration Engine has proven very valuable in my theorycrafting work, but it's not enough.  If I'm going to crack the secrets of the Eldritch, I need more.  Something to open my mind to new vistas of thought, ones that part of me is... reluctant to explore.
+thaumicwonders.research.madness_engine.text.stage.2=Yes, yes...  After some extensive modifications, this new version of the engine will give me what I need.  The problem, it turns out, was the Cognitio essentia itself.  It was too ordered, too... familiar.<BR>By reworking the engine to run on Alienis essentia instead, and in higher quantities, it will now grant me glimpses of the underlying secrets of reality.  I won't lie, the experience is an uncomfortable one, but such is a small price to pay for progress.
+
 // Theorycraft Cards
 card.induced_inspiration.name=Induced Inspiration
 card.induced_inspiration.text=The Inspiration Engine feeds ideas directly into your mind, ones highly relevant to the research you're currently pursuing. You gain %1$s %2$s, 1 inspiration, and a bonus draw.
