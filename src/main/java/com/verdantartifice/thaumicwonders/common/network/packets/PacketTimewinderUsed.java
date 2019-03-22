@@ -22,7 +22,6 @@ public class PacketTimewinderUsed implements IMessage {
     @Override
     public void toBytes(ByteBuf buf) {}
     
-    @SideOnly(Side.CLIENT)
     public static class Handler implements IMessageHandler<PacketTimewinderUsed, IMessage> {
         @Override
         public IMessage onMessage(PacketTimewinderUsed message, MessageContext ctx) {
@@ -30,6 +29,7 @@ public class PacketTimewinderUsed implements IMessage {
             return null;
         }
 
+        @SideOnly(Side.CLIENT)
         private void handle(PacketTimewinderUsed message, MessageContext ctx) {
             EntityPlayer entityPlayer = Minecraft.getMinecraft().player;
             entityPlayer.sendStatusMessage(new TextComponentString(TextFormatting.DARK_PURPLE + I18n.format("event.timewinder.used")), true);
