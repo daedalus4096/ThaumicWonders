@@ -1,5 +1,7 @@
 package com.verdantartifice.thaumicwonders.common.research.theorycraft;
 
+import java.util.Random;
+
 import com.verdantartifice.thaumicwonders.common.tiles.devices.IResearchEngine;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileInspirationEngine;
 
@@ -34,7 +36,7 @@ public class CardInducedInspiration extends AbstractResearchEngineCard {
     }
     
     @Override
-    protected int getResearchAmount() {
+    protected int getResearchAmount(Random rng) {
         return this.amount;
     }
     

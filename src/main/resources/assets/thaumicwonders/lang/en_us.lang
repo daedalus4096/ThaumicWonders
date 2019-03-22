@@ -64,6 +64,8 @@ thaumicwonders.research.inspiration_engine.text.stage.2=I've drawn up plans for 
 // Theorycraft Cards
 card.induced_inspiration.name=Induced Inspiration
 card.induced_inspiration.text=The Inspiration Engine feeds ideas directly into your mind, ones highly relevant to the research you're currently pursuing. You gain %1$s %2$s, 1 inspiration, and a bonus draw.
+card.induced_madness.name=Induced Madness
+card.induced_madness.text=Alien thoughts projected by the Madness Engine tear at your psyche, but a precious few contain hints at deeper truths.  You gain 20 to 25 Eldritch progress, 1 inspiration, and a bonus draw.  You also gain Warp.
 
 // Enchantments
 enchantment.special.sapgreat=Greater Sapping

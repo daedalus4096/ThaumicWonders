@@ -1,5 +1,7 @@
 package com.verdantartifice.thaumicwonders.common.research.theorycraft;
 
+import java.util.Random;
+
 import com.verdantartifice.thaumicwonders.common.tiles.devices.IResearchEngine;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -11,7 +13,7 @@ import thaumcraft.api.research.theorycraft.TheorycraftCard;
 
 public abstract class AbstractResearchEngineCard extends TheorycraftCard {
     protected abstract Class<? extends IResearchEngine> getEngineTileClass();
-    protected abstract int getResearchAmount();
+    protected abstract int getResearchAmount(Random rng);
 
     @Override
     public boolean isAidOnly() {
@@ -29,7 +31,7 @@ public abstract class AbstractResearchEngineCard extends TheorycraftCard {
         // Re-check to make sure the engine is still there between initialize and now
         IResearchEngine engineTile = this.findFueledEngine(data.table.getWorld(), data.table.getPos());
         if (engineTile != null && engineTile.deductCost()) {
-            data.addTotal(this.getResearchCategory(), this.getResearchAmount());
+            data.addTotal(this.getResearchCategory(), this.getResearchAmount(player.getRNG()));
             data.bonusDraws += 1;
             return true;
         } else {

@@ -2,7 +2,9 @@ package com.verdantartifice.thaumicwonders.common.init;
 
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.research.theorycraft.AidInspirationEngine;
+import com.verdantartifice.thaumicwonders.common.research.theorycraft.AidMadnessEngine;
 import com.verdantartifice.thaumicwonders.common.research.theorycraft.CardInducedInspiration;
+import com.verdantartifice.thaumicwonders.common.research.theorycraft.CardInducedMadness;
 
 import net.minecraft.util.ResourceLocation;
 import thaumcraft.api.ThaumcraftApi;
@@ -38,6 +40,8 @@ public class InitResearch {
     
     private static void initTheorycraft() {
         TheorycraftManager.registerAid(new AidInspirationEngine());
+        TheorycraftManager.registerAid(new AidMadnessEngine());
         TheorycraftManager.registerCard(CardInducedInspiration.class);
+        TheorycraftManager.registerCard(CardInducedMadness.class);
     }
 }
