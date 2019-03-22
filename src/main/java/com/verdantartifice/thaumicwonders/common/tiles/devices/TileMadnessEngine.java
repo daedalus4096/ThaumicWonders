@@ -2,9 +2,9 @@ package com.verdantartifice.thaumicwonders.common.tiles.devices;
 
 import thaumcraft.api.aspects.Aspect;
 
-public class TileInspirationEngine extends AbstractTileResearchEngine {
-    private static final int COST = 5;
-    private static final int CAPACITY = 25;
+public class TileMadnessEngine extends AbstractTileResearchEngine {
+    private static final int COST = 10;
+    private static final int CAPACITY = 50;
 
     @Override
     public int getCost() {
@@ -18,6 +18,6 @@ public class TileInspirationEngine extends AbstractTileResearchEngine {
 
     @Override
     public Aspect getAspect() {
-        return Aspect.MIND;
+        return Aspect.ELDRITCH;
     }
 }

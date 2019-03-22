@@ -191,5 +191,21 @@ public class InitRecipes {
                         new ItemStack(ItemsTC.celestialNotes, 1, 0),
                 }
         ));
+        
+        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "madness_engine"), new InfusionRecipe(
+                "TWOND_MADNESS_ENGINE",
+                new ItemStack(BlocksTW.MADNESS_ENGINE),
+                6,
+                new AspectList().add(Aspect.ELDRITCH, 150).add(Aspect.MIND, 100).add(Aspect.MECHANISM, 100).add(Aspect.AURA, 50),
+                new ItemStack(BlocksTW.INSPIRATION_ENGINE),
+                new Object[] {
+                        "plateVoid",
+                        "plateVoid",
+                        "plateThaumium",
+                        "plateThaumium",
+                        new ItemStack(ItemsTC.mind, 1, 1),
+                        new ItemStack(Items.ENDER_PEARL)
+                }
+        ));
     }
 }

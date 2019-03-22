@@ -7,11 +7,13 @@ import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockDimensionalRipper;
 import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockEverburningUrn;
 import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockInspirationEngine;
+import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockMadnessEngine;
 import com.verdantartifice.thaumicwonders.common.blocks.essentia.BlockCreativeEssentiaJar;
 import com.verdantartifice.thaumicwonders.common.blocks.essentia.ItemBlockCreativeEssentiaJar;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileDimensionalRipper;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileEverburningUrn;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileInspirationEngine;
+import com.verdantartifice.thaumicwonders.common.tiles.devices.TileMadnessEngine;
 import com.verdantartifice.thaumicwonders.common.tiles.essentia.TileCreativeEssentiaJar;
 
 import net.minecraft.block.Block;
@@ -29,6 +31,7 @@ public class InitBlocks {
         registerBlock(forgeRegistry, new BlockDimensionalRipper());
         registerBlock(forgeRegistry, new BlockCreativeEssentiaJar(), ItemBlockCreativeEssentiaJar.class);
         registerBlock(forgeRegistry, new BlockInspirationEngine());
+        registerBlock(forgeRegistry, new BlockMadnessEngine());
     }
     
     private static void registerBlock(IForgeRegistry<Block> forgeRegistry, Block block) {
@@ -59,5 +62,6 @@ public class InitBlocks {
         GameRegistry.registerTileEntity(TileDimensionalRipper.class, new ResourceLocation(ThaumicWonders.MODID, "TileDimensionalRipper"));
         GameRegistry.registerTileEntity(TileCreativeEssentiaJar.class, new ResourceLocation(ThaumicWonders.MODID, "TileCreativeEssentiaJar"));
         GameRegistry.registerTileEntity(TileInspirationEngine.class, new ResourceLocation(ThaumicWonders.MODID, "TileInspirationEngine"));
+        GameRegistry.registerTileEntity(TileMadnessEngine.class, new ResourceLocation(ThaumicWonders.MODID, "TileMadnessEngine"));
     }
 }
