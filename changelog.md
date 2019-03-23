@@ -1,6 +1,7 @@
 v1.2.0
 ------
 * Added Madness Engine, an essentia-powered source of eldritch inspiration
+* Fixed another crash bug on server load
 
 v1.1.1
 ------
