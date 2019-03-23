@@ -8,6 +8,8 @@ tile.thaumicwonders.creative_essentia_jar.tooltip.3=Empty by shift-right-clickin
 tile.thaumicwonders.creative_essentia_jar.tooltip.4=with an empty hand.
 tile.thaumicwonders.inspiration_engine.name=Inspiration Engine
 tile.thaumicwonders.madness_engine.name=Madness Engine
+tile.thaumicwonders.portal_anchor.name=Portal Anchor
+tile.thaumicwonders.portal_generator.name=Portal Generator
 
 // Items
 item.thaumicwonders.disjunction_cloth.name=Disjunction Cloth

@@ -8,12 +8,16 @@ import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockDimensional
 import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockEverburningUrn;
 import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockInspirationEngine;
 import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockMadnessEngine;
+import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockPortalAnchor;
+import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockPortalGenerator;
 import com.verdantartifice.thaumicwonders.common.blocks.essentia.BlockCreativeEssentiaJar;
 import com.verdantartifice.thaumicwonders.common.blocks.essentia.ItemBlockCreativeEssentiaJar;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileDimensionalRipper;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileEverburningUrn;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileInspirationEngine;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileMadnessEngine;
+import com.verdantartifice.thaumicwonders.common.tiles.devices.TilePortalAnchor;
+import com.verdantartifice.thaumicwonders.common.tiles.devices.TilePortalGenerator;
 import com.verdantartifice.thaumicwonders.common.tiles.essentia.TileCreativeEssentiaJar;
 
 import net.minecraft.block.Block;
@@ -32,6 +36,8 @@ public class InitBlocks {
         registerBlock(forgeRegistry, new BlockCreativeEssentiaJar(), ItemBlockCreativeEssentiaJar.class);
         registerBlock(forgeRegistry, new BlockInspirationEngine());
         registerBlock(forgeRegistry, new BlockMadnessEngine());
+        registerBlock(forgeRegistry, new BlockPortalAnchor());
+        registerBlock(forgeRegistry, new BlockPortalGenerator());
     }
     
     private static void registerBlock(IForgeRegistry<Block> forgeRegistry, Block block) {
@@ -63,5 +69,7 @@ public class InitBlocks {
         GameRegistry.registerTileEntity(TileCreativeEssentiaJar.class, new ResourceLocation(ThaumicWonders.MODID, "TileCreativeEssentiaJar"));
         GameRegistry.registerTileEntity(TileInspirationEngine.class, new ResourceLocation(ThaumicWonders.MODID, "TileInspirationEngine"));
         GameRegistry.registerTileEntity(TileMadnessEngine.class, new ResourceLocation(ThaumicWonders.MODID, "TileMadnessEngine"));
+        GameRegistry.registerTileEntity(TilePortalAnchor.class, new ResourceLocation(ThaumicWonders.MODID, "TilePortalAnchor"));
+        GameRegistry.registerTileEntity(TilePortalGenerator.class, new ResourceLocation(ThaumicWonders.MODID, "TilePortalGenerator"));
     }
 }
