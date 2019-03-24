@@ -1,0 +1,84 @@
+package com.verdantartifice.thaumicwonders.client.renderers.entity;
+
+import org.lwjgl.opengl.GL11;
+
+import com.verdantartifice.thaumicwonders.common.entities.EntityVoidPortal;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.ActiveRenderInfo;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.Vec3d;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import thaumcraft.client.lib.UtilsFX;
+
+@SideOnly(Side.CLIENT)
+public class RenderVoidPortal extends Render<EntityVoidPortal> {
+    private static final ResourceLocation TEXTURE = new ResourceLocation("thaumcraft", "textures/misc/eldritch_portal.png");
+    
+    public RenderVoidPortal(RenderManager renderManager) {
+        super(renderManager);
+        this.shadowSize = 0.0F;
+        this.shadowOpaque = 0.0F;
+    }
+
+    @Override
+    protected ResourceLocation getEntityTexture(EntityVoidPortal entity) {
+        return TEXTURE;
+    }
+    
+    @Override
+    public void doRender(EntityVoidPortal portal, double x, double y, double z, float entityYaw, float partialTicks) {
+        long nt = System.nanoTime();
+        long time = nt / 50000000L;
+        float scaley = 1.4F;
+        int e = (int)Math.min(50.0F, portal.activeCounter + partialTicks);
+        float scale = e / 50.0F * 1.25F;
+        
+        y += portal.height / 2.0F;
+        
+        this.bindTexture(TEXTURE);
+        GL11.glPushMatrix();
+        
+        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+        
+        if (Minecraft.getMinecraft().getRenderViewEntity() instanceof EntityPlayer) {
+            GL11.glDepthMask(false);
+            Tessellator tessellator = Tessellator.getInstance();
+            float arX = ActiveRenderInfo.getRotationX();
+            float arZ = ActiveRenderInfo.getRotationZ();
+            float arYZ = ActiveRenderInfo.getRotationYZ();
+            float arXY = ActiveRenderInfo.getRotationXY();
+            float arXZ = ActiveRenderInfo.getRotationXZ();
+            
+            tessellator.getBuffer().begin(7, UtilsFX.VERTEXFORMAT_POS_TEX_CO_LM_NO);
+            Vec3d v1 = new Vec3d(-arX - arYZ, -arXZ, -arZ - arXY);
+            Vec3d v2 = new Vec3d(-arX + arYZ, arXZ, -arZ + arXY);
+            Vec3d v3 = new Vec3d(arX + arYZ, arXZ, arZ + arXY);
+            Vec3d v4 = new Vec3d(arX - arYZ, -arXZ, arZ - arXY);
+            int frame = 15 - (int)time % 16;
+            float f2 = frame / 16.0F;
+            float f3 = f2 + 0.0625F;
+            float f4 = 0.0F;
+            float f5 = 1.0F;
+            int i = 220;
+            int j = i >> 16 & 0xFFFF;
+            int k = i & 0xFFFF;
+            tessellator.getBuffer().pos(x + v1.x * scale, y + v1.y * scaley, z + v1.z * scale).tex(f3, f4).color(1.0F, 1.0F, 1.0F, 1.0F).lightmap(j, k).normal(0.0F, 0.0F, -1.0F).endVertex();
+            tessellator.getBuffer().pos(x + v2.x * scale, y + v2.y * scaley, z + v2.z * scale).tex(f3, f5).color(1.0F, 1.0F, 1.0F, 1.0F).lightmap(j, k).normal(0.0F, 0.0F, -1.0F).endVertex();
+            tessellator.getBuffer().pos(x + v3.x * scale, y + v3.y * scaley, z + v3.z * scale).tex(f2, f5).color(1.0F, 1.0F, 1.0F, 1.0F).lightmap(j, k).normal(0.0F, 0.0F, -1.0F).endVertex();
+            tessellator.getBuffer().pos(x + v4.x * scale, y + v4.y * scaley, z + v4.z * scale).tex(f2, f4).color(1.0F, 1.0F, 1.0F, 1.0F).lightmap(j, k).normal(0.0F, 0.0F, -1.0F).endVertex();
+            tessellator.draw();
+            GL11.glDepthMask(true);
+        }
+        GL11.glDisable(32826);
+        GL11.glDisable(GL11.GL_BLEND);
+        GL11.glPopMatrix();
+    }
+}

@@ -2,6 +2,7 @@ package com.verdantartifice.thaumicwonders.common.init;
 
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.entities.EntityFlyingCarpet;
+import com.verdantartifice.thaumicwonders.common.entities.EntityVoidPortal;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.EntityEntry;
@@ -19,5 +20,13 @@ public class InitEntities {
                 .tracker(64, 1, true)
                 .build();
         iForgeRegistry.register(flyingCarpetEntry);
+        
+        EntityEntry voidPortalEntry = EntityEntryBuilder.create()
+                .entity(EntityVoidPortal.class)
+                .id(new ResourceLocation(ThaumicWonders.MODID, "void_portal"), id++)
+                .name("void_portal")
+                .tracker(64, 20, false)
+                .build();
+        iForgeRegistry.register(voidPortalEntry);
     }
 }

@@ -4,10 +4,8 @@ import java.util.List;
 
 import com.verdantartifice.thaumicwonders.common.blocks.BlocksTW;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TilePortalAnchor;
-import com.verdantartifice.thaumicwonders.common.tiles.devices.TilePortalGenerator;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.item.EntityItem;
@@ -54,24 +52,6 @@ public class ItemBlockPortalGenerator extends ItemBlock {
             }
         }
         return super.onItemUseFirst(player, world, pos, side, hitX, hitY, hitZ, hand);
-    }
-    
-    @Override
-    public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, IBlockState newState) {
-        boolean retval = super.placeBlockAt(stack, player, world, pos, side, hitX, hitY, hitZ, newState);
-        if (retval && !world.isRemote) {
-            TileEntity tile = world.getTileEntity(pos);
-            if (tile != null && tile instanceof TilePortalGenerator && stack.hasTagCompound()) {
-                TilePortalGenerator generatorTile = (TilePortalGenerator)tile;
-                generatorTile.setLink(
-                        stack.getTagCompound().getInteger("linkX"), 
-                        stack.getTagCompound().getInteger("linkY"), 
-                        stack.getTagCompound().getInteger("linkZ"), 
-                        stack.getTagCompound().getInteger("linkDim")
-                );
-            }
-        }
-        return retval;
     }
     
     @Override
