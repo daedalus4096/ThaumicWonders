@@ -114,6 +114,10 @@ public class EntityVoidPortal extends Entity {
             ThaumicWonders.LOGGER.info("Using void portal to teleport to {}, {}, {} in dim {}", this.getLinkX(), this.getLinkY(), this.getLinkZ(), this.getLinkDim());
             BlockPos linkPos = new BlockPos(this.getLinkX(), this.getLinkY(), this.getLinkZ());
             WorldServer targetWorld = DimensionManager.getWorld(this.getLinkDim());
+            if (targetWorld == null) {
+                DimensionManager.initDimension(this.getLinkDim());
+                targetWorld = DimensionManager.getWorld(this.getLinkDim());
+            }
             if (targetWorld != null) {
                 TileEntity tile = targetWorld.getTileEntity(linkPos);
                 if (tile != null && tile instanceof TilePortalAnchor) {
