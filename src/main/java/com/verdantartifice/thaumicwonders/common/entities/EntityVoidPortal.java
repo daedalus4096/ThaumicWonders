@@ -1,6 +1,7 @@
 package com.verdantartifice.thaumicwonders.common.entities;
 
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
+import com.verdantartifice.thaumicwonders.common.tiles.devices.TilePortalAnchor;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.MoverType;
@@ -9,8 +10,13 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
+import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.common.util.ITeleporter;
 
 public class EntityVoidPortal extends Entity {
     private static final DataParameter<Integer> LINK_X = EntityDataManager.<Integer>createKey(EntityVoidPortal.class, DataSerializers.VARINT);
@@ -106,6 +112,23 @@ public class EntityVoidPortal extends Entity {
     public boolean processInitialInteract(EntityPlayer player, EnumHand hand) {
         if (!this.world.isRemote) {
             ThaumicWonders.LOGGER.info("Using void portal to teleport to {}, {}, {} in dim {}", this.getLinkX(), this.getLinkY(), this.getLinkZ(), this.getLinkDim());
+            BlockPos linkPos = new BlockPos(this.getLinkX(), this.getLinkY(), this.getLinkZ());
+            WorldServer targetWorld = DimensionManager.getWorld(this.getLinkDim());
+            TileEntity tile = targetWorld.getTileEntity(linkPos);
+            if (tile != null && tile instanceof TilePortalAnchor) {
+                ThaumicWonders.LOGGER.info("Found matching anchor!");
+                if (player.world.provider.getDimension() != this.getLinkDim()) {
+                    ThaumicWonders.LOGGER.info("Changing to dimension {}", this.getLinkDim());
+                    player.changeDimension(this.getLinkDim(), new ITeleporter() {
+                        @Override
+                        public void placeEntity(World world, Entity entity, float yaw) {}
+                    });
+                }
+                ThaumicWonders.LOGGER.info("Setting position");
+                player.setPositionAndUpdate(this.getLinkX() + 0.5D, this.getLinkY() + 1.0D, this.getLinkZ() + 0.5D);
+            } else {
+                ThaumicWonders.LOGGER.info("No anchor found at link position");
+            }
         }
         return super.processInitialInteract(player, hand);
     }
