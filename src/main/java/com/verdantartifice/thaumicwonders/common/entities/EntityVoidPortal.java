@@ -114,20 +114,24 @@ public class EntityVoidPortal extends Entity {
             ThaumicWonders.LOGGER.info("Using void portal to teleport to {}, {}, {} in dim {}", this.getLinkX(), this.getLinkY(), this.getLinkZ(), this.getLinkDim());
             BlockPos linkPos = new BlockPos(this.getLinkX(), this.getLinkY(), this.getLinkZ());
             WorldServer targetWorld = DimensionManager.getWorld(this.getLinkDim());
-            TileEntity tile = targetWorld.getTileEntity(linkPos);
-            if (tile != null && tile instanceof TilePortalAnchor) {
-                ThaumicWonders.LOGGER.info("Found matching anchor!");
-                if (player.world.provider.getDimension() != this.getLinkDim()) {
-                    ThaumicWonders.LOGGER.info("Changing to dimension {}", this.getLinkDim());
-                    player.changeDimension(this.getLinkDim(), new ITeleporter() {
-                        @Override
-                        public void placeEntity(World world, Entity entity, float yaw) {}
-                    });
+            if (targetWorld != null) {
+                TileEntity tile = targetWorld.getTileEntity(linkPos);
+                if (tile != null && tile instanceof TilePortalAnchor) {
+                    ThaumicWonders.LOGGER.info("Found matching anchor!");
+                    if (player.world.provider.getDimension() != this.getLinkDim()) {
+                        ThaumicWonders.LOGGER.info("Changing to dimension {}", this.getLinkDim());
+                        player.changeDimension(this.getLinkDim(), new ITeleporter() {
+                            @Override
+                            public void placeEntity(World world, Entity entity, float yaw) {}
+                        });
+                    }
+                    ThaumicWonders.LOGGER.info("Setting position");
+                    player.setPositionAndUpdate(this.getLinkX() + 0.5D, this.getLinkY() + 1.0D, this.getLinkZ() + 0.5D);
+                } else {
+                    ThaumicWonders.LOGGER.info("No anchor found at link position");
                 }
-                ThaumicWonders.LOGGER.info("Setting position");
-                player.setPositionAndUpdate(this.getLinkX() + 0.5D, this.getLinkY() + 1.0D, this.getLinkZ() + 0.5D);
             } else {
-                ThaumicWonders.LOGGER.info("No anchor found at link position");
+                ThaumicWonders.LOGGER.info("No target world found!");
             }
         }
         return super.processInitialInteract(player, hand);
