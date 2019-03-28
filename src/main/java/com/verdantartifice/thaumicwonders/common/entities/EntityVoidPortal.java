@@ -7,6 +7,7 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -20,12 +21,15 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.util.ITeleporter;
+import thaumcraft.common.lib.SoundsTC;
 
 public class EntityVoidPortal extends Entity {
     private static final DataParameter<Integer> LINK_X = EntityDataManager.<Integer>createKey(EntityVoidPortal.class, DataSerializers.VARINT);
     private static final DataParameter<Integer> LINK_Y = EntityDataManager.<Integer>createKey(EntityVoidPortal.class, DataSerializers.VARINT);
     private static final DataParameter<Integer> LINK_Z = EntityDataManager.<Integer>createKey(EntityVoidPortal.class, DataSerializers.VARINT);
     private static final DataParameter<Integer> LINK_DIM = EntityDataManager.<Integer>createKey(EntityVoidPortal.class, DataSerializers.VARINT);
+    
+    private int soundTime = 0;
     
     public EntityVoidPortal(World worldIn) {
         super(worldIn);
@@ -126,6 +130,8 @@ public class EntityVoidPortal extends Entity {
                             @Override
                             public void placeEntity(World world, Entity entity, float yaw) {}
                         });
+                    } else {
+                        this.playSound(SoundEvents.BLOCK_PORTAL_TRAVEL, 0.25F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
                     }
                     player.setPositionAndUpdate(this.getLinkX() + 0.5D, this.getLinkY() + 1.0D, this.getLinkZ() + 0.5D);
                 } else {
@@ -137,5 +143,16 @@ public class EntityVoidPortal extends Entity {
             }
         }
         return super.processInitialInteract(player, hand);
+    }
+    
+    @Override
+    public void onEntityUpdate() {
+        super.onEntityUpdate();
+        
+        // Play ambient sound at most every 540 ticks
+        if (!this.isDead && this.rand.nextInt(1000) < this.soundTime++) {
+            this.soundTime = -540;
+            this.playSound(SoundsTC.monolith, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+        }
     }
 }

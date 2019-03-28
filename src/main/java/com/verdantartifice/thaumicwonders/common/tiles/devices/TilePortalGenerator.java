@@ -7,7 +7,9 @@ import com.verdantartifice.thaumicwonders.common.entities.EntityVoidPortal;
 import com.verdantartifice.thaumicwonders.common.tiles.base.TileTW;
 
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
+import thaumcraft.common.lib.SoundsTC;
 
 public class TilePortalGenerator extends TileTW {
     protected int linkX = 0;
@@ -60,6 +62,7 @@ public class TilePortalGenerator extends TileTW {
             List<EntityVoidPortal> portalList = this.world.getEntitiesWithinAABB(EntityVoidPortal.class, bb);
             if (portalList.size() > 0) {
                 portalList.get(0).setDead();
+                this.world.playSound(null, this.pos, SoundsTC.shock, SoundCategory.BLOCKS, 1.0F, (this.world.rand.nextFloat() - this.world.rand.nextFloat()) * 0.2F + 1.0F);
             } else {
                 ThaumicWonders.LOGGER.warn("Couldn't find void portal entity to kill!");
             }
