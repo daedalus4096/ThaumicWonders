@@ -3,6 +3,7 @@ package com.verdantartifice.thaumicwonders.common.entities;
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TilePortalAnchor;
 
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,6 +14,8 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.DimensionManager;
@@ -132,10 +135,11 @@ public class EntityVoidPortal extends Entity {
                     ThaumicWonders.LOGGER.info("Setting position");
                     player.setPositionAndUpdate(this.getLinkX() + 0.5D, this.getLinkY() + 1.0D, this.getLinkZ() + 0.5D);
                 } else {
-                    ThaumicWonders.LOGGER.info("No anchor found at link position");
+                    player.sendStatusMessage(new TextComponentString(TextFormatting.DARK_PURPLE + I18n.format("event.void_portal.no_anchor")), true);
                 }
             } else {
-                ThaumicWonders.LOGGER.info("No target world found!");
+                player.sendStatusMessage(new TextComponentString(TextFormatting.DARK_PURPLE + I18n.format("event.void_portal.no_world")), true);
+                ThaumicWonders.LOGGER.error("Target dimension {} not found!", this.getLinkDim());
             }
         }
         return super.processInitialInteract(player, hand);

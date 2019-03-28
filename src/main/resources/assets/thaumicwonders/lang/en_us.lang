@@ -94,10 +94,14 @@ thaumicwonders.gui.timewinder.6=First Quarter
 thaumicwonders.gui.timewinder.7=Waxing Gibbous
 thaumicwonders.gui.timewinder.8=Day
 
-// Misc
-itemGroup.thaumicwonders=Thaumic Wonders
-item.creative_only=Creative only
+// Events
 event.primal_destroyer.hunger_full=The Primal Destroyer twists of its own will and cuts you!
 event.timewinder.offworld=The Timewinder doesn't seem to function here.
 event.timewinder.used=Time suddenly skips forward.
+event.void_portal.no_anchor=This portal has no anchor.
+event.void_portal.no_world=This portal's linked dimension does not exist.
+
+// Misc
+itemGroup.thaumicwonders=Thaumic Wonders
+item.creative_only=Creative only
 death.attack.primalDestroyerHunger=%s was devoured by their own Primal Destroyer
