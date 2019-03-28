@@ -41,7 +41,6 @@ public class TilePortalGenerator extends TileTW {
     
     public void spawnPortal() {
         if (!this.world.isRemote) {
-            ThaumicWonders.LOGGER.info("Spawning portal linked to {}, {}, {} in dim {}", this.linkX, this.linkY, this.linkZ, this.linkDim);
             double posX = this.pos.up().getX() + 0.5D;
             double posY = this.pos.up().getY();
             double posZ = this.pos.up().getZ() + 0.5D;
@@ -57,13 +56,12 @@ public class TilePortalGenerator extends TileTW {
     
     public void despawnPortal() {
         if (!this.world.isRemote) {
-            ThaumicWonders.LOGGER.info("Killing portal");
             AxisAlignedBB bb = new AxisAlignedBB(this.pos.up());
             List<EntityVoidPortal> portalList = this.world.getEntitiesWithinAABB(EntityVoidPortal.class, bb);
             if (portalList.size() > 0) {
                 portalList.get(0).setDead();
             } else {
-                ThaumicWonders.LOGGER.info("Couldn't find void portal entity to kill!");
+                ThaumicWonders.LOGGER.warn("Couldn't find void portal entity to kill!");
             }
         }
     }

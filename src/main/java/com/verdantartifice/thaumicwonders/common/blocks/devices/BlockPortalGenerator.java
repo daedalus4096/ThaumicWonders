@@ -24,7 +24,6 @@ public class BlockPortalGenerator extends BlockDeviceTW<TilePortalGenerator> {
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
         if (!worldIn.isRemote) {
-            ThaumicWonders.LOGGER.info("Generator placed, initializing tile");
             TileEntity tile = worldIn.getTileEntity(pos);
             if (tile != null && tile instanceof TilePortalGenerator && stack.hasTagCompound()) {
                 TilePortalGenerator generatorTile = (TilePortalGenerator)tile;
@@ -54,7 +53,6 @@ public class BlockPortalGenerator extends BlockDeviceTW<TilePortalGenerator> {
     
     private void destroyPortal(World worldIn, BlockPos pos) {
         if (!worldIn.isRemote) {
-            ThaumicWonders.LOGGER.info("Generator destroyed, killing portal");
             TileEntity tile = worldIn.getTileEntity(pos);
             if (tile != null && tile instanceof TilePortalGenerator) {
                 TilePortalGenerator generatorTile = (TilePortalGenerator)tile;
