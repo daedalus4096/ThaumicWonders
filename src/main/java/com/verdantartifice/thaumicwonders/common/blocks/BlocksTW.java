@@ -12,4 +12,6 @@ public class BlocksTW {
     public static final Block CREATIVE_ESSENTIA_JAR = null;
     public static final Block INSPIRATION_ENGINE = null;
     public static final Block MADNESS_ENGINE = null;
+    public static final Block PORTAL_ANCHOR = null;
+    public static final Block PORTAL_GENERATOR = null;
 }

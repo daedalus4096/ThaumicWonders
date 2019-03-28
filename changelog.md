@@ -1,3 +1,7 @@
+v1.3.0
+------
+* Added Void Portals, a means to teleport across space and dimensions
+
 v1.2.0
 ------
 * Added Madness Engine, an essentia-powered source of eldritch inspiration
