@@ -12,6 +12,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 
 public class BlockPortalGenerator extends BlockDeviceTW<TilePortalGenerator> {
@@ -41,6 +42,17 @@ public class BlockPortalGenerator extends BlockDeviceTW<TilePortalGenerator> {
     
     @Override
     public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player) {
+        this.destroyPortal(worldIn, pos);
+        super.onBlockHarvested(worldIn, pos, state, player);
+    }
+    
+    @Override
+    public void onBlockExploded(World worldIn, BlockPos pos, Explosion explosionIn) {
+        this.destroyPortal(worldIn, pos);
+        super.onBlockExploded(worldIn, pos, explosionIn);
+    }
+    
+    private void destroyPortal(World worldIn, BlockPos pos) {
         if (!worldIn.isRemote) {
             ThaumicWonders.LOGGER.info("Generator destroyed, killing portal");
             TileEntity tile = worldIn.getTileEntity(pos);
@@ -49,6 +61,5 @@ public class BlockPortalGenerator extends BlockDeviceTW<TilePortalGenerator> {
                 generatorTile.despawnPortal();
             }
         }
-        super.onBlockHarvested(worldIn, pos, state, player);
     }
 }
