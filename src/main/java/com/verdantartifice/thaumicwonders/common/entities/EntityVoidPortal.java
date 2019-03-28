@@ -27,8 +27,6 @@ public class EntityVoidPortal extends Entity {
     private static final DataParameter<Integer> LINK_Z = EntityDataManager.<Integer>createKey(EntityVoidPortal.class, DataSerializers.VARINT);
     private static final DataParameter<Integer> LINK_DIM = EntityDataManager.<Integer>createKey(EntityVoidPortal.class, DataSerializers.VARINT);
     
-    public int activeCounter = 0;
-    
     public EntityVoidPortal(World worldIn) {
         super(worldIn);
         this.preventEntitySpawning = true;
@@ -139,11 +137,5 @@ public class EntityVoidPortal extends Entity {
             }
         }
         return super.processInitialInteract(player, hand);
-    }
-    
-    @Override
-    public void onUpdate() {
-        super.onUpdate();
-        this.activeCounter++;
     }
 }

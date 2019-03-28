@@ -36,7 +36,7 @@ public class RenderVoidPortal extends Render<EntityVoidPortal> {
         long nt = System.nanoTime();
         long time = nt / 50000000L;
         float scaley = 1.4F;
-        int e = (int)Math.min(50.0F, portal.activeCounter + partialTicks);
+        int e = (int)Math.min(50.0F, portal.ticksExisted + partialTicks);
         float scale = e / 50.0F * 1.25F;
         
         y += portal.height / 2.0F;

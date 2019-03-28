@@ -1,6 +1,5 @@
 package com.verdantartifice.thaumicwonders.common.blocks.devices;
 
-import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.blocks.base.BlockDeviceTW;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TilePortalGenerator;
 
