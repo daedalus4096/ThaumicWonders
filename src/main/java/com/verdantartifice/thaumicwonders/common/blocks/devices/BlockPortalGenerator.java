@@ -22,7 +22,7 @@ public class BlockPortalGenerator extends BlockDeviceTW<TilePortalGenerator> {
     
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-        if (!worldIn.isRemote) {
+        if (!worldIn.isRemote && worldIn.isAirBlock(pos.up(1)) && worldIn.isAirBlock(pos.up(2)) && worldIn.isAirBlock(pos.up(3))) { 
             TileEntity tile = worldIn.getTileEntity(pos);
             if (tile != null && tile instanceof TilePortalGenerator && stack.hasTagCompound()) {
                 TilePortalGenerator generatorTile = (TilePortalGenerator)tile;
