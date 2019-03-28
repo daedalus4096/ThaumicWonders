@@ -21,6 +21,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.util.ITeleporter;
+import thaumcraft.api.aura.AuraHelper;
 import thaumcraft.common.lib.SoundsTC;
 
 public class EntityVoidPortal extends Entity {
@@ -30,6 +31,7 @@ public class EntityVoidPortal extends Entity {
     private static final DataParameter<Integer> LINK_DIM = EntityDataManager.<Integer>createKey(EntityVoidPortal.class, DataSerializers.VARINT);
     
     private int soundTime = 0;
+    private int cooldownTicks = 0;
     
     public EntityVoidPortal(World worldIn) {
         super(worldIn);
@@ -115,25 +117,36 @@ public class EntityVoidPortal extends Entity {
     
     @Override
     public boolean processInitialInteract(EntityPlayer player, EnumHand hand) {
-        if (!this.world.isRemote) {
+        if (!this.world.isRemote && this.cooldownTicks <= 0) {
+            this.cooldownTicks = 3; // Prevent multiple events per click with a short cooldown
             BlockPos linkPos = new BlockPos(this.getLinkX(), this.getLinkY(), this.getLinkZ());
+            World sourceWorld = this.world;
             WorldServer targetWorld = DimensionManager.getWorld(this.getLinkDim());
             if (targetWorld == null) {
+                // If the dimension isn't loaded (e.g. the Nether when nobody's there), then force-load it and try again
                 DimensionManager.initDimension(this.getLinkDim());
                 targetWorld = DimensionManager.getWorld(this.getLinkDim());
             }
             if (targetWorld != null) {
                 TileEntity tile = targetWorld.getTileEntity(linkPos);
                 if (tile != null && tile instanceof TilePortalAnchor) {
+                    // Generate source world flux before leaving
+                    AuraHelper.polluteAura(sourceWorld, this.getPosition(), 5.0F, true);
+                    
                     if (player.world.provider.getDimension() != this.getLinkDim()) {
+                        // Change dimensions without spawning a nether portal at the other end
                         player.changeDimension(this.getLinkDim(), new ITeleporter() {
                             @Override
                             public void placeEntity(World world, Entity entity, float yaw) {}
                         });
                     } else {
+                        // Only play the portal sound if not changing dimensions; it will be played automatically otherwise
                         this.playSound(SoundEvents.BLOCK_PORTAL_TRAVEL, 0.25F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
                     }
                     player.setPositionAndUpdate(this.getLinkX() + 0.5D, this.getLinkY() + 1.0D, this.getLinkZ() + 0.5D);
+                    
+                    // Generate target world flux after leaving
+                    AuraHelper.polluteAura(targetWorld, linkPos.up(), 5.0F, true);
                 } else {
                     player.sendStatusMessage(new TextComponentString(TextFormatting.DARK_PURPLE + I18n.format("event.void_portal.no_anchor")), true);
                 }
@@ -154,5 +167,11 @@ public class EntityVoidPortal extends Entity {
             this.soundTime = -540;
             this.playSound(SoundsTC.monolith, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
         }
+    }
+    
+    @Override
+    public void onUpdate() {
+        super.onUpdate();
+        this.cooldownTicks = Math.max(0, --this.cooldownTicks);
     }
 }
