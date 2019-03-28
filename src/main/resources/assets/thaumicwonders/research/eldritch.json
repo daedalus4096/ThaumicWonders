@@ -80,6 +80,37 @@
                 }
             ],
             "addenda": []
+        },
+        {
+            "key": "TWOND_VOID_PORTAL",
+            "name": "thaumicwonders.research.void_portal.title",
+            "icons": ["thaumicwonders:portal_generator"],
+            "category": "THAUMIC_WONDERS",
+            "parents": ["TWOND_DIMENSIONAL_RIPPER", "~MIRROR"],
+            "siblings": [],
+            "meta": [],
+            "location": [-6, -1],
+            "reward_item": [],
+            "reward_knowledge": [],
+            "stages": [
+                {
+                    "text": "thaumicwonders.research.void_portal.text.stage.1",
+                    "required_knowledge": ["OBSERVATION;ELDRITCH;1", "THEORY;ARTIFICE;1"],
+                    "required_research":["f_TELEPORT"],
+                    "warp": 2
+                },
+                {
+                    "text": "thaumicwonders.research.void_portal.text.stage.2",
+                    "required_knowledge": ["THEORY;ELDRITCH;1", "THEORY;INFUSION;1"],
+                    "required_craft": ["thaumicwonders:portal_anchor"],
+                    "recipes": ["thaumicwonders:portal_anchor"]
+                },
+                {
+                    "text": "thaumicwonders.research.void_portal.text.stage.3",
+                    "recipes": ["thaumicwonders:portal_anchor", "thaumicwonders:portal_generator"]
+                }
+            ],
+            "addenda": []
         }
     ]
 }

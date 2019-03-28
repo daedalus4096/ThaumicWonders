@@ -73,6 +73,21 @@ public class InitRecipes {
                         Character.valueOf('Z'), new ItemStack(ItemsTC.brain)
                 }
         ));
+        ThaumcraftApi.addArcaneCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "portal_anchor"), new ShapedArcaneRecipe(
+                defaultGroup,
+                "TWOND_VOID_PORTAL@2",
+                150,
+                new AspectList().add(Aspect.AIR, 3).add(Aspect.ORDER, 3).add(Aspect.ENTROPY, 3),
+                BlocksTW.PORTAL_ANCHOR,
+                new Object[] {
+                        "VPV",
+                        "PRP",
+                        "VPV",
+                        Character.valueOf('V'), "plateVoid",
+                        Character.valueOf('P'), new ItemStack(Items.ENDER_PEARL),
+                        Character.valueOf('R'), new ItemStack(ItemsTC.morphicResonator)
+                }
+        ));
     }
 
     private static void initCrucibleRecipes() {
@@ -204,6 +219,19 @@ public class InitRecipes {
                         "plateThaumium",
                         "plateThaumium",
                         new ItemStack(ItemsTC.mind, 1, 1),
+                        new ItemStack(Items.ENDER_PEARL)
+                }
+        ));
+        
+        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "portal_generator"), new InfusionRecipe(
+                "TWOND_VOID_PORTAL",
+                new ItemStack(BlocksTW.PORTAL_GENERATOR),
+                8,
+                new AspectList().add(Aspect.ELDRITCH, 150).add(Aspect.MOTION, 150).add(Aspect.EXCHANGE, 100),
+                new ItemStack(BlocksTW.PORTAL_ANCHOR),
+                new Object[] {
+                        Ingredient.fromItem(ItemsTC.primordialPearl),
+                        new ItemStack(BlocksTC.mirror),
                         new ItemStack(Items.ENDER_PEARL)
                 }
         ));

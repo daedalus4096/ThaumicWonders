@@ -20,6 +20,7 @@ item.thaumicwonders.timewinder.name=Timewinder
 
 // Entities
 entity.flying_carpet.name=Flying Carpet
+entity.void_portal.name=Void Portal
 
 // Research
 tc.research_category.THAUMIC_WONDERS=Thaumic Wonders
@@ -67,6 +68,11 @@ thaumicwonders.research.inspiration_engine.text.stage.2=I've drawn up plans for 
 thaumicwonders.research.madness_engine.title=Madness Engine
 thaumicwonders.research.madness_engine.text.stage.1=My Inspiration Engine has proven very valuable in my theorycrafting work, but it's not enough.  If I'm going to crack the secrets of the Eldritch, I need more.  Something to open my mind to new vistas of thought, ones that part of me is... reluctant to explore.
 thaumicwonders.research.madness_engine.text.stage.2=Yes, yes...  After some extensive modifications, this new version of the engine will give me what I need.  The problem, it turns out, was the Cognitio essentia itself.  It was too ordered, too... familiar.<BR>By reworking the engine to run on Alienis essentia instead, and in higher quantities, it will now grant me glimpses of the underlying secrets of reality.  I won't lie, the experience is an uncomfortable one, but such is a small price to pay for progress.
+
+thaumicwonders.research.void_portal.title=Void Portals
+thaumicwonders.research.void_portal.text.stage.1=How do those Crimson Cult fanatics do it?  My studies so far have yielded nothing useful on the matter of teleporting living beings.  But it must be possible!  Nether portals, ender pearls, and those blasted crimson portals those fanatics use all tell me that it's possible.  There must be a way...
+thaumicwonders.research.void_portal.text.stage.2=After studying the matter further, I believe that the key to long-distance teleportation lies in having the right kind of anchor for the portal.  It must be something that resonates across vast distance and through dimensional boundaries.  I've drawn up plans for such an anchor.  Nothing remains but to construct and test it.
+thaumicwonders.research.void_portal.text.stage.3=I've cracked it!  I can now construct a device that generates a portal through the void to another location, regardless of distance or dimension.<BR>To use it, I must first link the generator by using it on a placed anchor; it will then be targeted at that point in space for as long as the anchor remains present.  The generator also needs sufficient space above it to generate a portal.  Solid blocks in the way will prevent its activation.<BR>I should be careful when using these, however.  The portal places a great deal of strain on the aura when used, generating a moderate amount of flux at both its source and destination.
 
 // Theorycraft Cards
 card.induced_inspiration.name=Induced Inspiration
