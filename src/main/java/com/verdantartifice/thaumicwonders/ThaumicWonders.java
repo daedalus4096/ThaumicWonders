@@ -6,6 +6,7 @@ import com.verdantartifice.thaumicwonders.common.misc.CreativeTabTW;
 import com.verdantartifice.thaumicwonders.proxy.IProxyTW;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -41,5 +42,10 @@ public class ThaumicWonders
     public void init(FMLInitializationEvent event)
     {
         proxy.init(event);
+    }
+    
+    static
+    {
+        FluidRegistry.enableUniversalBucket();
     }
 }

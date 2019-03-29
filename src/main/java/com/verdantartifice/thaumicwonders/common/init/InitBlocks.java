@@ -13,6 +13,8 @@ import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockPortalGener
 import com.verdantartifice.thaumicwonders.common.blocks.devices.ItemBlockPortalGenerator;
 import com.verdantartifice.thaumicwonders.common.blocks.essentia.BlockCreativeEssentiaJar;
 import com.verdantartifice.thaumicwonders.common.blocks.essentia.ItemBlockCreativeEssentiaJar;
+import com.verdantartifice.thaumicwonders.common.blocks.fluids.BlockFluidQuicksilver;
+import com.verdantartifice.thaumicwonders.common.fluids.FluidQuicksilver;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileDimensionalRipper;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileEverburningUrn;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileInspirationEngine;
@@ -25,6 +27,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 
@@ -39,6 +42,10 @@ public class InitBlocks {
         registerBlock(forgeRegistry, new BlockMadnessEngine());
         registerBlock(forgeRegistry, new BlockPortalAnchor());
         registerBlock(forgeRegistry, new BlockPortalGenerator(), ItemBlockPortalGenerator.class);
+        
+        FluidRegistry.registerFluid(FluidQuicksilver.INSTANCE);
+        FluidRegistry.addBucketForFluid(FluidQuicksilver.INSTANCE);
+        forgeRegistry.register(new BlockFluidQuicksilver());
     }
     
     private static void registerBlock(IForgeRegistry<Block> forgeRegistry, Block block) {
