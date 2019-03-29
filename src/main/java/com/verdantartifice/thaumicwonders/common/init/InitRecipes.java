@@ -3,6 +3,8 @@ package com.verdantartifice.thaumicwonders.common.init;
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.blocks.BlocksTW;
 import com.verdantartifice.thaumicwonders.common.crafting.recipes.RecipeDisjunctionClothUse;
+import com.verdantartifice.thaumicwonders.common.crafting.recipes.RecipeQuicksilverBucket;
+import com.verdantartifice.thaumicwonders.common.crafting.recipes.RecipeQuicksilverBucketDeconstruct;
 import com.verdantartifice.thaumicwonders.common.items.ItemsTW;
 
 import net.minecraft.init.Blocks;
@@ -35,6 +37,8 @@ public class InitRecipes {
     
     private static void initNormalRecipes(IForgeRegistry<IRecipe> forgeRegistry) {
         forgeRegistry.register(new RecipeDisjunctionClothUse());
+        forgeRegistry.register(new RecipeQuicksilverBucket());
+        forgeRegistry.register(new RecipeQuicksilverBucketDeconstruct());
     }
     
     private static void initArcaneRecipes() {
