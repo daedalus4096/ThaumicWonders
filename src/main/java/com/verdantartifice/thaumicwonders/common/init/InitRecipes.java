@@ -1,10 +1,12 @@
 package com.verdantartifice.thaumicwonders.common.init;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.blocks.BlocksTW;
 import com.verdantartifice.thaumicwonders.common.crafting.recipes.RecipeDisjunctionClothUse;
-import com.verdantartifice.thaumicwonders.common.crafting.recipes.RecipeQuicksilverBucket;
-import com.verdantartifice.thaumicwonders.common.crafting.recipes.RecipeQuicksilverBucketDeconstruct;
+import com.verdantartifice.thaumicwonders.common.fluids.FluidQuicksilver;
 import com.verdantartifice.thaumicwonders.common.items.ItemsTW;
 
 import net.minecraft.init.Blocks;
@@ -13,6 +15,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
+import net.minecraftforge.registries.GameData;
 import net.minecraftforge.registries.IForgeRegistry;
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.ThaumcraftApiHelper;
@@ -37,8 +44,25 @@ public class InitRecipes {
     
     private static void initNormalRecipes(IForgeRegistry<IRecipe> forgeRegistry) {
         forgeRegistry.register(new RecipeDisjunctionClothUse());
-        forgeRegistry.register(new RecipeQuicksilverBucket());
-        forgeRegistry.register(new RecipeQuicksilverBucketDeconstruct());
+        
+        shapelessOreDictRecipe("quicksilver_bucket", defaultGroup, FluidUtil.getFilledBucket(new FluidStack(FluidQuicksilver.INSTANCE, 1000)), new Object[] { 
+                Items.BUCKET, new ItemStack(ItemsTC.quicksilver), new ItemStack(ItemsTC.quicksilver), new ItemStack(ItemsTC.quicksilver), 
+                new ItemStack(ItemsTC.quicksilver), new ItemStack(ItemsTC.quicksilver), new ItemStack(ItemsTC.quicksilver), 
+                new ItemStack(ItemsTC.quicksilver), new ItemStack(ItemsTC.quicksilver) 
+        });
+        
+        GameRegistry.addShapedRecipe(
+                new ResourceLocation(ThaumicWonders.MODID, "quicksilver_bucket_deconstruct"), 
+                defaultGroup, 
+                new ItemStack(ItemsTC.quicksilver, 8), 
+                new Object[] {"#", Character.valueOf('#'), FluidUtil.getFilledBucket(new FluidStack(FluidQuicksilver.INSTANCE, 1000)) });
+    }
+    
+    private static IRecipe shapelessOreDictRecipe(@Nonnull String name, @Nullable ResourceLocation group, @Nonnull ItemStack result, Object[] inputs) {
+        IRecipe recipe = new ShapelessOreRecipe(group, result, inputs);
+        recipe.setRegistryName(new ResourceLocation(ThaumicWonders.MODID, name));
+        GameData.register_impl(recipe);
+        return recipe;
     }
     
     private static void initArcaneRecipes() {
