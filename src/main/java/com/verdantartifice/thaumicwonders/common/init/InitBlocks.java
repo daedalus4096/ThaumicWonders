@@ -14,6 +14,7 @@ import com.verdantartifice.thaumicwonders.common.blocks.devices.ItemBlockPortalG
 import com.verdantartifice.thaumicwonders.common.blocks.essentia.BlockCreativeEssentiaJar;
 import com.verdantartifice.thaumicwonders.common.blocks.essentia.ItemBlockCreativeEssentiaJar;
 import com.verdantartifice.thaumicwonders.common.blocks.fluids.BlockFluidQuicksilver;
+import com.verdantartifice.thaumicwonders.common.blocks.misc.BlockTWPlaceholder;
 import com.verdantartifice.thaumicwonders.common.fluids.FluidQuicksilver;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileDimensionalRipper;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileEverburningUrn;
@@ -42,6 +43,9 @@ public class InitBlocks {
         registerBlock(forgeRegistry, new BlockMadnessEngine());
         registerBlock(forgeRegistry, new BlockPortalAnchor());
         registerBlock(forgeRegistry, new BlockPortalGenerator(), ItemBlockPortalGenerator.class);
+        
+        registerBlock(forgeRegistry, new BlockTWPlaceholder("placeholder_arcane_stone"));
+        registerBlock(forgeRegistry, new BlockTWPlaceholder("placeholder_obsidian"));
         
         FluidRegistry.registerFluid(FluidQuicksilver.INSTANCE);
         FluidRegistry.addBucketForFluid(FluidQuicksilver.INSTANCE);
