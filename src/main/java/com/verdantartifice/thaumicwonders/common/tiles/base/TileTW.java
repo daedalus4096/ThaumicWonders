@@ -12,6 +12,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
@@ -88,5 +89,13 @@ public class TileTW extends TileEntity {
 
     public void messageFromClient(NBTTagCompound nbt, EntityPlayerMP player) {
         // Do nothing by default
+    }
+    
+    public EnumFacing getFacing() {
+        try {
+            return EnumFacing.getFront(this.getBlockMetadata() & 0x7);
+        }
+        catch (Exception localException) {}
+        return EnumFacing.UP;
     }
 }
