@@ -2,10 +2,8 @@ package com.verdantartifice.thaumicwonders.common.blocks.devices;
 
 import java.util.Random;
 
-import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.blocks.BlocksTW;
 import com.verdantartifice.thaumicwonders.common.blocks.base.BlockDeviceTW;
-import com.verdantartifice.thaumicwonders.common.blocks.base.IBlockOrientableHorizontal;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileCatalyzationChamber;
 
 import net.minecraft.block.SoundType;
@@ -25,9 +23,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import thaumcraft.api.blocks.BlocksTC;
+import thaumcraft.common.blocks.IBlockFacingHorizontal;
 import thaumcraft.common.lib.utils.BlockStateUtils;
 
-public class BlockCatalyzationChamber extends BlockDeviceTW<TileCatalyzationChamber> implements IBlockOrientableHorizontal {
+public class BlockCatalyzationChamber extends BlockDeviceTW<TileCatalyzationChamber> implements IBlockFacingHorizontal {
     public static boolean ignoreDestroy = false;
     
     public BlockCatalyzationChamber() {
@@ -59,15 +58,8 @@ public class BlockCatalyzationChamber extends BlockDeviceTW<TileCatalyzationCham
     @Override
     public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
         IBlockState bs = getDefaultState();
-        bs = bs.withProperty(IBlockOrientableHorizontal.FACING, placer.getHorizontalFacing().getOpposite());
+        bs = bs.withProperty(IBlockFacingHorizontal.FACING, placer.getHorizontalFacing().getOpposite());
         return bs;
-    }
-    
-    @Override
-    public int getMetaFromState(IBlockState state) {
-        int meta = super.getMetaFromState(state);
-        ThaumicWonders.LOGGER.info("Got meta {} from state {}", meta, state.toString());
-        return meta;
     }
     
     public static void destroyChamber(World world, BlockPos pos, IBlockState state, BlockPos startPos) {
