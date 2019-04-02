@@ -13,7 +13,9 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.MobEffects;
 import net.minecraft.item.Item;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -122,7 +124,7 @@ public class BlockCatalyzationChamber extends BlockDeviceTW<TileCatalyzationCham
                     ((EntityItem)entityIn).setItem(tcc.addItemsToInventory(((EntityItem)entityIn).getItem()));
                 }
             } else if (entityIn instanceof EntityLivingBase) {
-                // TODO poison entity for a few seconds
+                ((EntityLivingBase)entityIn).addPotionEffect(new PotionEffect(MobEffects.POISON, 100));
             }
         }
         super.onEntityCollidedWithBlock(worldIn, pos, state, entityIn);
