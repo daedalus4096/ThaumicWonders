@@ -1,12 +1,14 @@
 package com.verdantartifice.thaumicwonders.proxy;
 
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
+import com.verdantartifice.thaumicwonders.common.init.InitAspects;
 import com.verdantartifice.thaumicwonders.common.init.InitResearch;
 import com.verdantartifice.thaumicwonders.common.network.PacketHandler;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
@@ -22,6 +24,11 @@ public class CommonProxy implements IProxyTW, IGuiHandler {
         PacketHandler.registerMessages();
         InitResearch.initResearch();
         NetworkRegistry.INSTANCE.registerGuiHandler(ThaumicWonders.INSTANCE, this);
+    }
+    
+    @Override
+    public void postInit(FMLPostInitializationEvent event) {
+        InitAspects.initAspects();
     }
 
     @Override
