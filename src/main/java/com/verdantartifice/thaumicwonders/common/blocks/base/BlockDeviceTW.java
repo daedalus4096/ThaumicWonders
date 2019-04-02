@@ -75,7 +75,12 @@ public class BlockDeviceTW<T extends TileEntity> extends BlockTileTW<T> {
         IBlockState state = this.getDefaultState();
         try {
             if (this instanceof IBlockOrientableHorizontal) {
-                state = state.withProperty(IBlockOrientableHorizontal.FACING, BlockStateUtils.getFacing(meta));
+                try {
+                    state = state.withProperty(IBlockOrientableHorizontal.FACING, BlockStateUtils.getFacing(meta));
+                } catch (Exception e) {
+                    ThaumicWonders.LOGGER.error("Failed getting state from meta for {} with meta {}", this.toString(), meta);
+                    throw e;
+                }
             } else if (this instanceof IBlockOrientable) {
                 state = state.withProperty(IBlockOrientable.FACING, BlockStateUtils.getFacing(meta));
             }

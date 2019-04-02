@@ -17,4 +17,5 @@ public class BlocksTW {
     public static final Block FLUID_QUICKSILVER = null;
     public static final Block PLACEHOLDER_ARCANE_STONE = null;
     public static final Block PLACEHOLDER_OBSIDIAN = null;
+    public static final Block CATALYZATION_CHAMBER = null;
 }

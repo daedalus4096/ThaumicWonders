@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
+import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockCatalyzationChamber;
 import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockDimensionalRipper;
 import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockEverburningUrn;
 import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockInspirationEngine;
@@ -16,6 +17,7 @@ import com.verdantartifice.thaumicwonders.common.blocks.essentia.ItemBlockCreati
 import com.verdantartifice.thaumicwonders.common.blocks.fluids.BlockFluidQuicksilver;
 import com.verdantartifice.thaumicwonders.common.blocks.misc.BlockTWPlaceholder;
 import com.verdantartifice.thaumicwonders.common.fluids.FluidQuicksilver;
+import com.verdantartifice.thaumicwonders.common.tiles.devices.TileCatalyzationChamber;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileDimensionalRipper;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileEverburningUrn;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileInspirationEngine;
@@ -43,6 +45,7 @@ public class InitBlocks {
         registerBlock(forgeRegistry, new BlockMadnessEngine());
         registerBlock(forgeRegistry, new BlockPortalAnchor());
         registerBlock(forgeRegistry, new BlockPortalGenerator(), ItemBlockPortalGenerator.class);
+        registerBlock(forgeRegistry, new BlockCatalyzationChamber());
         
         registerBlock(forgeRegistry, new BlockTWPlaceholder("placeholder_arcane_stone"));
         registerBlock(forgeRegistry, new BlockTWPlaceholder("placeholder_obsidian"));
@@ -83,5 +86,6 @@ public class InitBlocks {
         GameRegistry.registerTileEntity(TileMadnessEngine.class, new ResourceLocation(ThaumicWonders.MODID, "TileMadnessEngine"));
         GameRegistry.registerTileEntity(TilePortalAnchor.class, new ResourceLocation(ThaumicWonders.MODID, "TilePortalAnchor"));
         GameRegistry.registerTileEntity(TilePortalGenerator.class, new ResourceLocation(ThaumicWonders.MODID, "TilePortalGenerator"));
+        GameRegistry.registerTileEntity(TileCatalyzationChamber.class, new ResourceLocation(ThaumicWonders.MODID, "TileCatalyzationChamber"));
     }
 }

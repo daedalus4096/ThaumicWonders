@@ -17,8 +17,8 @@ public class BlockFluidQuicksilver extends BlockFluidClassic {
     
     public BlockFluidQuicksilver() {
         super(FluidQuicksilver.INSTANCE, FLUID_QUICKSILVER_MATERIAL);
-        this.setRegistryName("fluid_quicksilver");
-        this.setUnlocalizedName("fluid_quicksilver");
+        this.setRegistryName(ThaumicWonders.MODID, "fluid_quicksilver");
+        setUnlocalizedName(ThaumicWonders.MODID + "." + this.getRegistryName().getResourcePath());
         this.setCreativeTab(ThaumicWonders.CREATIVE_TAB);
     }
     

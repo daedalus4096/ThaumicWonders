@@ -5,6 +5,7 @@ import javax.annotation.Nullable;
 
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.blocks.BlocksTW;
+import com.verdantartifice.thaumicwonders.common.blocks.fluids.BlockFluidQuicksilver;
 import com.verdantartifice.thaumicwonders.common.crafting.recipes.RecipeDisjunctionClothUse;
 import com.verdantartifice.thaumicwonders.common.fluids.FluidQuicksilver;
 import com.verdantartifice.thaumicwonders.common.items.ItemsTW;
@@ -27,9 +28,12 @@ import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.blocks.BlocksTC;
 import thaumcraft.api.crafting.CrucibleRecipe;
+import thaumcraft.api.crafting.IDustTrigger;
 import thaumcraft.api.crafting.InfusionRecipe;
+import thaumcraft.api.crafting.Part;
 import thaumcraft.api.crafting.ShapedArcaneRecipe;
 import thaumcraft.api.items.ItemsTC;
+import thaumcraft.common.lib.crafting.DustTriggerMultiblock;
 import thaumcraft.common.lib.enchantment.EnumInfusionEnchantment;
 
 public class InitRecipes {
@@ -40,6 +44,42 @@ public class InitRecipes {
         initArcaneRecipes();
         initCrucibleRecipes();
         initInfusionRecipes();
+        initMultiblockRecipes();
+    }
+    
+    private static void initMultiblockRecipes() {
+        Part AS = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.PLACEHOLDER_ARCANE_STONE));
+        Part OB = new Part(Blocks.OBSIDIAN, new ItemStack(BlocksTW.PLACEHOLDER_OBSIDIAN));
+        Part IB = new Part(Blocks.IRON_BARS, "AIR");
+        Part QS = new Part(BlockFluidQuicksilver.FLUID_QUICKSILVER_MATERIAL, BlocksTW.CATALYZATION_CHAMBER, true);
+        Part[][][] catalyzationChamberBlueprint = {
+                {
+                    { AS, OB, AS },
+                    { OB, null, OB},
+                    { AS, OB, AS }
+                },
+                {
+                    { AS, OB, AS },
+                    { OB, QS, OB },
+                    { AS, IB, AS }
+                },
+                {
+                    { AS, OB, AS },
+                    { OB, OB, OB },
+                    { AS, OB, AS }
+                }
+        };
+        IDustTrigger.registerDustTrigger(new DustTriggerMultiblock("TWOND_BASE", catalyzationChamberBlueprint));
+        ThaumcraftApi.addMultiblockRecipeToCatalog(new ResourceLocation(ThaumicWonders.MODID, "catalyzation_chamber"), new ThaumcraftApi.BluePrint(
+                "TWOND_BASE", 
+                catalyzationChamberBlueprint, 
+                new ItemStack[] {
+                        new ItemStack(BlocksTC.stoneArcane, 12),
+                        new ItemStack(Blocks.OBSIDIAN, 12),
+                        new ItemStack(Blocks.IRON_BARS),
+                        FluidUtil.getFilledBucket(new FluidStack(FluidQuicksilver.INSTANCE, 1000))
+                }
+        ));
     }
     
     private static void initNormalRecipes(IForgeRegistry<IRecipe> forgeRegistry) {

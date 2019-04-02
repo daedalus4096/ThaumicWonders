@@ -2,6 +2,7 @@ package com.verdantartifice.thaumicwonders.common.blocks.devices;
 
 import java.util.Random;
 
+import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.blocks.BlocksTW;
 import com.verdantartifice.thaumicwonders.common.blocks.base.BlockDeviceTW;
 import com.verdantartifice.thaumicwonders.common.blocks.base.IBlockOrientableHorizontal;
@@ -33,10 +34,7 @@ public class BlockCatalyzationChamber extends BlockDeviceTW<TileCatalyzationCham
         super(Material.ROCK, TileCatalyzationChamber.class, "catalyzation_chamber");
         this.setSoundType(SoundType.STONE);
         this.setLightLevel(0.9F);
-        IBlockState bs = this.blockState.getBaseState();
-        bs.withProperty(IBlockOrientableHorizontal.FACING, EnumFacing.NORTH);
-        setDefaultState(bs);
-        setCreativeTab(null);
+        this.setCreativeTab(null);
     }
     
     @Override
@@ -63,6 +61,13 @@ public class BlockCatalyzationChamber extends BlockDeviceTW<TileCatalyzationCham
         IBlockState bs = getDefaultState();
         bs = bs.withProperty(IBlockOrientableHorizontal.FACING, placer.getHorizontalFacing().getOpposite());
         return bs;
+    }
+    
+    @Override
+    public int getMetaFromState(IBlockState state) {
+        int meta = super.getMetaFromState(state);
+        ThaumicWonders.LOGGER.info("Got meta {} from state {}", meta, state.toString());
+        return meta;
     }
     
     public static void destroyChamber(World world, BlockPos pos, IBlockState state, BlockPos startPos) {
@@ -124,6 +129,8 @@ public class BlockCatalyzationChamber extends BlockDeviceTW<TileCatalyzationCham
                     TileCatalyzationChamber tcc = (TileCatalyzationChamber)worldIn.getTileEntity(pos);
                     ((EntityItem)entityIn).setItem(tcc.addItemsToInventory(((EntityItem)entityIn).getItem()));
                 }
+            } else if (entityIn instanceof EntityLivingBase) {
+                // TODO poison entity for a few seconds
             }
         }
         super.onEntityCollidedWithBlock(worldIn, pos, state, entityIn);

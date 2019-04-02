@@ -2,8 +2,10 @@ package com.verdantartifice.thaumicwonders.common.blocks.misc;
 
 import java.util.Random;
 
+import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.blocks.BlocksTW;
 import com.verdantartifice.thaumicwonders.common.blocks.base.BlockTW;
+import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockCatalyzationChamber;
 
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.EnumPushReaction;
@@ -79,7 +81,11 @@ public class BlockTWPlaceholder extends BlockTW {
                     for (int k = -1; k <= 1; k++) {
                         BlockPos targetPos = pos.add(i, j, k);
                         IBlockState targetState = worldIn.getBlockState(targetPos);
-                        // TODO If the target block is the catalyzer, open its GUI and return true
+                        if (targetState.getBlock() == BlocksTW.CATALYZATION_CHAMBER) {
+                            ThaumicWonders.LOGGER.info("Opening catalyzation chamber GUI");
+                            // TODO If the target block is the catalyzer, open its GUI and return true
+                            return true;
+                        }
                     }
                 }
             }
@@ -89,7 +95,7 @@ public class BlockTWPlaceholder extends BlockTW {
     
     @Override
     public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
-        if ((state.getBlock() == BlocksTW.PLACEHOLDER_ARCANE_STONE || state.getBlock() == BlocksTW.PLACEHOLDER_OBSIDIAN) && /* TODO !ignoreDestroy && */ !worldIn.isRemote) {
+        if ((state.getBlock() == BlocksTW.PLACEHOLDER_ARCANE_STONE || state.getBlock() == BlocksTW.PLACEHOLDER_OBSIDIAN) && !BlockCatalyzationChamber.ignoreDestroy && !worldIn.isRemote) {
             this.destroyCatalyzer(worldIn, pos);
         }
         super.breakBlock(worldIn, pos, state);
@@ -101,7 +107,10 @@ public class BlockTWPlaceholder extends BlockTW {
                 for (int k = -1; k <= 1; k++) {
                     BlockPos targetPos = pos.add(i, j, k);
                     IBlockState targetState = worldIn.getBlockState(targetPos);
-                    // TODO If the target block is the catalyzer, destroy it and return
+                    if (targetState.getBlock() == BlocksTW.CATALYZATION_CHAMBER) {
+                        BlockCatalyzationChamber.destroyChamber(worldIn, targetPos, targetState, pos);
+                        return;
+                    }
                 }
             }
         }
