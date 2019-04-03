@@ -2,8 +2,10 @@ package com.verdantartifice.thaumicwonders.common.blocks.devices;
 
 import java.util.Random;
 
+import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.blocks.BlocksTW;
 import com.verdantartifice.thaumicwonders.common.blocks.base.BlockDeviceTW;
+import com.verdantartifice.thaumicwonders.common.misc.GuiIds;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileCatalyzationChamber;
 
 import net.minecraft.block.SoundType;
@@ -12,12 +14,14 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.Item;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -128,5 +132,13 @@ public class BlockCatalyzationChamber extends BlockDeviceTW<TileCatalyzationCham
             }
         }
         super.onEntityCollidedWithBlock(worldIn, pos, state, entityIn);
+    }
+    
+    @Override
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        if (!worldIn.isRemote) {
+            playerIn.openGui(ThaumicWonders.INSTANCE, GuiIds.CATALYZATION_CHAMBER, worldIn, pos.getX(), pos.getY(), pos.getZ());
+        }
+        return true;
     }
 }

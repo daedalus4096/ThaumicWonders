@@ -6,6 +6,7 @@ import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.blocks.BlocksTW;
 import com.verdantartifice.thaumicwonders.common.blocks.base.BlockTW;
 import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockCatalyzationChamber;
+import com.verdantartifice.thaumicwonders.common.misc.GuiIds;
 
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.EnumPushReaction;
@@ -82,8 +83,7 @@ public class BlockTWPlaceholder extends BlockTW {
                         BlockPos targetPos = pos.add(i, j, k);
                         IBlockState targetState = worldIn.getBlockState(targetPos);
                         if (targetState.getBlock() == BlocksTW.CATALYZATION_CHAMBER) {
-                            ThaumicWonders.LOGGER.info("Opening catalyzation chamber GUI");
-                            // TODO If the target block is the catalyzer, open its GUI and return true
+                            playerIn.openGui(ThaumicWonders.INSTANCE, GuiIds.CATALYZATION_CHAMBER, worldIn, targetPos.getX(), targetPos.getY(), targetPos.getZ());
                             return true;
                         }
                     }
