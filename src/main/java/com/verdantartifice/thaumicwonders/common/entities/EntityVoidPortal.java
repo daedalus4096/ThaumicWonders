@@ -1,12 +1,15 @@
 package com.verdantartifice.thaumicwonders.common.entities;
 
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
+import com.verdantartifice.thaumicwonders.common.network.PacketHandler;
+import com.verdantartifice.thaumicwonders.common.network.packets.PacketVoidPortalNoAnchor;
+import com.verdantartifice.thaumicwonders.common.network.packets.PacketVoidPortalNoWorld;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TilePortalAnchor;
 
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -15,8 +18,6 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.DimensionManager;
@@ -148,10 +149,14 @@ public class EntityVoidPortal extends Entity {
                     // Generate target world flux after leaving
                     AuraHelper.polluteAura(targetWorld, linkPos.up(), 5.0F, true);
                 } else {
-                    player.sendStatusMessage(new TextComponentString(TextFormatting.DARK_PURPLE + I18n.format("event.void_portal.no_anchor")), true);
+                    if (player instanceof EntityPlayerMP) {
+                        PacketHandler.INSTANCE.sendTo(new PacketVoidPortalNoAnchor(), (EntityPlayerMP)player);
+                    }
                 }
             } else {
-                player.sendStatusMessage(new TextComponentString(TextFormatting.DARK_PURPLE + I18n.format("event.void_portal.no_world")), true);
+                if (player instanceof EntityPlayerMP) {
+                    PacketHandler.INSTANCE.sendTo(new PacketVoidPortalNoWorld(), (EntityPlayerMP)player);
+                }
                 ThaumicWonders.LOGGER.error("Target dimension {} not found!", this.getLinkDim());
             }
         }
