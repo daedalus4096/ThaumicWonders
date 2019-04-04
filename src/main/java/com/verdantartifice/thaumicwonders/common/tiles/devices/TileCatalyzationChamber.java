@@ -1,5 +1,6 @@
 package com.verdantartifice.thaumicwonders.common.tiles.devices;
 
+import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.tiles.base.TileTWInventory;
 
 import net.minecraft.init.Blocks;
@@ -26,8 +27,20 @@ public class TileCatalyzationChamber extends TileTWInventory implements ITickabl
     protected int facingX = -5;
     protected int facingZ = -5;
     
+    protected ItemStack equippedStone = ItemStack.EMPTY;
+    
     public TileCatalyzationChamber() {
         super(32);
+    }
+    
+    public ItemStack getEquippedStone() {
+        return this.equippedStone;
+    }
+    
+    public boolean setEquippedStone(ItemStack stack) {
+        // TODO validation
+        this.equippedStone = stack;
+        return true;
     }
     
     @Override
@@ -54,6 +67,7 @@ public class TileCatalyzationChamber extends TileTWInventory implements ITickabl
         super.readFromNBT(compound);
         this.refineTime = compound.getShort("RefineTime");
         this.speedyTime = compound.getShort("SpeedyTime");
+        this.equippedStone = new ItemStack(compound.getCompoundTag("EquippedStone"));
     }
     
     @Override
@@ -61,6 +75,7 @@ public class TileCatalyzationChamber extends TileTWInventory implements ITickabl
         super.writeToNBT(compound);
         compound.setShort("RefineTime", (short)this.refineTime);
         compound.setShort("SpeedyTime", (short)this.speedyTime);
+        compound.setTag("EquippedStone", this.equippedStone.writeToNBT(new NBTTagCompound()));
         return compound;
     }
     
