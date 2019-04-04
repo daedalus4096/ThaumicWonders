@@ -3,6 +3,8 @@ package com.verdantartifice.thaumicwonders.common.items.tools;
 import java.util.List;
 
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
+import com.verdantartifice.thaumicwonders.common.network.PacketHandler;
+import com.verdantartifice.thaumicwonders.common.network.packets.PacketPrimalDestroyerHungerFull;
 
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
@@ -17,7 +19,6 @@ import net.minecraft.item.ItemSword;
 import net.minecraft.nbt.NBTTagInt;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.EnumHelper;
@@ -66,7 +67,9 @@ public class ItemPrimalDestroyer extends ItemSword implements IWarpingGear {
                 }
                 if (hunger >= MAX_HUNGER) {
                     // Damage player and reset hunger
-                    entityPlayer.sendStatusMessage(new TextComponentString(TextFormatting.DARK_PURPLE + I18n.format("event.primal_destroyer.hunger_full")), true);
+                    if (entityIn instanceof EntityPlayerMP) {
+                        PacketHandler.INSTANCE.sendTo(new PacketPrimalDestroyerHungerFull(), (EntityPlayerMP)entityIn);
+                    }
                     entityPlayer.attackEntityFrom(new DamageSource("primalDestroyerHunger"), 12.0F);
                     entityPlayer.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, 60));
                     entityPlayer.addPotionEffect(new PotionEffect(MobEffects.HUNGER, 120));

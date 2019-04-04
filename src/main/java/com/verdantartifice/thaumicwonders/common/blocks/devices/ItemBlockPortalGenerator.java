@@ -21,6 +21,8 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import thaumcraft.common.lib.SoundsTC;
 
 public class ItemBlockPortalGenerator extends ItemBlock {
@@ -55,6 +57,7 @@ public class ItemBlockPortalGenerator extends ItemBlock {
     }
     
     @Override
+    @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
         if (stack.hasTagCompound()) {
             int linkX = stack.getTagCompound().getInteger("linkX");

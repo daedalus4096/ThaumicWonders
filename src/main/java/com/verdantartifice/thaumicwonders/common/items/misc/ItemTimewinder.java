@@ -30,7 +30,9 @@ public class ItemTimewinder extends ItemClock {
             playerIn.openGui(ThaumicWonders.INSTANCE, GuiIds.TIMEWINDER, worldIn, 0, 0, 0);
             return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
         } else {
-            playerIn.sendStatusMessage(new TextComponentString(TextFormatting.DARK_PURPLE + I18n.format("event.timewinder.offworld")), true);
+            if (worldIn.isRemote) {
+                playerIn.sendStatusMessage(new TextComponentString(TextFormatting.DARK_PURPLE + I18n.format("event.timewinder.offworld")), true);
+            }
             return new ActionResult<ItemStack>(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
         }
     }
