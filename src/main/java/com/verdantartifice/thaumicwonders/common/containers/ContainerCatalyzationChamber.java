@@ -35,7 +35,25 @@ public class ContainerCatalyzationChamber extends Container {
 
     @Override
     public ItemStack transferStackInSlot(EntityPlayer playerIn, int index) {
-        // TODO Auto-generated method stub
-        return super.transferStackInSlot(playerIn, index);
+        ItemStack stack = ItemStack.EMPTY;
+        Slot slotObject = (Slot)this.inventorySlots.get(index);
+        if (slotObject != null && slotObject.getHasStack()) {
+            ItemStack stackInSlot = slotObject.getStack();
+            stack = stackInSlot.copy();
+            if (index == 0) {
+                if (!this.mergeItemStack(stackInSlot, 1, this.inventorySlots.size(), true)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if (!this.mergeItemStack(stackInSlot, 0, 1, false)) {
+                return ItemStack.EMPTY;
+            }
+            
+            if (stackInSlot.getCount() == 0) {
+                slotObject.putStack(ItemStack.EMPTY);
+            } else {
+                slotObject.onSlotChanged();
+            }
+        }
+        return stack;
     }
 }

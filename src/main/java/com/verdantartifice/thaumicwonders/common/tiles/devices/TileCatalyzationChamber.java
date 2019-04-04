@@ -1,9 +1,8 @@
 package com.verdantartifice.thaumicwonders.common.tiles.devices;
 
-import com.verdantartifice.thaumicwonders.ThaumicWonders;
+import com.verdantartifice.thaumicwonders.common.items.catalysts.ICatalystStone;
 import com.verdantartifice.thaumicwonders.common.tiles.base.TileTWInventory;
 
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -38,9 +37,17 @@ public class TileCatalyzationChamber extends TileTWInventory implements ITickabl
     }
     
     public boolean setEquippedStone(ItemStack stack) {
-        // TODO validation
-        this.equippedStone = stack;
-        return true;
+        if (stack != null && !stack.isEmpty()) {
+            if (stack.getItem() instanceof ICatalystStone) {
+                this.equippedStone = stack;
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            this.equippedStone = stack;
+            return true;
+        }
     }
     
     @Override
@@ -100,8 +107,17 @@ public class TileCatalyzationChamber extends TileTWInventory implements ITickabl
                 for (int slot = 0; slot < this.getSizeInventory(); slot++) {
                     ItemStack stack = this.getStackInSlot(slot);
                     if (stack != null && !stack.isEmpty()) {
-                        ItemStack resultStack = new ItemStack(Blocks.COBBLESTONE);    // TODO get result from slotted alchemist stone interface
+                        ICatalystStone stone = null;
+                        if (this.getEquippedStone() != null && !this.getEquippedStone().isEmpty() && this.getEquippedStone().getItem() instanceof ICatalystStone) {
+                            stone = (ICatalystStone)this.getEquippedStone().getItem();
+                        }
+                        
+                        // Return the input stack if no catalyst stone is available
+                        ItemStack resultStack = (stone != null) ? stone.getRefiningResult(stack) : stack;
                         if (resultStack != null && !resultStack.isEmpty()) {
+                            if (this.getEquippedStone().attemptDamageItem(1, this.world.rand, null)) {
+                                this.getEquippedStone().shrink(1);
+                            }
                             if (this.speedyTime > 0) {
                                 this.speedyTime--;
                             }
@@ -131,12 +147,25 @@ public class TileCatalyzationChamber extends TileTWInventory implements ITickabl
     }
     
     public ItemStack addItemsToInventory(ItemStack items) {
-        return ThaumcraftInvHelper.insertStackAt(this.getWorld(), this.getPos(), EnumFacing.UP, items, false);
+        if (this.canRefine(items)) {
+            return ThaumcraftInvHelper.insertStackAt(this.getWorld(), this.getPos(), EnumFacing.UP, items, false);
+        } else {
+            this.ejectItem(items);
+            return ItemStack.EMPTY;
+        }
     }
 
     private boolean canRefine(ItemStack stack) {
-        // TODO return whether the result from slotted alchemist stone interface is not empty
-        return true;
+        ICatalystStone stone = null;
+        if (this.getEquippedStone() != null && !this.getEquippedStone().isEmpty() && this.getEquippedStone().getItem() instanceof ICatalystStone) {
+            stone = (ICatalystStone)this.getEquippedStone().getItem();
+        }
+        if (stone != null) {
+            ItemStack resultStack = stone.getRefiningResult(stack);
+            return (resultStack != null) && !resultStack.isEmpty();
+        } else {
+            return false;
+        }
     }
 
     private void ejectItem(ItemStack itemStack) {
