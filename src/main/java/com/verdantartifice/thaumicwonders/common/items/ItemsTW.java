@@ -12,4 +12,5 @@ public class ItemsTW {
     public static final ItemSword PRIMAL_DESTROYER = null;
     public static final Item FLYING_CARPET = null;
     public static final Item TIMEWINDER = null;
+    public static final Item ALCHEMIST_STONE = null;
 }

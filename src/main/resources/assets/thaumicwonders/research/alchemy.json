@@ -82,6 +82,51 @@
                 }
             ],
             "addenda": []
+        },
+        {
+            "key": "TWOND_CATALYZATION_CHAMBER",
+            "name": "thaumicwonders.research.catalyzation_chamber.title",
+            "icons": ["thaumicwonders:catalyzation_chamber"],
+            "category": "THAUMIC_WONDERS",
+            "parents": ["TWOND_EVERBURNING_URN", "TWOND_END_HEDGE", "~METALPURIFICATION", "~INFERNALFURNACE"],
+            "siblings": [],
+            "meta": ["SPIKY"],
+            "location": [-2, 6],
+            "reward_item": [],
+            "reward_knowledge": [],
+            "stages": [
+                {
+                    "text": "thaumicwonders.research.catalyzation_chamber.text.stage.1",
+                    "required_knowledge": ["THEORY;ALCHEMY;1","THEORY;ARTIFICE;1"],
+                    "required_research":["!alkimia"],
+                    "required_item":["minecraft:obsidian","thaumcraft:stone_arcane","thaumcraft:quicksilver"],
+                    "recipes": [
+                        "thaumicwonders:quicksilver_bucket_group"
+                    ]
+                },
+                {
+                    "text": "thaumicwonders.research.catalyzation_chamber.text.stage.2",
+                    "required_knowledge": ["THEORY;ALCHEMY;2"],
+                    "recipes": [
+                        "thaumicwonders:quicksilver_bucket_group",
+                        "thaumicwonders:catalyzation_chamber"
+                    ]
+                },
+                {
+                    "text": "thaumicwonders.research.catalyzation_chamber.text.stage.3",
+                    "recipes": [
+                        "thaumicwonders:quicksilver_bucket_group",
+                        "thaumicwonders:catalyzation_chamber",
+                        "thaumicwonders:alchemist_stone"
+                    ]
+                }
+            ],
+            "addenda": [
+                {
+                    "text": "thaumicwonders.research.catalyzation_chamber.text.addenda.1",
+                    "required_research": ["BELLOWS"]
+                }
+            ]
         }
     ]
 }

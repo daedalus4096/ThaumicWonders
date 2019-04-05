@@ -5,7 +5,6 @@ import javax.annotation.Nullable;
 
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.blocks.BlocksTW;
-import com.verdantartifice.thaumicwonders.common.blocks.fluids.BlockFluidQuicksilver;
 import com.verdantartifice.thaumicwonders.common.crafting.recipes.RecipeDisjunctionClothUse;
 import com.verdantartifice.thaumicwonders.common.fluids.FluidQuicksilver;
 import com.verdantartifice.thaumicwonders.common.items.ItemsTW;
@@ -51,7 +50,7 @@ public class InitRecipes {
         Part AS = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.PLACEHOLDER_ARCANE_STONE));
         Part OB = new Part(Blocks.OBSIDIAN, new ItemStack(BlocksTW.PLACEHOLDER_OBSIDIAN));
         Part IB = new Part(Blocks.IRON_BARS, "AIR");
-        Part QS = new Part(BlockFluidQuicksilver.FLUID_QUICKSILVER_MATERIAL, BlocksTW.CATALYZATION_CHAMBER, true);
+        Part QS = new Part(BlocksTW.FLUID_QUICKSILVER, BlocksTW.CATALYZATION_CHAMBER, true);
         Part[][][] catalyzationChamberBlueprint = {
                 {
                     { AS, OB, AS },
@@ -69,9 +68,9 @@ public class InitRecipes {
                     { AS, OB, AS }
                 }
         };
-        IDustTrigger.registerDustTrigger(new DustTriggerMultiblock("TWOND_BASE", catalyzationChamberBlueprint));
+        IDustTrigger.registerDustTrigger(new DustTriggerMultiblock("TWOND_CATALYZATION_CHAMBER@2", catalyzationChamberBlueprint));
         ThaumcraftApi.addMultiblockRecipeToCatalog(new ResourceLocation(ThaumicWonders.MODID, "catalyzation_chamber"), new ThaumcraftApi.BluePrint(
-                "TWOND_BASE", 
+                "TWOND_CATALYZATION_CHAMBER@2", 
                 catalyzationChamberBlueprint, 
                 new ItemStack[] {
                         new ItemStack(BlocksTC.stoneArcane, 12),
@@ -85,15 +84,15 @@ public class InitRecipes {
     private static void initNormalRecipes(IForgeRegistry<IRecipe> forgeRegistry) {
         forgeRegistry.register(new RecipeDisjunctionClothUse());
         
-        shapelessOreDictRecipe("quicksilver_bucket", defaultGroup, FluidUtil.getFilledBucket(new FluidStack(FluidQuicksilver.INSTANCE, 1000)), new Object[] { 
+        ResourceLocation qsGroup = new ResourceLocation(ThaumicWonders.MODID, "quicksilver_bucket_group");
+        shapelessOreDictRecipe("quicksilver_bucket", qsGroup, FluidUtil.getFilledBucket(new FluidStack(FluidQuicksilver.INSTANCE, 1000)), new Object[] { 
                 Items.BUCKET, new ItemStack(ItemsTC.quicksilver), new ItemStack(ItemsTC.quicksilver), new ItemStack(ItemsTC.quicksilver), 
                 new ItemStack(ItemsTC.quicksilver), new ItemStack(ItemsTC.quicksilver), new ItemStack(ItemsTC.quicksilver), 
                 new ItemStack(ItemsTC.quicksilver), new ItemStack(ItemsTC.quicksilver) 
         });
-        
         GameRegistry.addShapedRecipe(
                 new ResourceLocation(ThaumicWonders.MODID, "quicksilver_bucket_deconstruct"), 
-                defaultGroup, 
+                qsGroup, 
                 new ItemStack(ItemsTC.quicksilver, 8), 
                 new Object[] {"#", Character.valueOf('#'), FluidUtil.getFilledBucket(new FluidStack(FluidQuicksilver.INSTANCE, 1000)) });
     }
@@ -200,6 +199,12 @@ public class InitRecipes {
                 new ItemStack(ItemsTW.DISJUNCTION_CLOTH),
                 new ItemStack(ItemsTC.fabric),
                 new AspectList().add(Aspect.MAGIC, 40).add(Aspect.VOID, 40).add(Aspect.AURA, 20)
+        ));
+        ThaumcraftApi.addCrucibleRecipe(new ResourceLocation(ThaumicWonders.MODID, "alchemist_stone"), new CrucibleRecipe(
+                "TWOND_CATALYZATION_CHAMBER",
+                new ItemStack(ItemsTW.ALCHEMIST_STONE),
+                new ItemStack(Items.DIAMOND),
+                new AspectList().add(Aspect.METAL, 50).add(Aspect.ORDER, 50).add(Aspect.ALCHEMY, 10)
         ));
     }
     
