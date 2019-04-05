@@ -130,7 +130,9 @@ public class TileCatalyzationChamber extends TileTWInventory implements ITickabl
                             }
                             this.ejectItem(resultStack.copy());
                             this.world.addBlockEvent(this.getPos(), BlocksTW.CATALYZATION_CHAMBER, PLAY_EFFECTS, 0);
-                            // TODO chance of flux?
+                            if (this.world.rand.nextInt(50) == 0) {
+                                AuraHelper.polluteAura(this.world, this.getPos().offset(this.getFacing().getOpposite()), 1.0F, true);
+                            }
                             this.decrStackSize(slot, 1);
                             break;
                         }
