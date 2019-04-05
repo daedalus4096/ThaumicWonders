@@ -121,22 +121,22 @@ public class TileCatalyzationChamber extends TileTWInventory implements ITickabl
                         
                         // Return the input stack if no catalyst stone is available
                         ItemStack resultStack = (stone != null) ? stone.getRefiningResult(stack) : stack;
-                        if (resultStack != null && !resultStack.isEmpty()) {
-                            if (this.getEquippedStone().attemptDamageItem(1, this.world.rand, null)) {
-                                this.getEquippedStone().shrink(1);
-                            }
-                            if (this.speedyTime > 0) {
-                                this.speedyTime--;
-                            }
-                            this.ejectItem(resultStack.copy());
-                            this.world.addBlockEvent(this.getPos(), BlocksTW.CATALYZATION_CHAMBER, PLAY_EFFECTS, 0);
-                            if (this.world.rand.nextInt(50) == 0) {
-                                AuraHelper.polluteAura(this.world, this.getPos().offset(this.getFacing().getOpposite()), 1.0F, true);
-                            }
-                            this.decrStackSize(slot, 1);
-                            break;
+                        if (resultStack == null || resultStack.isEmpty()) {
+                            resultStack = stack;
                         }
-                        this.setInventorySlotContents(slot, ItemStack.EMPTY);
+                        if (this.getEquippedStone().attemptDamageItem(1, this.world.rand, null)) {
+                            this.getEquippedStone().shrink(1);
+                        }
+                        if (this.speedyTime > 0) {
+                            this.speedyTime--;
+                        }
+                        this.ejectItem(resultStack.copy());
+                        this.world.addBlockEvent(this.getPos(), BlocksTW.CATALYZATION_CHAMBER, PLAY_EFFECTS, 0);
+                        if (this.world.rand.nextInt(50) == 0) {
+                            AuraHelper.polluteAura(this.world, this.getPos().offset(this.getFacing().getOpposite()), 1.0F, true);
+                        }
+                        this.decrStackSize(slot, 1);
+                        break;
                     }
                 }
             }
@@ -149,6 +149,9 @@ public class TileCatalyzationChamber extends TileTWInventory implements ITickabl
                         this.maxRefineTime = this.calcRefineTime();
                         this.refineTime = this.maxRefineTime;
                         break;
+                    } else {
+                        this.ejectItem(this.getStackInSlot(slot).copy());
+                        this.setInventorySlotContents(slot, ItemStack.EMPTY);
                     }
                 }
             }
