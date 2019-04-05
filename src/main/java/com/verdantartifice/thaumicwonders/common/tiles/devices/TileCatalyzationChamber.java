@@ -1,13 +1,16 @@
 package com.verdantartifice.thaumicwonders.common.tiles.devices;
 
+import com.verdantartifice.thaumicwonders.common.blocks.BlocksTW;
 import com.verdantartifice.thaumicwonders.common.items.catalysts.ICatalystStone;
 import com.verdantartifice.thaumicwonders.common.tiles.base.TileTWInventory;
 
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
@@ -19,6 +22,8 @@ import thaumcraft.common.lib.utils.InventoryUtils;
 import thaumcraft.common.tiles.devices.TileBellows;
 
 public class TileCatalyzationChamber extends TileTWInventory implements ITickable {
+    private static final int PLAY_EFFECTS = 4;
+    
     protected int refineTime = 0;
     protected int maxRefineTime = 0;
     protected int speedyTime = 0;
@@ -122,7 +127,7 @@ public class TileCatalyzationChamber extends TileTWInventory implements ITickabl
                                 this.speedyTime--;
                             }
                             this.ejectItem(resultStack.copy());
-                            // TODO fire addBlockEvent
+                            this.world.addBlockEvent(this.getPos(), BlocksTW.CATALYZATION_CHAMBER, PLAY_EFFECTS, 0);
                             // TODO chance of flux?
                             this.decrStackSize(slot, 1);
                             break;
@@ -202,5 +207,15 @@ public class TileCatalyzationChamber extends TileTWInventory implements ITickabl
         EnumFacing face = this.getFacing().getOpposite();
         this.facingX = face.getFrontOffsetX();
         this.facingZ = face.getFrontOffsetZ();
+    }
+    
+    @Override
+    public boolean receiveClientEvent(int id, int type) {
+        if (id == PLAY_EFFECTS) {
+            this.world.playSound(null, this.getPos(), SoundEvents.BLOCK_LAVA_POP, SoundCategory.BLOCKS, 0.8F, 0.9F + this.world.rand.nextFloat() * 0.2F);
+            return true;
+        } else {
+            return super.receiveClientEvent(id, type);
+        }
     }
 }
