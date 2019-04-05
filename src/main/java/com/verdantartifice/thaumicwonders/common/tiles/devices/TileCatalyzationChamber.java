@@ -16,7 +16,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import thaumcraft.api.ThaumcraftInvHelper;
+import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aura.AuraHelper;
+import thaumcraft.client.fx.FXDispatcher;
 import thaumcraft.common.lib.utils.BlockStateUtils;
 import thaumcraft.common.lib.utils.InventoryUtils;
 import thaumcraft.common.tiles.devices.TileBellows;
@@ -212,6 +214,15 @@ public class TileCatalyzationChamber extends TileTWInventory implements ITickabl
     @Override
     public boolean receiveClientEvent(int id, int type) {
         if (id == PLAY_EFFECTS) {
+            if (this.world.isRemote) {
+                for (int i = 0; i < 5; i++) {
+                    BlockPos targetPos = this.getPos().offset(this.getFacing().getOpposite(), 2);
+                    FXDispatcher.INSTANCE.visSparkle(
+                            this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 
+                            targetPos.getX(), targetPos.getY(), targetPos.getZ(), 
+                            Aspect.ORDER.getColor());
+                }
+            }
             this.world.playSound(null, this.getPos(), SoundEvents.BLOCK_LAVA_POP, SoundCategory.BLOCKS, 0.8F, 0.9F + this.world.rand.nextFloat() * 0.2F);
             return true;
         } else {
