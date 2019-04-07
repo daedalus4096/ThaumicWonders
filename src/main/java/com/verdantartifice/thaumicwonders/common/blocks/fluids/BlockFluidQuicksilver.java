@@ -23,6 +23,7 @@ public class BlockFluidQuicksilver extends BlockFluidClassic {
         this.setRegistryName(ThaumicWonders.MODID, "fluid_quicksilver");
         setUnlocalizedName(ThaumicWonders.MODID + "." + this.getRegistryName().getResourcePath());
         this.setCreativeTab(ThaumicWonders.CREATIVE_TAB);
+        this.setQuantaPerBlock(4);
     }
     
     @Override

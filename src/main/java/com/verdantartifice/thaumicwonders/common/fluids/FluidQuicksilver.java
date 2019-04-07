@@ -12,8 +12,8 @@ public class FluidQuicksilver extends Fluid {
     
     private FluidQuicksilver() {
         super("fluid_quicksilver", new ResourceLocation(ThaumicWonders.MODID, "blocks/fluid_quicksilver"), new ResourceLocation(ThaumicWonders.MODID, "blocks/fluid_quicksilver"));
-        this.setViscosity(6000);
-        this.setDensity(1500);
+        this.setViscosity(1560);    // Real-life dynamic viscosity of liquid mercury in Ns/m^2
+        this.setDensity(13593);     // Real-life density of liquid mercury in kg/m^3
     }
     
     @Override
