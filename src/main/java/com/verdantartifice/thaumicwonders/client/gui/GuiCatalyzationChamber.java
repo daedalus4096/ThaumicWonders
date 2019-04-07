@@ -13,13 +13,10 @@ import net.minecraft.util.ResourceLocation;
 public class GuiCatalyzationChamber extends GuiContainer {
     private static final ResourceLocation TEXTURE = new ResourceLocation(ThaumicWonders.MODID, "textures/gui/gui_catalyzation_chamber.png");
     
-    private TileCatalyzationChamber tileEntity;
-    
     public GuiCatalyzationChamber(InventoryPlayer inventoryPlayer, TileCatalyzationChamber chamberTile) {
         super(new ContainerCatalyzationChamber(inventoryPlayer, chamberTile));
         this.xSize = 175;
         this.ySize = 232;
-        this.tileEntity = chamberTile;
     }
     
     @Override
