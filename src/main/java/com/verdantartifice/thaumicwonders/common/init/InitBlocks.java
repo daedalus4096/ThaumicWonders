@@ -13,6 +13,7 @@ import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockPortalGener
 import com.verdantartifice.thaumicwonders.common.blocks.devices.ItemBlockPortalGenerator;
 import com.verdantartifice.thaumicwonders.common.blocks.essentia.BlockCreativeEssentiaJar;
 import com.verdantartifice.thaumicwonders.common.blocks.essentia.ItemBlockCreativeEssentiaJar;
+import com.verdantartifice.thaumicwonders.common.blocks.misc.BlockHexamite;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileDimensionalRipper;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileEverburningUrn;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileInspirationEngine;
@@ -39,6 +40,7 @@ public class InitBlocks {
         registerBlock(forgeRegistry, new BlockMadnessEngine());
         registerBlock(forgeRegistry, new BlockPortalAnchor());
         registerBlock(forgeRegistry, new BlockPortalGenerator(), ItemBlockPortalGenerator.class);
+        registerBlock(forgeRegistry, new BlockHexamite());
     }
     
     private static void registerBlock(IForgeRegistry<Block> forgeRegistry, Block block) {

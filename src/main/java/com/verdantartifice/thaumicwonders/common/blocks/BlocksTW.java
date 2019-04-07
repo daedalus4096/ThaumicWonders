@@ -14,4 +14,5 @@ public class BlocksTW {
     public static final Block MADNESS_ENGINE = null;
     public static final Block PORTAL_ANCHOR = null;
     public static final Block PORTAL_GENERATOR = null;
+    public static final Block HEXAMITE = null;
 }
