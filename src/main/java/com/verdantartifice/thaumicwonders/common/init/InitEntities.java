@@ -2,6 +2,7 @@ package com.verdantartifice.thaumicwonders.common.init;
 
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.entities.EntityFlyingCarpet;
+import com.verdantartifice.thaumicwonders.common.entities.EntityHexamitePrimed;
 import com.verdantartifice.thaumicwonders.common.entities.EntityVoidPortal;
 
 import net.minecraft.util.ResourceLocation;
@@ -28,5 +29,13 @@ public class InitEntities {
                 .tracker(64, 20, false)
                 .build();
         iForgeRegistry.register(voidPortalEntry);
+        
+        EntityEntry hexamitePrimedEntry = EntityEntryBuilder.create()
+                .entity(EntityHexamitePrimed.class)
+                .id(new ResourceLocation(ThaumicWonders.MODID, "hexamite_primed"), id++)
+                .name("hexamite_primed")
+                .tracker(64, 1, true)
+                .build();
+        iForgeRegistry.register(hexamitePrimedEntry);
     }
 }

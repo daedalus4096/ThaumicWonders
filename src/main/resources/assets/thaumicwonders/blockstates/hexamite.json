@@ -1,0 +1,12 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "thaumicwonders:hexamite",
+        "transform": "forge:default-block"
+    },
+    "variants": {
+        "normal": [{}], "inventory": [{}],
+        "explode=false": [{}],
+        "explode=true":  [{}]
+    }
+}

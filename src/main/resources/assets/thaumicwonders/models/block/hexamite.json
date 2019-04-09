@@ -1,0 +1,8 @@
+{
+    "parent": "block/cube_bottom_top",
+    "textures": {
+        "bottom": "thaumicwonders:blocks/hexamite_bottom",
+        "top": "thaumicwonders:blocks/hexamite_top",
+        "side": "thaumicwonders:blocks/hexamite_side"
+    }
+}

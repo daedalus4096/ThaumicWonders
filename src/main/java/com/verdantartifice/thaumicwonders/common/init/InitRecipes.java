@@ -155,6 +155,21 @@ public class InitRecipes {
                         Character.valueOf('R'), new ItemStack(ItemsTC.morphicResonator)
                 }
         ));
+        ThaumcraftApi.addArcaneCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "hexamite"), new ShapedArcaneRecipe(
+                defaultGroup,
+                "TWOND_HEXAMITE",
+                75,
+                new AspectList().add(Aspect.FIRE, 1).add(Aspect.ENTROPY, 1),
+                BlocksTW.HEXAMITE,
+                new Object[] {
+                        "AVA",
+                        "VGV",
+                        "AVA",
+                        Character.valueOf('A'), new ItemStack(ItemsTC.alumentum),
+                        Character.valueOf('V'), ThaumcraftApiHelper.makeCrystal(Aspect.FLUX),
+                        Character.valueOf('G'), new ItemStack(Items.GUNPOWDER)
+                }
+        ));
     }
 
     private static void initCrucibleRecipes() {

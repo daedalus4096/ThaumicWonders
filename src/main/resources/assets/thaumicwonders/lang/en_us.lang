@@ -12,6 +12,7 @@ tile.thaumicwonders.portal_anchor.name=Portal Anchor
 tile.thaumicwonders.portal_generator.name=Portal Generator
 tile.thaumicwonders.portal_generator.tooltip.linkedto=Linked to %1$d, %2$d, %3$d in %4$s
 tile.thaumicwonders.catalyzation_chamber.name=Catalyzation Chamber
+tile.thaumicwonders.hexamite.name=Hexamite
 
 // Misc Tiles
 tile.thaumicwonders.fluid_quicksilver.name=Quicksilver
@@ -28,6 +29,7 @@ item.thaumicwonders.alchemist_stone.name=Alchemist's Stone
 // Entities
 entity.flying_carpet.name=Flying Carpet
 entity.void_portal.name=Void Portal
+entity.hexamite_primed.name=Hexamite
 
 // Fluids
 fluid.fluid_quicksilver=Quicksilver
@@ -89,6 +91,10 @@ thaumicwonders.research.catalyzation_chamber.text.stage.1=Metal purification str
 thaumicwonders.research.catalyzation_chamber.text.stage.2=I've made a serious error in my calculations.  The chamber that I've designed will take years, not seconds, to process even a single chunk of ore.  I need a catalyst of some kind to speed things up.  Oh well, back to the drawing board.
 thaumicwonders.research.catalyzation_chamber.text.stage.3=Much better.  By slotting this material, which I've dubbed an Alchemist's Stone, into the Catalyzation Chamber, I can now purify metal ores quickly and efficiently.  One stone will allow me to process about a stack of ore before needing replacement.  Even with that added cost, the process is much cheaper now, just as I hoped.<BR>Like the Infernal Furnace, this chamber is relatively slow unless it can take vis from the aura.  It also has a small chance of generating a little flux each time it purifies ore.
 thaumicwonders.research.catalyzation_chamber.text.addenda.1=It turns out that the Arcane Bellows work just as well on the Catalyzation Chamber as they do the Infernal Furnace.  Keeping the quicksilver bath aerated speeds up reaction times significantly.
+
+thaumicwonders.research.hexamite.title=Hexamite
+thaumicwonders.research.hexamite.text.stage.1=I am irritated.  Cross.  Vexed, even.  The source of my ire is just so appallingly *there* and, despite my most fervent wishes, continues to exist.  There's only one sane response to this affront.<BR>Explosives.<BR>Regular TNT is too good for this thorn in my side, however.  I'll need to design something special.
+thaumicwonders.research.hexamite.text.stage.2=This will do, indeed.  I've taken the basic formula of TNT, kept a small amount of gunpowder for a primer, and packed the rest with unstable alumentum.  For good measure, I've laced in some Vitium shards for shrapnel.<BR>The resulting device should not only be twice as powerful as TNT, but the blast will also echo in the local aura.  Destroyed blocks will give off flux, and living beings caught in the blast, assuming they survive, will find their magical abilities hampered temporarily.<BR>This has been an excellent, and not at all crazy, use of my time and skill.
 
 // Theorycraft Cards
 card.induced_inspiration.name=Induced Inspiration
