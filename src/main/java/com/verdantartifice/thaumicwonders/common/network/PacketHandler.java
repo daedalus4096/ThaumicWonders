@@ -2,6 +2,8 @@ package com.verdantartifice.thaumicwonders.common.network;
 
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.network.packets.PacketPrimalDestroyerHungerFull;
+import com.verdantartifice.thaumicwonders.common.network.packets.PacketTileToClient;
+import com.verdantartifice.thaumicwonders.common.network.packets.PacketTileToServer;
 import com.verdantartifice.thaumicwonders.common.network.packets.PacketTimewinderAction;
 import com.verdantartifice.thaumicwonders.common.network.packets.PacketTimewinderUsed;
 import com.verdantartifice.thaumicwonders.common.network.packets.PacketVoidPortalNoAnchor;
@@ -26,5 +28,7 @@ public class PacketHandler {
         INSTANCE.registerMessage(PacketPrimalDestroyerHungerFull.Handler.class, PacketPrimalDestroyerHungerFull.class, nextId(), Side.CLIENT);
         INSTANCE.registerMessage(PacketVoidPortalNoAnchor.Handler.class, PacketVoidPortalNoAnchor.class, nextId(), Side.CLIENT);
         INSTANCE.registerMessage(PacketVoidPortalNoWorld.Handler.class, PacketVoidPortalNoWorld.class, nextId(), Side.CLIENT);
+        INSTANCE.registerMessage(PacketTileToServer.Handler.class, PacketTileToServer.class, nextId(), Side.SERVER);
+        INSTANCE.registerMessage(PacketTileToClient.Handler.class, PacketTileToClient.class, nextId(), Side.CLIENT);
     }
 }

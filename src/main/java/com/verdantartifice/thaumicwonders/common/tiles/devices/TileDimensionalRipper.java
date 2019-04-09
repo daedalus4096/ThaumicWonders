@@ -3,8 +3,6 @@ package com.verdantartifice.thaumicwonders.common.tiles.devices;
 import java.awt.Color;
 
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
-import com.verdantartifice.thaumicwonders.common.blocks.base.IBlockEnableable;
-import com.verdantartifice.thaumicwonders.common.blocks.base.IBlockOrientable;
 import com.verdantartifice.thaumicwonders.common.tiles.base.TileTW;
 
 import net.minecraft.block.state.IBlockState;
@@ -21,6 +19,8 @@ import thaumcraft.api.aspects.IAspectContainer;
 import thaumcraft.api.aspects.IEssentiaTransport;
 import thaumcraft.api.aura.AuraHelper;
 import thaumcraft.client.fx.FXDispatcher;
+import thaumcraft.common.blocks.IBlockEnabled;
+import thaumcraft.common.blocks.IBlockFacing;
 import thaumcraft.common.entities.EntityFluxRift;
 import thaumcraft.common.lib.SoundsTC;
 import thaumcraft.common.lib.utils.EntityUtils;
@@ -94,9 +94,9 @@ public class TileDimensionalRipper extends TileTW implements IAspectContainer, I
 
     @Override
     public boolean isConnectable(EnumFacing face) {
-        if (this.getBlockType() instanceof IBlockOrientable) {
+        if (this.getBlockType() instanceof IBlockFacing) {
             IBlockState blockState = this.world.getBlockState(this.pos);
-            EnumFacing blockFacing = blockState.getValue(IBlockOrientable.FACING);
+            EnumFacing blockFacing = blockState.getValue(IBlockFacing.FACING);
             return (blockFacing != face);
         } else {
             return false;
@@ -241,16 +241,16 @@ public class TileDimensionalRipper extends TileTW implements IAspectContainer, I
     
     protected void checkForActivation() {
         IBlockState state = this.world.getBlockState(this.pos);
-        EnumFacing blockFacing = state.getValue(IBlockOrientable.FACING);
-        boolean blockEnabled = state.getValue(IBlockEnableable.ENABLED);
+        EnumFacing blockFacing = state.getValue(IBlockFacing.FACING);
+        boolean blockEnabled = state.getValue(IBlockEnabled.ENABLED);
         BlockPos otherPos = this.pos.offset(blockFacing, DISTANCE);
         TileEntity otherTe = this.world.getTileEntity(otherPos);
         
         if (otherTe != null && otherTe instanceof TileDimensionalRipper) {
             TileDimensionalRipper otherTile = (TileDimensionalRipper)otherTe;
             IBlockState otherState = this.world.getBlockState(otherPos);
-            EnumFacing otherBlockFacing = otherState.getValue(IBlockOrientable.FACING);
-            boolean otherBlockEnabled = otherState.getValue(IBlockEnableable.ENABLED);
+            EnumFacing otherBlockFacing = otherState.getValue(IBlockFacing.FACING);
+            boolean otherBlockEnabled = otherState.getValue(IBlockEnabled.ENABLED);
 
             if ( otherBlockFacing == blockFacing.getOpposite() &&
                  blockEnabled &&

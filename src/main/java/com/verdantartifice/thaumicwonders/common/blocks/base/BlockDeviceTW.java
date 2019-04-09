@@ -14,6 +14,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import thaumcraft.common.blocks.IBlockEnabled;
+import thaumcraft.common.blocks.IBlockFacing;
+import thaumcraft.common.blocks.IBlockFacingHorizontal;
 import thaumcraft.common.lib.utils.BlockStateUtils;
 
 public class BlockDeviceTW<T extends TileEntity> extends BlockTileTW<T> {
@@ -21,13 +24,13 @@ public class BlockDeviceTW<T extends TileEntity> extends BlockTileTW<T> {
         super(mat, tileClass, name);
         
         IBlockState blockState = this.blockState.getBaseState();
-        if (this instanceof IBlockOrientableHorizontal) {
-            blockState.withProperty(IBlockOrientableHorizontal.FACING, EnumFacing.NORTH);
-        } else if (this instanceof IBlockOrientable) {
-            blockState.withProperty(IBlockOrientable.FACING, EnumFacing.UP);
+        if (this instanceof IBlockFacingHorizontal) {
+            blockState.withProperty(IBlockFacingHorizontal.FACING, EnumFacing.NORTH);
+        } else if (this instanceof IBlockFacing) {
+            blockState.withProperty(IBlockFacing.FACING, EnumFacing.UP);
         }
-        if (this instanceof IBlockEnableable) {
-            blockState.withProperty(IBlockEnableable.ENABLED, ((IBlockEnableable)this).getEnableableDefault());
+        if (this instanceof IBlockEnabled) {
+            blockState.withProperty(IBlockEnabled.ENABLED, Boolean.valueOf(true));
         }
         this.setDefaultState(blockState);
     }
@@ -46,10 +49,10 @@ public class BlockDeviceTW<T extends TileEntity> extends BlockTileTW<T> {
     }
     
     protected void updateState(World worldIn, BlockPos pos, IBlockState state) {
-        if (this instanceof IBlockEnableable) {
+        if (this instanceof IBlockEnabled) {
             boolean flag = !worldIn.isBlockPowered(pos);
-            if (flag != state.getValue(IBlockEnableable.ENABLED)) {
-                worldIn.setBlockState(pos, state.withProperty(IBlockEnableable.ENABLED, flag), 0x3);
+            if (flag != state.getValue(IBlockEnabled.ENABLED)) {
+                worldIn.setBlockState(pos, state.withProperty(IBlockEnabled.ENABLED, flag), 0x3);
             }
         }
     }
@@ -57,15 +60,15 @@ public class BlockDeviceTW<T extends TileEntity> extends BlockTileTW<T> {
     @Override
     public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
         IBlockState state = this.getDefaultState();
-        if (this instanceof IBlockOrientableHorizontal) {
+        if (this instanceof IBlockFacingHorizontal) {
             EnumFacing placerFacing = placer.getHorizontalFacing();
-            state = state.withProperty(IBlockOrientableHorizontal.FACING, placer.isSneaking() ? placerFacing : placerFacing.getOpposite());
-        } else if (this instanceof IBlockOrientable) {
+            state = state.withProperty(IBlockFacingHorizontal.FACING, placer.isSneaking() ? placerFacing : placerFacing.getOpposite());
+        } else if (this instanceof IBlockFacing) {
             EnumFacing direction = EnumFacing.getDirectionFromEntityLiving(pos, placer);
-            state = state.withProperty(IBlockOrientable.FACING, placer.isSneaking() ? direction.getOpposite() : direction);
+            state = state.withProperty(IBlockFacing.FACING, placer.isSneaking() ? direction.getOpposite() : direction);
         }
-        if (this instanceof IBlockEnableable) {
-            state = state.withProperty(IBlockEnableable.ENABLED, ((IBlockEnableable)this).getEnableableDefault());
+        if (this instanceof IBlockEnabled) {
+            state = state.withProperty(IBlockEnabled.ENABLED, Boolean.valueOf(true));
         }
         return state;
     }
@@ -74,13 +77,13 @@ public class BlockDeviceTW<T extends TileEntity> extends BlockTileTW<T> {
     public IBlockState getStateFromMeta(int meta) {
         IBlockState state = this.getDefaultState();
         try {
-            if (this instanceof IBlockOrientableHorizontal) {
-                state = state.withProperty(IBlockOrientableHorizontal.FACING, BlockStateUtils.getFacing(meta));
-            } else if (this instanceof IBlockOrientable) {
-                state = state.withProperty(IBlockOrientable.FACING, BlockStateUtils.getFacing(meta));
+            if (this instanceof IBlockFacingHorizontal) {
+                state = state.withProperty(IBlockFacingHorizontal.FACING, BlockStateUtils.getFacing(meta));
+            } else if (this instanceof IBlockFacing) {
+                state = state.withProperty(IBlockFacing.FACING, BlockStateUtils.getFacing(meta));
             }
-            if (this instanceof IBlockEnableable) {
-                state = state.withProperty(IBlockEnableable.ENABLED, BlockStateUtils.isEnabled(meta));
+            if (this instanceof IBlockEnabled) {
+                state = state.withProperty(IBlockEnabled.ENABLED, BlockStateUtils.isEnabled(meta));
             }
         } catch (Exception e) {
             ThaumicWonders.LOGGER.catching(e);
@@ -91,12 +94,12 @@ public class BlockDeviceTW<T extends TileEntity> extends BlockTileTW<T> {
     @Override
     public int getMetaFromState(IBlockState state) {
         int meta = 0;
-        if (this instanceof IBlockOrientableHorizontal) {
-            meta = state.getValue(IBlockOrientableHorizontal.FACING).getIndex();
-        } else if (this instanceof IBlockOrientable) {
-            meta = state.getValue(IBlockOrientable.FACING).getIndex();
+        if (this instanceof IBlockFacingHorizontal) {
+            meta = state.getValue(IBlockFacingHorizontal.FACING).getIndex();
+        } else if (this instanceof IBlockFacing) {
+            meta = state.getValue(IBlockFacing.FACING).getIndex();
         }
-        if (this instanceof IBlockEnableable && !state.getValue(IBlockEnableable.ENABLED)) {
+        if (this instanceof IBlockEnabled && !state.getValue(IBlockEnabled.ENABLED)) {
             meta |= 0x8;
         }
         return meta;
@@ -105,13 +108,13 @@ public class BlockDeviceTW<T extends TileEntity> extends BlockTileTW<T> {
     @Override
     protected BlockStateContainer createBlockState() {
         ArrayList<IProperty<?>> properties = new ArrayList<>();
-        if (this instanceof IBlockOrientableHorizontal) {
-            properties.add(IBlockOrientableHorizontal.FACING);
-        } else if (this instanceof IBlockOrientable) {
-            properties.add(IBlockOrientable.FACING);
+        if (this instanceof IBlockFacingHorizontal) {
+            properties.add(IBlockFacingHorizontal.FACING);
+        } else if (this instanceof IBlockFacing) {
+            properties.add(IBlockFacing.FACING);
         }
-        if (this instanceof IBlockEnableable) {
-            properties.add(IBlockEnableable.ENABLED);
+        if (this instanceof IBlockEnabled) {
+            properties.add(IBlockEnabled.ENABLED);
         }
         return properties.size() == 0 ?
             super.createBlockState() :

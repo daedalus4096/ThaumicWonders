@@ -14,4 +14,8 @@ public class BlocksTW {
     public static final Block MADNESS_ENGINE = null;
     public static final Block PORTAL_ANCHOR = null;
     public static final Block PORTAL_GENERATOR = null;
+    public static final Block FLUID_QUICKSILVER = null;
+    public static final Block PLACEHOLDER_ARCANE_STONE = null;
+    public static final Block PLACEHOLDER_OBSIDIAN = null;
+    public static final Block CATALYZATION_CHAMBER = null;
 }
