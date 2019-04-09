@@ -2,6 +2,7 @@ v1.3.0
 ------
 * Added Void Portals, a means to teleport across space and dimensions
 * Added Advanced Metal Purification, a more efficient way to double your ore
+* Added Hexamite, for when you really need to ruin something's day
 * Fixed crash bug when Primal Destroyer hunger fills
 
 v1.2.0
