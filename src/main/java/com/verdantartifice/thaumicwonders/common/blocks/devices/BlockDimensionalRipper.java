@@ -1,8 +1,6 @@
 package com.verdantartifice.thaumicwonders.common.blocks.devices;
 
 import com.verdantartifice.thaumicwonders.common.blocks.base.BlockDeviceTW;
-import com.verdantartifice.thaumicwonders.common.blocks.base.IBlockEnableable;
-import com.verdantartifice.thaumicwonders.common.blocks.base.IBlockOrientable;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileDimensionalRipper;
 
 import net.minecraft.block.SoundType;
@@ -12,8 +10,10 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import thaumcraft.common.blocks.IBlockEnabled;
+import thaumcraft.common.blocks.IBlockFacing;
 
-public class BlockDimensionalRipper extends BlockDeviceTW<TileDimensionalRipper> implements IBlockOrientable, IBlockEnableable {
+public class BlockDimensionalRipper extends BlockDeviceTW<TileDimensionalRipper> implements IBlockFacing, IBlockEnabled {
     
     public BlockDimensionalRipper() {
         super(Material.IRON, TileDimensionalRipper.class, "dimensional_ripper");
@@ -21,13 +21,8 @@ public class BlockDimensionalRipper extends BlockDeviceTW<TileDimensionalRipper>
     }
 
     @Override
-    public boolean getEnableableDefault() {
-        return false;
-    }
-
-    @Override
     public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face) {
-        EnumFacing blockFacing = state.getValue(IBlockOrientable.FACING);
+        EnumFacing blockFacing = state.getValue(IBlockFacing.FACING);
         if (blockFacing == face) {
             return BlockFaceShape.UNDEFINED;
         } else {
