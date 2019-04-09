@@ -1,12 +1,13 @@
 package com.verdantartifice.thaumicwonders.common.entities;
 
-import com.verdantartifice.thaumicwonders.ThaumicWonders;
+import com.verdantartifice.thaumicwonders.common.misc.FluxExplosion;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
+import net.minecraftforge.event.ForgeEventFactory;
 
 public class EntityHexamitePrimed extends EntityTNTPrimed {
     public EntityHexamitePrimed(World worldIn) {
@@ -52,7 +53,10 @@ public class EntityHexamitePrimed extends EntityTNTPrimed {
     }
     
     protected void explode() {
-        ThaumicWonders.LOGGER.info("BOOM");
-        this.setDead();
+        FluxExplosion explosion = new FluxExplosion(this.world, this, this.posX, this.posY + (double)(this.height / 16.0F), this.posZ, 8.0F, true, true);
+        if (!ForgeEventFactory.onExplosionStart(this.world, explosion)) {
+            explosion.doExplosionA();
+            explosion.doExplosionB(true);
+        }
     }
 }
