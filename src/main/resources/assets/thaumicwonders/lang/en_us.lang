@@ -13,6 +13,7 @@ tile.thaumicwonders.portal_generator.name=Portal Generator
 tile.thaumicwonders.portal_generator.tooltip.linkedto=Linked to %1$d, %2$d, %3$d in %4$s
 tile.thaumicwonders.catalyzation_chamber.name=Catalyzation Chamber
 tile.thaumicwonders.hexamite.name=Hexamite
+tile.thaumicwonders.flux_capacitor.name=Flux Capacitor
 
 // Misc Tiles
 tile.thaumicwonders.fluid_quicksilver.name=Quicksilver

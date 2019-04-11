@@ -19,4 +19,5 @@ public class BlocksTW {
     public static final Block PLACEHOLDER_OBSIDIAN = null;
     public static final Block CATALYZATION_CHAMBER = null;
     public static final Block HEXAMITE = null;
+    public static final Block FLUX_CAPACITOR = null;
 }
