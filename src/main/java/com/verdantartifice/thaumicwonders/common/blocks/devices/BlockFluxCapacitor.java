@@ -10,6 +10,10 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -18,7 +22,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import thaumcraft.api.aura.AuraHelper;
 
 public class BlockFluxCapacitor extends BlockTW {
-    protected static final PropertyInteger CHARGE = PropertyInteger.create("charge", 0, 10);
+    public static final PropertyInteger CHARGE = PropertyInteger.create("charge", 0, 10);
     
     public BlockFluxCapacitor() {
         super(Material.ROCK, "flux_capacitor");
@@ -94,5 +98,15 @@ public class BlockFluxCapacitor extends BlockTW {
     @Override
     public int getMetaFromState(IBlockState state) {
         return state.getValue(CHARGE).intValue();
+    }
+    
+    @Override
+    public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te, ItemStack stack) {
+        ItemStack drop = new ItemStack(this);
+        if (!drop.hasTagCompound()) {
+            drop.setTagCompound(new NBTTagCompound());
+        }
+        drop.getTagCompound().setInteger("charge", this.getMetaFromState(state));
+        spawnAsEntity(worldIn, pos, drop);
     }
 }
