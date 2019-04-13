@@ -13,6 +13,8 @@ tile.thaumicwonders.portal_generator.name=Portal Generator
 tile.thaumicwonders.portal_generator.tooltip.linkedto=Linked to %1$d, %2$d, %3$d in %4$s
 tile.thaumicwonders.catalyzation_chamber.name=Catalyzation Chamber
 tile.thaumicwonders.hexamite.name=Hexamite
+tile.thaumicwonders.flux_capacitor.name=Flux Capacitor
+tile.thaumicwonders.flux_capacitor.tooltip.flux=Flux: %1$d
 
 // Misc Tiles
 tile.thaumicwonders.fluid_quicksilver.name=Quicksilver
@@ -95,6 +97,10 @@ thaumicwonders.research.catalyzation_chamber.text.addenda.1=It turns out that th
 thaumicwonders.research.hexamite.title=Hexamite
 thaumicwonders.research.hexamite.text.stage.1=I am irritated.  Cross.  Vexed, even.  The source of my ire is just so appallingly *there* and, despite my most fervent wishes, continues to exist.  There's only one sane response to this affront.<BR>Explosives.<BR>Regular TNT is too good for this thorn in my side, however.  I'll need to design something special.
 thaumicwonders.research.hexamite.text.stage.2=This will do, indeed.  I've taken the basic formula of TNT, kept a small amount of gunpowder for a primer, and packed the rest with unstable alumentum.  For good measure, I've laced in some Vitium shards for shrapnel.<BR>The resulting device should not only be twice as powerful as TNT and incendiary, but the blast will also echo in the local aura.  Destroyed blocks will give off flux, and living beings caught in the blast, assuming they survive, will find their magical abilities hampered temporarily.<BR>This has been an excellent, and not at all crazy, use of my time and skill.
+
+thaumicwonders.research.flux_capacitor.title=Flux Capacitor
+thaumicwonders.research.flux_capacitor.text.stage.1=I've noticed that Primordial Pearls have a curious relationship with flux.  The two clearly interact, but in a manner that I do not yet fully understand.  Perhaps I can learn to leverage this relationship somehow.
+thaumicwonders.research.flux_capacitor.text.stage.2=My studies have revealed that, with the right magical manipulation, these pearls will draw in and bind flux energy to themselves.  Utilizing this new discovery, I've designed a device I call a Flux Capacitor.<BR>Once placed, these devices will slowly draw in flux from the aura and contain it.  Each capacitor can only hold a small amount of flux in this way, but that's better than nothing.<BR>The question then becomes what I do with the full capacitors.  Applying a redstone signal will rapidly discharge the contained flux back into the aura.  Because the capacitors are portable, I can effectively move flux around to areas I can better clean up.<BR>I could just throw them away, I guess, but that seems so wasteful.  I'll have to research a more permanent solution.
 
 // Theorycraft Cards
 card.induced_inspiration.name=Induced Inspiration

@@ -7,10 +7,12 @@ import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockCatalyzationChamber;
 import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockDimensionalRipper;
 import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockEverburningUrn;
+import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockFluxCapacitor;
 import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockInspirationEngine;
 import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockMadnessEngine;
 import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockPortalAnchor;
 import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockPortalGenerator;
+import com.verdantartifice.thaumicwonders.common.blocks.devices.ItemBlockFluxCapacitor;
 import com.verdantartifice.thaumicwonders.common.blocks.devices.ItemBlockPortalGenerator;
 import com.verdantartifice.thaumicwonders.common.blocks.essentia.BlockCreativeEssentiaJar;
 import com.verdantartifice.thaumicwonders.common.blocks.essentia.ItemBlockCreativeEssentiaJar;
@@ -48,6 +50,7 @@ public class InitBlocks {
         registerBlock(forgeRegistry, new BlockPortalGenerator(), ItemBlockPortalGenerator.class);
         registerBlock(forgeRegistry, new BlockCatalyzationChamber());
         registerBlock(forgeRegistry, new BlockHexamite());
+        registerBlock(forgeRegistry, new BlockFluxCapacitor(), ItemBlockFluxCapacitor.class);
         
         registerBlock(forgeRegistry, new BlockTWPlaceholder("placeholder_arcane_stone"));
         registerBlock(forgeRegistry, new BlockTWPlaceholder("placeholder_obsidian"));
