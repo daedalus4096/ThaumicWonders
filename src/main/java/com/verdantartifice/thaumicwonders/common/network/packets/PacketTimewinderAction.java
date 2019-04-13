@@ -68,10 +68,10 @@ public class PacketTimewinderAction implements IMessage {
                         daysToAdvance = 8;
                     }
                     long targetTime = dayStart + (daysToAdvance * 24000L) + 13500L;
-                    this.doTimeJump(world, entityPlayer, targetTime);
+                    this.doTimeJump(timewinderStack, world, entityPlayer, targetTime);
                 } else if (message.targetPhase == 8) {
                     // Advance to next sunrise
-                    this.doTimeJump(world, entityPlayer, dayStart + 24000L);
+                    this.doTimeJump(timewinderStack, world, entityPlayer, dayStart + 24000L);
                 }
             }
         }
@@ -91,7 +91,8 @@ public class PacketTimewinderAction implements IMessage {
             }
         }
         
-        private void doTimeJump(World world, EntityPlayerMP entityPlayer, long targetTime) {
+        private void doTimeJump(ItemStack stack, World world, EntityPlayerMP entityPlayer, long targetTime) {
+            entityPlayer.getCooldownTracker().setCooldown(stack.getItem(), 1200);
             world.setWorldTime(targetTime);
             AuraHelper.polluteAura(world, entityPlayer.getPosition(), 1.0F, true);
             PacketHandler.INSTANCE.sendToAll(new PacketTimewinderUsed());
