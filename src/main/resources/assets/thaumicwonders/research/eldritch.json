@@ -111,6 +111,30 @@
                 }
             ],
             "addenda": []
+        },
+        {
+            "key": "TWOND_FLUX_CAPACITOR",
+            "name": "thaumicwonders.research.flux_capacitor.title",
+            "icons": ["thaumicwonders:flux_capacitor"],
+            "category": "THAUMIC_WONDERS",
+            "parents": ["TWOND_DIMENSIONAL_RIPPER", "~VISBATTERY", "~FLUXCLEANUP"],
+            "siblings": [],
+            "meta": [],
+            "location": [-6, -3],
+            "reward_item": [],
+            "reward_knowledge": [],
+            "stages": [
+                {
+                    "text": "thaumicwonders.research.flux_capacitor.text.stage.1",
+                    "required_knowledge": ["OBSERVATION;AUROMANCY;1", "THEORY;ELDRITCH;1", "THEORY;AUROMANCY;1", "THEORY;INFUSION;1"],
+                    "warp": 1
+                },
+                {
+                    "text": "thaumicwonders.research.flux_capacitor.text.stage.2",
+                    "recipes": ["thaumicwonders:flux_capacitor"]
+                }
+            ],
+            "addenda": []
         }
     ]
 }

@@ -323,5 +323,19 @@ public class InitRecipes {
                         new ItemStack(Items.ENDER_PEARL)
                 }
         ));
+        
+        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "flux_capacitor"), new InfusionRecipe(
+                "TWOND_FLUX_CAPACITOR",
+                new ItemStack(BlocksTW.FLUX_CAPACITOR),
+                6,
+                new AspectList().add(Aspect.FLUX, 50).add(Aspect.AURA, 50).add(Aspect.VOID, 50),
+                new ItemStack(BlocksTC.visBattery),
+                new Object[] {
+                        Ingredient.fromItem(ItemsTC.primordialPearl),
+                        new ItemStack(BlocksTC.crystalTaint),
+                        new ItemStack(ItemsTC.visResonator),
+                        new ItemStack(BlocksTC.condenserlattice)
+                }
+        ));
     }
 }
