@@ -51,7 +51,7 @@
             "name": "thaumicwonders.research.timewinder.title",
             "icons": ["thaumicwonders:timewinder"],
             "category": "THAUMIC_WONDERS",
-            "parents": ["TWOND_END_HEDGE", "~CELESTIALSCANNING"],
+            "parents": ["TWOND_END_HEDGE", "~CELESTIALSCANNING", "~RECHARGEPEDESTAL"],
             "siblings": [],
             "meta": [],
             "location": [2, 4],
