@@ -1,3 +1,7 @@
+v1.4.0
+------
+* Added Flux Capacitor, to help you manage your flux problem
+
 v1.3.0
 ------
 * Added Void Portals, a means to teleport across space and dimensions
