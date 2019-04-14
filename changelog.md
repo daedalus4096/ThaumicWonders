@@ -2,6 +2,7 @@ v1.4.0
 ------
 * Added Flux Capacitor, to help you manage your flux problem
 * The Timewinder now generates significantly more flux, consumes vis charge, and incurs a 60-second cooldown on use
+* Dimensional Rippers now emit a particle effect when they find a matching, correctly-positioned ripper
 
 v1.3.0
 ------
