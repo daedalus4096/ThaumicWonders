@@ -100,7 +100,7 @@ public class TileDimensionalRipper extends TileTW implements IAspectContainer, I
         if (this.getBlockType() instanceof IBlockFacing) {
             IBlockState blockState = this.world.getBlockState(this.pos);
             EnumFacing blockFacing = blockState.getValue(IBlockFacing.FACING);
-            return (blockFacing != face);
+            return (blockFacing.getOpposite() == face);
         } else {
             return false;
         }

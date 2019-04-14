@@ -21,12 +21,22 @@ public class BlockDimensionalRipper extends BlockDeviceTW<TileDimensionalRipper>
     }
 
     @Override
+    public boolean isFullCube(IBlockState state) {
+        return false;
+    }
+
+    @Override
+    public boolean isOpaqueCube(IBlockState state) {
+        return false;
+    }
+
+    @Override
     public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face) {
         EnumFacing blockFacing = state.getValue(IBlockFacing.FACING);
-        if (blockFacing == face) {
-            return BlockFaceShape.UNDEFINED;
-        } else {
+        if (blockFacing.getOpposite() == face) {
             return BlockFaceShape.SOLID;
+        } else {
+            return BlockFaceShape.UNDEFINED;
         }
     }
 }
