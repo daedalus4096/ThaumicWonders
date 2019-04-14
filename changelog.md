@@ -1,6 +1,7 @@
 v1.4.0
 ------
 * Added Flux Capacitor, to help you manage your flux problem
+* The Timewinder now generates significantly more flux, consumes vis charge, and incurs a 60-second cooldown on use
 
 v1.3.0
 ------

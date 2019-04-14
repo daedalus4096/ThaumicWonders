@@ -4,6 +4,7 @@ import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.misc.GuiIds;
 
 import net.minecraft.client.resources.I18n;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemClock;
 import net.minecraft.item.ItemStack;
@@ -13,8 +14,13 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import thaumcraft.api.items.IRechargable;
+import thaumcraft.api.items.RechargeHelper;
 
-public class ItemTimewinder extends ItemClock {
+public class ItemTimewinder extends ItemClock implements IRechargable {
+    public static final int COST = 25;
+    public static final int CAPACITY = 100;
+    
     public ItemTimewinder() {
         super();
         setRegistryName(ThaumicWonders.MODID, "timewinder");
@@ -27,13 +33,27 @@ public class ItemTimewinder extends ItemClock {
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
         if (worldIn.provider.isSurfaceWorld()) {
-            playerIn.openGui(ThaumicWonders.INSTANCE, GuiIds.TIMEWINDER, worldIn, 0, 0, 0);
-            return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
+            if (RechargeHelper.getCharge(playerIn.getHeldItem(handIn)) >= COST) {
+                playerIn.openGui(ThaumicWonders.INSTANCE, GuiIds.TIMEWINDER, worldIn, 0, 0, 0);
+                return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
+            } else {
+                return new ActionResult<ItemStack>(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
+            }
         } else {
             if (worldIn.isRemote) {
                 playerIn.sendStatusMessage(new TextComponentString(TextFormatting.DARK_PURPLE + I18n.format("event.timewinder.offworld")), true);
             }
             return new ActionResult<ItemStack>(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
         }
+    }
+
+    @Override
+    public int getMaxCharge(ItemStack stack, EntityLivingBase player) {
+        return CAPACITY;
+    }
+
+    @Override
+    public EnumChargeDisplay showInHud(ItemStack stack, EntityLivingBase player) {
+        return IRechargable.EnumChargeDisplay.NORMAL;
     }
 }
