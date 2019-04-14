@@ -94,7 +94,7 @@ public class PacketTimewinderAction implements IMessage {
         private void doTimeJump(ItemStack stack, World world, EntityPlayerMP entityPlayer, long targetTime) {
             entityPlayer.getCooldownTracker().setCooldown(stack.getItem(), 1200);
             world.setWorldTime(targetTime);
-            AuraHelper.polluteAura(world, entityPlayer.getPosition(), 1.0F, true);
+            AuraHelper.polluteAura(world, entityPlayer.getPosition(), 10.0F, true);
             PacketHandler.INSTANCE.sendToAll(new PacketTimewinderUsed());
         }
     }
