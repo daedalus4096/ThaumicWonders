@@ -3,6 +3,7 @@ package com.verdantartifice.thaumicwonders.common.tiles.devices;
 import java.awt.Color;
 
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
+import com.verdantartifice.thaumicwonders.common.blocks.BlocksTW;
 import com.verdantartifice.thaumicwonders.common.tiles.base.TileTW;
 
 import net.minecraft.block.state.IBlockState;
@@ -28,6 +29,8 @@ import thaumcraft.common.lib.utils.EntityUtils;
 public class TileDimensionalRipper extends TileTW implements IAspectContainer, IEssentiaTransport, ITickable {
     private static final int CAPACITY = 50;
     private static final int DISTANCE = 10;
+    
+    private static final int PLAY_LINK_EFFECTS = 5;
     
     protected int amount = 0;
     protected int tickCounter = 0;
@@ -252,55 +255,57 @@ public class TileDimensionalRipper extends TileTW implements IAspectContainer, I
             EnumFacing otherBlockFacing = otherState.getValue(IBlockFacing.FACING);
             boolean otherBlockEnabled = otherState.getValue(IBlockEnabled.ENABLED);
 
-            if ( otherBlockFacing == blockFacing.getOpposite() &&
-                 blockEnabled &&
-                 otherBlockEnabled &&
-                 this.amount >= CAPACITY &&
-                 otherTile.getAmount() >= CAPACITY ) {
-                BlockPos targetPos = new BlockPos(
-                    (this.pos.getX() + otherPos.getX()) / 2,
-                    (this.pos.getY() + otherPos.getY()) / 2,
-                    (this.pos.getZ() + otherPos.getZ()) / 2
-                );
-
-                // Deduct reaction fuel
-                this.takeFromContainer(Aspect.FLUX, CAPACITY);
-                otherTile.takeFromContainer(Aspect.FLUX, CAPACITY);
-
-                // Play special effects
-                FXDispatcher.INSTANCE.beamBore(
-                    this.pos.getX() + 0.5D + (blockFacing.getFrontOffsetX() / 2.0D), 
-                    this.pos.getY() + 0.5D + (blockFacing.getFrontOffsetY() / 2.0D), 
-                    this.pos.getZ() + 0.5D + (blockFacing.getFrontOffsetZ() / 2.0D), 
-                    targetPos.getX() + 0.5D, 
-                    targetPos.getY() + 0.5D, 
-                    targetPos.getZ() + 0.5D, 
-                    1, 
-                    Color.RED.getRGB(), 
-                    false, 
-                    1.0F, 
-                    null, 
-                    1
-                );
-                FXDispatcher.INSTANCE.beamBore(
-                    otherPos.getX() + 0.5D + (otherBlockFacing.getFrontOffsetX() / 2.0D), 
-                    otherPos.getY() + 0.5D + (otherBlockFacing.getFrontOffsetY() / 2.0D), 
-                    otherPos.getZ() + 0.5D + (otherBlockFacing.getFrontOffsetZ() / 2.0D), 
-                    targetPos.getX() + 0.5D, 
-                    targetPos.getY() + 0.5D, 
-                    targetPos.getZ() + 0.5D, 
-                    1, 
-                    Color.RED.getRGB(), 
-                    false, 
-                    1.0F, 
-                    null, 
-                    1
-                );
-                this.world.playSound(null, this.pos, SoundsTC.zap, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                this.world.playSound(null, otherPos, SoundsTC.zap, SoundCategory.BLOCKS, 1.0F, 1.0F);
-
-                // Create the rift
-                this.createRift(targetPos);
+            if (otherBlockFacing == blockFacing.getOpposite()) {
+                // Emit placement confirmation particles
+                this.world.addBlockEvent(this.getPos(), BlocksTW.DIMENSIONAL_RIPPER, PLAY_LINK_EFFECTS, 0);
+                
+                // If both rippers are enabled and fueled, commence the reaction
+                if (blockEnabled && otherBlockEnabled && this.amount >= CAPACITY && otherTile.getAmount() >= CAPACITY) {
+                    BlockPos targetPos = new BlockPos(
+                        (this.pos.getX() + otherPos.getX()) / 2,
+                        (this.pos.getY() + otherPos.getY()) / 2,
+                        (this.pos.getZ() + otherPos.getZ()) / 2
+                    );
+    
+                    // Deduct reaction fuel
+                    this.takeFromContainer(Aspect.FLUX, CAPACITY);
+                    otherTile.takeFromContainer(Aspect.FLUX, CAPACITY);
+    
+                    // Play special effects
+                    FXDispatcher.INSTANCE.beamBore(
+                        this.pos.getX() + 0.5D + (blockFacing.getFrontOffsetX() / 2.0D), 
+                        this.pos.getY() + 0.5D + (blockFacing.getFrontOffsetY() / 2.0D), 
+                        this.pos.getZ() + 0.5D + (blockFacing.getFrontOffsetZ() / 2.0D), 
+                        targetPos.getX() + 0.5D, 
+                        targetPos.getY() + 0.5D, 
+                        targetPos.getZ() + 0.5D, 
+                        1, 
+                        Color.RED.getRGB(), 
+                        false, 
+                        1.0F, 
+                        null, 
+                        1
+                    );
+                    FXDispatcher.INSTANCE.beamBore(
+                        otherPos.getX() + 0.5D + (otherBlockFacing.getFrontOffsetX() / 2.0D), 
+                        otherPos.getY() + 0.5D + (otherBlockFacing.getFrontOffsetY() / 2.0D), 
+                        otherPos.getZ() + 0.5D + (otherBlockFacing.getFrontOffsetZ() / 2.0D), 
+                        targetPos.getX() + 0.5D, 
+                        targetPos.getY() + 0.5D, 
+                        targetPos.getZ() + 0.5D, 
+                        1, 
+                        Color.RED.getRGB(), 
+                        false, 
+                        1.0F, 
+                        null, 
+                        1
+                    );
+                    this.world.playSound(null, this.pos, SoundsTC.zap, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                    this.world.playSound(null, otherPos, SoundsTC.zap, SoundCategory.BLOCKS, 1.0F, 1.0F);
+    
+                    // Create the rift
+                    this.createRift(targetPos);
+                }
             }
         }
     }
@@ -315,6 +320,23 @@ public class TileDimensionalRipper extends TileTW implements IAspectContainer, I
         double size = Math.sqrt((2 * CAPACITY) * 3.0F);
         if (this.world.spawnEntity(rift)) {
             rift.setRiftSize((int)size);
+        }
+    }
+    
+    @Override
+    public boolean receiveClientEvent(int id, int type) {
+        if (id == PLAY_LINK_EFFECTS) {
+            if (this.world.isRemote) {
+                EnumFacing blockFacing = this.world.getBlockState(this.pos).getValue(IBlockFacing.FACING);
+                BlockPos otherPos = this.pos.offset(blockFacing, DISTANCE);
+                FXDispatcher.INSTANCE.visSparkle(
+                    this.pos.getX(), this.pos.getY(), this.pos.getZ(), 
+                    otherPos.getX(), otherPos.getY(), otherPos.getZ(), 
+                    Aspect.FLUX.getColor());
+            }
+            return true;
+        } else {
+            return super.receiveClientEvent(id, type);
         }
     }
 }
