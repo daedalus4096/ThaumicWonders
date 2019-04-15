@@ -16,7 +16,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import thaumcraft.api.ThaumcraftInvHelper;
-import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aura.AuraHelper;
 import thaumcraft.client.fx.FXDispatcher;
 import thaumcraft.common.lib.utils.BlockStateUtils;
@@ -132,8 +131,10 @@ public class TileCatalyzationChamber extends TileTWInventory implements ITickabl
                         }
                         this.ejectItem(resultStack.copy());
                         this.world.addBlockEvent(this.getPos(), BlocksTW.CATALYZATION_CHAMBER, PLAY_EFFECTS, 0);
-                        if (this.world.rand.nextInt(50) == 0) {
-                            AuraHelper.polluteAura(this.world, this.getPos().offset(this.getFacing().getOpposite()), 1.0F, true);
+                        if (stone != null) {
+                            if (this.world.rand.nextInt(stone.getFluxChance()) == 0) {
+                                AuraHelper.polluteAura(this.world, this.getPos().offset(this.getFacing().getOpposite()), 1.0F, true);
+                            }
                         }
                         this.decrStackSize(slot, 1);
                         break;
@@ -220,12 +221,18 @@ public class TileCatalyzationChamber extends TileTWInventory implements ITickabl
     public boolean receiveClientEvent(int id, int type) {
         if (id == PLAY_EFFECTS) {
             if (this.world.isRemote) {
-                for (int i = 0; i < 5; i++) {
-                    BlockPos targetPos = this.getPos().offset(this.getFacing().getOpposite(), 2);
-                    FXDispatcher.INSTANCE.visSparkle(
-                            this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 
-                            targetPos.getX(), targetPos.getY(), targetPos.getZ(), 
-                            Aspect.ORDER.getColor());
+                ICatalystStone stone = null;
+                if (this.getEquippedStone() != null && !this.getEquippedStone().isEmpty() && this.getEquippedStone().getItem() instanceof ICatalystStone) {
+                    stone = (ICatalystStone)this.getEquippedStone().getItem();
+                }
+                if (stone != null) {
+                    for (int i = 0; i < 5; i++) {
+                        BlockPos targetPos = this.getPos().offset(this.getFacing().getOpposite(), 2);
+                        FXDispatcher.INSTANCE.visSparkle(
+                                this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 
+                                targetPos.getX(), targetPos.getY(), targetPos.getZ(), 
+                                stone.getSparkleColor());
+                    }
                 }
             }
             this.world.playSound(null, this.getPos(), SoundEvents.BLOCK_LAVA_POP, SoundCategory.BLOCKS, 0.8F, 0.9F + this.world.rand.nextFloat() * 0.2F);
