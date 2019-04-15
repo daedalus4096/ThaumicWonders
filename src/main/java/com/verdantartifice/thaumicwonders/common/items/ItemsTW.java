@@ -13,4 +13,5 @@ public class ItemsTW {
     public static final Item FLYING_CARPET = null;
     public static final Item TIMEWINDER = null;
     public static final Item ALCHEMIST_STONE = null;
+    public static final Item TRANSMUTER_STONE = null;
 }

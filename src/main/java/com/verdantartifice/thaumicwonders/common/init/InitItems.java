@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.verdantartifice.thaumicwonders.common.items.catalysts.ItemAlchemistStone;
+import com.verdantartifice.thaumicwonders.common.items.catalysts.ItemTransmuterStone;
 import com.verdantartifice.thaumicwonders.common.items.entities.ItemFlyingCarpet;
 import com.verdantartifice.thaumicwonders.common.items.misc.ItemDisjunctionCloth;
 import com.verdantartifice.thaumicwonders.common.items.misc.ItemTimewinder;
@@ -21,6 +22,7 @@ public class InitItems {
         registerItem(forgeRegistry, new ItemFlyingCarpet());
         registerItem(forgeRegistry, new ItemTimewinder());
         registerItem(forgeRegistry, new ItemAlchemistStone());
+        registerItem(forgeRegistry, new ItemTransmuterStone());
     }
     
     private static void registerItem(IForgeRegistry<Item> forgeRegistry, Item item) {

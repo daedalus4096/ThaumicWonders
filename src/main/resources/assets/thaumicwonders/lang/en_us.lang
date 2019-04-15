@@ -27,6 +27,7 @@ item.thaumicwonders.primal_destroyer.name=Primal Destroyer
 item.thaumicwonders.flying_carpet.name=Flying Carpet
 item.thaumicwonders.timewinder.name=Timewinder
 item.thaumicwonders.alchemist_stone.name=Alchemist's Stone
+item.thaumicwonders.transmuter_stone.name=Transmuter's Stone
 
 // Entities
 entity.flying_carpet.name=Flying Carpet
