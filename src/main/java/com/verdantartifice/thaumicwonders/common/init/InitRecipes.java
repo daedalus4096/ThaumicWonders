@@ -221,6 +221,12 @@ public class InitRecipes {
                 new ItemStack(Items.DIAMOND),
                 new AspectList().add(Aspect.METAL, 50).add(Aspect.ORDER, 50).add(Aspect.ALCHEMY, 10)
         ));
+        ThaumcraftApi.addCrucibleRecipe(new ResourceLocation(ThaumicWonders.MODID, "transmuter_stone"), new CrucibleRecipe(
+                "TWOND_TRANSMUTER_STONE",
+                new ItemStack(ItemsTW.TRANSMUTER_STONE),
+                new ItemStack(ItemsTW.ALCHEMIST_STONE),
+                new AspectList().add(Aspect.EXCHANGE, 50).add(Aspect.ALCHEMY, 10)
+        ));
     }
     
     private static void initInfusionRecipes() {

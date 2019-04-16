@@ -127,6 +127,32 @@
                     "required_research": ["BELLOWS"]
                 }
             ]
+        },
+        {
+            "key": "TWOND_TRANSMUTER_STONE",
+            "name": "thaumicwonders.research.transmuter_stone.title",
+            "icons": ["thaumicwonders:transmuter_stone"],
+            "category": "THAUMIC_WONDERS",
+            "parents": ["TWOND_CATALYZATION_CHAMBER"],
+            "siblings": [],
+            "meta": [],
+            "location": [-4, 6],
+            "reward_item": [],
+            "reward_knowledge": [],
+            "stages": [
+                {
+                    "text": "thaumicwonders.research.transmuter_stone.text.stage.1",
+                    "required_knowledge": ["THEORY;ALCHEMY;2"],
+                    "required_research": ["!permutatio"]
+                },
+                {
+                    "text": "thaumicwonders.research.transmuter_stone.text.stage.2",
+                    "recipes": [
+                        "thaumicwonders:transmuter_stone"
+                    ]
+                }
+            ],
+            "addenda": []
         }
     ]
 }

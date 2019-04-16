@@ -103,6 +103,10 @@ thaumicwonders.research.flux_capacitor.title=Flux Capacitor
 thaumicwonders.research.flux_capacitor.text.stage.1=I've noticed that Primordial Pearls have a curious relationship with flux.  The two clearly interact, but in a manner that I do not yet fully understand.  Perhaps I can learn to leverage this relationship somehow.
 thaumicwonders.research.flux_capacitor.text.stage.2=My studies have revealed that, with the right magical manipulation, these pearls will draw in and bind flux energy to themselves.  Utilizing this new discovery, I've designed a device I call a Flux Capacitor.<BR>Once placed, these devices will slowly draw in flux from the aura and contain it.  Each capacitor can only hold a small amount of flux in this way, but that's better than nothing.<BR>The question then becomes what I do with the full capacitors.  Applying a redstone signal will rapidly discharge the contained flux back into the aura.  Because the capacitors are portable, I can effectively move flux around to areas I can better clean up.<BR>I could just throw them away, I guess, but that seems so wasteful.  I'll have to research a more permanent solution.
 
+thaumicwonders.research.transmuter_stone.title=Mineral Transmutation
+thaumicwonders.research.transmuter_stone.text.stage.1=I suspect that I may be able to do more with the Catalyzation Chamber than simply purify metal ores.  Perhaps with a different catalyst, I can achieve other effects.  Time for some research.
+thaumicwonders.research.transmuter_stone.text.stage.2=Well, this is unexpected.  It turns out that by enriching an Alchemist's Stone with Permutatio essentia, it becomes something else entirely.<BR>This new stone allows for limited transmutation of certain minerals.  It only works on certain pairs of metals, allowing me to turn one into the other and back again, but this is useful in and of itself.  
+
 // Theorycraft Cards
 card.induced_inspiration.name=Induced Inspiration
 card.induced_inspiration.text=The Inspiration Engine feeds ideas directly into your mind, ones highly relevant to the research you're currently pursuing. You gain %1$s %2$s, 1 inspiration, and a bonus draw.
