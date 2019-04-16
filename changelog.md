@@ -1,6 +1,7 @@
 v1.4.0
 ------
 * Added Flux Capacitor, to help you manage your flux problem
+* Added Transmuter's Stone, to allow your Catalyzation Chamber to turn one metal into another
 * The Timewinder now generates significantly more flux, consumes vis charge, and incurs a 60-second cooldown on use
 * Dimensional Rippers have a new model
 * Dimensional Rippers now only connect to things (e.g. levers, essentia tubes) on their bottom face

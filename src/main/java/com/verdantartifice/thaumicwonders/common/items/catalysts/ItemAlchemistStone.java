@@ -4,6 +4,7 @@ import com.verdantartifice.thaumicwonders.common.items.base.ItemTW;
 import com.verdantartifice.thaumicwonders.common.misc.OreHelper;
 
 import net.minecraft.item.ItemStack;
+import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.items.ItemsTC;
 import thaumcraft.common.config.ModConfig;
 
@@ -39,5 +40,15 @@ public class ItemAlchemistStone extends ItemTW implements ICatalystStone {
         } else {
             return null;
         }
+    }
+    
+    @Override
+    public int getFluxChance() {
+        return 50;
+    }
+    
+    @Override
+    public int getSparkleColor() {
+        return Aspect.ORDER.getColor();
     }
 }
