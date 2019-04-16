@@ -105,7 +105,7 @@ thaumicwonders.research.flux_capacitor.text.stage.2=My studies have revealed tha
 
 thaumicwonders.research.transmuter_stone.title=Mineral Transmutation
 thaumicwonders.research.transmuter_stone.text.stage.1=I suspect that I may be able to do more with the Catalyzation Chamber than simply purify metal ores.  Perhaps with a different catalyst, I can achieve other effects.  Time for some research.
-thaumicwonders.research.transmuter_stone.text.stage.2=Well, this is unexpected.  It turns out that by enriching an Alchemist's Stone with Permutatio essentia, it becomes something else entirely.<BR>This new stone allows for limited transmutation of certain minerals.  It only works on certain pairs of metals, allowing me to turn one into the other and back again, but this is useful in and of itself.  
+thaumicwonders.research.transmuter_stone.text.stage.2=Well, this is unexpected.  It turns out that by enriching an Alchemist's Stone with Permutatio essentia, it becomes something else entirely.<BR>This new stone allows for limited transmutation of certain minerals.  It only works on certain pairs of metals, allowing me to turn one into the other and back again, but this is useful in and of itself.<BR>It seems to produce flux slightly more often than the basic Alchemist's Stone, however.
 
 // Theorycraft Cards
 card.induced_inspiration.name=Induced Inspiration
