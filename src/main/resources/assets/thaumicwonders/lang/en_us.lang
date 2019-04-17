@@ -28,6 +28,15 @@ item.thaumicwonders.flying_carpet.name=Flying Carpet
 item.thaumicwonders.timewinder.name=Timewinder
 item.thaumicwonders.alchemist_stone.name=Alchemist's Stone
 item.thaumicwonders.transmuter_stone.name=Transmuter's Stone
+item.thaumicwonders.eldritch_cluster.iron.name=Eldritch Iron Cluster
+item.thaumicwonders.eldritch_cluster.gold.name=Eldritch Gold Cluster
+item.thaumicwonders.eldritch_cluster.copper.name=Eldritch Copper Cluster
+item.thaumicwonders.eldritch_cluster.tin.name=Eldritch Tin Cluster
+item.thaumicwonders.eldritch_cluster.silver.name=Eldritch Silver Cluster
+item.thaumicwonders.eldritch_cluster.lead.name=Eldritch Lead Cluster
+item.thaumicwonders.eldritch_cluster.cinnabar.name=Eldritch Cinnabar Cluster
+item.thaumicwonders.eldritch_cluster.quartz.name=Eldritch Quartz Cluster
+item.thaumicwonders.eldritch_cluster.void.name=Eldritch Void Cluster
 
 // Entities
 entity.flying_carpet.name=Flying Carpet

@@ -1,0 +1,50 @@
+{
+    "forge_marker": 1,
+    "variants": {
+        "iron": {
+            "model": "forge:item-layer", 
+            "transform": "forge:default-item",
+            "textures": { "layer0": "thaumicwonders:items/eldritch_cluster_iron" }
+        },
+        "gold": {
+            "model": "forge:item-layer", 
+            "transform": "forge:default-item",
+            "textures": { "layer0": "thaumicwonders:items/eldritch_cluster_gold" }
+        },
+        "copper": {
+            "model": "forge:item-layer", 
+            "transform": "forge:default-item",
+            "textures": { "layer0": "thaumicwonders:items/eldritch_cluster_copper" }
+        },
+        "tin": {
+            "model": "forge:item-layer", 
+            "transform": "forge:default-item",
+            "textures": { "layer0": "thaumicwonders:items/eldritch_cluster_tin" }
+        },
+        "silver": {
+            "model": "forge:item-layer", 
+            "transform": "forge:default-item",
+            "textures": { "layer0": "thaumicwonders:items/eldritch_cluster_silver" }
+        },
+        "lead": {
+            "model": "forge:item-layer", 
+            "transform": "forge:default-item",
+            "textures": { "layer0": "thaumicwonders:items/eldritch_cluster_lead" }
+        },
+        "cinnabar": {
+            "model": "forge:item-layer", 
+            "transform": "forge:default-item",
+            "textures": { "layer0": "thaumicwonders:items/eldritch_cluster_cinnabar" }
+        },
+        "quartz": {
+            "model": "forge:item-layer", 
+            "transform": "forge:default-item",
+            "textures": { "layer0": "thaumicwonders:items/eldritch_cluster_quartz" }
+        },
+        "void": {
+            "model": "forge:item-layer", 
+            "transform": "forge:default-item",
+            "textures": { "layer0": "thaumicwonders:items/eldritch_cluster_void" }
+        }
+    }
+}
