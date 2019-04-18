@@ -18,6 +18,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import net.minecraftforge.registries.GameData;
 import net.minecraftforge.registries.IForgeRegistry;
@@ -44,6 +45,7 @@ public class InitRecipes {
         initCrucibleRecipes();
         initInfusionRecipes();
         initMultiblockRecipes();
+        initSmelting();
     }
     
     private static void initMultiblockRecipes() {
@@ -343,5 +345,43 @@ public class InitRecipes {
                         new ItemStack(BlocksTC.condenserlattice)
                 }
         ));
+    }
+    
+    private static void initSmelting() {
+        GameRegistry.addSmelting(new ItemStack(ItemsTW.ELDRITCH_CLUSTER, 1, 0), new ItemStack(Items.IRON_INGOT, 3, 0), 1.0F);
+        GameRegistry.addSmelting(new ItemStack(ItemsTW.ELDRITCH_CLUSTER, 1, 1), new ItemStack(Items.GOLD_INGOT, 3, 0), 1.0F);
+        GameRegistry.addSmelting(new ItemStack(ItemsTW.ELDRITCH_CLUSTER, 1, 6), new ItemStack(ItemsTC.quicksilver, 3, 0), 1.0F);
+        GameRegistry.addSmelting(new ItemStack(ItemsTW.ELDRITCH_CLUSTER, 1, 7), new ItemStack(Items.QUARTZ, 3, 0), 1.0F);
+        GameRegistry.addSmelting(new ItemStack(ItemsTW.ELDRITCH_CLUSTER, 1, 8), new ItemStack(ItemsTC.ingots, 2, 1), 1.0F);
+        
+        ThaumcraftApi.addSmeltingBonus(new ItemStack(ItemsTW.ELDRITCH_CLUSTER, 1, 0), new ItemStack(Items.IRON_NUGGET, 1, 0));
+        ThaumcraftApi.addSmeltingBonus(new ItemStack(ItemsTW.ELDRITCH_CLUSTER, 1, 1), new ItemStack(Items.GOLD_NUGGET, 1, 0));
+        ThaumcraftApi.addSmeltingBonus(new ItemStack(ItemsTW.ELDRITCH_CLUSTER, 1, 6), new ItemStack(ItemsTC.nuggets, 1, 5));
+        ThaumcraftApi.addSmeltingBonus(new ItemStack(ItemsTW.ELDRITCH_CLUSTER, 1, 7), new ItemStack(ItemsTC.nuggets, 1, 9));
+        ThaumcraftApi.addSmeltingBonus(new ItemStack(ItemsTW.ELDRITCH_CLUSTER, 1, 8), new ItemStack(ItemsTC.nuggets, 1, 7));
+        
+        ThaumcraftApi.addSmeltingBonus(new ItemStack(ItemsTW.ELDRITCH_CLUSTER, 1, 32767), new ItemStack(ItemsTC.nuggets, 1, 10), 0.025F);
+        ThaumcraftApi.addSmeltingBonus(new ItemStack(ItemsTW.ELDRITCH_CLUSTER, 1, 32767), ThaumcraftApiHelper.makeCrystal(Aspect.FLUX), 0.1F);
+
+        if (OreDictionary.doesOreNameExist("ingotCopper") && !OreDictionary.getOres("ingotCopper", false).isEmpty()) {
+            ItemStack stack = OreDictionary.getOres("ingotCopper", false).get(0);
+            GameRegistry.addSmelting(new ItemStack(ItemsTW.ELDRITCH_CLUSTER, 1, 2), new ItemStack(stack.getItem(), 3, stack.getItemDamage()), 1.0F);
+            ThaumcraftApi.addSmeltingBonus(new ItemStack(ItemsTW.ELDRITCH_CLUSTER, 1, 2), new ItemStack(ItemsTC.nuggets, 1, 1));
+        }
+        if (OreDictionary.doesOreNameExist("ingotTin") && !OreDictionary.getOres("ingotTin", false).isEmpty()) {
+            ItemStack stack = OreDictionary.getOres("ingotTin", false).get(0);
+            GameRegistry.addSmelting(new ItemStack(ItemsTW.ELDRITCH_CLUSTER, 1, 3), new ItemStack(stack.getItem(), 3, stack.getItemDamage()), 1.0F);
+            ThaumcraftApi.addSmeltingBonus(new ItemStack(ItemsTW.ELDRITCH_CLUSTER, 1, 3), new ItemStack(ItemsTC.nuggets, 1, 2));
+        }
+        if (OreDictionary.doesOreNameExist("ingotSilver") && !OreDictionary.getOres("ingotSilver", false).isEmpty()) {
+            ItemStack stack = OreDictionary.getOres("ingotSilver", false).get(0);
+            GameRegistry.addSmelting(new ItemStack(ItemsTW.ELDRITCH_CLUSTER, 1, 4), new ItemStack(stack.getItem(), 3, stack.getItemDamage()), 1.0F);
+            ThaumcraftApi.addSmeltingBonus(new ItemStack(ItemsTW.ELDRITCH_CLUSTER, 1, 4), new ItemStack(ItemsTC.nuggets, 1, 3));
+        }
+        if (OreDictionary.doesOreNameExist("ingotLead") && !OreDictionary.getOres("ingotLead", false).isEmpty()) {
+            ItemStack stack = OreDictionary.getOres("ingotLead", false).get(0);
+            GameRegistry.addSmelting(new ItemStack(ItemsTW.ELDRITCH_CLUSTER, 1, 5), new ItemStack(stack.getItem(), 3, stack.getItemDamage()), 1.0F);
+            ThaumcraftApi.addSmeltingBonus(new ItemStack(ItemsTW.ELDRITCH_CLUSTER, 1, 5), new ItemStack(ItemsTC.nuggets, 1, 4));
+        }
     }
 }
