@@ -117,6 +117,10 @@ thaumicwonders.research.transmuter_stone.title=Mineral Transmutation
 thaumicwonders.research.transmuter_stone.text.stage.1=I suspect that I may be able to do more with the Catalyzation Chamber than simply purify metal ores.  Perhaps with a different catalyst, I can achieve other effects.  Time for some research.
 thaumicwonders.research.transmuter_stone.text.stage.2=Well, this is unexpected.  It turns out that by enriching an Alchemist's Stone with Permutatio essentia, it becomes something else entirely.<BR>This new stone allows for limited transmutation of certain minerals.  It only works on certain pairs of metals, allowing me to turn one into the other and back again, but this is useful in and of itself.<BR>It seems to produce flux slightly more often than the basic Alchemist's Stone, however.
 
+thaumicwonders.research.alienist_stone.title=Eldritch Metal Amplification
+thaumicwonders.research.alienist_stone.text.stage.1=With the secrets of the eldritch at my disposal, I'm confident that I can eke out more yield from the Catalyzation Chamber.  The only question is how.
+thaumicwonders.research.alienist_stone.text.stage.2=Is there anything these miraculous Primordial Pearls can't do?  By infusing an Alchemist's Stone with the essence of a pearl and some native mineral clusters, I can increase its power.<BR>The resulting catalyst stone produces what I call eldritch clusters, which, when smelted, yield three ingots instead of two.  I hesitate to call the resulting process "purification", particularly given the significant chance of flux each operation, but the results cannot be denied.<BR>Perhaps there are other things that I can amplify with this stone.  I should experiment and find out.
+
 // Theorycraft Cards
 card.induced_inspiration.name=Induced Inspiration
 card.induced_inspiration.text=The Inspiration Engine feeds ideas directly into your mind, ones highly relevant to the research you're currently pursuing. You gain %1$s %2$s, 1 inspiration, and a bonus draw.

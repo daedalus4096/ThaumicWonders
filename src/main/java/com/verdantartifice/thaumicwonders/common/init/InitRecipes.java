@@ -1,5 +1,8 @@
 package com.verdantartifice.thaumicwonders.common.init;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
@@ -344,6 +347,32 @@ public class InitRecipes {
                         new ItemStack(ItemsTC.visResonator),
                         new ItemStack(BlocksTC.condenserlattice)
                 }
+        ));
+        
+        List<Object> ingredients = new ArrayList<Object>();
+        ingredients.add(Ingredient.fromItem(ItemsTC.primordialPearl));
+        ingredients.add(new ItemStack(ItemsTC.clusters, 1, 0));
+        ingredients.add(new ItemStack(ItemsTC.clusters, 1, 1));
+        if (OreDictionary.doesOreNameExist("oreCopper") && !OreDictionary.getOres("oreCopper", false).isEmpty()) {
+            ingredients.add(new ItemStack(ItemsTC.clusters, 1, 2));
+        }
+        if (OreDictionary.doesOreNameExist("oreTin") && !OreDictionary.getOres("oreTin", false).isEmpty()) {
+            ingredients.add(new ItemStack(ItemsTC.clusters, 1, 3));
+        }
+        if (OreDictionary.doesOreNameExist("oreSilver") && !OreDictionary.getOres("oreSilver", false).isEmpty()) {
+            ingredients.add(new ItemStack(ItemsTC.clusters, 1, 4));
+        }
+        if (OreDictionary.doesOreNameExist("oreLead") && !OreDictionary.getOres("oreLead", false).isEmpty()) {
+            ingredients.add(new ItemStack(ItemsTC.clusters, 1, 5));
+        }
+        ingredients.add(new ItemStack(ItemsTC.clusters, 1, 6));
+        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "alienist_stone"), new InfusionRecipe(
+                "TWOND_ALIENIST_STONE",
+                new ItemStack(ItemsTW.ALIENIST_STONE),
+                7,
+                new AspectList().add(Aspect.METAL, 100).add(Aspect.FLUX, 100).add(Aspect.ALCHEMY, 25),
+                new ItemStack(ItemsTW.ALCHEMIST_STONE),
+                ingredients.toArray()
         ));
     }
     
