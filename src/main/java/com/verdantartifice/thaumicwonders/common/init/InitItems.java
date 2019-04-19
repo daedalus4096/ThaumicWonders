@@ -6,6 +6,7 @@ import java.util.Set;
 import com.verdantartifice.thaumicwonders.common.items.base.IVariantItem;
 import com.verdantartifice.thaumicwonders.common.items.base.ItemTW;
 import com.verdantartifice.thaumicwonders.common.items.catalysts.ItemAlchemistStone;
+import com.verdantartifice.thaumicwonders.common.items.catalysts.ItemAlienistStone;
 import com.verdantartifice.thaumicwonders.common.items.catalysts.ItemTransmuterStone;
 import com.verdantartifice.thaumicwonders.common.items.entities.ItemFlyingCarpet;
 import com.verdantartifice.thaumicwonders.common.items.misc.ItemDisjunctionCloth;
@@ -27,6 +28,7 @@ public class InitItems {
         registerItem(forgeRegistry, new ItemAlchemistStone());
         registerItem(forgeRegistry, new ItemTransmuterStone());
         registerItem(forgeRegistry, new ItemTW("eldritch_cluster", new String[] { "iron", "gold", "copper", "tin", "silver", "lead", "cinnabar", "quartz", "void" }));
+        registerItem(forgeRegistry, new ItemAlienistStone());
     }
     
     private static void registerItem(IForgeRegistry<Item> forgeRegistry, Item item) {

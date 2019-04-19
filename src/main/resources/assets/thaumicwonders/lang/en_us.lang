@@ -37,6 +37,7 @@ item.thaumicwonders.eldritch_cluster.lead.name=Eldritch Lead Cluster
 item.thaumicwonders.eldritch_cluster.cinnabar.name=Eldritch Cinnabar Cluster
 item.thaumicwonders.eldritch_cluster.quartz.name=Eldritch Quartz Cluster
 item.thaumicwonders.eldritch_cluster.void.name=Eldritch Void Cluster
+item.thaumicwonders.alienist_stone.name=Alienist's Stone
 
 // Entities
 entity.flying_carpet.name=Flying Carpet
