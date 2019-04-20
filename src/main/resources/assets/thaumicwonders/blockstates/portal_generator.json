@@ -3,12 +3,11 @@
     "defaults":
     {
         "transform": "forge:default-block",
-        "model": "cube_all", 
-        "textures": {
-            "all": "thaumicwonders:blocks/portal_generator"
-        }
+        "model": "thaumicwonders:portal_generator"
     },
     "variants": {
-        "normal": [{}], "inventory": [{}]
+        "normal": [{}], "inventory": [{}],
+        "enabled=false": [{}],
+        "enabled=true": [{}]
     }
 }

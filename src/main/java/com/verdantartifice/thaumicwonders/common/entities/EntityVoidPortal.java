@@ -17,6 +17,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
@@ -140,11 +141,12 @@ public class EntityVoidPortal extends Entity {
                             @Override
                             public void placeEntity(World world, Entity entity, float yaw) {}
                         });
-                    } else {
-                        // Only play the portal sound if not changing dimensions; it will be played automatically otherwise
-                        this.playSound(SoundEvents.BLOCK_PORTAL_TRAVEL, 0.25F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
                     }
                     player.setPositionAndUpdate(this.getLinkX() + 0.5D, this.getLinkY() + 1.0D, this.getLinkZ() + 0.5D);
+                    if (player.world.provider.getDimension() == this.getLinkDim()) {
+                        // Only play the portal sound at the target location if not changing dimensions; it will be played automatically otherwise
+                        player.world.playSound(null, linkPos.up(), SoundEvents.BLOCK_PORTAL_TRAVEL, SoundCategory.NEUTRAL, 0.25F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+                    }
                     
                     // Generate target world flux after leaving
                     AuraHelper.polluteAura(targetWorld, linkPos.up(), 5.0F, true);
