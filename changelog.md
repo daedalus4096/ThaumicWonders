@@ -6,6 +6,9 @@ v1.4.0
 * Dimensional Rippers have a new model
 * Dimensional Rippers now only connect to things (e.g. levers, essentia tubes) on their bottom face
 * Dimensional Rippers now emit a particle effect when they find a matching, correctly-positioned ripper
+* Portal Anchors and Portal Generators have new models
+* Fixed a bug preventing teleport sound when using void portals to travel long distances
+* Portal Generators can now be disabled by applying a redstone signal
 
 v1.3.0
 ------
