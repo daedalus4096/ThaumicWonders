@@ -6,6 +6,8 @@
         "model": "thaumicwonders:portal_generator"
     },
     "variants": {
-        "normal": [{}], "inventory": [{}]
+        "normal": [{}], "inventory": [{}],
+        "enabled=false": [{}],
+        "enabled=true": [{}]
     }
 }

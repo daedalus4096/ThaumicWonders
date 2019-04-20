@@ -16,8 +16,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import thaumcraft.common.blocks.IBlockEnabled;
 
-public class BlockPortalGenerator extends BlockDeviceTW<TilePortalGenerator> {
+public class BlockPortalGenerator extends BlockDeviceTW<TilePortalGenerator> implements IBlockEnabled {
     public BlockPortalGenerator() {
         super(Material.IRON, TilePortalGenerator.class, "portal_generator");
         this.setSoundType(SoundType.METAL);
