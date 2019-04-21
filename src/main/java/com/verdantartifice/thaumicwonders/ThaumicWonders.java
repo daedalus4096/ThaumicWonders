@@ -14,12 +14,13 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(modid = ThaumicWonders.MODID, name = ThaumicWonders.NAME, version = ThaumicWonders.VERSION, dependencies = ThaumicWonders.DEPENDENCIES)
+@Mod(modid = ThaumicWonders.MODID, name = ThaumicWonders.NAME, version = ThaumicWonders.VERSION, dependencies = ThaumicWonders.DEPENDENCIES, updateJSON = ThaumicWonders.UPDATE_URL)
 public class ThaumicWonders {
     public static final String MODID = "thaumicwonders";
     public static final String NAME = "Thaumic Wonders";
     public static final String VERSION = "1.3.0";
     public static final String DEPENDENCIES = "required-after:thaumcraft";
+    public static final String UPDATE_URL = "https://gist.githubusercontent.com/daedalus4096/ecb3b7cfe112b73ae09c873ca3af131a/raw/cc0c99ae1960d289c2e0507cb4957ee349756705/ThaumicWonders_update.json";
 
     public static final CreativeTabs CREATIVE_TAB = new CreativeTabTW(CreativeTabs.getNextID(), ThaumicWonders.MODID);
 
