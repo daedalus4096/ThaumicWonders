@@ -9,6 +9,7 @@ v1.4.0
 * Portal Anchors and Portal Generators have new models
 * Fixed a bug preventing teleport sound when using void portals to travel long distances
 * Portal Generators can now be disabled by applying a redstone signal
+* Updated Thaumonomicon page's background image
 
 v1.3.0
 ------
