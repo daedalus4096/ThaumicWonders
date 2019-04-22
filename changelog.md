@@ -11,6 +11,7 @@ v1.4.0
 * Portal Generators can now be disabled by applying a redstone signal
 * Hexamite blast power reduced and vis/shard crafting cost increased
 * Hexamite now damages the local aura when it affects open air instead of creating flux from destroyed blocks
+* Fixed a bug where any filled universal bucket could be turned into eight quicksilver
 * Updated Thaumonomicon page's background image
 
 v1.3.0

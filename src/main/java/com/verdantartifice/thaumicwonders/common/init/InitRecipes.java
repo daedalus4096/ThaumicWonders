@@ -17,7 +17,6 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import net.minecraftforge.registries.GameData;
 import net.minecraftforge.registries.IForgeRegistry;
@@ -29,6 +28,7 @@ import thaumcraft.api.blocks.BlocksTC;
 import thaumcraft.api.crafting.CrucibleRecipe;
 import thaumcraft.api.crafting.IDustTrigger;
 import thaumcraft.api.crafting.InfusionRecipe;
+import thaumcraft.api.crafting.IngredientNBTTC;
 import thaumcraft.api.crafting.Part;
 import thaumcraft.api.crafting.ShapedArcaneRecipe;
 import thaumcraft.api.items.ItemsTC;
@@ -90,11 +90,8 @@ public class InitRecipes {
                 new ItemStack(ItemsTC.quicksilver), new ItemStack(ItemsTC.quicksilver), new ItemStack(ItemsTC.quicksilver), 
                 new ItemStack(ItemsTC.quicksilver), new ItemStack(ItemsTC.quicksilver) 
         });
-        GameRegistry.addShapedRecipe(
-                new ResourceLocation(ThaumicWonders.MODID, "quicksilver_bucket_deconstruct"), 
-                qsGroup, 
-                new ItemStack(ItemsTC.quicksilver, 8), 
-                new Object[] {"#", Character.valueOf('#'), FluidUtil.getFilledBucket(new FluidStack(FluidQuicksilver.INSTANCE, 1000)) });
+        shapelessOreDictRecipe("quicksilver_bucket_deconstruct", qsGroup, new ItemStack(ItemsTC.quicksilver, 8), 
+                new Object[] { new IngredientNBTTC(FluidUtil.getFilledBucket(new FluidStack(FluidQuicksilver.INSTANCE, 1000))) });
     }
     
     private static IRecipe shapelessOreDictRecipe(@Nonnull String name, @Nullable ResourceLocation group, @Nonnull ItemStack result, Object[] inputs) {
