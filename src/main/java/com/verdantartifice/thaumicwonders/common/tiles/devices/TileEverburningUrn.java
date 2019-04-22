@@ -1,15 +1,23 @@
 package com.verdantartifice.thaumicwonders.common.tiles.devices;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import com.verdantartifice.thaumicwonders.common.tiles.base.TileTW;
 
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidTankProperties;
 import thaumcraft.api.aura.AuraHelper;
 
-public class TileEverburningUrn extends TileTW implements ITickable {
+public class TileEverburningUrn extends TileTW implements ITickable, IFluidHandler {
     protected static final int CAPACITY = 1000;
     protected static final int MAX_PER_FILL = 40;
     
@@ -52,6 +60,7 @@ public class TileEverburningUrn extends TileTW implements ITickable {
         return compound;
     }
     
+    @Override
     public FluidStack drain(FluidStack resource, boolean doDrain) {
         boolean wasFull = (this.tank.getFluidAmount() >= this.tank.getCapacity());
         FluidStack fluidStack = this.tank.drain(resource, doDrain);
@@ -60,5 +69,42 @@ public class TileEverburningUrn extends TileTW implements ITickable {
             this.syncTile(false);
         }
         return fluidStack;
+    }
+
+    @Override
+    public FluidStack drain(int maxDrain, boolean doDrain) {
+        boolean wasFull = (this.tank.getFluidAmount() >= this.tank.getCapacity());
+        FluidStack fluidStack = this.tank.drain(maxDrain, doDrain);
+        this.markDirty();
+        if (wasFull && (this.tank.getFluidAmount() < this.tank.getCapacity())) {
+            this.syncTile(false);
+        }
+        return fluidStack;
+    }
+
+    @Override
+    public int fill(FluidStack resource, boolean doFill) {
+        // Can't be filled, so do nothing
+        return 0;
+    }
+
+    @Override
+    public IFluidTankProperties[] getTankProperties() {
+        return this.tank.getTankProperties();
+    }
+    
+    @Override
+    public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
+        return (facing == EnumFacing.UP && capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) || super.hasCapability(capability, facing);
+    }
+    
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+        if (facing == EnumFacing.UP && capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
+            return (T)this.tank;
+        } else {
+            return super.getCapability(capability, facing);
+        }
     }
 }

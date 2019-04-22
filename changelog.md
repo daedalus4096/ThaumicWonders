@@ -12,6 +12,7 @@ v1.4.0
 * Hexamite blast power reduced and vis/shard crafting cost increased
 * Hexamite now damages the local aura when it affects open air instead of creating flux from destroyed blocks
 * Fixed a bug where any filled universal bucket could be turned into eight quicksilver
+* The Everburning Urn is now a standard fluid handler and can be drained with pipes
 * Updated Thaumonomicon page's background image
 
 v1.3.0
