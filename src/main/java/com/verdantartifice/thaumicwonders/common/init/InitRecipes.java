@@ -158,8 +158,8 @@ public class InitRecipes {
         ThaumcraftApi.addArcaneCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "hexamite"), new ShapedArcaneRecipe(
                 defaultGroup,
                 "TWOND_HEXAMITE",
-                75,
-                new AspectList().add(Aspect.FIRE, 1).add(Aspect.ENTROPY, 1),
+                125,
+                new AspectList().add(Aspect.FIRE, 2).add(Aspect.ENTROPY, 2),
                 BlocksTW.HEXAMITE,
                 new Object[] {
                         "AVA",
