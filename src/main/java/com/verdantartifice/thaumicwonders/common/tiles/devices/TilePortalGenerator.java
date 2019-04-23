@@ -1,27 +1,40 @@
 package com.verdantartifice.thaumicwonders.common.tiles.devices;
 
 import java.awt.Color;
+import java.text.DecimalFormat;
 import java.util.List;
 
 import com.verdantartifice.thaumicwonders.common.entities.EntityVoidPortal;
 import com.verdantartifice.thaumicwonders.common.tiles.base.TileTW;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import thaumcraft.api.aspects.Aspect;
+import thaumcraft.api.items.IGogglesDisplayExtended;
 import thaumcraft.client.fx.FXDispatcher;
 import thaumcraft.common.blocks.IBlockEnabled;
 import thaumcraft.common.lib.SoundsTC;
 
-public class TilePortalGenerator extends TileTW implements ITickable {
+public class TilePortalGenerator extends TileTW implements ITickable, IGogglesDisplayExtended {
+    public static enum Stability {
+        VERY_STABLE, STABLE, UNSTABLE, VERY_UNSTABLE;
+        
+        private Stability() {}
+    }
+
     protected int linkX = 0;
     protected int linkY = 0;
     protected int linkZ = 0;
     protected int linkDim = 0;
+    protected float stability = 0.0F;
     protected int counter = 0;
     protected boolean lastEnabled = true;
     
@@ -31,6 +44,7 @@ public class TilePortalGenerator extends TileTW implements ITickable {
         this.linkY = compound.getInteger("linkY");
         this.linkZ = compound.getInteger("linkZ");
         this.linkDim = compound.getInteger("linkDim");
+        this.stability = compound.getFloat("stability");
     }
     
     @Override
@@ -39,6 +53,7 @@ public class TilePortalGenerator extends TileTW implements ITickable {
         compound.setInteger("linkY", this.linkY);
         compound.setInteger("linkZ", this.linkZ);
         compound.setInteger("linkDim", this.linkDim);
+        compound.setFloat("stability", this.stability);
         return super.writeToTileNBT(compound);
     }
     
@@ -47,6 +62,26 @@ public class TilePortalGenerator extends TileTW implements ITickable {
         this.linkY = linkY;
         this.linkZ = linkZ;
         this.linkDim = linkDim;
+    }
+    
+    public void setStability(float stability) {
+        this.stability = stability;
+    }
+    
+    public float getStability() {
+        return this.stability;
+    }
+    
+    public Stability getStabilityLevel() {
+        if (this.stability >= 50.0F) {
+            return Stability.VERY_STABLE;
+        } else if (this.stability >= 0.0F) {
+            return Stability.STABLE;
+        } else if (this.stability >= -25.0F) {
+            return Stability.UNSTABLE;
+        } else {
+            return Stability.VERY_UNSTABLE;
+        }
     }
     
     public void spawnPortal() {
@@ -121,5 +156,16 @@ public class TilePortalGenerator extends TileTW implements ITickable {
             }
             this.lastEnabled = enabled;
         }
+    }
+    
+    private static DecimalFormat decFormatter = new DecimalFormat("#######.##");
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public String[] getIGogglesText() {
+        return new String[] {
+            TextFormatting.BOLD + I18n.format("stability." + this.getStabilityLevel().name()),
+            TextFormatting.GOLD + "" + TextFormatting.ITALIC + decFormatter.format(this.stability)
+        };
     }
 }
