@@ -10,6 +10,7 @@ import com.verdantartifice.thaumicwonders.common.tiles.base.TileTW;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -22,6 +23,7 @@ import thaumcraft.api.items.IGogglesDisplayExtended;
 import thaumcraft.client.fx.FXDispatcher;
 import thaumcraft.common.blocks.IBlockEnabled;
 import thaumcraft.common.lib.SoundsTC;
+import thaumcraft.common.tiles.devices.TileStabilizer;
 
 public class TilePortalGenerator extends TileTW implements ITickable, IGogglesDisplayExtended {
     public static enum Stability {
@@ -35,7 +37,8 @@ public class TilePortalGenerator extends TileTW implements ITickable, IGogglesDi
     protected int linkZ = 0;
     protected int linkDim = 0;
     protected float stability = 0.0F;
-    protected int counter = 0;
+    protected int sparkCounter = 0;
+    protected int ticksExisted = 0;
     protected boolean lastEnabled = true;
     
     @Override
@@ -128,8 +131,9 @@ public class TilePortalGenerator extends TileTW implements ITickable, IGogglesDi
 
     @Override
     public void update() {
-        this.counter++;
-        if (this.world.isRemote && this.counter == 20) {
+        this.sparkCounter++;
+        this.ticksExisted++;
+        if (this.world.isRemote && this.sparkCounter == 20) {
             BlockPos sourcePos = this.pos.up();
             if (this.world.rand.nextInt() % 2 == 0) {
                 sourcePos = sourcePos.south();
@@ -142,9 +146,10 @@ public class TilePortalGenerator extends TileTW implements ITickable, IGogglesDi
             float g = color.getGreen() / 255.0F;
             float b = color.getBlue() / 255.0F;
             FXDispatcher.INSTANCE.drawLightningFlash(sourcePos.getX(), sourcePos.getY(), sourcePos.getZ(), r, g, b, 1.0F, 2.5F);
-            this.counter -= (20 + this.world.rand.nextInt(80));
+            this.sparkCounter -= (20 + this.world.rand.nextInt(80));
         }
         if (!this.world.isRemote) {
+            // Enable or disable the portal if redstone signal has changed
             IBlockState state = this.world.getBlockState(this.pos);
             boolean enabled = state.getValue(IBlockEnabled.ENABLED);
             if (enabled != this.lastEnabled) {
@@ -155,6 +160,36 @@ public class TilePortalGenerator extends TileTW implements ITickable, IGogglesDi
                 }
             }
             this.lastEnabled = enabled;
+            
+            // Increase/decrease stability
+            float lastStability = this.stability;
+            boolean active = this.isPortalActive();
+            if (this.ticksExisted % 20 == 0 && active) {
+                for (BlockPos.MutableBlockPos mbp : BlockPos.getAllInBoxMutable(this.pos.add(-8, -8, -8), this.pos.add(8, 8, 8))) {
+                    TileEntity tile = this.world.getTileEntity(mbp);
+                    if (tile instanceof TileStabilizer) {
+                        TileStabilizer stabilizer = (TileStabilizer)tile;
+                        if (this.getStabilityLevel() != Stability.VERY_STABLE && stabilizer.mitigate(1)) {
+                            this.stability += 0.125F;
+                            stabilizer.markDirty();
+                            stabilizer.syncTile(false);
+                            if (stabilizer.getEnergy() == 0) {
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            if (this.ticksExisted % 120 == 0 && active) {
+                List<EntityVoidPortal> portals = this.world.getEntitiesWithinAABB(EntityVoidPortal.class, new AxisAlignedBB(this.pos.up()).grow(16.0D));
+                if (portals.size() > 0) {
+                    this.stability -= (0.2F * portals.size());
+                }
+            }
+            if (this.stability != lastStability) {
+                this.markDirty();
+                this.syncTile(false);
+            }
         }
     }
     
