@@ -2,13 +2,18 @@ package com.verdantartifice.thaumicwonders.common.tiles.devices;
 
 import java.awt.Color;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 
+import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.entities.EntityVoidPortal;
 import com.verdantartifice.thaumicwonders.common.tiles.base.TileTW;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.monster.EntityEnderman;
+import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
@@ -19,10 +24,18 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import thaumcraft.api.aspects.Aspect;
+import thaumcraft.api.aura.AuraHelper;
 import thaumcraft.api.items.IGogglesDisplayExtended;
 import thaumcraft.client.fx.FXDispatcher;
 import thaumcraft.common.blocks.IBlockEnabled;
+import thaumcraft.common.entities.EntityFluxRift;
+import thaumcraft.common.entities.monster.EntityEldritchGuardian;
+import thaumcraft.common.entities.monster.EntityInhabitedZombie;
+import thaumcraft.common.entities.monster.EntityWisp;
+import thaumcraft.common.entities.monster.boss.EntityCultistPortalGreater;
+import thaumcraft.common.entities.monster.cult.EntityCultistPortalLesser;
 import thaumcraft.common.lib.SoundsTC;
+import thaumcraft.common.lib.utils.RandomItemChooser;
 import thaumcraft.common.tiles.devices.TileStabilizer;
 
 public class TilePortalGenerator extends TileTW implements ITickable, IGogglesDisplayExtended {
@@ -31,7 +44,46 @@ public class TilePortalGenerator extends TileTW implements ITickable, IGogglesDi
         
         private Stability() {}
     }
+    
+    protected static class InstabilityEventEntry implements RandomItemChooser.Item {
+        public int eventId;
+        public int weight;
+        public float requiredInstability;
+        
+        protected InstabilityEventEntry(int eventId, int weight, float reqInstability) {
+            this.eventId = eventId;
+            this.weight = weight;
+            this.requiredInstability = reqInstability;
+        }
+        
+        @Override
+        public double getWeight() {
+            return this.weight;
+        }
+    }
 
+    private static DecimalFormat decFormatter = new DecimalFormat("#######.##");
+    
+    protected static List<RandomItemChooser.Item> instabilityEvents = new ArrayList<RandomItemChooser.Item>();
+    protected static List<RandomItemChooser.Item> spawnEvents = new ArrayList<RandomItemChooser.Item>();
+    protected static List<RandomItemChooser.Item> subvertEvents = new ArrayList<RandomItemChooser.Item>();
+    
+    static {
+        instabilityEvents.add(new InstabilityEventEntry(0, 60, 0.0F));  // Flux burst
+        instabilityEvents.add(new InstabilityEventEntry(1, 35, 0.0F));  // Creature spawn
+        instabilityEvents.add(new InstabilityEventEntry(2, 5, -50.0F)); // Portal subversion
+        
+        spawnEvents.add(new InstabilityEventEntry(0, 40, 0.0F));    // Wisps
+        spawnEvents.add(new InstabilityEventEntry(1, 30, -20.0F));  // Zombie pigmen
+        spawnEvents.add(new InstabilityEventEntry(2, 20, -40.0F));  // Endermen
+        spawnEvents.add(new InstabilityEventEntry(3, 7, -60.0F));   // Inhabited zombie
+        spawnEvents.add(new InstabilityEventEntry(4, 3, -80.0F));   // Eldritch guardian
+        
+        subvertEvents.add(new InstabilityEventEntry(0, 75, -50.0F));    // Lesser crimson portal
+        subvertEvents.add(new InstabilityEventEntry(1, 25, -75.0F));    // Flux rift
+        subvertEvents.add(new InstabilityEventEntry(2, 0, -90.0F));     // Greater crimson portal - NYI
+    }
+    
     protected int linkX = 0;
     protected int linkY = 0;
     protected int linkZ = 0;
@@ -108,12 +160,14 @@ public class TilePortalGenerator extends TileTW implements ITickable, IGogglesDi
         }
     }
     
-    public void despawnPortal() {
+    public void despawnPortal(boolean playSound) {
         if (!this.world.isRemote) {
             EntityVoidPortal portal = this.getActivePortal();
             if (portal != null) {
                 portal.setDead();
-                this.world.playSound(null, this.pos, SoundsTC.shock, SoundCategory.BLOCKS, 1.0F, (this.world.rand.nextFloat() - this.world.rand.nextFloat()) * 0.2F + 1.0F);
+                if (playSound) {
+                    this.world.playSound(null, this.pos, SoundsTC.shock, SoundCategory.BLOCKS, 1.0F, (this.world.rand.nextFloat() - this.world.rand.nextFloat()) * 0.2F + 1.0F);
+                }
             }
         }
     }
@@ -162,7 +216,7 @@ public class TilePortalGenerator extends TileTW implements ITickable, IGogglesDi
                 if (enabled && !this.isPortalActive()) {
                     this.spawnPortal();
                 } else if (!enabled && this.isPortalActive()) {
-                    this.despawnPortal();
+                    this.despawnPortal(true);
                 }
             }
             this.lastEnabled = enabled;
@@ -196,10 +250,156 @@ public class TilePortalGenerator extends TileTW implements ITickable, IGogglesDi
                 this.markDirty();
                 this.syncTile(false);
             }
+            
+            // Execute instability event if applicable
+            if (active && this.ticksExisted % 600 == 0 && this.getStability() < 0.0F && (this.world.rand.nextInt(1000) < Math.abs(this.getStability()))) {
+                this.executeInstabilityEvent();
+            }
         }
     }
     
-    private static DecimalFormat decFormatter = new DecimalFormat("#######.##");
+    protected void executeInstabilityEvent() {
+        RandomItemChooser ric = new RandomItemChooser();
+        InstabilityEventEntry event = (InstabilityEventEntry)ric.chooseOnWeight(instabilityEvents);
+        if (event == null) {
+            return;
+        }
+        if (this.stability >= event.requiredInstability) {
+            return;
+        }
+        switch (event.eventId) {
+        case 0:
+            this.fluxBurst();
+            break;
+        case 1:
+            this.spawnInvader();
+            break;
+        case 2:
+            this.subvertPortal();
+            break;
+        default:
+            ThaumicWonders.LOGGER.warn("Unexpected instability event ID {}", event.eventId);
+        }
+    }
+    
+    protected void fluxBurst() {
+        float amount = (float)Math.sqrt((double)Math.abs(this.stability));
+        AuraHelper.polluteAura(this.world, this.pos, amount, true);
+    }
+    
+    protected void spawnInvader() {
+        RandomItemChooser ric = new RandomItemChooser();
+        InstabilityEventEntry event = (InstabilityEventEntry)ric.chooseOnWeight(spawnEvents);
+        if (event == null) {
+            return;
+        }
+        if (this.stability >= event.requiredInstability) {
+            return;
+        }
+        
+        BlockPos portalPos = this.pos.up();
+        int count = 0;
+        switch (event.eventId) {
+        case 0:
+            count = 1 + (int)Math.floor(Math.abs(this.getStability()) / 20.0F);
+            break;
+        case 1:
+            count = 1 + (int)Math.floor(Math.abs(this.getStability()) / 30.0F);
+            break;
+        case 2:
+            count = 1 + (int)Math.floor(Math.abs(this.getStability()) / 40.0F);
+            break;
+        case 3:
+            count = 1;
+            break;
+        case 4:
+            count = 1;
+            break;
+        default:
+            ThaumicWonders.LOGGER.warn("Unexpected spawn event ID {}", event.eventId);
+            return;
+        }
+        
+        boolean spawned = false;
+        for (int i = 0; i < count; i++) {
+            EntityLiving entity = this.getInvader(event.eventId);
+            entity.setLocationAndAngles(
+                    portalPos.getX() + this.world.rand.nextGaussian() * 3.0D, 
+                    portalPos.getY() + this.world.rand.nextGaussian() * 3.0D, 
+                    portalPos.getZ() + this.world.rand.nextGaussian() * 3.0D, 
+                    0.0F, 0.0F);
+            if (entity.getCanSpawnHere()) {
+                if (this.world.spawnEntity(entity)) {
+                    spawned = true;
+                }
+            }
+        }
+        if (spawned) {
+            // TODO send message to all around
+        }
+    }
+    
+    protected EntityLiving getInvader(int type) {
+        switch (type) {
+        case 0:
+            return new EntityWisp(this.world);
+        case 1:
+            return new EntityPigZombie(this.world);
+        case 2:
+            return new EntityEnderman(this.world);
+        case 3:
+            return new EntityInhabitedZombie(this.world);
+        case 4:
+            return new EntityEldritchGuardian(this.world);
+        default:
+            ThaumicWonders.LOGGER.warn("No invader known for type {}", type);
+            return null;
+        }
+    }
+    
+    protected void subvertPortal() {
+        RandomItemChooser ric = new RandomItemChooser();
+        InstabilityEventEntry event = (InstabilityEventEntry)ric.chooseOnWeight(subvertEvents);
+        if (event == null) {
+            return;
+        }
+        if (this.stability >= event.requiredInstability) {
+            return;
+        }
+
+        switch (event.eventId) {
+        case 0:
+            EntityCultistPortalLesser lesserPortal = new EntityCultistPortalLesser(this.world);
+            lesserPortal.setPosition(this.pos.getX() + 0.5D, this.pos.getY() + 1.0D, this.pos.getZ() + 0.5D);
+            this.despawnPortal(false);
+            lesserPortal.onInitialSpawn(this.world.getDifficultyForLocation(new BlockPos(lesserPortal)), null);
+            this.world.spawnEntity(lesserPortal);
+            // TODO send message packet to all around
+            break;
+        case 1:
+            EntityFluxRift rift = new EntityFluxRift(this.world);
+            rift.setRiftSeed(this.world.rand.nextInt());
+            rift.setLocationAndAngles(this.pos.getX() + 0.5D, this.pos.getY() + 1.5D, this.pos.getZ() + 0.5D, (float)this.world.rand.nextInt(360), 0.0F);
+            double size = Math.sqrt((2 * Math.abs(this.getStability())) * 3.0F);
+            this.despawnPortal(false);
+            if (this.world.spawnEntity(rift)) {
+                rift.setRiftSize((int)size);
+            }
+            // TODO send message packet to all around
+            break;
+        case 2:
+            EntityCultistPortalGreater greaterPortal = new EntityCultistPortalGreater(this.world);
+            greaterPortal.setPosition(this.pos.getX() + 0.5D, this.pos.getY() + 1.0D, this.pos.getZ() + 0.5D);
+            this.despawnPortal(false);
+            greaterPortal.onInitialSpawn(this.world.getDifficultyForLocation(new BlockPos(greaterPortal)), null);
+            this.world.spawnEntity(greaterPortal);
+            // TODO send message packet to all around
+            break;
+        default:
+            ThaumicWonders.LOGGER.warn("Unexpected subversion event ID {}", event.eventId);
+            return;
+        }
+    }
     
     @Override
     @SideOnly(Side.CLIENT)
