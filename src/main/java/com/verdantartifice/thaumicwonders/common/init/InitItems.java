@@ -3,7 +3,10 @@ package com.verdantartifice.thaumicwonders.common.init;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.verdantartifice.thaumicwonders.common.items.base.IVariantItem;
+import com.verdantartifice.thaumicwonders.common.items.base.ItemTW;
 import com.verdantartifice.thaumicwonders.common.items.catalysts.ItemAlchemistStone;
+import com.verdantartifice.thaumicwonders.common.items.catalysts.ItemAlienistStone;
 import com.verdantartifice.thaumicwonders.common.items.catalysts.ItemTransmuterStone;
 import com.verdantartifice.thaumicwonders.common.items.entities.ItemFlyingCarpet;
 import com.verdantartifice.thaumicwonders.common.items.misc.ItemDisjunctionCloth;
@@ -15,6 +18,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 public class InitItems {
     public static final Set<Item> ITEMS = new HashSet<Item>();
+    public static final Set<IVariantItem> ITEM_VARIANT_HOLDERS = new HashSet<IVariantItem>();
     
     public static void initItems(IForgeRegistry<Item> forgeRegistry) {
         registerItem(forgeRegistry, new ItemDisjunctionCloth());
@@ -23,10 +27,16 @@ public class InitItems {
         registerItem(forgeRegistry, new ItemTimewinder());
         registerItem(forgeRegistry, new ItemAlchemistStone());
         registerItem(forgeRegistry, new ItemTransmuterStone());
+        registerItem(forgeRegistry, new ItemTW("eldritch_cluster", new String[] { "iron", "gold", "copper", "tin", "silver", "lead", "cinnabar", "quartz", "void" }));
+        registerItem(forgeRegistry, new ItemAlienistStone());
     }
     
     private static void registerItem(IForgeRegistry<Item> forgeRegistry, Item item) {
         forgeRegistry.register(item);
-        InitItems.ITEMS.add(item);
+        if (item.getHasSubtypes() && item instanceof IVariantItem) {
+            InitItems.ITEM_VARIANT_HOLDERS.add((IVariantItem)item);
+        } else {
+            InitItems.ITEMS.add(item);
+        }
     }
 }

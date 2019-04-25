@@ -14,4 +14,6 @@ public class ItemsTW {
     public static final Item TIMEWINDER = null;
     public static final Item ALCHEMIST_STONE = null;
     public static final Item TRANSMUTER_STONE = null;
+    public static final Item ELDRITCH_CLUSTER = null;
+    public static final Item ALIENIST_STONE = null;
 }

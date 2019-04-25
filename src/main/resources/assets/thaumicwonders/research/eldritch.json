@@ -140,6 +140,33 @@
                 }
             ],
             "addenda": []
+        },
+        {
+            "key": "TWOND_ALIENIST_STONE",
+            "name": "thaumicwonders.research.alienist_stone.title",
+            "icons": ["thaumicwonders:alienist_stone"],
+            "category": "THAUMIC_WONDERS",
+            "parents": ["TWOND_CATALYZATION_CHAMBER", "~BASEELDRITCH", "~PRIMPEARL"],
+            "siblings": [],
+            "meta": ["HIDDEN"],
+            "location": [-2, 8],
+            "reward_item": [],
+            "reward_knowledge": [],
+            "stages": [
+                {
+                    "text": "thaumicwonders.research.alienist_stone.text.stage.1",
+                    "required_knowledge": ["THEORY;ALCHEMY;2", "THEORY;ELDRITCH;1"],
+                    "required_research": ["!vitium"],
+                    "warp": 2
+                },
+                {
+                    "text": "thaumicwonders.research.alienist_stone.text.stage.2",
+                    "recipes": [
+                        "thaumicwonders:alienist_stone"
+                    ]
+                }
+            ],
+            "addenda": []
         }
     ]
 }

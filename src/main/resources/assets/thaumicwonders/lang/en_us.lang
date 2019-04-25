@@ -28,6 +28,16 @@ item.thaumicwonders.flying_carpet.name=Flying Carpet
 item.thaumicwonders.timewinder.name=Timewinder
 item.thaumicwonders.alchemist_stone.name=Alchemist's Stone
 item.thaumicwonders.transmuter_stone.name=Transmuter's Stone
+item.thaumicwonders.eldritch_cluster.iron.name=Eldritch Iron Cluster
+item.thaumicwonders.eldritch_cluster.gold.name=Eldritch Gold Cluster
+item.thaumicwonders.eldritch_cluster.copper.name=Eldritch Copper Cluster
+item.thaumicwonders.eldritch_cluster.tin.name=Eldritch Tin Cluster
+item.thaumicwonders.eldritch_cluster.silver.name=Eldritch Silver Cluster
+item.thaumicwonders.eldritch_cluster.lead.name=Eldritch Lead Cluster
+item.thaumicwonders.eldritch_cluster.cinnabar.name=Eldritch Cinnabar Cluster
+item.thaumicwonders.eldritch_cluster.quartz.name=Eldritch Quartz Cluster
+item.thaumicwonders.eldritch_cluster.void.name=Eldritch Void Cluster
+item.thaumicwonders.alienist_stone.name=Alienist's Stone
 
 // Entities
 entity.flying_carpet.name=Flying Carpet
@@ -107,6 +117,10 @@ thaumicwonders.research.flux_capacitor.text.stage.2=My studies have revealed tha
 thaumicwonders.research.transmuter_stone.title=Mineral Transmutation
 thaumicwonders.research.transmuter_stone.text.stage.1=I suspect that I may be able to do more with the Catalyzation Chamber than simply purify metal ores.  Perhaps with a different catalyst, I can achieve other effects.  Time for some research.
 thaumicwonders.research.transmuter_stone.text.stage.2=Well, this is unexpected.  It turns out that by enriching an Alchemist's Stone with Permutatio essentia, it becomes something else entirely.<BR>This new stone allows for limited transmutation of certain minerals.  It only works on certain pairs of metals, allowing me to turn one into the other and back again, but this is useful in and of itself.<BR>It seems to produce flux slightly more often than the basic Alchemist's Stone, however.
+
+thaumicwonders.research.alienist_stone.title=Eldritch Metal Amplification
+thaumicwonders.research.alienist_stone.text.stage.1=With the secrets of the eldritch at my disposal, I'm confident that I can eke out more yield from the Catalyzation Chamber.  The only question is how.
+thaumicwonders.research.alienist_stone.text.stage.2=Is there anything these miraculous Primordial Pearls can't do?  By infusing an Alchemist's Stone with the essence of a pearl and some native mineral clusters, I can increase its power.<BR>The resulting catalyst stone produces what I call eldritch clusters, which, when smelted, yield three ingots instead of two.  I hesitate to call the resulting process "purification", particularly given the significant chance of flux each operation, but the results cannot be denied.<BR>Perhaps there are other things that I can amplify with this stone.  I should experiment and find out.
 
 // Theorycraft Cards
 card.induced_inspiration.name=Induced Inspiration
