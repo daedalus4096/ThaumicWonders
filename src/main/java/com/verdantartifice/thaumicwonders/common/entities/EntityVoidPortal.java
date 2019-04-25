@@ -2,9 +2,9 @@ package com.verdantartifice.thaumicwonders.common.entities;
 
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.network.PacketHandler;
-import com.verdantartifice.thaumicwonders.common.network.packets.PacketVoidPortalNoAnchor;
-import com.verdantartifice.thaumicwonders.common.network.packets.PacketVoidPortalNoWorld;
+import com.verdantartifice.thaumicwonders.common.network.packets.PacketLocalizedMessage;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TilePortalAnchor;
+import com.verdantartifice.thaumicwonders.common.tiles.devices.TilePortalGenerator;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.MoverType;
@@ -121,7 +121,30 @@ public class EntityVoidPortal extends Entity {
     public boolean processInitialInteract(EntityPlayer player, EnumHand hand) {
         if (!this.world.isRemote && this.cooldownTicks <= 0) {
             this.cooldownTicks = 3; // Prevent multiple events per click with a short cooldown
+            
+            // Compute target variance due to instability
+            TileEntity generatorTile = this.world.getTileEntity(this.getPosition().down());
+            int dx = 0;
+            int dz = 0;
+            if (generatorTile != null && generatorTile instanceof TilePortalGenerator) {
+                float stability = ((TilePortalGenerator)generatorTile).getStability();
+                if (stability < -25.0F) {
+                    int max = (int)(12.5F + (0.5F * Math.abs(stability) - 12.5F) * (0.5F * Math.abs(stability) - 12.5F));
+                    if (max > 0) {
+                        dx = this.world.rand.nextInt(max) - this.world.rand.nextInt(max);
+                        dz = this.world.rand.nextInt(max) - this.world.rand.nextInt(max);
+                    }
+                } else if (stability < 0.0F) {
+                    int max = (int)(0.5F * Math.abs(stability));
+                    if (max > 0) {
+                        dx = this.world.rand.nextInt(max) - this.world.rand.nextInt(max);
+                        dz = this.world.rand.nextInt(max) - this.world.rand.nextInt(max);
+                    }
+                }
+            }
+            
             BlockPos linkPos = new BlockPos(this.getLinkX(), this.getLinkY(), this.getLinkZ());
+            BlockPos targetPos = linkPos.add(dx, 0, dz);
             World sourceWorld = this.world;
             WorldServer targetWorld = DimensionManager.getWorld(this.getLinkDim());
             if (targetWorld == null) {
@@ -142,22 +165,22 @@ public class EntityVoidPortal extends Entity {
                             public void placeEntity(World world, Entity entity, float yaw) {}
                         });
                     }
-                    player.setPositionAndUpdate(this.getLinkX() + 0.5D, this.getLinkY() + 1.0D, this.getLinkZ() + 0.5D);
+                    player.setPositionAndUpdate(targetPos.getX() + 0.5D, targetPos.getY() + 1.0D, targetPos.getZ() + 0.5D);
                     if (player.world.provider.getDimension() == this.getLinkDim()) {
                         // Only play the portal sound at the target location if not changing dimensions; it will be played automatically otherwise
-                        player.world.playSound(null, linkPos.up(), SoundEvents.BLOCK_PORTAL_TRAVEL, SoundCategory.NEUTRAL, 0.25F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+                        player.world.playSound(null, targetPos.up(), SoundEvents.BLOCK_PORTAL_TRAVEL, SoundCategory.NEUTRAL, 0.25F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
                     }
                     
                     // Generate target world flux after leaving
-                    AuraHelper.polluteAura(targetWorld, linkPos.up(), 5.0F, true);
+                    AuraHelper.polluteAura(targetWorld, targetPos.up(), 5.0F, true);
                 } else {
                     if (player instanceof EntityPlayerMP) {
-                        PacketHandler.INSTANCE.sendTo(new PacketVoidPortalNoAnchor(), (EntityPlayerMP)player);
+                        PacketHandler.INSTANCE.sendTo(new PacketLocalizedMessage("event.void_portal.no_anchor"), (EntityPlayerMP)player);
                     }
                 }
             } else {
                 if (player instanceof EntityPlayerMP) {
-                    PacketHandler.INSTANCE.sendTo(new PacketVoidPortalNoWorld(), (EntityPlayerMP)player);
+                    PacketHandler.INSTANCE.sendTo(new PacketLocalizedMessage("event.void_portal.no_world"), (EntityPlayerMP)player);
                 }
                 ThaumicWonders.LOGGER.error("Target dimension {} not found!", this.getLinkDim());
             }

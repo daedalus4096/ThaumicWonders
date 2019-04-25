@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.network.PacketHandler;
-import com.verdantartifice.thaumicwonders.common.network.packets.PacketPrimalDestroyerHungerFull;
+import com.verdantartifice.thaumicwonders.common.network.packets.PacketLocalizedMessage;
 
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
@@ -68,7 +68,7 @@ public class ItemPrimalDestroyer extends ItemSword implements IWarpingGear {
                 if (hunger >= MAX_HUNGER) {
                     // Damage player and reset hunger
                     if (entityIn instanceof EntityPlayerMP) {
-                        PacketHandler.INSTANCE.sendTo(new PacketPrimalDestroyerHungerFull(), (EntityPlayerMP)entityIn);
+                        PacketHandler.INSTANCE.sendTo(new PacketLocalizedMessage("event.primal_destroyer.hunger_full"), (EntityPlayerMP)entityIn);
                     }
                     entityPlayer.attackEntityFrom(new DamageSource("primalDestroyerHunger"), 12.0F);
                     entityPlayer.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, 60));

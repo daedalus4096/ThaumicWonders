@@ -110,7 +110,12 @@
                     "recipes": ["thaumicwonders:portal_anchor", "thaumicwonders:portal_generator"]
                 }
             ],
-            "addenda": []
+            "addenda": [
+                {
+                    "text": "thaumicwonders.research.void_portal.text.addenda.1",
+                    "required_research": ["INFUSIONSTABLE"]
+                }
+            ]
         },
         {
             "key": "TWOND_FLUX_CAPACITOR",
