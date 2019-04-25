@@ -2,8 +2,7 @@ package com.verdantartifice.thaumicwonders.common.entities;
 
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.network.PacketHandler;
-import com.verdantartifice.thaumicwonders.common.network.packets.PacketVoidPortalNoAnchor;
-import com.verdantartifice.thaumicwonders.common.network.packets.PacketVoidPortalNoWorld;
+import com.verdantartifice.thaumicwonders.common.network.packets.PacketLocalizedMessage;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TilePortalAnchor;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TilePortalGenerator;
 
@@ -176,12 +175,12 @@ public class EntityVoidPortal extends Entity {
                     AuraHelper.polluteAura(targetWorld, targetPos.up(), 5.0F, true);
                 } else {
                     if (player instanceof EntityPlayerMP) {
-                        PacketHandler.INSTANCE.sendTo(new PacketVoidPortalNoAnchor(), (EntityPlayerMP)player);
+                        PacketHandler.INSTANCE.sendTo(new PacketLocalizedMessage("event.void_portal.no_anchor"), (EntityPlayerMP)player);
                     }
                 }
             } else {
                 if (player instanceof EntityPlayerMP) {
-                    PacketHandler.INSTANCE.sendTo(new PacketVoidPortalNoWorld(), (EntityPlayerMP)player);
+                    PacketHandler.INSTANCE.sendTo(new PacketLocalizedMessage("event.void_portal.no_world"), (EntityPlayerMP)player);
                 }
                 ThaumicWonders.LOGGER.error("Target dimension {} not found!", this.getLinkDim());
             }
