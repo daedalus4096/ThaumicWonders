@@ -81,7 +81,6 @@ public class TilePortalGenerator extends TileTW implements ITickable, IGogglesDi
         
         subvertEvents.add(new InstabilityEventEntry(0, 75, -50.0F));    // Lesser crimson portal
         subvertEvents.add(new InstabilityEventEntry(1, 25, -75.0F));    // Flux rift
-        subvertEvents.add(new InstabilityEventEntry(2, 0, -90.0F));     // Greater crimson portal - NYI
     }
     
     protected int linkX = 0;
@@ -391,16 +390,6 @@ public class TilePortalGenerator extends TileTW implements ITickable, IGogglesDi
             }
             PacketHandler.INSTANCE.sendToAllAround(
                     new PacketLocalizedMessage("event.void_portal.subvert.flux_rift"), 
-                    new NetworkRegistry.TargetPoint(this.world.provider.getDimension(), this.pos.getX(), this.pos.getY(), this.pos.getZ(), 16.0D));
-            break;
-        case 2:
-            EntityCultistPortalGreater greaterPortal = new EntityCultistPortalGreater(this.world);
-            greaterPortal.setPosition(this.pos.getX() + 0.5D, this.pos.getY() + 1.0D, this.pos.getZ() + 0.5D);
-            this.despawnPortal(false);
-            greaterPortal.onInitialSpawn(this.world.getDifficultyForLocation(new BlockPos(greaterPortal)), null);
-            this.world.spawnEntity(greaterPortal);
-            PacketHandler.INSTANCE.sendToAllAround(
-                    new PacketLocalizedMessage("event.void_portal.subvert.greater_crimson"), 
                     new NetworkRegistry.TargetPoint(this.world.provider.getDimension(), this.pos.getX(), this.pos.getY(), this.pos.getZ(), 16.0D));
             break;
         default:

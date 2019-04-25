@@ -143,7 +143,6 @@ event.void_portal.no_world=This portal's linked dimension does not exist.
 event.void_portal.invader=Something emerges from an unstable portal.
 event.void_portal.subvert.lesser_crimson=The Crimson Cult has subverted an unstable portal!
 event.void_portal.subvert.flux_rift=An unstable portal has collapsed into a flux rift!
-event.void_portal.subvert.greater_crimson=The Crimson Cult is invading through an unstable portal!
 
 // Misc
 itemGroup.thaumicwonders=Thaumic Wonders
