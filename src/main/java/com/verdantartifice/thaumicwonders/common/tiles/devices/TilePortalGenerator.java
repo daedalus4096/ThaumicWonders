@@ -1,7 +1,6 @@
 package com.verdantartifice.thaumicwonders.common.tiles.devices;
 
 import java.awt.Color;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,8 +64,6 @@ public class TilePortalGenerator extends TileTW implements ITickable, IGogglesDi
         }
     }
 
-    private static DecimalFormat decFormatter = new DecimalFormat("#######.##");
-    
     protected static List<RandomItemChooser.Item> instabilityEvents = new ArrayList<RandomItemChooser.Item>();
     protected static List<RandomItemChooser.Item> spawnEvents = new ArrayList<RandomItemChooser.Item>();
     protected static List<RandomItemChooser.Item> subvertEvents = new ArrayList<RandomItemChooser.Item>();
@@ -416,8 +413,7 @@ public class TilePortalGenerator extends TileTW implements ITickable, IGogglesDi
     @SideOnly(Side.CLIENT)
     public String[] getIGogglesText() {
         return new String[] {
-            TextFormatting.BOLD + I18n.format("stability." + this.getStabilityLevel().name()),
-            TextFormatting.GOLD + "" + TextFormatting.ITALIC + decFormatter.format(this.stability)
+            TextFormatting.BOLD + I18n.format("stability." + this.getStabilityLevel().name())
         };
     }
 }
