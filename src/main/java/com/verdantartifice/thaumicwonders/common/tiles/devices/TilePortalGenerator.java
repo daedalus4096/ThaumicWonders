@@ -7,6 +7,8 @@ import java.util.List;
 
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.entities.EntityVoidPortal;
+import com.verdantartifice.thaumicwonders.common.network.PacketHandler;
+import com.verdantartifice.thaumicwonders.common.network.packets.PacketLocalizedMessage;
 import com.verdantartifice.thaumicwonders.common.tiles.base.TileTW;
 
 import net.minecraft.block.state.IBlockState;
@@ -21,6 +23,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import thaumcraft.api.aspects.Aspect;
@@ -335,7 +338,9 @@ public class TilePortalGenerator extends TileTW implements ITickable, IGogglesDi
             }
         }
         if (spawned) {
-            // TODO send message to all around
+            PacketHandler.INSTANCE.sendToAllAround(
+                    new PacketLocalizedMessage("event.void_portal.invader"), 
+                    new NetworkRegistry.TargetPoint(this.world.provider.getDimension(), this.pos.getX(), this.pos.getY(), this.pos.getZ(), 16.0D));
         }
     }
     
@@ -374,7 +379,9 @@ public class TilePortalGenerator extends TileTW implements ITickable, IGogglesDi
             this.despawnPortal(false);
             lesserPortal.onInitialSpawn(this.world.getDifficultyForLocation(new BlockPos(lesserPortal)), null);
             this.world.spawnEntity(lesserPortal);
-            // TODO send message packet to all around
+            PacketHandler.INSTANCE.sendToAllAround(
+                    new PacketLocalizedMessage("event.void_portal.subvert.lesser_crimson"), 
+                    new NetworkRegistry.TargetPoint(this.world.provider.getDimension(), this.pos.getX(), this.pos.getY(), this.pos.getZ(), 16.0D));
             break;
         case 1:
             EntityFluxRift rift = new EntityFluxRift(this.world);
@@ -385,7 +392,9 @@ public class TilePortalGenerator extends TileTW implements ITickable, IGogglesDi
             if (this.world.spawnEntity(rift)) {
                 rift.setRiftSize((int)size);
             }
-            // TODO send message packet to all around
+            PacketHandler.INSTANCE.sendToAllAround(
+                    new PacketLocalizedMessage("event.void_portal.subvert.flux_rift"), 
+                    new NetworkRegistry.TargetPoint(this.world.provider.getDimension(), this.pos.getX(), this.pos.getY(), this.pos.getZ(), 16.0D));
             break;
         case 2:
             EntityCultistPortalGreater greaterPortal = new EntityCultistPortalGreater(this.world);
@@ -393,7 +402,9 @@ public class TilePortalGenerator extends TileTW implements ITickable, IGogglesDi
             this.despawnPortal(false);
             greaterPortal.onInitialSpawn(this.world.getDifficultyForLocation(new BlockPos(greaterPortal)), null);
             this.world.spawnEntity(greaterPortal);
-            // TODO send message packet to all around
+            PacketHandler.INSTANCE.sendToAllAround(
+                    new PacketLocalizedMessage("event.void_portal.subvert.greater_crimson"), 
+                    new NetworkRegistry.TargetPoint(this.world.provider.getDimension(), this.pos.getX(), this.pos.getY(), this.pos.getZ(), 16.0D));
             break;
         default:
             ThaumicWonders.LOGGER.warn("Unexpected subversion event ID {}", event.eventId);
