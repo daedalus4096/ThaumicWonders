@@ -224,7 +224,7 @@ public class TilePortalGenerator extends TileTW implements ITickable, IGogglesDi
             // Increase/decrease stability
             float lastStability = this.stability;
             boolean active = this.isPortalActive();
-            if (this.ticksExisted % 20 == 0 && active) {
+            if (active && this.ticksExisted % 20 == 0) {
                 for (BlockPos.MutableBlockPos mbp : BlockPos.getAllInBoxMutable(this.pos.add(-8, -8, -8), this.pos.add(8, 8, 8))) {
                     TileEntity tile = this.world.getTileEntity(mbp);
                     if (tile instanceof TileStabilizer) {
@@ -240,10 +240,10 @@ public class TilePortalGenerator extends TileTW implements ITickable, IGogglesDi
                     }
                 }
             }
-            if (this.ticksExisted % 120 == 0 && active) {
+            if (active && this.ticksExisted % 120 == 0) {
                 List<EntityVoidPortal> portals = this.world.getEntitiesWithinAABB(EntityVoidPortal.class, new AxisAlignedBB(this.pos.up()).grow(16.0D));
                 if (portals.size() > 0) {
-                    this.setStability(this.stability - (0.2F * portals.size()));
+                    this.setStability(this.stability - (0.04F * portals.size() * portals.size()));
                 }
             }
             if (this.stability != lastStability) {
