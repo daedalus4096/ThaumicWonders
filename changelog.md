@@ -7,8 +7,14 @@ v1.4.0
 * Dimensional Rippers now only connect to things (e.g. levers, essentia tubes) on their bottom face
 * Dimensional Rippers now emit a particle effect when they find a matching, correctly-positioned ripper
 * Portal Anchors and Portal Generators have new models
+* Void Portals now destabilize over time; unstable portals will send you off-target and have other detrimental effects
 * Fixed a bug preventing teleport sound when using void portals to travel long distances
 * Portal Generators can now be disabled by applying a redstone signal
+* Hexamite blast power reduced and vis/shard crafting cost increased
+* Hexamite now damages the local aura when it affects open air instead of creating flux from destroyed blocks
+* Fixed a bug where any filled universal bucket could be turned into eight quicksilver
+* The Everburning Urn is now a standard fluid handler and can be drained with pipes
+* Updated Thaumonomicon page's background image
 
 v1.3.0
 ------

@@ -24,8 +24,8 @@ public class InitResearch {
                 "THAUMIC_WONDERS", 
                 "FIRSTSTEPS", 
                 new AspectList(), 
-                new ResourceLocation(ThaumicWonders.MODID,"textures/gui/wonder_chest.png"), 
-                new ResourceLocation("thaumcraft", "textures/gui/gui_research_back_1.jpg"), 
+                new ResourceLocation(ThaumicWonders.MODID, "textures/gui/wonder_chest.png"), 
+                new ResourceLocation(ThaumicWonders.MODID, "textures/gui/gui_research_back.jpg"), 
                 new ResourceLocation("thaumcraft", "textures/gui/gui_research_back_over.png")
         );
     }

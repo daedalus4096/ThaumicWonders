@@ -74,7 +74,7 @@ public class BlockPortalGenerator extends BlockDeviceTW<TilePortalGenerator> imp
             TileEntity tile = worldIn.getTileEntity(pos);
             if (tile != null && tile instanceof TilePortalGenerator) {
                 TilePortalGenerator generatorTile = (TilePortalGenerator)tile;
-                generatorTile.despawnPortal();
+                generatorTile.despawnPortal(true);
             }
         }
     }

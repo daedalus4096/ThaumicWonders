@@ -53,7 +53,7 @@ public class EntityHexamitePrimed extends EntityTNTPrimed {
     }
     
     protected void explode() {
-        FluxExplosion explosion = new FluxExplosion(this.world, this, this.posX, this.posY + (double)(this.height / 16.0F), this.posZ, 8.0F, true, true);
+        FluxExplosion explosion = new FluxExplosion(this.world, this, this.posX, this.posY + (double)(this.height / 16.0F), this.posZ, 6.0F, true, true, false);
         if (!ForgeEventFactory.onExplosionStart(this.world, explosion)) {
             explosion.doExplosionA();
             explosion.doExplosionB(true);

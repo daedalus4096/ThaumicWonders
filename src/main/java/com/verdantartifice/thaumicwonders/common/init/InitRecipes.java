@@ -33,6 +33,7 @@ import thaumcraft.api.blocks.BlocksTC;
 import thaumcraft.api.crafting.CrucibleRecipe;
 import thaumcraft.api.crafting.IDustTrigger;
 import thaumcraft.api.crafting.InfusionRecipe;
+import thaumcraft.api.crafting.IngredientNBTTC;
 import thaumcraft.api.crafting.Part;
 import thaumcraft.api.crafting.ShapedArcaneRecipe;
 import thaumcraft.api.items.ItemsTC;
@@ -95,11 +96,8 @@ public class InitRecipes {
                 new ItemStack(ItemsTC.quicksilver), new ItemStack(ItemsTC.quicksilver), new ItemStack(ItemsTC.quicksilver), 
                 new ItemStack(ItemsTC.quicksilver), new ItemStack(ItemsTC.quicksilver) 
         });
-        GameRegistry.addShapedRecipe(
-                new ResourceLocation(ThaumicWonders.MODID, "quicksilver_bucket_deconstruct"), 
-                qsGroup, 
-                new ItemStack(ItemsTC.quicksilver, 8), 
-                new Object[] {"#", Character.valueOf('#'), FluidUtil.getFilledBucket(new FluidStack(FluidQuicksilver.INSTANCE, 1000)) });
+        shapelessOreDictRecipe("quicksilver_bucket_deconstruct", qsGroup, new ItemStack(ItemsTC.quicksilver, 8), 
+                new Object[] { new IngredientNBTTC(FluidUtil.getFilledBucket(new FluidStack(FluidQuicksilver.INSTANCE, 1000))) });
     }
     
     private static IRecipe shapelessOreDictRecipe(@Nonnull String name, @Nullable ResourceLocation group, @Nonnull ItemStack result, Object[] inputs) {
@@ -163,8 +161,8 @@ public class InitRecipes {
         ThaumcraftApi.addArcaneCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "hexamite"), new ShapedArcaneRecipe(
                 defaultGroup,
                 "TWOND_HEXAMITE",
-                75,
-                new AspectList().add(Aspect.FIRE, 1).add(Aspect.ENTROPY, 1),
+                125,
+                new AspectList().add(Aspect.FIRE, 2).add(Aspect.ENTROPY, 2),
                 BlocksTW.HEXAMITE,
                 new Object[] {
                         "AVA",
