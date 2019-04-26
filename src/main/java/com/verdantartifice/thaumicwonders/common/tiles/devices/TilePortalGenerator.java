@@ -34,7 +34,6 @@ import thaumcraft.common.entities.EntityFluxRift;
 import thaumcraft.common.entities.monster.EntityEldritchGuardian;
 import thaumcraft.common.entities.monster.EntityInhabitedZombie;
 import thaumcraft.common.entities.monster.EntityWisp;
-import thaumcraft.common.entities.monster.boss.EntityCultistPortalGreater;
 import thaumcraft.common.entities.monster.cult.EntityCultistPortalLesser;
 import thaumcraft.common.lib.SoundsTC;
 import thaumcraft.common.lib.utils.RandomItemChooser;
