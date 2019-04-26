@@ -18,7 +18,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 public class ThaumicWonders {
     public static final String MODID = "thaumicwonders";
     public static final String NAME = "Thaumic Wonders";
-    public static final String VERSION = "1.3.0";
+    public static final String VERSION = "1.4.0";
     public static final String DEPENDENCIES = "required-after:thaumcraft";
     public static final String UPDATE_URL = "https://pastebin.com/raw/7QELk9HJ";
 
