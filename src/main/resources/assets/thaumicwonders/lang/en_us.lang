@@ -134,6 +134,7 @@ card.induced_madness.text=Alien thoughts projected by the Madness Engine tear at
 // Enchantments
 enchantment.special.sapgreat=Greater Sapping
 enchantment.special.voidflame=Voidflame
+enchantment.special.warpshell=Warpshell
 
 // Config
 key.categories.thaumicwonders=Thaumic Wonders
