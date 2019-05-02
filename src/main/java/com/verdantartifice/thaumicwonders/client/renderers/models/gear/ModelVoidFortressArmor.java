@@ -1,9 +1,17 @@
 package com.verdantartifice.thaumicwonders.client.renderers.models.gear;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.lwjgl.opengl.GL11;
+
+import com.verdantartifice.thaumicwonders.common.items.armor.ItemVoidFortressArmor;
 
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.ItemStack;
 import thaumcraft.client.renderers.models.gear.ModelCustomArmor;
 
 /**
@@ -11,6 +19,8 @@ import thaumcraft.client.renderers.models.gear.ModelCustomArmor;
  * Created using Tabula 7.0.0
  */
 public class ModelVoidFortressArmor extends ModelCustomArmor {
+    protected static final Map<Integer, Integer> HAS_SET = new HashMap<Integer, Integer>();
+    
     public ModelRenderer Mask;
     public ModelRenderer FrontHornL1;
     public ModelRenderer FrontHornR1;
@@ -468,10 +478,67 @@ public class ModelVoidFortressArmor extends ModelCustomArmor {
         this.bipedLeftLeg.addChild(this.BackPanelL2);
         this.bipedLeftLeg.addChild(this.BackPanelL3);
     }
+    
+    protected void checkSet(Entity entity) {
+        if (entity instanceof EntityLivingBase && entity.ticksExisted % 20 == 0) {
+            EntityLivingBase elb = (EntityLivingBase)entity;
+            int set = 0;
+            
+            EntityEquipmentSlot[] slots = new EntityEquipmentSlot[] { EntityEquipmentSlot.CHEST, EntityEquipmentSlot.LEGS, EntityEquipmentSlot.HEAD };
+            for (EntityEquipmentSlot slot : slots) {
+                ItemStack piece = elb.getItemStackFromSlot(slot);
+                if (piece != null && piece.getItem() instanceof ItemVoidFortressArmor) {
+                    set++;
+                }
+            }
+            
+            if (set > 0) {
+                HAS_SET.put(Integer.valueOf(elb.getEntityId()), Integer.valueOf(set));
+            } else {
+                HAS_SET.remove(Integer.valueOf(elb.getEntityId()));
+            }
+        }
+    }
 
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-        // TODO set detection and piece hiding
+        this.checkSet(entity);
+        int set = HAS_SET.getOrDefault(Integer.valueOf(entity.getEntityId()), Integer.valueOf(-1)).intValue();
+        
+        this.Book.isHidden = (set < 2);
+        this.SideHornR1.isHidden = (set < 2);
+        this.SideHornR2.isHidden = (set < 2);
+        this.SideHornL1.isHidden = (set < 2);
+        this.SideHornL2.isHidden = (set < 2);
+        this.ShoulderplateRTop.isHidden = (set < 2);
+        this.ShoulderplateRMid.isHidden = (set < 2);
+        this.ShoulderplateR1.isHidden = (set < 2);
+        this.ShoulderOrnamentR.isHidden = (set < 2);
+        this.ShoulderOrnamentL.isHidden = (set < 2);
+        this.ShoulderplateLTop.isHidden = (set < 2);
+        this.ShoulderplateLMid.isHidden = (set < 2);
+        this.ShoulderplateL1.isHidden = (set < 2);
+        this.SidePanelR2.isHidden = (set < 2);
+        this.SidePanelL2.isHidden = (set < 2);
+
+        this.Scroll.isHidden = (set < 3);
+        this.FrontHornR1.isHidden = (set < 3);
+        this.FrontHornR2.isHidden = (set < 3);
+        this.FrontHornL1.isHidden = (set < 3);
+        this.FrontHornL2.isHidden = (set < 3);
+        this.ShoulderplateR2.isHidden = (set < 3);
+        this.ShoulderplateL2.isHidden = (set < 3);
+        this.SidePanelR3.isHidden = (set < 3);
+        this.SidePanelL3.isHidden = (set < 3);
+        this.HelmCordR.isHidden = (set < 3);
+        this.HelmCordL.isHidden = (set < 3);
+        this.ChestCordR.isHidden = (set < 3);
+        this.ChestCordL.isHidden = (set < 3);
+        this.BeltCord.isHidden = (set < 3);
+        this.ArmBladeR1.isHidden = (set < 3);
+        this.ArmBladeR2.isHidden = (set < 3);
+        this.ArmBladeL1.isHidden = (set < 3);
+        this.ArmBladeL2.isHidden = (set < 3);
         
         this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
         if (this.isChild) {
