@@ -581,3 +581,4 @@ public class ModelVoidFortressArmor extends ModelCustomArmor {
         modelRenderer.rotateAngleZ = z;
     }
 }
+
