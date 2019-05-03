@@ -28,7 +28,7 @@ import thaumcraft.api.items.IWarpingGear;
 import thaumcraft.api.items.ItemsTC;
 
 public class ItemVoidFortressArmor extends ItemArmor implements ISpecialArmor, IWarpingGear {
-    public static ItemArmor.ArmorMaterial MATERIAL = EnumHelper.addArmorMaterial("VOID_FORTRESS", "VOID_FORTRESS", 50, new int[] { 4, 7, 9, 4 }, 10, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 3.0F);
+    public static ItemArmor.ArmorMaterial MATERIAL = EnumHelper.addArmorMaterial("VOID_FORTRESS", "VOID_FORTRESS", 50, new int[] { 4, 7, 9, 4 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 3.0F);
 
     protected ModelBiped model1 = null;
     protected ModelBiped model2 = null;
