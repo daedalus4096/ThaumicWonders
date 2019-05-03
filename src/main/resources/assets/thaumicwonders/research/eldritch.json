@@ -173,7 +173,7 @@
             "name": "thaumicwonders.research.void_fortress_armor.title",
             "icons": ["thaumicwonders:void_fortress_helm"],
             "category": "THAUMIC_WONDERS",
-            "parents": ["TWOND_PRIMAL_DESTROYER", "~ARMORFORTRESS", "~PRIMPEARL"],
+            "parents": ["TWOND_PRIMAL_DESTROYER", "~ARMORFORTRESS", "~FORTRESSMASK", "~PRIMPEARL"],
             "siblings": [],
             "meta": [],
             "location": [-6, 1],

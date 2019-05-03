@@ -377,13 +377,14 @@ public class InitRecipes {
                 "TWOND_VOID_FORTRESS_ARMOR",
                 new ItemStack(ItemsTW.VOID_FORTRESS_HELM),
                 8,
-                new AspectList().add(Aspect.PROTECT, 45).add(Aspect.METAL, 45).add(Aspect.ELDRITCH, 50).add(Aspect.ENERGY, 25).add(Aspect.VOID, 25).add(Aspect.MAGIC, 25).add(Aspect.SENSES, 25),
+                new AspectList().add(Aspect.PROTECT, 45).add(Aspect.METAL, 45).add(Aspect.ELDRITCH, 50).add(Aspect.ENERGY, 25).add(Aspect.VOID, 25).add(Aspect.MAGIC, 25).add(Aspect.SENSES, 25).add(Aspect.UNDEAD, 40).add(Aspect.LIFE, 40),
                 new ItemStack(ItemsTC.voidHelm),
                 new Object[] {
                         Ingredient.fromItem(ItemsTC.primordialPearl),
                         "plateVoid",
                         "plateVoid",
                         new ItemStack(ItemsTC.goggles, 1, 32767),
+                        new ItemStack(Items.GHAST_TEAR),
                         new ItemStack(ItemsTC.salisMundus),
                         "leather"
                 }
