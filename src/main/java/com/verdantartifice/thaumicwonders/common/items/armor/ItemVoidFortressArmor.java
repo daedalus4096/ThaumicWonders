@@ -24,10 +24,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import thaumcraft.api.capabilities.IPlayerWarp;
 import thaumcraft.api.capabilities.ThaumcraftCapabilities;
+import thaumcraft.api.items.IGoggles;
 import thaumcraft.api.items.IWarpingGear;
 import thaumcraft.api.items.ItemsTC;
 
-public class ItemVoidFortressArmor extends ItemArmor implements ISpecialArmor, IWarpingGear {
+public class ItemVoidFortressArmor extends ItemArmor implements ISpecialArmor, IWarpingGear, IGoggles {
     public static ItemArmor.ArmorMaterial MATERIAL = EnumHelper.addArmorMaterial("VOID_FORTRESS", "VOID_FORTRESS", 50, new int[] { 4, 7, 9, 4 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 3.0F);
 
     protected ModelBiped model1 = null;
@@ -158,5 +159,15 @@ public class ItemVoidFortressArmor extends ItemArmor implements ISpecialArmor, I
     public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
         tooltip.add(TextFormatting.GOLD + I18n.format("enchantment.special.warpshell"));
         super.addInformation(stack, worldIn, tooltip, flagIn);
+    }
+
+    @Override
+    public boolean showIngamePopups(ItemStack itemstack, EntityLivingBase player) {
+        if (itemstack != null && itemstack.getItem() instanceof ItemArmor) {
+            ItemArmor armor = (ItemArmor)itemstack.getItem();
+            return armor.armorType == EntityEquipmentSlot.HEAD;
+        } else {
+            return false;
+        }
     }
 }
