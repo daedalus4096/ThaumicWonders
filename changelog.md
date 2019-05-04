@@ -1,3 +1,7 @@
+v1.5.0
+------
+* Dimensional Rippers can now be overcharged with additional essentia to create bigger rifts
+
 v1.4.0
 ------
 * Added Flux Capacitor, to help you manage your flux problem
