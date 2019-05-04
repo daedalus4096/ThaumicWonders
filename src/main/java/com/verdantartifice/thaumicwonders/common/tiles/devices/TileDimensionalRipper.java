@@ -1,6 +1,7 @@
 package com.verdantartifice.thaumicwonders.common.tiles.devices;
 
 import java.awt.Color;
+import java.util.List;
 
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.blocks.BlocksTW;
@@ -27,7 +28,8 @@ import thaumcraft.common.lib.SoundsTC;
 import thaumcraft.common.lib.utils.EntityUtils;
 
 public class TileDimensionalRipper extends TileTW implements IAspectContainer, IEssentiaTransport, ITickable {
-    private static final int CAPACITY = 50;
+    private static final int CAPACITY = 250;
+    private static final int MIN_FUEL = 50;
     private static final int DISTANCE = 10;
     
     private static final int PLAY_LINK_EFFECTS = 5;
@@ -260,7 +262,7 @@ public class TileDimensionalRipper extends TileTW implements IAspectContainer, I
                 this.world.addBlockEvent(this.getPos(), BlocksTW.DIMENSIONAL_RIPPER, PLAY_LINK_EFFECTS, 0);
                 
                 // If both rippers are enabled and fueled, commence the reaction
-                if (blockEnabled && otherBlockEnabled && this.amount >= CAPACITY && otherTile.getAmount() >= CAPACITY) {
+                if (blockEnabled && otherBlockEnabled && this.amount >= MIN_FUEL && otherTile.getAmount() >= MIN_FUEL) {
                     BlockPos targetPos = new BlockPos(
                         (this.pos.getX() + otherPos.getX()) / 2,
                         (this.pos.getY() + otherPos.getY()) / 2,
@@ -268,8 +270,9 @@ public class TileDimensionalRipper extends TileTW implements IAspectContainer, I
                     );
     
                     // Deduct reaction fuel
-                    this.takeFromContainer(Aspect.FLUX, CAPACITY);
-                    otherTile.takeFromContainer(Aspect.FLUX, CAPACITY);
+                    int fuel = Math.min(this.getAmount(), otherTile.getAmount());
+                    this.takeFromContainer(Aspect.FLUX, fuel);
+                    otherTile.takeFromContainer(Aspect.FLUX, fuel);
     
                     // Play special effects
                     FXDispatcher.INSTANCE.beamBore(
@@ -304,22 +307,31 @@ public class TileDimensionalRipper extends TileTW implements IAspectContainer, I
                     this.world.playSound(null, otherPos, SoundsTC.zap, SoundCategory.BLOCKS, 1.0F, 1.0F);
     
                     // Create the rift
-                    this.createRift(targetPos);
+                    this.createRift(targetPos, fuel);
                 }
             }
         }
     }
 
-    protected void createRift(BlockPos pos) {
-        if (EntityUtils.getEntitiesInRange(world, pos, null, EntityFluxRift.class, 32.0D).size() > 0) {
-            return;
-        }
-        EntityFluxRift rift = new EntityFluxRift(this.world);
-        rift.setRiftSeed(this.world.rand.nextInt());
-        rift.setLocationAndAngles(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, (float)this.world.rand.nextInt(360), 0.0F);
-        double size = Math.sqrt((2 * CAPACITY) * 3.0F);
-        if (this.world.spawnEntity(rift)) {
-            rift.setRiftSize((int)size);
+    protected void createRift(BlockPos pos, int fuelUsed) {
+        List<EntityFluxRift> localRifts = EntityUtils.getEntitiesInRange(this.world, pos, null, EntityFluxRift.class, 2.0D);
+        if (localRifts.size() > 0) {
+            // Enlarge target rift
+            EntityFluxRift rift = localRifts.get(0);
+            int oldSize = rift.getRiftSize();
+            double oldFuel = (oldSize * oldSize) / 3.0D;
+            int newSize = (int)Math.sqrt((oldFuel + (2 * fuelUsed)) * 3.0D);
+            rift.setRiftSize(newSize);
+            rift.setRiftStability(rift.getRiftStability() - (newSize - oldSize));
+        } else if (EntityUtils.getEntitiesInRange(this.world, pos, null, EntityFluxRift.class, 32.0D).size() == 0) {
+            // Create new rift if no others are nearby
+            EntityFluxRift rift = new EntityFluxRift(this.world);
+            rift.setRiftSeed(this.world.rand.nextInt());
+            rift.setLocationAndAngles(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, (float)this.world.rand.nextInt(360), 0.0F);
+            double size = Math.sqrt((2 * fuelUsed) * 3.0D);
+            if (this.world.spawnEntity(rift)) {
+                rift.setRiftSize((int)size);
+            }
         }
     }
     
