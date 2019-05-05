@@ -2,6 +2,8 @@ v1.5.0
 ------
 * Dimensional Rippers can now be overcharged with additional essentia to create bigger rifts
 * Dimensional Rippers can now enlarge existing flux rifts
+* Portal Generators now show their last stability gain and loss
+* Reduced Portal Generator load on Stabilizers; same stability gain over time, less flux from the Stabilizer
 
 v1.4.0
 ------
