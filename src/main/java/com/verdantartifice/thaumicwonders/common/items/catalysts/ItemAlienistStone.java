@@ -1,5 +1,6 @@
 package com.verdantartifice.thaumicwonders.common.items.catalysts;
 
+import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.items.ItemsTW;
 import com.verdantartifice.thaumicwonders.common.items.base.ItemTW;
 import com.verdantartifice.thaumicwonders.common.misc.OreHelper;
@@ -41,6 +42,9 @@ public class ItemAlienistStone extends ItemTW implements ICatalystStone {
         } else if (input.getItem() == ItemsTC.voidSeed) {
             return new ItemStack(ItemsTW.ELDRITCH_CLUSTER, 1, 8);
         } else {
+            if (input != null && !input.isEmpty()) {
+                ThaumicWonders.LOGGER.info("ALIENIST_STONE: Rejecting item {} with ore names {}", input.toString(), String.join(", ", OreHelper.getOreNames(input).toArray(new String[] {})));
+            }
             return null;
         }
     }
