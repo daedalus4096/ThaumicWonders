@@ -148,6 +148,9 @@ thaumicwonders.gui.timewinder.5=Waxing Crescent
 thaumicwonders.gui.timewinder.6=First Quarter
 thaumicwonders.gui.timewinder.7=Waxing Gibbous
 thaumicwonders.gui.timewinder.8=Day
+thaumicwonders.gui.meteorb.0=Clear Skies
+thaumicwonders.gui.meteorb.1=Rain
+thaumicwonders.gui.meteorb.2=Thunderstorm
 
 // Events
 event.primal_destroyer.hunger_full=The Primal Destroyer twists of its own will and cuts you!
