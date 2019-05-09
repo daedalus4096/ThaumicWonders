@@ -31,10 +31,6 @@ import thaumcraft.api.items.ItemsTC;
 public class ItemVoidFortressArmor extends ItemArmor implements ISpecialArmor, IWarpingGear, IGoggles {
     public static ItemArmor.ArmorMaterial MATERIAL = EnumHelper.addArmorMaterial("VOID_FORTRESS", "VOID_FORTRESS", 50, new int[] { 4, 7, 9, 4 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 3.0F);
 
-    protected ModelBiped model1 = null;
-    protected ModelBiped model2 = null;
-    protected ModelBiped model = null;
-
     public ItemVoidFortressArmor(String name, ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn) {
         super(materialIn, renderIndexIn, equipmentSlotIn);
         this.setRegistryName(ThaumicWonders.MODID, name);
@@ -45,14 +41,7 @@ public class ItemVoidFortressArmor extends ItemArmor implements ISpecialArmor, I
     @Override
     @SideOnly(Side.CLIENT)
     public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped _default) {
-        if (this.model1 == null) {
-            this.model1 = new ModelVoidFortressArmor(1.0F);
-        }
-        if (this.model2 == null) {
-            this.model2 = new ModelVoidFortressArmor(0.5F);
-        }
-        this.model = CustomArmorHelper.getCustomArmorModel(entityLiving, itemStack, armorSlot, this.model, this.model1, this.model2);
-        return this.model;
+        return CustomArmorHelper.getCustomArmorModel(entityLiving, itemStack, armorSlot, new ModelVoidFortressArmor(1.0F));
     }
     
     @Override

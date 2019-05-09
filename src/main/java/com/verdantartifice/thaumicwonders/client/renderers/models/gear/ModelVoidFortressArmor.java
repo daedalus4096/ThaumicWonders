@@ -409,19 +409,15 @@ public class ModelVoidFortressArmor extends ModelCustomArmor {
         this.bipedHead.addChild(this.HelmCordL);
         
         this.bipedBody.cubeList.clear();
-        if (f < 1.0F) {
-            this.bipedBody.addChild(this.MBelt);
-            this.bipedBody.addChild(this.MBeltL);
-            this.bipedBody.addChild(this.MBeltR);
-        }
-        else {
-            this.bipedBody.addChild(this.Chestplate);
-            this.bipedBody.addChild(this.Scroll);
-            this.bipedBody.addChild(this.Backplate);
-            this.bipedBody.addChild(this.Book);
-            this.bipedBody.addChild(this.ChestCordR);
-            this.bipedBody.addChild(this.ChestCordL);
-        }
+        this.bipedBody.addChild(this.MBelt);
+        this.bipedBody.addChild(this.MBeltL);
+        this.bipedBody.addChild(this.MBeltR);
+        this.bipedBody.addChild(this.Chestplate);
+        this.bipedBody.addChild(this.Scroll);
+        this.bipedBody.addChild(this.Backplate);
+        this.bipedBody.addChild(this.Book);
+        this.bipedBody.addChild(this.ChestCordR);
+        this.bipedBody.addChild(this.ChestCordL);
         
         this.bipedRightArm.cubeList.clear();
         this.bipedRightArm.addChild(this.ShoulderR);
@@ -501,9 +497,9 @@ public class ModelVoidFortressArmor extends ModelCustomArmor {
     }
 
     @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-        this.checkSet(entity);
-        int set = HAS_SET.getOrDefault(Integer.valueOf(entity.getEntityId()), Integer.valueOf(-1)).intValue();
+    public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
+        this.checkSet(entityIn);
+        int set = HAS_SET.getOrDefault(Integer.valueOf(entityIn.getEntityId()), Integer.valueOf(-1)).intValue();
         
         this.Book.isHidden = (set < 2);
         this.SideHornR1.isHidden = (set < 2);
@@ -540,36 +536,32 @@ public class ModelVoidFortressArmor extends ModelCustomArmor {
         this.ArmBladeL1.isHidden = (set < 3);
         this.ArmBladeL2.isHidden = (set < 3);
         
-        this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+        this.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entityIn);
+        GL11.glPushMatrix();
         if (this.isChild) {
-            float f6 = 2.0F;
-            GL11.glPushMatrix();
-            GL11.glScalef(1.5F / f6, 1.5F / f6, 1.5F / f6);
-            GL11.glTranslatef(0.0F, 16.0F * f5, 0.0F);
-            this.bipedHead.render(f5);
+            GL11.glScalef(0.75F, 0.75F, 0.75F);
+            GL11.glTranslatef(0.0F, 16.0F * scale, 0.0F);
+            this.bipedHead.render(scale);
             GL11.glPopMatrix();
             GL11.glPushMatrix();
-            GL11.glScalef(1.0F / f6, 1.0F / f6, 1.0F / f6);
-            GL11.glTranslatef(0.0F, 24.0F * f5, 0.0F);
-            this.bipedBody.render(f5);
-            this.bipedRightArm.render(f5);
-            this.bipedLeftArm.render(f5);
-            this.bipedRightLeg.render(f5);
-            this.bipedLeftLeg.render(f5);
-            this.bipedHeadwear.render(f5);
-            GL11.glPopMatrix();
+            GL11.glScalef(0.5F, 0.5F, 0.5F);
+            GL11.glTranslatef(0.0F, 24.0F * scale, 0.0F);
+            this.bipedBody.render(scale);
+            this.bipedRightArm.render(scale);
+            this.bipedLeftArm.render(scale);
+            this.bipedRightLeg.render(scale);
+            this.bipedLeftLeg.render(scale);
+            this.bipedHeadwear.render(scale);
         } else {
-            GL11.glPushMatrix();
-            GL11.glScalef(1.01F, 1.01F, 1.01F);
-            this.bipedHead.render(f5);
-            GL11.glPopMatrix();
-            this.bipedBody.render(f5);
-            this.bipedRightArm.render(f5);
-            this.bipedLeftArm.render(f5);
-            this.bipedRightLeg.render(f5);
-            this.bipedLeftLeg.render(f5);
-            this.bipedHeadwear.render(f5);
+            this.bipedHead.render(scale);
+            this.bipedBody.render(scale);
+            this.bipedRightArm.render(scale);
+            this.bipedLeftArm.render(scale);
+            this.bipedRightLeg.render(scale);
+            this.bipedLeftLeg.render(scale);
+            this.bipedHeadwear.render(scale);
         }
+        GL11.glPopMatrix();
     }
 
     /**
