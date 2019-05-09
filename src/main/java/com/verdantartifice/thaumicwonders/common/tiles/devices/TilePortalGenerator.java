@@ -1,6 +1,7 @@
 package com.verdantartifice.thaumicwonders.common.tiles.devices;
 
 import java.awt.Color;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,6 +64,8 @@ public class TilePortalGenerator extends TileTW implements ITickable, IGogglesDi
         }
     }
 
+    protected static DecimalFormat decFormatter = new DecimalFormat("#######.##");
+    
     protected static List<RandomItemChooser.Item> instabilityEvents = new ArrayList<RandomItemChooser.Item>();
     protected static List<RandomItemChooser.Item> spawnEvents = new ArrayList<RandomItemChooser.Item>();
     protected static List<RandomItemChooser.Item> subvertEvents = new ArrayList<RandomItemChooser.Item>();
@@ -90,6 +93,8 @@ public class TilePortalGenerator extends TileTW implements ITickable, IGogglesDi
     protected int sparkCounter = 0;
     protected int ticksExisted = 0;
     protected boolean lastEnabled = true;
+    protected float lastStabilityIncrease = 0.0F;
+    protected float lastStabilityDecrease = 0.0F;
     
     @Override
     protected void readFromTileNBT(NBTTagCompound compound) {
@@ -98,6 +103,8 @@ public class TilePortalGenerator extends TileTW implements ITickable, IGogglesDi
         this.linkZ = compound.getInteger("linkZ");
         this.linkDim = compound.getInteger("linkDim");
         this.stability = compound.getFloat("stability");
+        this.lastStabilityIncrease = compound.getFloat("lastStabilityIncrease");
+        this.lastStabilityDecrease = compound.getFloat("lastStabilityDecrease");
     }
     
     @Override
@@ -107,6 +114,8 @@ public class TilePortalGenerator extends TileTW implements ITickable, IGogglesDi
         compound.setInteger("linkZ", this.linkZ);
         compound.setInteger("linkDim", this.linkDim);
         compound.setFloat("stability", this.stability);
+        compound.setFloat("lastStabilityIncrease", this.lastStabilityIncrease);
+        compound.setFloat("lastStabilityDecrease", this.lastStabilityDecrease);
         return super.writeToTileNBT(compound);
     }
     
@@ -222,26 +231,32 @@ public class TilePortalGenerator extends TileTW implements ITickable, IGogglesDi
             // Increase/decrease stability
             float lastStability = this.stability;
             boolean active = this.isPortalActive();
-            if (active && this.ticksExisted % 20 == 0) {
-                for (BlockPos.MutableBlockPos mbp : BlockPos.getAllInBoxMutable(this.pos.add(-8, -8, -8), this.pos.add(8, 8, 8))) {
-                    TileEntity tile = this.world.getTileEntity(mbp);
-                    if (tile instanceof TileStabilizer) {
-                        TileStabilizer stabilizer = (TileStabilizer)tile;
-                        if (this.getStabilityLevel() != Stability.VERY_STABLE && stabilizer.mitigate(1)) {
-                            this.setStability(this.stability + 0.125F);
-                            stabilizer.markDirty();
-                            stabilizer.syncTile(false);
-                            if (stabilizer.getEnergy() == 0) {
-                                break;
+            if (this.ticksExisted % 120 == 0) {
+                this.lastStabilityIncrease = 0.0F;
+                this.lastStabilityDecrease = 0.0F;
+
+                if (active) {
+                    for (BlockPos.MutableBlockPos mbp : BlockPos.getAllInBoxMutable(this.pos.add(-8, -8, -8), this.pos.add(8, 8, 8))) {
+                        TileEntity tile = this.world.getTileEntity(mbp);
+                        if (tile instanceof TileStabilizer) {
+                            TileStabilizer stabilizer = (TileStabilizer)tile;
+                            if (this.getStabilityLevel() != Stability.VERY_STABLE && stabilizer.mitigate(1)) {
+                                this.lastStabilityIncrease += 0.75F;
+                                this.setStability(this.stability + 0.75F);
+                                stabilizer.markDirty();
+                                stabilizer.syncTile(false);
+                                if (stabilizer.getEnergy() == 0) {
+                                    break;
+                                }
                             }
                         }
                     }
-                }
-            }
-            if (active && this.ticksExisted % 120 == 0) {
-                List<EntityVoidPortal> portals = this.world.getEntitiesWithinAABB(EntityVoidPortal.class, new AxisAlignedBB(this.pos.up()).grow(16.0D));
-                if (portals.size() > 0) {
-                    this.setStability(this.stability - (0.04F * portals.size() * portals.size()));
+
+                    List<EntityVoidPortal> portals = this.world.getEntitiesWithinAABB(EntityVoidPortal.class, new AxisAlignedBB(this.pos.up()).grow(16.0D));
+                    if (portals.size() > 0) {
+                        this.lastStabilityDecrease = 0.04F * portals.size() * portals.size();
+                        this.setStability(this.stability - this.lastStabilityDecrease);
+                    }
                 }
             }
             if (this.stability != lastStability) {
@@ -401,7 +416,9 @@ public class TilePortalGenerator extends TileTW implements ITickable, IGogglesDi
     @SideOnly(Side.CLIENT)
     public String[] getIGogglesText() {
         return new String[] {
-            TextFormatting.BOLD + I18n.format("stability." + this.getStabilityLevel().name())
+            TextFormatting.BOLD + I18n.format("stability." + this.getStabilityLevel().name()),
+            TextFormatting.GOLD + "" + TextFormatting.ITALIC + decFormatter.format(this.lastStabilityIncrease) + " " + I18n.format("stability.gain"),
+            TextFormatting.RED + "" + TextFormatting.ITALIC + decFormatter.format(this.lastStabilityDecrease) + " " + I18n.format("stability.loss")
         };
     }
 }

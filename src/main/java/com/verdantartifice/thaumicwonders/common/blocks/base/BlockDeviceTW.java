@@ -78,7 +78,11 @@ public class BlockDeviceTW<T extends TileEntity> extends BlockTileTW<T> {
         IBlockState state = this.getDefaultState();
         try {
             if (this instanceof IBlockFacingHorizontal) {
-                state = state.withProperty(IBlockFacingHorizontal.FACING, BlockStateUtils.getFacing(meta));
+                EnumFacing facing = BlockStateUtils.getFacing(meta);
+                if (facing == EnumFacing.DOWN || facing == EnumFacing.UP) {
+                    facing = EnumFacing.NORTH;
+                }
+                state = state.withProperty(IBlockFacingHorizontal.FACING, facing);
             } else if (this instanceof IBlockFacing) {
                 state = state.withProperty(IBlockFacing.FACING, BlockStateUtils.getFacing(meta));
             }
