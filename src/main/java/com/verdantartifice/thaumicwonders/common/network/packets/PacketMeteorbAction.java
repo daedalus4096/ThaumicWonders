@@ -1,5 +1,8 @@
 package com.verdantartifice.thaumicwonders.common.network.packets;
 
+import java.awt.Color;
+
+import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.network.PacketHandler;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileMeteorb;
 
@@ -14,6 +17,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import thaumcraft.api.aspects.Aspect;
+import thaumcraft.client.fx.FXDispatcher;
 
 public class PacketMeteorbAction implements IMessage {
     private int targetWeather;
@@ -56,6 +60,7 @@ public class PacketMeteorbAction implements IMessage {
             if (tileEntity != null && tileEntity instanceof TileMeteorb) {
                 TileMeteorb tile = (TileMeteorb)tileEntity;
                 int duration = (300 + world.rand.nextInt(600)) * 20;
+                ThaumicWonders.LOGGER.info("Precipitation height: {}, actual height: {}", world.getPrecipitationHeight(message.tilePos).getY(), world.getActualHeight());
                 if (message.targetWeather == 0 && tile.doesContainerContainAmount(Aspect.AIR, TileMeteorb.MIN_FUEL)) {
                     tile.takeFromContainer(Aspect.AIR, TileMeteorb.MIN_FUEL);
                     worldinfo.setCleanWeatherTime(duration);
@@ -64,6 +69,7 @@ public class PacketMeteorbAction implements IMessage {
                     worldinfo.setRaining(false);
                     worldinfo.setThundering(false);
                     PacketHandler.INSTANCE.sendToDimension(new PacketLocalizedMessage("event.meteorb.used"), world.provider.getDimension());
+                    this.drawBeam(world, message.tilePos, Aspect.AIR);
                 } else if (message.targetWeather == 1 && tile.doesContainerContainAmount(Aspect.WATER, TileMeteorb.MIN_FUEL)) {
                     tile.takeFromContainer(Aspect.WATER, TileMeteorb.MIN_FUEL);
                     worldinfo.setCleanWeatherTime(0);
@@ -72,6 +78,7 @@ public class PacketMeteorbAction implements IMessage {
                     worldinfo.setRaining(true);
                     worldinfo.setThundering(false);
                     PacketHandler.INSTANCE.sendToDimension(new PacketLocalizedMessage("event.meteorb.used"), world.provider.getDimension());
+                    this.drawBeam(world, message.tilePos, Aspect.WATER);
                 } else if (message.targetWeather == 2 && tile.doesContainerContainAmount(Aspect.ENERGY, TileMeteorb.MIN_FUEL)) {
                     tile.takeFromContainer(Aspect.ENERGY, TileMeteorb.MIN_FUEL);
                     worldinfo.setCleanWeatherTime(0);
@@ -80,10 +87,27 @@ public class PacketMeteorbAction implements IMessage {
                     worldinfo.setRaining(true);
                     worldinfo.setThundering(true);
                     PacketHandler.INSTANCE.sendToDimension(new PacketLocalizedMessage("event.meteorb.used"), world.provider.getDimension());
+                    this.drawBeam(world, message.tilePos, Aspect.ENERGY);
                 } else {
                     PacketHandler.INSTANCE.sendTo(new PacketLocalizedMessage("event.meteorb.unfueled"), entityPlayer);
                 }
             }
+        }
+        
+        private void drawBeam(World world, BlockPos pos, Aspect aspect) {
+            BlockPos targetPos = new BlockPos(pos.getX(), world.getActualHeight(), pos.getZ());
+            Color color = new Color(aspect.getColor());
+            float r = color.getRed() / 255.0F;
+            float g = color.getGreen() / 255.0F;
+            float b = color.getBlue() / 255.0F;
+            FXDispatcher.INSTANCE.arcBolt(
+                    pos.getX() + 0.5D, 
+                    pos.getY() + 0.5D, 
+                    pos.getZ() + 0.5D, 
+                    targetPos.getX() + 0.5D, 
+                    targetPos.getY() - 0.5D, 
+                    targetPos.getZ() + 0.5D, 
+                    r, g, b, 0.6F);
         }
     }
 }
