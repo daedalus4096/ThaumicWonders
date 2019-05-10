@@ -161,6 +161,9 @@ event.void_portal.no_world=This portal's linked dimension does not exist.
 event.void_portal.invader=Something emerges from an unstable portal.
 event.void_portal.subvert.lesser_crimson=The Crimson Cult has subverted an unstable portal!
 event.void_portal.subvert.flux_rift=An unstable portal has collapsed into a flux rift!
+event.meteorb.used=The weather suddenly shifts.
+event.meteorb.offworld=The Meteorb doesn't seem to function here.
+event.meteorb.unfueled=The Meteorb needs more essentia for that.
 
 // Misc
 itemGroup.thaumicwonders=Thaumic Wonders

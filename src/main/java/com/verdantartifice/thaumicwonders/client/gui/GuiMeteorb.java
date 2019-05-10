@@ -5,6 +5,8 @@ import java.io.IOException;
 import org.lwjgl.opengl.GL11;
 
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
+import com.verdantartifice.thaumicwonders.common.network.PacketHandler;
+import com.verdantartifice.thaumicwonders.common.network.packets.PacketMeteorbAction;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
@@ -12,6 +14,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -19,8 +22,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GuiMeteorb extends GuiScreen {
     private static final ResourceLocation BG_TEXTURE = new ResourceLocation(ThaumicWonders.MODID, "textures/gui/gui_meteorb_background.png");
 
-    public GuiMeteorb() {
+    protected BlockPos pos;
+    
+    public GuiMeteorb(BlockPos pos) {
         super();
+        this.pos = pos;
     }
     
     @Override
@@ -56,8 +62,7 @@ public class GuiMeteorb extends GuiScreen {
     
     @Override
     protected void actionPerformed(GuiButton button) throws IOException {
-        // TODO send packet to server
-        ThaumicWonders.LOGGER.info("Pressed Meteorb button {}", button.id);
+        PacketHandler.INSTANCE.sendToServer(new PacketMeteorbAction(button.id, this.pos));
         this.mc.player.closeScreen();
     }
     

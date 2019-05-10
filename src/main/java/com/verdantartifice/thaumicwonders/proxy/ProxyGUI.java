@@ -19,7 +19,7 @@ public class ProxyGUI {
         case GuiIds.CATALYZATION_CHAMBER:
             return new GuiCatalyzationChamber(player.inventory, (TileCatalyzationChamber)world.getTileEntity(new BlockPos(x, y, z)));
         case GuiIds.METEORB:
-            return new GuiMeteorb();
+            return new GuiMeteorb(new BlockPos(x, y, z));
         default:
             return null;
         }

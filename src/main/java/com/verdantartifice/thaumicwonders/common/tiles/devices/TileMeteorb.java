@@ -17,6 +17,7 @@ import thaumcraft.common.blocks.IBlockFacingHorizontal;
 
 public class TileMeteorb extends TileTW implements IAspectContainer, IEssentiaTransport, ITickable {
     private static final int CAPACITY = 50;
+    public static final int MIN_FUEL = 50;
 
     protected int airEssentia = 0;
     protected int waterEssentia = 0;
