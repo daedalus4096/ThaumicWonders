@@ -1,0 +1,679 @@
+{
+    "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
+    "textures": {
+        "particle": "thaumcraft:blocks/base_stone",
+        "meteorb_n": "thaumicwonders:blocks/meteorb_n",
+        "base_stone": "thaumcraft:blocks/base_stone",
+        "meteorb_w": "thaumicwonders:blocks/meteorb_w",
+        "meteorb_e": "thaumicwonders:blocks/meteorb_e",
+        "meteorb_s": "thaumicwonders:blocks/meteorb_s"
+    },
+    "display": {
+        "gui": {
+            "rotation": [ 30, 45, 0 ],
+            "translation": [ 0, 0, 0 ],
+            "scale": [ 0.625, 0.625, 0.625 ]
+        },
+        "ground": {
+            "rotation": [ 0, 0, 0 ],
+            "translation": [ 0, 3, 0 ],
+            "scale": [ 0.25, 0.25, 0.25 ]
+        },
+        "fixed": {
+            "rotation": [ 0, 180, 0 ],
+            "translation": [ 0, 0, 0 ],
+            "scale": [ 1, 1, 1 ]
+        },
+        "head": {
+            "rotation": [ 0, 180, 0 ],
+            "translation": [ 0, 0, 0 ],
+            "scale": [ 1, 1, 1 ]
+        },
+        "firstperson_righthand": {
+            "rotation": [ 0, 315, 0 ],
+            "translation": [ 0, 2.5, 0 ],
+            "scale": [ 0.4, 0.4, 0.4 ]
+        },
+        "thirdperson_righthand": {
+            "rotation": [ 75, 315, 0 ],
+            "translation": [ 0, 2.5, 0 ],
+            "scale": [ 0.375, 0.375, 0.375 ]
+        }
+    },
+    "elements": [
+        {
+            "name": "OrbY1",
+            "from": [ 6, 0, 6 ], 
+            "to": [ 10, 16, 10 ], 
+            "faces": {
+                "north": { "texture": "#meteorb_n", "uv": [ 6, 0, 10, 16 ] },
+                "east": { "texture": "#meteorb_e", "uv": [ 6, 0, 10, 16 ] },
+                "south": { "texture": "#meteorb_s", "uv": [ 6, 0, 10, 16 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 6, 0, 10, 16 ] },
+                "up": { "texture": "#base_stone", "uv": [ 6, 6, 10, 10 ] },
+                "down": { "texture": "#base_stone", "uv": [ 6, 6, 10, 10 ] }
+            }
+        },
+        {
+            "name": "OrbX1",
+            "from": [ 0, 6, 6 ], 
+            "to": [ 16, 10, 10 ], 
+            "faces": {
+                "north": { "texture": "#meteorb_n", "uv": [ 0, 6, 16, 10 ] },
+                "east": { "texture": "#meteorb_e", "uv": [ 6, 6, 10, 10 ] },
+                "south": { "texture": "#meteorb_s", "uv": [ 0, 6, 16, 10 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 6, 6, 10, 10 ] },
+                "up": { "texture": "#base_stone", "uv": [ 0, 6, 16, 10 ] },
+                "down": { "texture": "#base_stone", "uv": [ 0, 6, 16, 10 ] }
+            }
+        },
+        {
+            "name": "OrbZ1",
+            "from": [ 6, 6, 0 ], 
+            "to": [ 10, 10, 16 ], 
+            "faces": {
+                "north": { "texture": "#meteorb_n", "uv": [ 6, 6, 10, 10 ] },
+                "east": { "texture": "#meteorb_e", "uv": [ 0, 6, 16, 10 ] },
+                "south": { "texture": "#meteorb_s", "uv": [ 6, 6, 10, 10 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 0, 6, 16, 10 ] },
+                "up": { "texture": "#base_stone", "uv": [ 6, 0, 10, 16 ] },
+                "down": { "texture": "#base_stone", "uv": [ 6, 0, 10, 16 ] }
+            }
+        },
+        {
+            "name": "OrbY2",
+            "from": [ 4, 1, 5 ], 
+            "to": [ 12, 15, 11 ], 
+            "faces": {
+                "north": { "texture": "#meteorb_n", "uv": [ 4, 1, 12, 15 ] },
+                "east": { "texture": "#meteorb_e", "uv": [ 5, 1, 11, 15 ] },
+                "south": { "texture": "#meteorb_s", "uv": [ 4, 1, 12, 15 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 5, 1, 11, 15 ] },
+                "up": { "texture": "#base_stone", "uv": [ 4, 5, 12, 11 ] },
+                "down": { "texture": "#base_stone", "uv": [ 4, 5, 12, 11 ] }
+            }
+        },
+        {
+            "name": "OrbX2",
+            "from": [ 1, 5, 4 ], 
+            "to": [ 15, 11, 12 ], 
+            "faces": {
+                "north": { "texture": "#meteorb_n", "uv": [ 1, 5, 15, 11 ] },
+                "east": { "texture": "#meteorb_e", "uv": [ 4, 5, 12, 11 ] },
+                "south": { "texture": "#meteorb_s", "uv": [ 1, 5, 15, 11 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 4, 5, 12, 11 ] },
+                "up": { "texture": "#base_stone", "uv": [ 1, 4, 15, 12 ] },
+                "down": { "texture": "#base_stone", "uv": [ 1, 4, 15, 12 ] }
+            }
+        },
+        {
+            "name": "OrbZ2",
+            "from": [ 4, 5, 1 ], 
+            "to": [ 12, 11, 15 ], 
+            "faces": {
+                "north": { "texture": "#meteorb_n", "uv": [ 4, 5, 12, 11 ] },
+                "east": { "texture": "#meteorb_e", "uv": [ 1, 5, 15, 11 ] },
+                "south": { "texture": "#meteorb_s", "uv": [ 4, 5, 12, 11 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 1, 5, 15, 11 ] },
+                "up": { "texture": "#base_stone", "uv": [ 4, 1, 12, 15 ] },
+                "down": { "texture": "#base_stone", "uv": [ 4, 1, 12, 15 ] }
+            }
+        },
+        {
+            "name": "OrbY3",
+            "from": [ 3, 2, 4 ], 
+            "to": [ 13, 14, 12 ], 
+            "faces": {
+                "north": { "texture": "#meteorb_n", "uv": [ 3, 2, 13, 14 ] },
+                "east": { "texture": "#meteorb_e", "uv": [ 4, 2, 12, 14 ] },
+                "south": { "texture": "#meteorb_s", "uv": [ 3, 2, 13, 14 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 4, 2, 12, 14 ] },
+                "up": { "texture": "#base_stone", "uv": [ 3, 4, 13, 12 ] },
+                "down": { "texture": "#base_stone", "uv": [ 3, 4, 13, 12 ] }
+            }
+        },
+        {
+            "name": "OrbX3",
+            "from": [ 2, 4, 3 ], 
+            "to": [ 14, 12, 13 ], 
+            "faces": {
+                "north": { "texture": "#meteorb_n", "uv": [ 2, 4, 14, 12 ] },
+                "east": { "texture": "#meteorb_e", "uv": [ 3, 4, 13, 12 ] },
+                "south": { "texture": "#meteorb_s", "uv": [ 2, 4, 14, 12 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 3, 4, 13, 12 ] },
+                "up": { "texture": "#base_stone", "uv": [ 2, 3, 14, 13 ] },
+                "down": { "texture": "#base_stone", "uv": [ 2, 3, 14, 13 ] }
+            }
+        },
+        {
+            "name": "OrbZ3",
+            "from": [ 3, 4, 2 ], 
+            "to": [ 13, 12, 14 ], 
+            "faces": {
+                "north": { "texture": "#meteorb_n", "uv": [ 3, 4, 13, 12 ] },
+                "east": { "texture": "#meteorb_e", "uv": [ 2, 4, 14, 12 ] },
+                "south": { "texture": "#meteorb_s", "uv": [ 3, 4, 13, 12 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 2, 4, 14, 12 ] },
+                "up": { "texture": "#base_stone", "uv": [ 3, 2, 13, 14 ] },
+                "down": { "texture": "#base_stone", "uv": [ 3, 2, 13, 14 ] }
+            }
+        },
+        {
+            "name": "OrbY4",
+            "from": [ 3, 3, 3 ], 
+            "to": [ 13, 13, 13 ], 
+            "faces": {
+                "north": { "texture": "#meteorb_n", "uv": [ 3, 3, 13, 13 ] },
+                "east": { "texture": "#meteorb_e", "uv": [ 3, 3, 13, 13 ] },
+                "south": { "texture": "#meteorb_s", "uv": [ 3, 3, 13, 13 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 3, 3, 13, 13 ] },
+                "up": { "texture": "#base_stone", "uv": [ 3, 3, 13, 13 ] },
+                "down": { "texture": "#base_stone", "uv": [ 3, 3, 13, 13 ] }
+            }
+        },
+        {
+            "name": "OrbY1A",
+            "from": [ 7, 0, 5 ], 
+            "to": [ 9, 16, 6 ], 
+            "faces": {
+                "north": { "texture": "#meteorb_n", "uv": [ 7, 0, 9, 16 ] },
+                "east": { "texture": "#meteorb_e", "uv": [ 10, 0, 11, 16 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 5, 0, 6, 16 ] },
+                "up": { "texture": "#base_stone", "uv": [ 7, 5, 9, 6 ] },
+                "down": { "texture": "#base_stone", "uv": [ 7, 10, 9, 11 ] }
+            }
+        },
+        {
+            "name": "OrbY1B",
+            "from": [ 5, 0, 7 ], 
+            "to": [ 6, 16, 9 ], 
+            "faces": {
+                "north": { "texture": "#meteorb_n", "uv": [ 10, 0, 11, 16 ] },
+                "south": { "texture": "#meteorb_s", "uv": [ 5, 0, 6, 16 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 7, 0, 9, 16 ] },
+                "up": { "texture": "#base_stone", "uv": [ 5, 7, 6, 9 ] },
+                "down": { "texture": "#base_stone", "uv": [ 5, 7, 6, 9 ] }
+            }
+        },
+        {
+            "name": "OrbY1C",
+            "from": [ 10, 0, 7 ], 
+            "to": [ 11, 16, 9 ], 
+            "faces": {
+                "north": { "texture": "#meteorb_n", "uv": [ 5, 0, 6, 16 ] },
+                "east": { "texture": "#meteorb_e", "uv": [ 7, 0, 9, 16 ] },
+                "south": { "texture": "#meteorb_s", "uv": [ 10, 0, 11, 16 ] },
+                "up": { "texture": "#base_stone", "uv": [ 10, 7, 11, 9 ] },
+                "down": { "texture": "#base_stone", "uv": [ 10, 7, 11, 9 ] }
+            }
+        },
+        {
+            "name": "OrbY1D",
+            "from": [ 7, 0, 10 ], 
+            "to": [ 9, 16, 11 ], 
+            "faces": {
+                "east": { "texture": "#meteorb_e", "uv": [ 5, 0, 6, 16 ] },
+                "south": { "texture": "#meteorb_s", "uv": [ 7, 0, 9, 16 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 10, 0, 11, 16 ] },
+                "up": { "texture": "#base_stone", "uv": [ 7, 10, 9, 11 ] },
+                "down": { "texture": "#base_stone", "uv": [ 7, 5, 9, 6 ] }
+            }
+        },
+        {
+            "name": "OrbX1A",
+            "from": [ 0, 10, 7 ], 
+            "to": [ 16, 11, 9 ], 
+            "faces": {
+                "north": { "texture": "#meteorb_n", "uv": [ 0, 5, 16, 6 ] },
+                "east": { "texture": "#meteorb_e", "uv": [ 7, 5, 9, 6 ] },
+                "south": { "texture": "#meteorb_s", "uv": [ 0, 5, 16, 6 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 7, 5, 9, 6 ] },
+                "up": { "texture": "#base_stone", "uv": [ 0, 7, 16, 9 ] }
+            }
+        },
+        {
+            "name": "OrbX1B",
+            "from": [ 0, 7, 5 ], 
+            "to": [ 16, 9, 6 ], 
+            "faces": {
+                "north": { "texture": "#meteorb_n", "uv": [ 0, 7, 16, 9 ] },
+                "east": { "texture": "#meteorb_e", "uv": [ 10, 7, 11, 9 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 5, 7, 6, 9 ] },
+                "up": { "texture": "#base_stone", "uv": [ 0, 5, 16, 6 ] },
+                "down": { "texture": "#base_stone", "uv": [ 0, 10, 16, 11 ] }
+            }
+        },
+        {
+            "name": "OrbX1C",
+            "from": [ 0, 7, 10 ], 
+            "to": [ 16, 9, 11 ], 
+            "faces": {
+                "east": { "texture": "#meteorb_e", "uv": [ 5, 7, 6, 9 ] },
+                "south": { "texture": "#meteorb_s", "uv": [ 0, 7, 16, 9 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 10, 7, 11, 9 ] },
+                "up": { "texture": "#base_stone", "uv": [ 0, 10, 16, 11 ] },
+                "down": { "texture": "#base_stone", "uv": [ 0, 5, 16, 6 ] }
+            }
+        },
+        {
+            "name": "OrbX1D",
+            "from": [ 0, 5, 7 ], 
+            "to": [ 16, 6, 9 ], 
+            "faces": {
+                "north": { "texture": "#meteorb_n", "uv": [ 0, 10, 16, 11 ] },
+                "east": { "texture": "#meteorb_e", "uv": [ 7, 10, 9, 11 ] },
+                "south": { "texture": "#meteorb_s", "uv": [ 0, 10, 16, 11 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 7, 10, 9, 11 ] },
+                "down": { "texture": "#base_stone", "uv": [ 0, 7, 16, 9 ] }
+            }
+        },
+        {
+            "name": "OrbZ1A",
+            "from": [ 7, 10, 0 ], 
+            "to": [ 9, 11, 16 ], 
+            "faces": {
+                "north": { "texture": "#meteorb_n", "uv": [ 7, 5, 9, 6 ] },
+                "east": { "texture": "#meteorb_e", "uv": [ 0, 5, 16, 6 ] },
+                "south": { "texture": "#meteorb_s", "uv": [ 7, 5, 9, 6 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 0, 5, 16, 6 ] },
+                "up": { "texture": "#base_stone", "uv": [ 7, 0, 9, 16 ] }
+            }
+        },
+        {
+            "name": "OrbZ1B",
+            "from": [ 5, 7, 0 ], 
+            "to": [ 6, 9, 16 ], 
+            "faces": {
+                "north": { "texture": "#meteorb_n", "uv": [ 10, 7, 11, 9 ] },
+                "south": { "texture": "#meteorb_s", "uv": [ 5, 7, 6, 9 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 0, 7, 16, 9 ] },
+                "up": { "texture": "#base_stone", "uv": [ 5, 0, 6, 16 ] },
+                "down": { "texture": "#base_stone", "uv": [ 5, 0, 6, 16 ] }
+            }
+        },
+        {
+            "name": "OrbZ1C",
+            "from": [ 10, 7, 0 ], 
+            "to": [ 11, 9, 16 ], 
+            "faces": {
+                "north": { "texture": "#meteorb_n", "uv": [ 5, 7, 6, 9 ] },
+                "east": { "texture": "#meteorb_e", "uv": [ 0, 7, 16, 9 ] },
+                "south": { "texture": "#meteorb_s", "uv": [ 10, 7, 11, 9 ] },
+                "up": { "texture": "#base_stone", "uv": [ 10, 0, 11, 16 ] },
+                "down": { "texture": "#base_stone", "uv": [ 10, 0, 11, 16 ] }
+            }
+        },
+        {
+            "name": "OrbZ1D",
+            "from": [ 7, 5, 0 ], 
+            "to": [ 9, 6, 16 ], 
+            "faces": {
+                "north": { "texture": "#meteorb_n", "uv": [ 7, 10, 9, 11 ] },
+                "east": { "texture": "#meteorb_e", "uv": [ 0, 10, 16, 11 ] },
+                "south": { "texture": "#meteorb_s", "uv": [ 7, 10, 9, 11 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 0, 10, 16, 11 ] },
+                "down": { "texture": "#base_stone", "uv": [ 7, 0, 9, 16 ] }
+            }
+        },
+        {
+            "name": "OrbY2A",
+            "from": [ 5, 1, 4 ], 
+            "to": [ 11, 15, 5 ], 
+            "faces": {
+                "north": { "texture": "#meteorb_n", "uv": [ 5, 1, 11, 15 ] },
+                "east": { "texture": "#meteorb_e", "uv": [ 11, 1, 12, 15 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 4, 1, 5, 15 ] },
+                "up": { "texture": "#base_stone", "uv": [ 5, 4, 11, 5 ] },
+                "down": { "texture": "#base_stone", "uv": [ 5, 11, 11, 12 ] }
+            }
+        },
+        {
+            "name": "OrbY2B",
+            "from": [ 7, 1, 3 ], 
+            "to": [ 9, 15, 4 ], 
+            "faces": {
+                "north": { "texture": "#meteorb_n", "uv": [ 7, 1, 9, 15 ] },
+                "east": { "texture": "#meteorb_e", "uv": [ 12, 1, 13, 15 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 3, 1, 4, 15 ] },
+                "up": { "texture": "#base_stone", "uv": [ 7, 3, 9, 4 ] },
+                "down": { "texture": "#base_stone", "uv": [ 7, 12, 9, 13 ] }
+            }
+        },
+        {
+            "name": "OrbY2C",
+            "from": [ 3, 1, 7 ], 
+            "to": [ 4, 15, 9 ], 
+            "faces": {
+                "north": { "texture": "#meteorb_n", "uv": [ 12, 1, 13, 15 ] },
+                "south": { "texture": "#meteorb_s", "uv": [ 3, 1, 4, 15 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 7, 1, 9, 15 ] },
+                "up": { "texture": "#base_stone", "uv": [ 3, 7, 4, 9 ] },
+                "down": { "texture": "#base_stone", "uv": [ 3, 7, 4, 9 ] }
+            }
+        },
+        {
+            "name": "OrbY2D",
+            "from": [ 12, 1, 7 ], 
+            "to": [ 13, 15, 9 ], 
+            "faces": {
+                "north": { "texture": "#meteorb_n", "uv": [ 3, 1, 4, 15 ] },
+                "east": { "texture": "#meteorb_e", "uv": [ 7, 1, 9, 15 ] },
+                "south": { "texture": "#meteorb_s", "uv": [ 12, 1, 13, 15 ] },
+                "up": { "texture": "#base_stone", "uv": [ 12, 7, 13, 9 ] },
+                "down": { "texture": "#base_stone", "uv": [ 12, 7, 13, 9 ] }
+            }
+        },
+        {
+            "name": "OrbY2E",
+            "from": [ 5, 1, 11 ], 
+            "to": [ 11, 15, 12 ], 
+            "faces": {
+                "east": { "texture": "#meteorb_e", "uv": [ 4, 1, 5, 15 ] },
+                "south": { "texture": "#meteorb_s", "uv": [ 5, 1, 11, 15 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 11, 1, 12, 15 ] },
+                "up": { "texture": "#base_stone", "uv": [ 5, 11, 11, 12 ] },
+                "down": { "texture": "#base_stone", "uv": [ 5, 4, 11, 5 ] }
+            }
+        },
+        {
+            "name": "OrbY2F",
+            "from": [ 7, 1, 12 ], 
+            "to": [ 9, 15, 13 ], 
+            "faces": {
+                "east": { "texture": "#meteorb_e", "uv": [ 3, 1, 4, 15 ] },
+                "south": { "texture": "#meteorb_s", "uv": [ 7, 1, 9, 15 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 12, 1, 13, 15 ] },
+                "up": { "texture": "#base_stone", "uv": [ 7, 12, 9, 13 ] },
+                "down": { "texture": "#base_stone", "uv": [ 7, 3, 9, 4 ] }
+            }
+        },
+        {
+            "name": "OrbX2A",
+            "from": [ 1, 11, 5 ], 
+            "to": [ 15, 12, 11 ], 
+            "faces": {
+                "north": { "texture": "#meteorb_n", "uv": [ 1, 4, 15, 5 ] },
+                "east": { "texture": "#meteorb_e", "uv": [ 5, 4, 11, 5 ] },
+                "south": { "texture": "#meteorb_s", "uv": [ 1, 4, 15, 5 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 5, 4, 11, 5 ] },
+                "up": { "texture": "#base_stone", "uv": [ 1, 5, 15, 11 ] }
+            }
+        },
+        {
+            "name": "OrbX2B",
+            "from": [ 1, 12, 7 ], 
+            "to": [ 15, 13, 9 ], 
+            "faces": {
+                "north": { "texture": "#meteorb_n", "uv": [ 1, 3, 15, 4 ] },
+                "east": { "texture": "#meteorb_e", "uv": [ 7, 3, 9, 4 ] },
+                "south": { "texture": "#meteorb_s", "uv": [ 1, 3, 15, 4 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 7, 3, 9, 4 ] },
+                "up": { "texture": "#base_stone", "uv": [ 1, 7, 15, 9 ] }
+            }
+        },
+        {
+            "name": "OrbX2C",
+            "from": [ 1, 7, 3 ], 
+            "to": [ 15, 9, 4 ], 
+            "faces": {
+                "north": { "texture": "#meteorb_n", "uv": [ 1, 7, 15, 9 ] },
+                "east": { "texture": "#meteorb_e", "uv": [ 12, 7, 13, 9 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 3, 7, 4, 9 ] },
+                "up": { "texture": "#base_stone", "uv": [ 1, 3, 15, 4 ] },
+                "down": { "texture": "#base_stone", "uv": [ 1, 12, 15, 13 ] }
+            }
+        },
+        {
+            "name": "OrbX2D",
+            "from": [ 1, 7, 12 ], 
+            "to": [ 15, 9, 13 ], 
+            "faces": {
+                "east": { "texture": "#meteorb_e", "uv": [ 3, 7, 4, 9 ] },
+                "south": { "texture": "#meteorb_s", "uv": [ 1, 7, 15, 9 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 12, 7, 13, 9 ] },
+                "up": { "texture": "#base_stone", "uv": [ 1, 12, 15, 13 ] },
+                "down": { "texture": "#base_stone", "uv": [ 1, 3, 15, 4 ] }
+            }
+        },
+        {
+            "name": "OrbX2E",
+            "from": [ 1, 4, 5 ], 
+            "to": [ 15, 5, 11 ], 
+            "faces": {
+                "north": { "texture": "#meteorb_n", "uv": [ 1, 11, 15, 12 ] },
+                "east": { "texture": "#meteorb_e", "uv": [ 5, 11, 11, 12 ] },
+                "south": { "texture": "#meteorb_s", "uv": [ 1, 11, 15, 12 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 5, 11, 11, 12 ] },
+                "down": { "texture": "#base_stone", "uv": [ 1, 5, 15, 11 ] }
+            }
+        },
+        {
+            "name": "OrbX2F",
+            "from": [ 1, 3, 7 ], 
+            "to": [ 15, 4, 9 ], 
+            "faces": {
+                "north": { "texture": "#meteorb_n", "uv": [ 1, 12, 15, 13 ] },
+                "east": { "texture": "#meteorb_e", "uv": [ 7, 12, 9, 13 ] },
+                "south": { "texture": "#meteorb_s", "uv": [ 1, 12, 15, 13 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 7, 12, 9, 13 ] },
+                "down": { "texture": "#base_stone", "uv": [ 1, 7, 15, 9 ] }
+            }
+        },
+        {
+            "name": "OrbZ2A",
+            "from": [ 5, 11, 1 ], 
+            "to": [ 11, 12, 15 ], 
+            "faces": {
+                "north": { "texture": "#meteorb_n", "uv": [ 5, 4, 11, 5 ] },
+                "east": { "texture": "#meteorb_e", "uv": [ 1, 4, 15, 5 ] },
+                "south": { "texture": "#meteorb_s", "uv": [ 5, 4, 11, 5 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 1, 4, 15, 5 ] },
+                "up": { "texture": "#base_stone", "uv": [ 5, 1, 11, 15 ] }
+            }
+        },
+        {
+            "name": "OrbZ2B",
+            "from": [ 7, 12, 1 ], 
+            "to": [ 9, 13, 15 ], 
+            "faces": {
+                "north": { "texture": "#meteorb_n", "uv": [ 7, 3, 9, 4 ] },
+                "east": { "texture": "#meteorb_e", "uv": [ 1, 3, 15, 4 ] },
+                "south": { "texture": "#meteorb_s", "uv": [ 7, 3, 9, 4 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 1, 3, 15, 4 ] },
+                "up": { "texture": "#base_stone", "uv": [ 7, 1, 9, 15 ] }
+            }
+        },
+        {
+            "name": "OrbZ2C",
+            "from": [ 3, 7, 1 ], 
+            "to": [ 4, 9, 15 ], 
+            "faces": {
+                "north": { "texture": "#meteorb_n", "uv": [ 12, 7, 13, 9 ] },
+                "south": { "texture": "#meteorb_s", "uv": [ 3, 7, 4, 9 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 1, 7, 15, 9 ] },
+                "up": { "texture": "#base_stone", "uv": [ 3, 1, 4, 15 ] },
+                "down": { "texture": "#base_stone", "uv": [ 3, 1, 4, 15 ] }
+            }
+        },
+        {
+            "name": "OrbZ2D",
+            "from": [ 12, 7, 1 ], 
+            "to": [ 13, 9, 15 ], 
+            "faces": {
+                "north": { "texture": "#meteorb_n", "uv": [ 3, 7, 4, 9 ] },
+                "east": { "texture": "#meteorb_e", "uv": [ 1, 7, 15, 9 ] },
+                "south": { "texture": "#meteorb_s", "uv": [ 12, 7, 13, 9 ] },
+                "up": { "texture": "#base_stone", "uv": [ 12, 1, 13, 15 ] },
+                "down": { "texture": "#base_stone", "uv": [ 12, 1, 13, 15 ] }
+            }
+        },
+        {
+            "name": "OrbZ2E",
+            "from": [ 5, 4, 1 ], 
+            "to": [ 11, 5, 15 ], 
+            "faces": {
+                "north": { "texture": "#meteorb_n", "uv": [ 5, 11, 11, 12 ] },
+                "east": { "texture": "#meteorb_e", "uv": [ 1, 11, 15, 12 ] },
+                "south": { "texture": "#meteorb_s", "uv": [ 5, 11, 11, 12 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 1, 11, 15, 12 ] },
+                "down": { "texture": "#base_stone", "uv": [ 5, 1, 11, 15 ] }
+            }
+        },
+        {
+            "name": "OrbZ2F",
+            "from": [ 7, 3, 1 ], 
+            "to": [ 9, 4, 15 ], 
+            "faces": {
+                "north": { "texture": "#meteorb_n", "uv": [ 7, 12, 9, 13 ] },
+                "east": { "texture": "#meteorb_e", "uv": [ 1, 12, 15, 13 ] },
+                "south": { "texture": "#meteorb_s", "uv": [ 7, 12, 9, 13 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 1, 12, 15, 13 ] },
+                "down": { "texture": "#base_stone", "uv": [ 7, 1, 9, 15 ] }
+            }
+        },
+        {
+            "name": "OrbY3A",
+            "from": [ 4, 2, 3 ], 
+            "to": [ 12, 14, 4 ], 
+            "faces": {
+                "north": { "texture": "#meteorb_n", "uv": [ 4, 2, 12, 14 ] },
+                "east": { "texture": "#meteorb_e", "uv": [ 12, 2, 13, 14 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 3, 2, 4, 14 ] },
+                "up": { "texture": "#base_stone", "uv": [ 4, 3, 12, 4 ] },
+                "down": { "texture": "#base_stone", "uv": [ 4, 12, 12, 13 ] }
+            }
+        },
+        {
+            "name": "OrbY3B",
+            "from": [ 6, 2, 2 ], 
+            "to": [ 10, 14, 3 ], 
+            "faces": {
+                "north": { "texture": "#meteorb_n", "uv": [ 6, 2, 10, 14 ] },
+                "east": { "texture": "#meteorb_e", "uv": [ 13, 2, 14, 14 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 2, 2, 3, 14 ] },
+                "up": { "texture": "#base_stone", "uv": [ 6, 2, 10, 3 ] },
+                "down": { "texture": "#base_stone", "uv": [ 6, 13, 10, 14 ] }
+            }
+        },
+        {
+            "name": "OrbY3C",
+            "from": [ 2, 2, 6 ], 
+            "to": [ 3, 14, 10 ], 
+            "faces": {
+                "north": { "texture": "#meteorb_n", "uv": [ 13, 2, 14, 14 ] },
+                "south": { "texture": "#meteorb_s", "uv": [ 2, 2, 3, 14 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 6, 2, 10, 14 ] },
+                "up": { "texture": "#base_stone", "uv": [ 2, 6, 3, 10 ] },
+                "down": { "texture": "#base_stone", "uv": [ 2, 6, 3, 10 ] }
+            }
+        },
+        {
+            "name": "OrbY3D",
+            "from": [ 13, 2, 6 ], 
+            "to": [ 14, 14, 10 ], 
+            "faces": {
+                "north": { "texture": "#meteorb_n", "uv": [ 2, 2, 3, 14 ] },
+                "east": { "texture": "#meteorb_e", "uv": [ 6, 2, 10, 14 ] },
+                "south": { "texture": "#meteorb_s", "uv": [ 13, 2, 14, 14 ] },
+                "up": { "texture": "#base_stone", "uv": [ 13, 6, 14, 10 ] },
+                "down": { "texture": "#base_stone", "uv": [ 13, 6, 14, 10 ] }
+            }
+        },
+        {
+            "name": "OrbY3E",
+            "from": [ 4, 2, 12 ], 
+            "to": [ 12, 14, 13 ], 
+            "faces": {
+                "east": { "texture": "#meteorb_e", "uv": [ 3, 2, 4, 14 ] },
+                "south": { "texture": "#meteorb_s", "uv": [ 4, 2, 12, 14 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 12, 2, 13, 14 ] },
+                "up": { "texture": "#base_stone", "uv": [ 4, 12, 12, 13 ] },
+                "down": { "texture": "#base_stone", "uv": [ 4, 3, 12, 4 ] }
+            }
+        },
+        {
+            "name": "OrbY3F",
+            "from": [ 6, 2, 13 ], 
+            "to": [ 10, 14, 14 ], 
+            "faces": {
+                "east": { "texture": "#meteorb_e", "uv": [ 2, 2, 3, 14 ] },
+                "south": { "texture": "#meteorb_s", "uv": [ 6, 2, 10, 14 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 13, 2, 14, 14 ] },
+                "up": { "texture": "#base_stone", "uv": [ 6, 13, 10, 14 ] },
+                "down": { "texture": "#base_stone", "uv": [ 6, 2, 10, 3 ] }
+            }
+        },
+        {
+            "name": "OrbX3A",
+            "from": [ 2, 12, 4 ], 
+            "to": [ 14, 13, 12 ], 
+            "faces": {
+                "north": { "texture": "#meteorb_n", "uv": [ 2, 3, 14, 4 ] },
+                "east": { "texture": "#meteorb_e", "uv": [ 4, 3, 12, 4 ] },
+                "south": { "texture": "#meteorb_s", "uv": [ 2, 3, 14, 4 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 4, 3, 12, 4 ] },
+                "up": { "texture": "#base_stone", "uv": [ 2, 4, 14, 12 ] }
+            }
+        },
+        {
+            "name": "OrbX3B",
+            "from": [ 2, 3, 4 ], 
+            "to": [ 14, 4, 12 ], 
+            "faces": {
+                "north": { "texture": "#meteorb_n", "uv": [ 2, 12, 14, 13 ] },
+                "east": { "texture": "#meteorb_e", "uv": [ 4, 12, 12, 13 ] },
+                "south": { "texture": "#meteorb_s", "uv": [ 2, 12, 14, 13 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 4, 12, 12, 13 ] },
+                "down": { "texture": "#base_stone", "uv": [ 2, 4, 14, 12 ] }
+            }
+        },
+        {
+            "name": "OrbZ3A",
+            "from": [ 4, 12, 2 ], 
+            "to": [ 12, 13, 14 ], 
+            "faces": {
+                "north": { "texture": "#meteorb_n", "uv": [ 4, 3, 12, 4 ] },
+                "east": { "texture": "#meteorb_e", "uv": [ 2, 3, 14, 4 ] },
+                "south": { "texture": "#meteorb_s", "uv": [ 4, 3, 12, 4 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 2, 3, 14, 4 ] },
+                "up": { "texture": "#base_stone", "uv": [ 4, 2, 12, 14 ] }
+            }
+        },
+        {
+            "name": "OrbZ3B",
+            "from": [ 4, 3, 2 ], 
+            "to": [ 12, 4, 14 ], 
+            "faces": {
+                "north": { "texture": "#meteorb_n", "uv": [ 4, 12, 12, 13 ] },
+                "east": { "texture": "#meteorb_e", "uv": [ 2, 12, 14, 13 ] },
+                "south": { "texture": "#meteorb_s", "uv": [ 4, 12, 12, 13 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 2, 12, 14, 13 ] },
+                "down": { "texture": "#base_stone", "uv": [ 4, 2, 12, 14 ] }
+            }
+        },
+        {
+            "name": "OrbZ3C",
+            "from": [ 2, 6, 2 ], 
+            "to": [ 3, 10, 14 ], 
+            "faces": {
+                "north": { "texture": "#meteorb_n", "uv": [ 13, 6, 14, 10 ] },
+                "south": { "texture": "#meteorb_s", "uv": [ 2, 6, 3, 10 ] },
+                "west": { "texture": "#meteorb_w", "uv": [ 2, 6, 14, 10 ] },
+                "up": { "texture": "#base_stone", "uv": [ 2, 2, 3, 14 ] },
+                "down": { "texture": "#base_stone", "uv": [ 2, 2, 3, 14 ] }
+            }
+        },
+        {
+            "name": "OrbZ3D",
+            "from": [ 13, 6, 2 ], 
+            "to": [ 14, 10, 14 ], 
+            "faces": {
+                "north": { "texture": "#meteorb_n", "uv": [ 2, 6, 3, 10 ] },
+                "east": { "texture": "#meteorb_e", "uv": [ 2, 6, 14, 10 ] },
+                "south": { "texture": "#meteorb_s", "uv": [ 13, 6, 14, 10 ] },
+                "up": { "texture": "#base_stone", "uv": [ 13, 2, 14, 14 ] },
+                "down": { "texture": "#base_stone", "uv": [ 13, 2, 14, 14 ] }
+            }
+        }
+    ]
+}
