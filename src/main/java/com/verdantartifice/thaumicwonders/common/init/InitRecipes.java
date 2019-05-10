@@ -372,6 +372,28 @@ public class InitRecipes {
                 new ItemStack(ItemsTW.ALCHEMIST_STONE),
                 ingredients.toArray()
         ));
+        
+        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "meteorb"), new InfusionRecipe(
+                "TWOND_METEORB",
+                new ItemStack(BlocksTW.METEORB),
+                6,
+                new AspectList().add(Aspect.AIR, 100).add(Aspect.WATER, 100).add(Aspect.ENERGY, 100).add(Aspect.ELDRITCH, 50),
+                new ItemStack(Items.ENDER_PEARL),
+                new Object[] {
+                        new ItemStack(BlocksTC.stoneArcane),
+                        new ItemStack(BlocksTC.slabArcaneStone),
+                        new ItemStack(BlocksTC.tube),
+                        new ItemStack(BlocksTC.stoneArcane),
+                        new ItemStack(BlocksTC.slabArcaneStone),
+                        new ItemStack(BlocksTC.tube),
+                        new ItemStack(BlocksTC.stoneArcane),
+                        new ItemStack(BlocksTC.slabArcaneStone),
+                        new ItemStack(BlocksTC.tube),
+                        new ItemStack(BlocksTC.stoneArcane),
+                        new ItemStack(BlocksTC.slabArcaneStone),
+                        new ItemStack(Blocks.STONE_BUTTON)
+                }
+        ));
     }
     
     private static void initSmelting() {
