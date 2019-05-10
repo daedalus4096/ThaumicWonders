@@ -373,6 +373,28 @@ public class InitRecipes {
                 ingredients.toArray()
         ));
         
+        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "meteorb"), new InfusionRecipe(
+                "TWOND_METEORB",
+                new ItemStack(BlocksTW.METEORB),
+                6,
+                new AspectList().add(Aspect.AIR, 100).add(Aspect.WATER, 100).add(Aspect.ENERGY, 100).add(Aspect.ELDRITCH, 50),
+                new ItemStack(Items.ENDER_PEARL),
+                new Object[] {
+                        new ItemStack(BlocksTC.stoneArcane),
+                        new ItemStack(BlocksTC.slabArcaneStone),
+                        new ItemStack(BlocksTC.tube),
+                        new ItemStack(BlocksTC.stoneArcane),
+                        new ItemStack(BlocksTC.slabArcaneStone),
+                        new ItemStack(BlocksTC.tube),
+                        new ItemStack(BlocksTC.stoneArcane),
+                        new ItemStack(BlocksTC.slabArcaneStone),
+                        new ItemStack(BlocksTC.tube),
+                        new ItemStack(BlocksTC.stoneArcane),
+                        new ItemStack(BlocksTC.slabArcaneStone),
+                        new ItemStack(Blocks.STONE_BUTTON)
+                }
+        ));
+
         ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "void_fortress_helm"), new InfusionRecipe(
                 "TWOND_VOID_FORTRESS_ARMOR",
                 new ItemStack(ItemsTW.VOID_FORTRESS_HELM),

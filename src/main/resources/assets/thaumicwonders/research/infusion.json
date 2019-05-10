@@ -68,6 +68,29 @@
                 }
             ],
             "addenda": []
+        },
+        {
+            "key": "TWOND_METEORB",
+            "name": "thaumicwonders.research.meteorb.title",
+            "icons": ["thaumicwonders:meteorb"],
+            "category": "THAUMIC_WONDERS",
+            "parents": ["TWOND_TIMEWINDER"],
+            "siblings": [],
+            "meta": [],
+            "location": [2, 6],
+            "reward_item": [],
+            "reward_knowledge": [],
+            "stages": [
+                {
+                    "text": "thaumicwonders.research.meteorb.text.stage.1",
+                    "required_knowledge":["THEORY;INFUSION;1","THEORY;AUROMANCY;1","OBSERVATION;ELDRITCH;1"]
+                },
+                {
+                    "text": "thaumicwonders.research.meteorb.text.stage.2", 
+                    "recipes": ["thaumicwonders:meteorb"]
+                }
+            ],
+            "addenda": []
         }
     ]
 }

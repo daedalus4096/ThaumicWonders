@@ -15,6 +15,7 @@ tile.thaumicwonders.catalyzation_chamber.name=Catalyzation Chamber
 tile.thaumicwonders.hexamite.name=Hexamite
 tile.thaumicwonders.flux_capacitor.name=Flux Capacitor
 tile.thaumicwonders.flux_capacitor.tooltip.flux=Flux: %1$d
+tile.thaumicwonders.meteorb.name=Meteorb
 
 // Misc Tiles
 tile.thaumicwonders.fluid_quicksilver.name=Quicksilver
@@ -125,6 +126,10 @@ thaumicwonders.research.alienist_stone.title=Eldritch Metal Amplification
 thaumicwonders.research.alienist_stone.text.stage.1=With the secrets of the eldritch at my disposal, I'm confident that I can eke out more yield from the Catalyzation Chamber.  The only question is how.
 thaumicwonders.research.alienist_stone.text.stage.2=Is there anything these miraculous Primordial Pearls can't do?  By infusing an Alchemist's Stone with the essence of a pearl and some native mineral clusters, I can increase its power.<BR>The resulting catalyst stone produces what I call eldritch clusters, which, when smelted, yield three ingots instead of two.  I hesitate to call the resulting process "purification", particularly given the significant chance of flux each operation, but the results cannot be denied.<BR>Perhaps there are other things that I can amplify with this stone.  I should experiment and find out.
 
+thaumicwonders.research.meteorb.title=Meteorb
+thaumicwonders.research.meteorb.text.stage.1=If I can manipulate the flow of time, surely I can do the same for something as relatively mundane as the weather.  Time for some research.
+thaumicwonders.research.meteorb.text.stage.2=My studies have culminated in a design for a Meteorological Orb, or Meteorb as I call it.  It runs on essentia and is dead simple to use.<BR>Once filled with fifty of the appropriate essentia type (Aer for clear skies, Aqua for rain, or Potentia for a thunderstorm), I just push the appropriate button on the front control panel.  Each type of essentia is fed into the orb on a different side, each labeled with that aspect's color.
+
 thaumicwonders.research.void_fortress_armor.title=Void Fortress Armor
 thaumicwonders.research.void_fortress_armor.text.stage.1=Void armor and both strong and self-repairing, but I'm confident that I can improve upon it.  Perhaps the lessons I learned improving thaumium armor can be applied here as well.
 thaumicwonders.research.void_fortress_armor.text.stage.2=My efforts to improve void armor have borne fruit.  The armor I have created is a masterpiece of strength and durability, providing additional protection against magic and fire damage, but sacrificing none of the properties that make void armor so unique.  In keeping with my earlier efforts, I am calling my newest creation Void Fortress Armor.<BR>Like the thaumium version, this armor is meant to be worn together.  The more pieces I wear, the better each piece protects me and, as a bonus, the better it looks.<BR>As a nod to utility, I've made sure to integrate a set of Goggles of Revealing into the helmet's mask.  The mask also replicates the effect of the Thaumium Fortress Armor's Sipping Fiend mask, sometimes healing the wearer when striking.<BR>Finally, this armor seems to have a symbiotic relationship with warp.  The more permanent warp I have, the more toughness each piece of armor has.<BR>In this, I will be a bastion of invincibility.
@@ -155,6 +160,9 @@ thaumicwonders.gui.timewinder.5=Waxing Crescent
 thaumicwonders.gui.timewinder.6=First Quarter
 thaumicwonders.gui.timewinder.7=Waxing Gibbous
 thaumicwonders.gui.timewinder.8=Day
+thaumicwonders.gui.meteorb.0=Clear Skies
+thaumicwonders.gui.meteorb.1=Rain
+thaumicwonders.gui.meteorb.2=Thunderstorm
 
 // Events
 event.primal_destroyer.hunger_full=The Primal Destroyer twists of its own will and cuts you!
@@ -165,6 +173,9 @@ event.void_portal.no_world=This portal's linked dimension does not exist.
 event.void_portal.invader=Something emerges from an unstable portal.
 event.void_portal.subvert.lesser_crimson=The Crimson Cult has subverted an unstable portal!
 event.void_portal.subvert.flux_rift=An unstable portal has collapsed into a flux rift!
+event.meteorb.used=The weather suddenly shifts.
+event.meteorb.offworld=The Meteorb doesn't seem to function here.
+event.meteorb.unfueled=The Meteorb needs more essentia for that.
 
 // Misc
 itemGroup.thaumicwonders=Thaumic Wonders
