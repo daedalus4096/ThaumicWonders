@@ -55,4 +55,9 @@ public class ItemAlchemistStone extends ItemTW implements ICatalystStone {
     public int getSparkleColor() {
         return Aspect.ORDER.getColor();
     }
+    
+    @Override
+    public int getItemEnchantability() {
+        return 10;
+    }
 }
