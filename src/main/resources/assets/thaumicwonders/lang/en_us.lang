@@ -16,6 +16,7 @@ tile.thaumicwonders.hexamite.name=Hexamite
 tile.thaumicwonders.flux_capacitor.name=Flux Capacitor
 tile.thaumicwonders.flux_capacitor.tooltip.flux=Flux: %1$d
 tile.thaumicwonders.meteorb.name=Meteorb
+tile.thaumicwonders.ore_diviner.name=Ore Diviner
 
 // Misc Tiles
 tile.thaumicwonders.fluid_quicksilver.name=Quicksilver

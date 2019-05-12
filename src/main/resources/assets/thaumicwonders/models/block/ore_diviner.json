@@ -1,0 +1,68 @@
+{
+    "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
+    "textures": {
+        "particle": "minecraft:blocks/quartz_block_side",
+        "quartz_block_top": "minecraft:blocks/quartz_block_top",
+        "wool_colored_purple": "minecraft:blocks/wool_colored_purple",
+        "quartz_block_side": "minecraft:blocks/quartz_block_side"
+    },
+    "display": {
+        "gui": {
+            "rotation": [ 30, 45, 0 ],
+            "translation": [ 0, 0, 0 ],
+            "scale": [ 0.625, 0.625, 0.625 ]
+        },
+        "ground": {
+            "rotation": [ 0, 0, 0 ],
+            "translation": [ 0, 3, 0 ],
+            "scale": [ 0.25, 0.25, 0.25 ]
+        },
+        "fixed": {
+            "rotation": [ 0, 180, 0 ],
+            "translation": [ 0, 0, 0 ],
+            "scale": [ 1, 1, 1 ]
+        },
+        "head": {
+            "rotation": [ 0, 180, 0 ],
+            "translation": [ 0, 0, 0 ],
+            "scale": [ 1, 1, 1 ]
+        },
+        "firstperson_righthand": {
+            "rotation": [ 0, 315, 0 ],
+            "translation": [ 0, 2.5, 0 ],
+            "scale": [ 0.4, 0.4, 0.4 ]
+        },
+        "thirdperson_righthand": {
+            "rotation": [ 75, 315, 0 ],
+            "translation": [ 0, 2.5, 0 ],
+            "scale": [ 0.375, 0.375, 0.375 ]
+        }
+    },
+    "elements": [
+        {
+            "name": "Mat",
+            "from": [ 0, 0, 0 ], 
+            "to": [ 16, 1, 16 ], 
+            "faces": {
+                "north": { "texture": "#wool_colored_purple", "uv": [ 0, 0, 16, 1 ] },
+                "east": { "texture": "#wool_colored_purple", "uv": [ 0, 0, 16, 1 ] },
+                "south": { "texture": "#wool_colored_purple", "uv": [ 0, 0, 16, 1 ] },
+                "west": { "texture": "#wool_colored_purple", "uv": [ 0, 0, 16, 1 ] },
+                "up": { "texture": "#wool_colored_purple", "uv": [ 0, 0, 16, 16 ] },
+                "down": { "texture": "#wool_colored_purple", "uv": [ 0, 0, 16, 16 ] }
+            }
+        },
+        {
+            "name": "Cube",
+            "from": [ 4, 1, 4 ], 
+            "to": [ 12, 9, 12 ], 
+            "faces": {
+                "north": { "texture": "#quartz_block_side", "uv": [ 4, 4, 12, 12 ] },
+                "east": { "texture": "#quartz_block_side", "uv": [ 4, 4, 12, 12 ] },
+                "south": { "texture": "#quartz_block_side", "uv": [ 4, 4, 12, 12 ] },
+                "west": { "texture": "#quartz_block_side", "uv": [ 4, 4, 12, 12 ] },
+                "up": { "texture": "#quartz_block_top", "uv": [ 4, 4, 12, 12 ] }
+            }
+        }
+    ]
+}
