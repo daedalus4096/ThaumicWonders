@@ -4,7 +4,6 @@ import java.awt.Color;
 
 import javax.annotation.Nullable;
 
-import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.misc.OreHelper;
 import com.verdantartifice.thaumicwonders.common.tiles.base.TileTW;
 
@@ -14,17 +13,16 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import thaumcraft.client.fx.ParticleEngine;
 import thaumcraft.client.fx.particles.FXGeneric;
 
 public class TileOreDiviner extends TileTW implements ITickable {
     public static final int SCAN_RANGE = 20;
     
-    protected Vec3d target = null;
+    protected BlockPos target = null;
     protected int counter = -1;
     
-    public void setTarget(@Nullable Vec3d newTarget) {
+    public void setTarget(@Nullable BlockPos newTarget) {
         this.target = newTarget;
         this.counter = 0;
     }
@@ -32,14 +30,13 @@ public class TileOreDiviner extends TileTW implements ITickable {
     @Override
     public void update() {
         if (this.world.isRemote && this.target != null && this.counter % 44 == 0) {
-            BlockPos targetPos = new BlockPos(target.x, target.y, target.z);
-            Color color = this.getOreColor(targetPos);
+            Color color = this.getOreColor(this.target);
             float r = color.getRed() / 255.0F;
             float g = color.getGreen() / 255.0F;
             float b = color.getBlue() / 255.0F;
             float colorAvg = (r + g + b) / 3.0F;
             
-            FXGeneric particle = new FXGeneric(this.world, target.x, target.y, target.z, 0.0D, 0.0D, 0.0D);
+            FXGeneric particle = new FXGeneric(this.world, target.getX() + 0.5D, target.getY() + 0.5D, target.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
             particle.setMaxAge(44);
             particle.setRBGColorF(r, g, b);
             particle.setAlphaF(new float[] { 0.0F, 1.0F, 0.8F, 0.0F });

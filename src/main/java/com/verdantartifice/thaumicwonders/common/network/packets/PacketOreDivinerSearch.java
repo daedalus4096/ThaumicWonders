@@ -20,7 +20,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
@@ -74,7 +73,7 @@ public class PacketOreDivinerSearch implements IMessage {
             if (message.origin != null && message.searchStack != null) {
                 TileEntity tile = world.getTileEntity(message.origin);
                 if (tile != null && tile instanceof TileOreDiviner && OreHelper.isOreBlock(message.searchStack)) {
-                    Vec3d target = this.search(world, message.origin, message.searchStack, TileOreDiviner.SCAN_RANGE);
+                    BlockPos target = this.search(world, message.origin, message.searchStack, TileOreDiviner.SCAN_RANGE);
                     if (target == null) {
                         entityPlayer.sendStatusMessage(new TextComponentString(TextFormatting.DARK_PURPLE + I18n.format("event.ore_diviner.not_found")), true);
                     } else {
@@ -87,8 +86,8 @@ public class PacketOreDivinerSearch implements IMessage {
         
         @SideOnly(Side.CLIENT)
         @Nullable
-        private Vec3d search(World world, BlockPos origin, ItemStack searchStack, int maxRange) {
-            Vec3d target = null;
+        private BlockPos search(World world, BlockPos origin, ItemStack searchStack, int maxRange) {
+            BlockPos target = null;
             for (int dist = 1; dist <= maxRange; dist++) {
                 target = this.searchShell(world, origin, searchStack, dist);
                 if (target != null) {
@@ -100,12 +99,12 @@ public class PacketOreDivinerSearch implements IMessage {
         
         @SideOnly(Side.CLIENT)
         @Nullable
-        private Vec3d searchShell(World world, BlockPos origin, ItemStack searchStack, int distance) {
+        private BlockPos searchShell(World world, BlockPos origin, ItemStack searchStack, int distance) {
             Set<BlockPos> posSet = this.generateShell(origin, distance);
             for (BlockPos pos : posSet) {
                 ItemStack posStack = this.getStackAtPos(world, pos);
                 if (posStack != null && OreDictionary.itemMatches(posStack, searchStack, true)) {
-                    return new Vec3d(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D);
+                    return pos;
                 }
             }
             return null;
