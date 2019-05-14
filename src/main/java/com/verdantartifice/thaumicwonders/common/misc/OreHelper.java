@@ -33,4 +33,13 @@ public class OreHelper {
         }
         return names;
     }
+    
+    public static boolean isOreBlock(ItemStack stack) {
+        for (String name : OreHelper.getOreNames(stack)) {
+            if (name != null && name.toUpperCase().startsWith("ORE")) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

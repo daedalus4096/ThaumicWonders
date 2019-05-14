@@ -1,7 +1,10 @@
 package com.verdantartifice.thaumicwonders.common.blocks.devices;
 
-import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.blocks.base.BlockDeviceTW;
+import com.verdantartifice.thaumicwonders.common.misc.OreHelper;
+import com.verdantartifice.thaumicwonders.common.network.PacketHandler;
+import com.verdantartifice.thaumicwonders.common.network.packets.PacketOreDivinerSearch;
+import com.verdantartifice.thaumicwonders.common.network.packets.PacketOreDivinerStop;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileOreDiviner;
 
 import net.minecraft.block.SoundType;
@@ -9,7 +12,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemBlock;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -17,7 +20,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.oredict.OreDictionary;
 
 public class BlockOreDiviner extends BlockDeviceTW<TileOreDiviner> {
     public BlockOreDiviner() {
@@ -48,24 +50,14 @@ public class BlockOreDiviner extends BlockDeviceTW<TileOreDiviner> {
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         ItemStack stack = playerIn.getHeldItem(hand);
-        if (stack == null || stack.isEmpty()) {
-            ThaumicWonders.LOGGER.info("Cancelling search");
-        } else if (this.isOreBlock(stack) && stack.getItem() instanceof ItemBlock) {
-            ThaumicWonders.LOGGER.info("Searching for {}", ((ItemBlock)stack.getItem()).getBlock().getRegistryName().toString());
-        }
-        return true;
-    }
-    
-    protected boolean isOreBlock(ItemStack stack) {
-        int[] oreIds = OreDictionary.getOreIDs(stack);
-        if (oreIds != null && oreIds.length > 0) {
-            for (int id : oreIds) {
-                String name = OreDictionary.getOreName(id);
-                if (name != null && name.toUpperCase().startsWith("ORE")) {
-                    return true;
-                }
+        if (!worldIn.isRemote && worldIn.getTileEntity(pos) instanceof TileOreDiviner) {
+            if (stack == null || stack.isEmpty()) {
+                PacketHandler.INSTANCE.sendToAll(new PacketOreDivinerStop(pos));
+            } else if (OreHelper.isOreBlock(stack) && playerIn instanceof EntityPlayerMP) {
+                PacketHandler.INSTANCE.sendToAll(new PacketOreDivinerStop(pos));
+                PacketHandler.INSTANCE.sendTo(new PacketOreDivinerSearch(pos, stack), (EntityPlayerMP)playerIn);
             }
         }
-        return false;
+        return true;
     }
 }
