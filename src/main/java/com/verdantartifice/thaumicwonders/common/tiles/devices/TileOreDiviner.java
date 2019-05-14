@@ -11,25 +11,50 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
+import thaumcraft.api.aspects.Aspect;
+import thaumcraft.client.fx.FXDispatcher;
 import thaumcraft.client.fx.ParticleEngine;
 import thaumcraft.client.fx.particles.FXGeneric;
 
 public class TileOreDiviner extends TileTW implements ITickable {
     public static final int SCAN_RANGE = 20;
     
+    /**
+     * Whether any client has activated this tile
+     */
+    protected boolean active = false;
+    
+    /**
+     * The target position set by *this* client for ping
+     */
     protected BlockPos target = null;
+    
     protected int counter = -1;
     
     public void setTarget(@Nullable BlockPos newTarget) {
         this.target = newTarget;
+        this.active = (newTarget != null);
         this.counter = 0;
+    }
+    
+    @Override
+    protected void readFromTileNBT(NBTTagCompound compound) {
+        this.active = compound.getBoolean("active");
+    }
+    
+    @Override
+    protected NBTTagCompound writeToTileNBT(NBTTagCompound compound) {
+        compound.setBoolean("active", this.active);
+        return super.writeToTileNBT(compound);
     }
 
     @Override
     public void update() {
-        if (this.world.isRemote && this.target != null && this.counter % 44 == 0) {
+        if (this.world.isRemote && this.active && this.target != null && this.counter % 44 == 0) {
+            // If this client has a target position set, show the ping
             Color color = this.getOreColor(this.target);
             float r = color.getRed() / 255.0F;
             float g = color.getGreen() / 255.0F;
@@ -47,6 +72,17 @@ public class TileOreDiviner extends TileTW implements ITickable {
             particle.setLayer(colorAvg < 0.25F ? 3 : 2);
             particle.setRotationSpeed(0.0F);
             ParticleEngine.addEffect(this.world, particle);
+        }
+        if (this.world.isRemote && this.active && this.counter % 5 == 0) {
+            // If any client, not necessarily this one, has a target position set, show activity particles
+            FXDispatcher.INSTANCE.visSparkle(
+                    this.pos.getX() + this.world.rand.nextInt(3) - this.world.rand.nextInt(3), 
+                    this.pos.getY() + this.world.rand.nextInt(3), 
+                    this.pos.getZ() + this.world.rand.nextInt(3) - this.world.rand.nextInt(3), 
+                    this.pos.getX(), 
+                    this.pos.getY(), 
+                    this.pos.getZ(), 
+                    Aspect.MAGIC.getColor());
         }
         this.counter++;
     }
