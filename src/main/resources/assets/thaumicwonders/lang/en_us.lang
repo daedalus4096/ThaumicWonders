@@ -169,8 +169,13 @@ event.void_portal.subvert.flux_rift=An unstable portal has collapsed into a flux
 event.meteorb.used=The weather suddenly shifts.
 event.meteorb.offworld=The Meteorb doesn't seem to function here.
 event.meteorb.unfueled=The Meteorb needs more essentia for that.
-event.ore_diviner.found=You sense something!
 event.ore_diviner.not_found=You don't sense anything nearby.
+event.ore_diviner.found.down=You sense something below you!
+event.ore_diviner.found.up=You sense something above you!
+event.ore_diviner.found.north=You sense something to the north!
+event.ore_diviner.found.south=You sense something to the south!
+event.ore_diviner.found.west=You sense something to the west!
+event.ore_diviner.found.east=You sense something to the east!
 
 // Misc
 itemGroup.thaumicwonders=Thaumic Wonders
