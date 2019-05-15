@@ -14,12 +14,15 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockOreDiviner extends BlockDeviceTW<TileOreDiviner> {
     public BlockOreDiviner() {
@@ -36,6 +39,12 @@ public class BlockOreDiviner extends BlockDeviceTW<TileOreDiviner> {
     public boolean isOpaqueCube(IBlockState state) {
         return false;
     }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public BlockRenderLayer getBlockLayer() {
+        return BlockRenderLayer.TRANSLUCENT;
+    }
 
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
@@ -51,9 +60,12 @@ public class BlockOreDiviner extends BlockDeviceTW<TileOreDiviner> {
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         ItemStack stack = playerIn.getHeldItem(hand);
         if (!worldIn.isRemote && worldIn.getTileEntity(pos) instanceof TileOreDiviner) {
+            TileOreDiviner tile = (TileOreDiviner)worldIn.getTileEntity(pos);
             if (stack == null || stack.isEmpty()) {
+                tile.setSearchStack(ItemStack.EMPTY);
                 PacketHandler.INSTANCE.sendToAll(new PacketOreDivinerStop(pos));
             } else if (OreHelper.isOreBlock(stack) && playerIn instanceof EntityPlayerMP) {
+                tile.setSearchStack(stack);
                 PacketHandler.INSTANCE.sendToAll(new PacketOreDivinerStop(pos));
                 PacketHandler.INSTANCE.sendTo(new PacketOreDivinerSearch(pos, stack), (EntityPlayerMP)playerIn);
             }

@@ -32,23 +32,42 @@ public class TileOreDiviner extends TileTW implements ITickable {
      */
     protected BlockPos target = null;
     
+    protected ItemStack searchStack = null;
+    
     protected int counter = -1;
     
     public void setTarget(@Nullable BlockPos newTarget) {
         this.target = newTarget;
-        this.active = (newTarget != null);
         this.counter = 0;
+    }
+    
+    public ItemStack getSearchStack() {
+        return this.active ? this.searchStack : ItemStack.EMPTY;
+    }
+    
+    public void setSearchStack(ItemStack stack) {
+        this.searchStack = stack == null ? null : stack.copy();
+        this.active = (this.searchStack != null && !this.searchStack.isEmpty());
+        this.markDirty();
+        this.syncTile(false);
     }
     
     @Override
     protected void readFromTileNBT(NBTTagCompound compound) {
         this.active = compound.getBoolean("active");
+        this.searchStack = new ItemStack(compound.getCompoundTag("searchStack"));
     }
     
     @Override
     protected NBTTagCompound writeToTileNBT(NBTTagCompound compound) {
         compound.setBoolean("active", this.active);
+        compound.setTag("searchStack", this.searchStack.writeToNBT(new NBTTagCompound()));
         return super.writeToTileNBT(compound);
+    }
+    
+    @Override
+    public void onLoad() {
+        this.setSearchStack(ItemStack.EMPTY);
     }
 
     @Override
