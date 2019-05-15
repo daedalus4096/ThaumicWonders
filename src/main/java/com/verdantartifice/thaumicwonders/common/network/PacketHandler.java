@@ -3,6 +3,8 @@ package com.verdantartifice.thaumicwonders.common.network;
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.network.packets.PacketLocalizedMessage;
 import com.verdantartifice.thaumicwonders.common.network.packets.PacketMeteorbAction;
+import com.verdantartifice.thaumicwonders.common.network.packets.PacketOreDivinerSearch;
+import com.verdantartifice.thaumicwonders.common.network.packets.PacketOreDivinerStop;
 import com.verdantartifice.thaumicwonders.common.network.packets.PacketTileToClient;
 import com.verdantartifice.thaumicwonders.common.network.packets.PacketTileToServer;
 import com.verdantartifice.thaumicwonders.common.network.packets.PacketTimewinderAction;
@@ -26,5 +28,7 @@ public class PacketHandler {
         INSTANCE.registerMessage(PacketTileToClient.Handler.class, PacketTileToClient.class, nextId(), Side.CLIENT);
         INSTANCE.registerMessage(PacketLocalizedMessage.Handler.class, PacketLocalizedMessage.class, nextId(), Side.CLIENT);
         INSTANCE.registerMessage(PacketMeteorbAction.Handler.class, PacketMeteorbAction.class, nextId(), Side.SERVER);
+        INSTANCE.registerMessage(PacketOreDivinerSearch.Handler.class, PacketOreDivinerSearch.class, nextId(), Side.CLIENT);
+        INSTANCE.registerMessage(PacketOreDivinerStop.Handler.class, PacketOreDivinerStop.class, nextId(), Side.CLIENT);
     }
 }

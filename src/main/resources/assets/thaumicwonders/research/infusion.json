@@ -91,6 +91,30 @@
                 }
             ],
             "addenda": []
+        },
+        {
+            "key": "TWOND_ORE_DIVINER",
+            "name": "thaumicwonders.research.ore_diviner.title",
+            "icons": ["thaumicwonders:ore_diviner"],
+            "category": "THAUMIC_WONDERS",
+            "parents": ["TWOND_INSPIRATION_ENGINE", "~ELEMENTALTOOLS"],
+            "siblings": [],
+            "meta": [],
+            "location": [4, 4],
+            "reward_item": [],
+            "reward_knowledge": [],
+            "stages": [
+                {
+                    "text": "thaumicwonders.research.ore_diviner.text.stage.1",
+                    "required_knowledge": ["THEORY;INFUSION;2"],
+                    "required_item": ["thaumcraft:elemental_pick"]
+                },
+                {
+                    "text": "thaumicwonders.research.ore_diviner.text.stage.2", 
+                    "recipes": ["thaumicwonders:ore_diviner"]
+                }
+            ],
+            "addenda": []
         }
     ]
 }

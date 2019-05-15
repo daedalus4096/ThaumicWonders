@@ -1,6 +1,7 @@
 v1.5.0
 ------
 * Added Meteorb, for manipulating meteorological phenomena
+* Added Ore Diviner, to help you locate hard-to-find ores
 * Dimensional Rippers can now be overcharged with additional essentia to create bigger rifts
 * Dimensional Rippers can now enlarge existing flux rifts
 * Portal Generators now show their last stability gain and loss
