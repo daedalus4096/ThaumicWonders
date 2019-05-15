@@ -128,6 +128,10 @@ thaumicwonders.research.meteorb.title=Meteorb
 thaumicwonders.research.meteorb.text.stage.1=If I can manipulate the flow of time, surely I can do the same for something as relatively mundane as the weather.  Time for some research.
 thaumicwonders.research.meteorb.text.stage.2=My studies have culminated in a design for a Meteorological Orb, or Meteorb as I call it.  It runs on essentia and is dead simple to use.<BR>Once filled with fifty of the appropriate essentia type (Aer for clear skies, Aqua for rain, or Potentia for a thunderstorm), I just push the appropriate button on the front control panel.  Each type of essentia is fed into the orb on a different side, each labeled with that aspect's color.
 
+thaumicwonders.research.ore_diviner.title=Ore Divination
+thaumicwonders.research.ore_diviner.text.stage.1=Digging blindly through the firmament looking for ore is tedious and inefficient.  It would be much better if I knew exactly where to find what I was looking for before I picked up a pickaxe.  The Sounding enchantment helps, but there's so much information to sift through, and so little time to do it.  I'm convinved there's a better way.
+thaumicwonders.research.ore_diviner.text.stage.2=I've devised a tool to help me divine the location of specific types of ore.  When I use a block of ore on this Ore Diviner, it will find a nearby block of ore of that type and reveal its location to me.  The visual representation of this knowledge will persist until I right-click the diviner with an empty hand or until something happens to the diviner itself.
+
 // Theorycraft Cards
 card.induced_inspiration.name=Induced Inspiration
 card.induced_inspiration.text=The Inspiration Engine feeds ideas directly into your mind, ones highly relevant to the research you're currently pursuing. You gain %1$s %2$s, 1 inspiration, and a bonus draw.

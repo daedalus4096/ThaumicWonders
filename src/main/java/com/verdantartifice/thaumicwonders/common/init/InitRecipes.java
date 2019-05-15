@@ -394,6 +394,36 @@ public class InitRecipes {
                         new ItemStack(Blocks.STONE_BUTTON)
                 }
         ));
+        
+        List<Object> divinerIngredients = new ArrayList<Object>();
+        divinerIngredients.add("oreIron");
+        divinerIngredients.add("oreGold");
+        if (OreDictionary.doesOreNameExist("oreCopper") && !OreDictionary.getOres("oreCopper", false).isEmpty()) {
+            ingredients.add("oreCopper");
+        }
+        if (OreDictionary.doesOreNameExist("oreTin") && !OreDictionary.getOres("oreTin", false).isEmpty()) {
+            ingredients.add("oreTin");
+        }
+        if (OreDictionary.doesOreNameExist("oreSilver") && !OreDictionary.getOres("oreSilver", false).isEmpty()) {
+            ingredients.add("oreSilver");
+        }
+        if (OreDictionary.doesOreNameExist("oreLead") && !OreDictionary.getOres("oreLead", false).isEmpty()) {
+            ingredients.add("oreLead");
+        }
+        divinerIngredients.add("oreCoal");
+        divinerIngredients.add("oreRedstone");
+        divinerIngredients.add("oreLapis");
+        divinerIngredients.add("oreDiamond");
+        divinerIngredients.add("oreEmerald");
+        divinerIngredients.add("oreCinnabar");
+        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "ore_diviner"), new InfusionRecipe(
+                "TWOND_ORE_DIVINER",
+                new ItemStack(BlocksTW.ORE_DIVINER),
+                6,
+                new AspectList().add(Aspect.SENSES, 100).add(Aspect.EARTH, 50).add(Aspect.METAL, 50).add(Aspect.MAGIC, 50),
+                new ItemStack(Blocks.QUARTZ_BLOCK),
+                divinerIngredients.toArray()
+        ));
     }
     
     private static void initSmelting() {
