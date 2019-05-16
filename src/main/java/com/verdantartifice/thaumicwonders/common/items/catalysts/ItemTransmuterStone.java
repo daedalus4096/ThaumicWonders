@@ -103,4 +103,9 @@ public class ItemTransmuterStone extends ItemTW implements ICatalystStone {
     public int getSparkleColor() {
         return Aspect.EXCHANGE.getColor();
     }
+    
+    @Override
+    public int getItemEnchantability() {
+        return 10;
+    }
 }

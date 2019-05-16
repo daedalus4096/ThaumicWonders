@@ -58,5 +58,9 @@ public class ItemAlienistStone extends ItemTW implements ICatalystStone {
     public int getSparkleColor() {
         return Aspect.FLUX.getColor();
     }
-
+    
+    @Override
+    public int getItemEnchantability() {
+        return 10;
+    }
 }

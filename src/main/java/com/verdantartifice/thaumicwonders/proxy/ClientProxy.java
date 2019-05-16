@@ -7,6 +7,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 public class ClientProxy extends CommonProxy {
     private ProxyEntities proxyEntities = new ProxyEntities();
+    private ProxyTESR proxyTESR = new ProxyTESR();
     
     @Override
     public void preInit(FMLPreInitializationEvent event) {
@@ -18,5 +19,6 @@ public class ClientProxy extends CommonProxy {
     public void init(FMLInitializationEvent event) {
         super.init(event);
         KeyBindings.init();
+        this.proxyTESR.setupTESR();
     }
 }
