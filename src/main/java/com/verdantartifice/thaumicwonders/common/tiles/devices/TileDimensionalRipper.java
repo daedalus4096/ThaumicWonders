@@ -1,10 +1,11 @@
 package com.verdantartifice.thaumicwonders.common.tiles.devices;
 
-import java.awt.Color;
 import java.util.List;
 
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.blocks.BlocksTW;
+import com.verdantartifice.thaumicwonders.common.network.PacketHandler;
+import com.verdantartifice.thaumicwonders.common.network.packets.PacketDimensionalRipperFx;
 import com.verdantartifice.thaumicwonders.common.tiles.base.TileTW;
 
 import net.minecraft.block.state.IBlockState;
@@ -14,6 +15,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 import thaumcraft.api.ThaumcraftApiHelper;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
@@ -275,34 +277,12 @@ public class TileDimensionalRipper extends TileTW implements IAspectContainer, I
                     otherTile.takeFromContainer(Aspect.FLUX, fuel);
     
                     // Play special effects
-                    FXDispatcher.INSTANCE.beamBore(
-                        this.pos.getX() + 0.5D + (blockFacing.getFrontOffsetX() / 2.0D), 
-                        this.pos.getY() + 0.5D + (blockFacing.getFrontOffsetY() / 2.0D), 
-                        this.pos.getZ() + 0.5D + (blockFacing.getFrontOffsetZ() / 2.0D), 
-                        targetPos.getX() + 0.5D, 
-                        targetPos.getY() + 0.5D, 
-                        targetPos.getZ() + 0.5D, 
-                        1, 
-                        Color.RED.getRGB(), 
-                        false, 
-                        1.0F, 
-                        null, 
-                        1
-                    );
-                    FXDispatcher.INSTANCE.beamBore(
-                        otherPos.getX() + 0.5D + (otherBlockFacing.getFrontOffsetX() / 2.0D), 
-                        otherPos.getY() + 0.5D + (otherBlockFacing.getFrontOffsetY() / 2.0D), 
-                        otherPos.getZ() + 0.5D + (otherBlockFacing.getFrontOffsetZ() / 2.0D), 
-                        targetPos.getX() + 0.5D, 
-                        targetPos.getY() + 0.5D, 
-                        targetPos.getZ() + 0.5D, 
-                        1, 
-                        Color.RED.getRGB(), 
-                        false, 
-                        1.0F, 
-                        null, 
-                        1
-                    );
+                    PacketHandler.INSTANCE.sendToAllAround(
+                            new PacketDimensionalRipperFx(this.pos, targetPos), 
+                            new NetworkRegistry.TargetPoint(this.world.provider.getDimension(), this.pos.getX(), this.pos.getY(), this.pos.getZ(), 32.0D));
+                    PacketHandler.INSTANCE.sendToAllAround(
+                            new PacketDimensionalRipperFx(otherPos, targetPos), 
+                            new NetworkRegistry.TargetPoint(this.world.provider.getDimension(), otherPos.getX(), otherPos.getY(), otherPos.getZ(), 32.0D));
                     this.world.playSound(null, this.pos, SoundsTC.zap, SoundCategory.BLOCKS, 1.0F, 1.0F);
                     this.world.playSound(null, otherPos, SoundsTC.zap, SoundCategory.BLOCKS, 1.0F, 1.0F);
     
