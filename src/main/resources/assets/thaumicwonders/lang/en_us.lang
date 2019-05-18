@@ -40,6 +40,9 @@ item.thaumicwonders.eldritch_cluster.cinnabar.name=Eldritch Cinnabar Cluster
 item.thaumicwonders.eldritch_cluster.quartz.name=Eldritch Quartz Cluster
 item.thaumicwonders.eldritch_cluster.void.name=Eldritch Void Cluster
 item.thaumicwonders.alienist_stone.name=Alienist's Stone
+item.thaumicwonders.void_fortress_helm.name=Void Fortress Helm
+item.thaumicwonders.void_fortress_chest.name=Void Fortress Cuirass
+item.thaumicwonders.void_fortress_legs.name=Void Fortress Thigh Guards
 
 // Entities
 entity.flying_carpet.name=Flying Carpet
@@ -132,6 +135,10 @@ thaumicwonders.research.ore_diviner.title=Ore Divination
 thaumicwonders.research.ore_diviner.text.stage.1=Digging blindly through the firmament looking for ore is tedious and inefficient.  It would be much better if I knew exactly where to find what I was looking for before I picked up a pickaxe.  The Sounding enchantment helps, but there's so much information to sift through, and so little time to do it.  I'm convinved there's a better way.
 thaumicwonders.research.ore_diviner.text.stage.2=I've devised a tool to help me divine the location of specific types of ore.  When I use a block of ore on this Ore Diviner, it will find a nearby block of ore of that type and reveal its location to me.  The visual representation of this knowledge will persist until I right-click the diviner with an empty hand or until something happens to the diviner itself.
 
+thaumicwonders.research.void_fortress_armor.title=Void Fortress Armor
+thaumicwonders.research.void_fortress_armor.text.stage.1=Void armor and both strong and self-repairing, but I'm confident that I can improve upon it.  Perhaps the lessons I learned improving thaumium armor can be applied here as well.
+thaumicwonders.research.void_fortress_armor.text.stage.2=My efforts to improve void armor have borne fruit.  The armor I have created is a masterpiece of strength and durability, providing additional protection against magic and fire damage, but sacrificing none of the properties that make void armor so unique.  In keeping with my earlier efforts, I am calling my newest creation Void Fortress Armor.<BR>Like the thaumium version, this armor is meant to be worn together.  The more pieces I wear, the better each piece protects me and, as a bonus, the better it looks.<BR>As a nod to utility, I've made sure to integrate a set of Goggles of Revealing into the helmet's mask.  The mask also replicates the effect of the Thaumium Fortress Armor's Sipping Fiend mask, sometimes healing the wearer when striking.<BR>Finally, this armor seems to have a symbiotic relationship with warp.  The more permanent warp I have, the more toughness each piece of armor has.<BR>In this, I will be a bastion of invincibility.
+
 // Theorycraft Cards
 card.induced_inspiration.name=Induced Inspiration
 card.induced_inspiration.text=The Inspiration Engine feeds ideas directly into your mind, ones highly relevant to the research you're currently pursuing. You gain %1$s %2$s, 1 inspiration, and a bonus draw.
@@ -141,6 +148,7 @@ card.induced_madness.text=Alien thoughts projected by the Madness Engine tear at
 // Enchantments
 enchantment.special.sapgreat=Greater Sapping
 enchantment.special.voidflame=Voidflame
+enchantment.special.warpshell=Warpshell
 
 // Config
 key.categories.thaumicwonders=Thaumic Wonders

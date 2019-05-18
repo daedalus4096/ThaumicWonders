@@ -424,6 +424,56 @@ public class InitRecipes {
                 new ItemStack(Blocks.QUARTZ_BLOCK),
                 divinerIngredients.toArray()
         ));
+
+        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "void_fortress_helm"), new InfusionRecipe(
+                "TWOND_VOID_FORTRESS_ARMOR",
+                new ItemStack(ItemsTW.VOID_FORTRESS_HELM),
+                8,
+                new AspectList().add(Aspect.PROTECT, 45).add(Aspect.METAL, 45).add(Aspect.ELDRITCH, 50).add(Aspect.ENERGY, 25).add(Aspect.VOID, 25).add(Aspect.MAGIC, 25).add(Aspect.SENSES, 25).add(Aspect.UNDEAD, 40).add(Aspect.LIFE, 40),
+                new ItemStack(ItemsTC.voidHelm),
+                new Object[] {
+                        Ingredient.fromItem(ItemsTC.primordialPearl),
+                        "plateVoid",
+                        "plateVoid",
+                        new ItemStack(ItemsTC.goggles, 1, 32767),
+                        new ItemStack(Items.GHAST_TEAR),
+                        new ItemStack(ItemsTC.salisMundus),
+                        "leather"
+                }
+        ));
+        
+        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "void_fortress_chest"), new InfusionRecipe(
+                "TWOND_VOID_FORTRESS_ARMOR",
+                new ItemStack(ItemsTW.VOID_FORTRESS_CHEST),
+                8,
+                new AspectList().add(Aspect.PROTECT, 55).add(Aspect.METAL, 55).add(Aspect.ELDRITCH, 50).add(Aspect.ENERGY, 25).add(Aspect.VOID, 35).add(Aspect.MAGIC, 25),
+                new ItemStack(ItemsTC.voidChest),
+                new Object[] {
+                        Ingredient.fromItem(ItemsTC.primordialPearl),
+                        "plateVoid",
+                        "plateVoid",
+                        "plateVoid",
+                        "plateVoid",
+                        new ItemStack(ItemsTC.salisMundus),
+                        "leather"
+                }
+        ));
+        
+        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "void_fortress_legs"), new InfusionRecipe(
+                "TWOND_VOID_FORTRESS_ARMOR",
+                new ItemStack(ItemsTW.VOID_FORTRESS_LEGS),
+                8,
+                new AspectList().add(Aspect.PROTECT, 50).add(Aspect.METAL, 50).add(Aspect.ELDRITCH, 50).add(Aspect.ENERGY, 25).add(Aspect.VOID, 30).add(Aspect.MAGIC, 25),
+                new ItemStack(ItemsTC.voidLegs),
+                new Object[] {
+                        Ingredient.fromItem(ItemsTC.primordialPearl),
+                        "plateVoid",
+                        "plateVoid",
+                        "plateVoid",
+                        new ItemStack(ItemsTC.salisMundus),
+                        "leather"
+                }
+        ));
     }
     
     private static void initSmelting() {
