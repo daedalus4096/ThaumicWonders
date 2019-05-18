@@ -409,15 +409,18 @@ public class ModelVoidFortressArmor extends ModelCustomArmor {
         this.bipedHead.addChild(this.HelmCordL);
         
         this.bipedBody.cubeList.clear();
-        this.bipedBody.addChild(this.MBelt);
-        this.bipedBody.addChild(this.MBeltL);
-        this.bipedBody.addChild(this.MBeltR);
-        this.bipedBody.addChild(this.Chestplate);
-        this.bipedBody.addChild(this.Scroll);
-        this.bipedBody.addChild(this.Backplate);
-        this.bipedBody.addChild(this.Book);
-        this.bipedBody.addChild(this.ChestCordR);
-        this.bipedBody.addChild(this.ChestCordL);
+        if (f < 1.0F) {
+            this.bipedBody.addChild(this.MBelt);
+            this.bipedBody.addChild(this.MBeltL);
+            this.bipedBody.addChild(this.MBeltR);
+        } else {
+            this.bipedBody.addChild(this.Chestplate);
+            this.bipedBody.addChild(this.Scroll);
+            this.bipedBody.addChild(this.Backplate);
+            this.bipedBody.addChild(this.Book);
+            this.bipedBody.addChild(this.ChestCordR);
+            this.bipedBody.addChild(this.ChestCordL);
+        }
         
         this.bipedRightArm.cubeList.clear();
         this.bipedRightArm.addChild(this.ShoulderR);

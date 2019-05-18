@@ -41,7 +41,9 @@ public class ItemVoidFortressArmor extends ItemArmor implements ISpecialArmor, I
     @Override
     @SideOnly(Side.CLIENT)
     public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped _default) {
-        return CustomArmorHelper.getCustomArmorModel(entityLiving, itemStack, armorSlot, new ModelVoidFortressArmor(1.0F));
+        EntityEquipmentSlot type = ((ItemArmor)itemStack.getItem()).armorType;
+        float f = (type == EntityEquipmentSlot.LEGS) ? 0.5F : 1.0F;
+        return CustomArmorHelper.getCustomArmorModel(entityLiving, itemStack, armorSlot, new ModelVoidFortressArmor(f));
     }
     
     @Override
