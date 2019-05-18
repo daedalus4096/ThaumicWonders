@@ -14,10 +14,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.client.fx.FXDispatcher;
-import thaumcraft.client.fx.ParticleEngine;
-import thaumcraft.client.fx.particles.FXGeneric;
 
 public class TileOreDiviner extends TileTW implements ITickable {
     public static final int SCAN_RANGE = 20;
@@ -74,23 +74,7 @@ public class TileOreDiviner extends TileTW implements ITickable {
     public void update() {
         if (this.world.isRemote && this.active && this.target != null && this.counter % 44 == 0) {
             // If this client has a target position set, show the ping
-            Color color = this.getOreColor(this.target);
-            float r = color.getRed() / 255.0F;
-            float g = color.getGreen() / 255.0F;
-            float b = color.getBlue() / 255.0F;
-            float colorAvg = (r + g + b) / 3.0F;
-            
-            FXGeneric particle = new FXGeneric(this.world, target.getX() + 0.5D, target.getY() + 0.5D, target.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
-            particle.setMaxAge(44);
-            particle.setRBGColorF(r, g, b);
-            particle.setAlphaF(new float[] { 0.0F, 1.0F, 0.8F, 0.0F });
-            particle.setParticles(240, 15, 1);
-            particle.setGridSize(16);
-            particle.setLoop(true);
-            particle.setScale(new float[] { 9.0F });
-            particle.setLayer(colorAvg < 0.25F ? 3 : 2);
-            particle.setRotationSpeed(0.0F);
-            ParticleEngine.addEffect(this.world, particle);
+            this.renderPing(this.target);
         }
         if (this.world.isRemote && this.active && this.counter % 5 == 0) {
             // If any client, not necessarily this one, has a target position set, show activity particles
@@ -104,6 +88,33 @@ public class TileOreDiviner extends TileTW implements ITickable {
                     Aspect.MAGIC.getColor());
         }
         this.counter++;
+    }
+    
+    @SideOnly(Side.CLIENT)
+    protected void renderPing(BlockPos pos) {
+        Color color = this.getOreColor(pos);
+        float r = color.getRed() / 255.0F;
+        float g = color.getGreen() / 255.0F;
+        float b = color.getBlue() / 255.0F;
+        float colorAvg = (r + g + b) / 3.0F;
+        
+        FXDispatcher.GenPart part = new FXDispatcher.GenPart();
+        part.age = 44;
+        part.redStart = r;
+        part.redEnd = r;
+        part.greenStart = g;
+        part.greenEnd = g;
+        part.blueStart = b;
+        part.blueEnd = b;
+        part.alpha = new float[] { 0.0F, 1.0F, 0.8F, 0.0F };
+        part.loop = true;
+        part.partStart = 240;
+        part.partNum = 15;
+        part.partInc = 1;
+        part.scale = new float[] { 9.0F };
+        part.layer = colorAvg < 0.25F ? 3 : 2;
+        part.grid = 16;
+        FXDispatcher.INSTANCE.drawGenericParticles(target.getX() + 0.5D, target.getY() + 0.5D, target.getZ() + 0.5D, 0.0D, 0.0D, 0.0D, part);
     }
     
     protected Color getOreColor(BlockPos targetPos) {
