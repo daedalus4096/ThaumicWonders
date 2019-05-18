@@ -1,5 +1,6 @@
 v1.5.0
 ------
+* Added Void Fortress Armor, the pinnacle of eldritch protection
 * Added Meteorb, for manipulating meteorological phenomena
 * Added Ore Diviner, to help you locate hard-to-find ores
 * Dimensional Rippers can now be overcharged with additional essentia to create bigger rifts
