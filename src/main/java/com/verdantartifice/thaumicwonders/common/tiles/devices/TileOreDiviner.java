@@ -1,6 +1,8 @@
 package com.verdantartifice.thaumicwonders.common.tiles.devices;
 
 import java.awt.Color;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.Nullable;
 
@@ -21,6 +23,26 @@ import thaumcraft.client.fx.FXDispatcher;
 
 public class TileOreDiviner extends TileTW implements ITickable {
     public static final int SCAN_RANGE = 20;
+    
+    protected static final Map<String, Color> ORE_COLORS = new HashMap<String, Color>();
+    protected static final Color DEFAULT_ORE_COLOR = new Color(0xC0C0C0);
+    
+    static {
+        ORE_COLORS.put("IRON", new Color(0xD8AF93));
+        ORE_COLORS.put("COAL", new Color(0x101010));
+        ORE_COLORS.put("REDSTONE", new Color(0xFF0000));
+        ORE_COLORS.put("GOLD", new Color(0xFCEE4B));
+        ORE_COLORS.put("LAPIS", new Color(0x1445BC));
+        ORE_COLORS.put("DIAMOND", new Color(0x5DECF5));
+        ORE_COLORS.put("EMERALD", new Color(0x17DD62));
+        ORE_COLORS.put("QUARTZ", new Color(0xE5DED5));
+        ORE_COLORS.put("SILVER", new Color(0xDAD9FD));
+        ORE_COLORS.put("LEAD", new Color(0x6B6B6B));
+        ORE_COLORS.put("TIN", new Color(0xEFEFFB));
+        ORE_COLORS.put("COPPER", new Color(0xFD9C55));
+        ORE_COLORS.put("AMBER", new Color(0xFDB325));
+        ORE_COLORS.put("CINNABAR", new Color(0x9B0508));
+    }
     
     /**
      * Whether any client has activated this tile
@@ -125,43 +147,19 @@ public class TileOreDiviner extends TileTW implements ITickable {
             stack = new ItemStack(item, 1, item.getHasSubtypes() ? state.getBlock().getMetaFromState(state) : 0);
         }
         if (stack.isEmpty() || stack.getItem() == null) {
-            return new Color(0xC0C0C0);
+            return DEFAULT_ORE_COLOR;
         } else {
-            for (String name : OreHelper.getOreNames(stack)) {
-                if (name != null) {
-                    name = name.toUpperCase();
-                    if (name.contains("IRON")) {
-                        return new Color(0xD8AF93);
-                    } else if (name.contains("COAL")) {
-                        return new Color(0x101010);
-                    } else if (name.contains("REDSTONE")) {
-                        return new Color(0xFF0000);
-                    } else if (name.contains("GOLD")) {
-                        return new Color(0xFCEE4B);
-                    } else if (name.contains("LAPIS")) {
-                        return new Color(0x1445BC);
-                    } else if (name.contains("DIAMOND")) {
-                        return new Color(0x5DECF5);
-                    } else if (name.contains("EMERALD")) {
-                        return new Color(0x17DD62);
-                    } else if (name.contains("QUARTZ")) {
-                        return new Color(0xE5DED5);
-                    } else if (name.contains("SILVER")) {
-                        return new Color(0xDAD9FD);
-                    } else if (name.contains("LEAD")) {
-                        return new Color(0x6B6B6B);
-                    } else if (name.contains("TIN")) {
-                        return new Color(0xEFEFFB);
-                    } else if (name.contains("COPPER")) {
-                        return new Color(0xFD9C55);
-                    } else if (name.contains("AMBER")) {
-                        return new Color(0xFDB325);
-                    } else if (name.contains("CINNABAR")) {
-                        return new Color(0x9B0508);
+            for (String oreName : OreHelper.getOreNames(stack)) {
+                if (oreName != null) {
+                    oreName = oreName.toUpperCase();
+                    for (String key : ORE_COLORS.keySet()) {
+                        if (oreName.contains(key)) {
+                            return ORE_COLORS.getOrDefault(key, DEFAULT_ORE_COLOR);
+                        }
                     }
                 }
             }
-            return new Color(0xC0C0C0);
+            return DEFAULT_ORE_COLOR;
         }
     }
 }
