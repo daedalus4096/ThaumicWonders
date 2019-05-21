@@ -10,16 +10,8 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class OreHelper {
     public static boolean isOreNamed(@Nonnull ItemStack stack, @Nonnull String name) {
-        if (stack.isEmpty()) {
-            return false;
-        }
-        int[] oreIds = OreDictionary.getOreIDs(stack);
-        for (int id : oreIds) {
-            if (OreDictionary.getOreName(id) == name) {
-                return true;
-            }
-        }
-        return false;
+        List<String> oreNames = OreHelper.getOreNames(stack);
+        return oreNames.contains(name);
     }
     
     public static List<String> getOreNames(@Nonnull ItemStack stack) {

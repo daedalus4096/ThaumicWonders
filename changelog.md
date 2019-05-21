@@ -1,3 +1,7 @@
+v1.6.0
+------
+* Fixed a mod compatibility bug in ore detection logic
+
 v1.5.0
 ------
 * Added Void Fortress Armor, the pinnacle of eldritch protection
