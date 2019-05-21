@@ -31,7 +31,6 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.oredict.OreDictionary;
 import thaumcraft.common.lib.utils.Utils;
 
 public class PacketOreDivinerSearch implements IMessage {
@@ -106,7 +105,7 @@ public class PacketOreDivinerSearch implements IMessage {
             Set<BlockPos> posSet = this.generateShell(origin, distance);
             for (BlockPos pos : posSet) {
                 ItemStack posStack = this.getStackAtPos(world, pos);
-                if (posStack != null && OreDictionary.itemMatches(posStack, searchStack, true)) {
+                if (posStack != null && OreHelper.isOreMatch(posStack, searchStack)) {
                     return pos;
                 }
             }

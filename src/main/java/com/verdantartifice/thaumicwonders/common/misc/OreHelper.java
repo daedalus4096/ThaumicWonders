@@ -14,6 +14,7 @@ public class OreHelper {
         return oreNames.contains(name);
     }
     
+    @Nonnull
     public static List<String> getOreNames(@Nonnull ItemStack stack) {
         List<String> names = new ArrayList<String>();
         if (stack.isEmpty()) {
@@ -33,5 +34,12 @@ public class OreHelper {
             }
         }
         return false;
+    }
+    
+    public static boolean isOreMatch(@Nonnull ItemStack stack1, @Nonnull ItemStack stack2) {
+        List<String> names1 = OreHelper.getOreNames(stack1);
+        List<String> names2 = OreHelper.getOreNames(stack2);
+        names1.retainAll(names2);
+        return names1.size() > 0;
     }
 }
