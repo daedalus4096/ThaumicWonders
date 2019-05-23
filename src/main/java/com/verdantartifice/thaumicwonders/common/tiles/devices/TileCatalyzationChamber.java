@@ -136,7 +136,7 @@ public class TileCatalyzationChamber extends TileTWInventory implements ITickabl
                                 AuraHelper.polluteAura(this.world, this.getPos().offset(this.getFacing().getOpposite()), 1.0F, true);
                             }
                         }
-                        this.decrStackSize(slot, 1);
+                        this.decrStackSize(slot, resultStack.getCount());
                         break;
                     }
                 }

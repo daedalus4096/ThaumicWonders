@@ -2,6 +2,7 @@ v1.6.0
 ------
 * Fixed a mod compatibility bug in ore detection logic
 * Fixed an ore-matching issue with the Ore Diviner
+* Fixed item duplication bug with Catalyzation Chamber
 
 v1.5.0
 ------
