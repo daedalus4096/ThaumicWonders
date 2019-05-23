@@ -11,6 +11,7 @@ import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -40,13 +41,21 @@ public class RenderVoidPortal extends Render<EntityVoidPortal> {
         float scale = e / 50.0F * 1.25F;
         
         y += portal.height / 2.0F;
-        
+
+        float stability = portal.getGeneratorStability();
+        float m = (1.0F - MathHelper.clamp((stability + 100.0F) / 100.0F, 0.0F, 1.0F)) / 3.0F;
+        float bobY = MathHelper.sin(portal.ticksExisted / (5.0F - 12.0F * m)) * m + m;
+        float bobXZ = MathHelper.sin(portal.ticksExisted / (6.0F - 15.0F * m)) * m + m;
+        float alpha = 1.0F - bobY;
+        scaley -= bobY / 4.0F;
+        scale -= bobXZ / 3.0F;
+
         this.bindTexture(TEXTURE);
         GL11.glPushMatrix();
         
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+        GL11.glColor4f(1.0F, 1.0F, 1.0F, alpha);
         
         if (Minecraft.getMinecraft().getRenderViewEntity() instanceof EntityPlayer) {
             GL11.glDepthMask(false);
@@ -70,10 +79,10 @@ public class RenderVoidPortal extends Render<EntityVoidPortal> {
             int i = 220;
             int j = i >> 16 & 0xFFFF;
             int k = i & 0xFFFF;
-            tessellator.getBuffer().pos(x + v1.x * scale, y + v1.y * scaley, z + v1.z * scale).tex(f3, f4).color(1.0F, 1.0F, 1.0F, 1.0F).lightmap(j, k).normal(0.0F, 0.0F, -1.0F).endVertex();
-            tessellator.getBuffer().pos(x + v2.x * scale, y + v2.y * scaley, z + v2.z * scale).tex(f3, f5).color(1.0F, 1.0F, 1.0F, 1.0F).lightmap(j, k).normal(0.0F, 0.0F, -1.0F).endVertex();
-            tessellator.getBuffer().pos(x + v3.x * scale, y + v3.y * scaley, z + v3.z * scale).tex(f2, f5).color(1.0F, 1.0F, 1.0F, 1.0F).lightmap(j, k).normal(0.0F, 0.0F, -1.0F).endVertex();
-            tessellator.getBuffer().pos(x + v4.x * scale, y + v4.y * scaley, z + v4.z * scale).tex(f2, f4).color(1.0F, 1.0F, 1.0F, 1.0F).lightmap(j, k).normal(0.0F, 0.0F, -1.0F).endVertex();
+            tessellator.getBuffer().pos(x + v1.x * scale, y + v1.y * scaley, z + v1.z * scale).tex(f3, f4).color(1.0F, 1.0F, 1.0F, alpha).lightmap(j, k).normal(0.0F, 0.0F, -1.0F).endVertex();
+            tessellator.getBuffer().pos(x + v2.x * scale, y + v2.y * scaley, z + v2.z * scale).tex(f3, f5).color(1.0F, 1.0F, 1.0F, alpha).lightmap(j, k).normal(0.0F, 0.0F, -1.0F).endVertex();
+            tessellator.getBuffer().pos(x + v3.x * scale, y + v3.y * scaley, z + v3.z * scale).tex(f2, f5).color(1.0F, 1.0F, 1.0F, alpha).lightmap(j, k).normal(0.0F, 0.0F, -1.0F).endVertex();
+            tessellator.getBuffer().pos(x + v4.x * scale, y + v4.y * scaley, z + v4.z * scale).tex(f2, f4).color(1.0F, 1.0F, 1.0F, alpha).lightmap(j, k).normal(0.0F, 0.0F, -1.0F).endVertex();
             tessellator.draw();
             GL11.glDepthMask(true);
         }

@@ -117,29 +117,35 @@ public class EntityVoidPortal extends Entity {
         return 1.0F;
     }
     
+    public float getGeneratorStability() {
+        TileEntity generatorTile = this.world.getTileEntity(this.getPosition().down());
+        if (generatorTile != null && generatorTile instanceof TilePortalGenerator) {
+            return ((TilePortalGenerator)generatorTile).getStability();
+        } else {
+            return 0.0F;
+        }
+    }
+    
     @Override
     public boolean processInitialInteract(EntityPlayer player, EnumHand hand) {
         if (!this.world.isRemote && this.cooldownTicks <= 0) {
             this.cooldownTicks = 3; // Prevent multiple events per click with a short cooldown
             
             // Compute target variance due to instability
-            TileEntity generatorTile = this.world.getTileEntity(this.getPosition().down());
             int dx = 0;
             int dz = 0;
-            if (generatorTile != null && generatorTile instanceof TilePortalGenerator) {
-                float stability = ((TilePortalGenerator)generatorTile).getStability();
-                if (stability < -25.0F) {
-                    int max = (int)(12.5F + (0.5F * Math.abs(stability) - 12.5F) * (0.5F * Math.abs(stability) - 12.5F));
-                    if (max > 0) {
-                        dx = this.world.rand.nextInt(max) - this.world.rand.nextInt(max);
-                        dz = this.world.rand.nextInt(max) - this.world.rand.nextInt(max);
-                    }
-                } else if (stability < 0.0F) {
-                    int max = (int)(0.5F * Math.abs(stability));
-                    if (max > 0) {
-                        dx = this.world.rand.nextInt(max) - this.world.rand.nextInt(max);
-                        dz = this.world.rand.nextInt(max) - this.world.rand.nextInt(max);
-                    }
+            float stability = this.getGeneratorStability();
+            if (stability < -25.0F) {
+                int max = (int)(12.5F + (0.5F * Math.abs(stability) - 12.5F) * (0.5F * Math.abs(stability) - 12.5F));
+                if (max > 0) {
+                    dx = this.world.rand.nextInt(max) - this.world.rand.nextInt(max);
+                    dz = this.world.rand.nextInt(max) - this.world.rand.nextInt(max);
+                }
+            } else if (stability < 0.0F) {
+                int max = (int)(0.5F * Math.abs(stability));
+                if (max > 0) {
+                    dx = this.world.rand.nextInt(max) - this.world.rand.nextInt(max);
+                    dz = this.world.rand.nextInt(max) - this.world.rand.nextInt(max);
                 }
             }
             

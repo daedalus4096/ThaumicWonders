@@ -272,6 +272,9 @@ public class TilePortalGenerator extends TileTW implements ITickable, IGogglesDi
     }
     
     protected void executeInstabilityEvent() {
+        if (instabilityEvents.size() <= 0) {
+            return;
+        }
         RandomItemChooser ric = new RandomItemChooser();
         InstabilityEventEntry event = (InstabilityEventEntry)ric.chooseOnWeight(instabilityEvents);
         if (event == null) {
@@ -301,6 +304,9 @@ public class TilePortalGenerator extends TileTW implements ITickable, IGogglesDi
     }
     
     protected void spawnInvader() {
+        if (spawnEvents.size() <= 0) {
+            return;
+        }
         RandomItemChooser ric = new RandomItemChooser();
         InstabilityEventEntry event = (InstabilityEventEntry)ric.chooseOnWeight(spawnEvents);
         if (event == null) {
@@ -373,6 +379,9 @@ public class TilePortalGenerator extends TileTW implements ITickable, IGogglesDi
     }
     
     protected void subvertPortal() {
+        if (subvertEvents.size() <= 0) {
+            return;
+        }
         RandomItemChooser ric = new RandomItemChooser();
         InstabilityEventEntry event = (InstabilityEventEntry)ric.chooseOnWeight(subvertEvents);
         if (event == null) {

@@ -4,6 +4,7 @@ v1.6.0
 * Fixed an ore-matching issue with the Ore Diviner
 * Fixed item duplication bug with Catalyzation Chamber
 * Render tooltips in Catalyzation Chamber GUI
+* Added visual effect for Void Portal destabilization
 
 v1.5.0
 ------
