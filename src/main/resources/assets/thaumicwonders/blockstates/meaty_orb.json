@@ -1,0 +1,14 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "thaumicwonders:meaty_orb",
+        "transform": "forge:default-block"
+     },
+    "variants": {
+        "normal": [{}], "inventory": [{}],        
+        "facing=north":   { "model": "thaumicwonders:meaty_orb" },
+        "facing=south":   { "model": "thaumicwonders:meaty_orb", "y": 180 },
+        "facing=west":    { "model": "thaumicwonders:meaty_orb", "y": 270 },
+        "facing=east":    { "model": "thaumicwonders:meaty_orb", "y": 90 }
+    }
+}
