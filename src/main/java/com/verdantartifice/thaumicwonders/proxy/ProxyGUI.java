@@ -1,6 +1,7 @@
 package com.verdantartifice.thaumicwonders.proxy;
 
 import com.verdantartifice.thaumicwonders.client.gui.GuiCatalyzationChamber;
+import com.verdantartifice.thaumicwonders.client.gui.GuiMeatyOrb;
 import com.verdantartifice.thaumicwonders.client.gui.GuiMeteorb;
 import com.verdantartifice.thaumicwonders.client.gui.GuiTimewinder;
 import com.verdantartifice.thaumicwonders.common.containers.ContainerCatalyzationChamber;
@@ -20,6 +21,8 @@ public class ProxyGUI {
             return new GuiCatalyzationChamber(player.inventory, (TileCatalyzationChamber)world.getTileEntity(new BlockPos(x, y, z)));
         case GuiIds.METEORB:
             return new GuiMeteorb(new BlockPos(x, y, z));
+        case GuiIds.MEATY_ORB:
+            return new GuiMeatyOrb(new BlockPos(x, y, z));
         default:
             return null;
         }

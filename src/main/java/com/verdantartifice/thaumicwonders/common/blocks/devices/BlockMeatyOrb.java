@@ -52,13 +52,13 @@ public class BlockMeatyOrb extends BlockDeviceTW<TileMeatyOrb> implements IBlock
     
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-//        if (worldIn.isRemote) {
-//            if (worldIn.provider.isSurfaceWorld()) {
-//                playerIn.openGui(ThaumicWonders.INSTANCE, GuiIds.METEORB, worldIn, pos.getX(), pos.getY(), pos.getZ());
-//            } else {
-//                playerIn.sendStatusMessage(new TextComponentString(TextFormatting.DARK_PURPLE + I18n.format("event.meteorb.offworld")), true);
-//            }
-//        }
+        if (worldIn.isRemote) {
+            if (worldIn.provider.isSurfaceWorld()) {
+                playerIn.openGui(ThaumicWonders.INSTANCE, GuiIds.MEATY_ORB, worldIn, pos.getX(), pos.getY(), pos.getZ());
+            } else {
+                playerIn.sendStatusMessage(new TextComponentString(TextFormatting.DARK_PURPLE + I18n.format("event.meaty_orb.offworld")), true);
+            }
+        }
         return true;
     }
 }

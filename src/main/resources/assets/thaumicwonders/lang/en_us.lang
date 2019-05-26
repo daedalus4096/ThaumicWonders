@@ -169,6 +169,7 @@ thaumicwonders.gui.timewinder.8=Day
 thaumicwonders.gui.meteorb.0=Clear Skies
 thaumicwonders.gui.meteorb.1=Rain
 thaumicwonders.gui.meteorb.2=Thunderstorm
+thaumicwonders.gui.meaty_orb.0=Meat!
 
 // Events
 event.primal_destroyer.hunger_full=The Primal Destroyer twists of its own will and cuts you!
@@ -189,6 +190,9 @@ event.ore_diviner.found.north=You sense something to the north!
 event.ore_diviner.found.south=You sense something to the south!
 event.ore_diviner.found.west=You sense something to the west!
 event.ore_diviner.found.east=You sense something to the east!
+event.meaty_orb.used=It's raining meat!
+event.meaty_orb.offworld=The Meaty Orb doesn't seem to function here.
+event.meaty_orb.unfueled=The Meaty Orb needs more essentia for that.
 
 // Misc
 itemGroup.thaumicwonders=Thaumic Wonders
