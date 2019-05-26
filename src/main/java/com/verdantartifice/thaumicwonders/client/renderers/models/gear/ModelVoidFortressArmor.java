@@ -555,8 +555,11 @@ public class ModelVoidFortressArmor extends ModelCustomArmor {
             this.bipedRightLeg.render(scale);
             this.bipedLeftLeg.render(scale);
             this.bipedHeadwear.render(scale);
+            GL11.glPopMatrix();
         } else {
+            GL11.glScalef(1.01F, 1.01F, 1.01F); // Scale up slightly to prevent z-clipping with hatted skins
             this.bipedHead.render(scale);
+            GL11.glPopMatrix();
             this.bipedBody.render(scale);
             this.bipedRightArm.render(scale);
             this.bipedLeftArm.render(scale);
@@ -564,7 +567,6 @@ public class ModelVoidFortressArmor extends ModelCustomArmor {
             this.bipedLeftLeg.render(scale);
             this.bipedHeadwear.render(scale);
         }
-        GL11.glPopMatrix();
     }
 
     /**

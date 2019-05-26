@@ -5,6 +5,7 @@ v1.6.0
 * Fixed item duplication bug with Catalyzation Chamber
 * Render tooltips in Catalyzation Chamber GUI
 * Added visual effect for Void Portal destabilization
+* Fixed Z-clipping issue with the Void Fortress Helmet and skins with hats
 
 v1.5.0
 ------
