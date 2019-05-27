@@ -44,6 +44,7 @@ item.thaumicwonders.alienist_stone.name=Alienist's Stone
 item.thaumicwonders.void_fortress_helm.name=Void Fortress Helm
 item.thaumicwonders.void_fortress_chest.name=Void Fortress Cuirass
 item.thaumicwonders.void_fortress_legs.name=Void Fortress Thigh Guards
+item.thaumicwonders.structure_diviner.name=Structure Diviner
 
 // Entities
 entity.flying_carpet.name=Flying Carpet
