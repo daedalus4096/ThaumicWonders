@@ -24,9 +24,9 @@ import thaumcraft.common.lib.utils.RandomItemChooser;
 
 public class TileMeatyOrb extends TileTW implements IAspectContainer, IEssentiaTransport, ITickable {
     private static final RandomItemChooser RIC = new RandomItemChooser();
-    private static final int DURATION_TICKS = 600;
-    private static final int CAPACITY = 100;
-    public static final int MIN_FUEL = 100;
+    private static final int DURATION_TICKS = 300;
+    private static final int CAPACITY = 250;
+    public static final int MIN_FUEL = 250;
 
     protected static class MeatEntry implements RandomItemChooser.Item {
         public ItemStack itemStack;
