@@ -474,6 +474,22 @@ public class InitRecipes {
                         "leather"
                 }
         ));
+        
+        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "meaty_orb"), new InfusionRecipe(
+                "TWOND_MEATY_ORB",
+                new ItemStack(BlocksTW.MEATY_ORB),
+                8,
+                new AspectList().add(Aspect.WATER, 250).add(Aspect.LIFE, 250).add(Aspect.ELDRITCH, 250),
+                new ItemStack(BlocksTW.METEORB),
+                new Object[] {
+                        Ingredient.fromItem(ItemsTC.primordialPearl),
+                        new ItemStack(Items.BEEF),
+                        new ItemStack(Items.PORKCHOP),
+                        new ItemStack(Items.CHICKEN),
+                        new ItemStack(Items.MUTTON),
+                        new ItemStack(Items.RABBIT)
+                }
+        ));
     }
     
     private static void initSmelting() {
