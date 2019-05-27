@@ -1,8 +1,14 @@
 package com.verdantartifice.thaumicwonders.common.tiles.devices;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.tiles.base.TileTW;
 
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -14,15 +20,44 @@ import thaumcraft.api.aspects.IAspectContainer;
 import thaumcraft.api.aspects.IEssentiaTransport;
 import thaumcraft.api.aura.AuraHelper;
 import thaumcraft.common.blocks.IBlockFacingHorizontal;
+import thaumcraft.common.lib.utils.RandomItemChooser;
 
 public class TileMeatyOrb extends TileTW implements IAspectContainer, IEssentiaTransport, ITickable {
+    private static final RandomItemChooser RIC = new RandomItemChooser();
+    private static final int DURATION_TICKS = 600;
     private static final int CAPACITY = 100;
     public static final int MIN_FUEL = 100;
 
+    protected static class MeatEntry implements RandomItemChooser.Item {
+        public ItemStack itemStack;
+        public int weight;
+        
+        public MeatEntry(ItemStack itemStack, int weight) {
+            this.itemStack = itemStack;
+            this.weight = weight;
+        }
+        
+        @Override
+        public double getWeight() {
+            return this.weight;
+        }
+    }
+    
+    protected static List<RandomItemChooser.Item> meats = new ArrayList<RandomItemChooser.Item>();
+    
+    static {
+        meats.add(new MeatEntry(new ItemStack(Items.BEEF, 1, 0), 30));
+        meats.add(new MeatEntry(new ItemStack(Items.PORKCHOP, 1, 0), 25));
+        meats.add(new MeatEntry(new ItemStack(Items.CHICKEN, 1, 0), 20));
+        meats.add(new MeatEntry(new ItemStack(Items.MUTTON, 1, 0), 15));
+        meats.add(new MeatEntry(new ItemStack(Items.RABBIT, 1, 0), 10));
+    }
+    
     protected int lifeEssentia = 0;
     protected int waterEssentia = 0;
     protected int eldritchEssentia = 0;
     protected int tickCounter = 0;
+    protected int activeCounter = 0;
 
     @Override
     protected void readFromTileNBT(NBTTagCompound compound) {
@@ -38,11 +73,24 @@ public class TileMeatyOrb extends TileTW implements IAspectContainer, IEssentiaT
         compound.setShort("eldritchEssentia", (short)this.eldritchEssentia);
         return compound;
     }
+    
+    public void setActive(boolean active) {
+        this.activeCounter = (active ? DURATION_TICKS : 0);
+    }
 
     @Override
     public void update() {
         if (!this.world.isRemote && (++this.tickCounter % 5 == 0)) {
             this.fill();
+        }
+        if (!this.world.isRemote && this.activeCounter > 0) {
+            MeatEntry entry = (MeatEntry)RIC.chooseOnWeight(meats);
+            if (entry != null) {
+                double x = this.pos.getX() + 0.5D + (32.0D * (this.world.rand.nextDouble() - this.world.rand.nextDouble()));
+                double z = this.pos.getZ() + 0.5D + (32.0D * (this.world.rand.nextDouble() - this.world.rand.nextDouble()));
+                this.world.spawnEntity(new EntityItem(this.world, x, this.world.getActualHeight(), z, entry.itemStack.copy()));
+            }
+            this.activeCounter--;
         }
     }
 

@@ -5,6 +5,8 @@ import java.io.IOException;
 import org.lwjgl.opengl.GL11;
 
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
+import com.verdantartifice.thaumicwonders.common.network.PacketHandler;
+import com.verdantartifice.thaumicwonders.common.network.packets.PacketMeatyOrbAction;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
@@ -55,7 +57,7 @@ public class GuiMeatyOrb extends GuiScreen {
     
     @Override
     protected void actionPerformed(GuiButton button) throws IOException {
-        ThaumicWonders.LOGGER.info("Firing meaty orb packet");
+        PacketHandler.INSTANCE.sendToServer(new PacketMeatyOrbAction(this.pos));
         this.mc.player.closeScreen();
     }
     
