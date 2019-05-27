@@ -22,4 +22,5 @@ public class BlocksTW {
     public static final Block FLUX_CAPACITOR = null;
     public static final Block METEORB = null;
     public static final Block ORE_DIVINER = null;
+    public static final Block MEATY_ORB = null;
 }

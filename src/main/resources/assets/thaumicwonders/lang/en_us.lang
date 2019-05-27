@@ -17,6 +17,7 @@ tile.thaumicwonders.flux_capacitor.name=Flux Capacitor
 tile.thaumicwonders.flux_capacitor.tooltip.flux=Flux: %1$d
 tile.thaumicwonders.meteorb.name=Meteorb
 tile.thaumicwonders.ore_diviner.name=Ore Diviner
+tile.thaumicwonders.meaty_orb.name=Meaty Orb
 
 // Misc Tiles
 tile.thaumicwonders.fluid_quicksilver.name=Quicksilver
@@ -139,6 +140,10 @@ thaumicwonders.research.void_fortress_armor.title=Void Fortress Armor
 thaumicwonders.research.void_fortress_armor.text.stage.1=Void armor is both strong and self-repairing, but I'm confident that I can improve upon it.  Perhaps the lessons I learned improving thaumium armor can be applied here as well.
 thaumicwonders.research.void_fortress_armor.text.stage.2=My efforts to improve void armor have borne fruit.  The armor I have created is a masterpiece of strength and durability, providing additional protection against magic and fire damage, but sacrificing none of the properties that make void armor so unique.  In keeping with my earlier efforts, I am calling my newest creation Void Fortress Armor.<BR>Like the thaumium version, this armor is meant to be worn together.  The more pieces I wear, the better each piece protects me and, as a bonus, the better it looks.<BR>As a nod to utility, I've made sure to integrate a set of Goggles of Revealing into the helmet's mask.  The mask also replicates the effect of the Thaumium Fortress Armor's Sipping Fiend mask, sometimes healing the wearer when striking.<BR>Finally, this armor seems to have a symbiotic relationship with warp.  The more permanent warp I have, the more toughness each piece of armor has.<BR>In this, I will be a bastion of invincibility.
 
+thaumicwonders.research.meaty_orb.title=Meaty Orb
+thaumicwonders.research.meaty_orb.text.stage.1=I had a dream last night.  In it, I used the Meteorb to change the weather, but instead of rain, what fell from the sky was meat.  All kinds of meat.  I wonder if I can make this dream a reality.  Or if I even should.
+thaumicwonders.research.meaty_orb.text.stage.2=For better or for worse, I've succeeded.  I've created a new form of Meteorb, one which I'm calling, not to put too fine a point on things, a Meaty Orb.  It's kind of gross to hold, honestly.<BR>Bending the fabric of reality to my whim isn't cheap, though.  In order to work, the Meaty Orb needs 250 *each* of Aqua, Victus, and Alienis essentia.  Plus it generates a significant quantity of flux when activated.<BR>Once used, though, it really does make the sky rain meat.  For short time and within a short distance, anyway.
+
 // Theorycraft Cards
 card.induced_inspiration.name=Induced Inspiration
 card.induced_inspiration.text=The Inspiration Engine feeds ideas directly into your mind, ones highly relevant to the research you're currently pursuing. You gain %1$s %2$s, 1 inspiration, and a bonus draw.
@@ -168,6 +173,7 @@ thaumicwonders.gui.timewinder.8=Day
 thaumicwonders.gui.meteorb.0=Clear Skies
 thaumicwonders.gui.meteorb.1=Rain
 thaumicwonders.gui.meteorb.2=Thunderstorm
+thaumicwonders.gui.meaty_orb.0=Meat!
 
 // Events
 event.primal_destroyer.hunger_full=The Primal Destroyer twists of its own will and cuts you!
@@ -188,6 +194,9 @@ event.ore_diviner.found.north=You sense something to the north!
 event.ore_diviner.found.south=You sense something to the south!
 event.ore_diviner.found.west=You sense something to the west!
 event.ore_diviner.found.east=You sense something to the east!
+event.meaty_orb.used=It's raining meat!
+event.meaty_orb.offworld=The Meaty Orb doesn't seem to function here.
+event.meaty_orb.unfueled=The Meaty Orb needs more essentia for that.
 
 // Misc
 itemGroup.thaumicwonders=Thaumic Wonders
