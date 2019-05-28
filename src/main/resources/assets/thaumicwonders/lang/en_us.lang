@@ -175,6 +175,15 @@ thaumicwonders.gui.meteorb.0=Clear Skies
 thaumicwonders.gui.meteorb.1=Rain
 thaumicwonders.gui.meteorb.2=Thunderstorm
 thaumicwonders.gui.meaty_orb.0=Meat!
+thaumicwonders.gui.structure_diviner.0=Village
+thaumicwonders.gui.structure_diviner.1=Temple
+thaumicwonders.gui.structure_diviner.2=Mineshaft
+thaumicwonders.gui.structure_diviner.3=Ocean Monument
+thaumicwonders.gui.structure_diviner.4=Woodland Mansion
+thaumicwonders.gui.structure_diviner.5=Stronghold
+thaumicwonders.gui.structure_diviner.6=Nether Fortress
+thaumicwonders.gui.structure_diviner.7=End City
+thaumicwonders.gui.structure_diviner.8=Clear Selection
 
 // Events
 event.primal_destroyer.hunger_full=The Primal Destroyer twists of its own will and cuts you!

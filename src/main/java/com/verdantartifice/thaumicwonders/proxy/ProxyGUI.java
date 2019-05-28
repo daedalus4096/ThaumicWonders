@@ -3,6 +3,7 @@ package com.verdantartifice.thaumicwonders.proxy;
 import com.verdantartifice.thaumicwonders.client.gui.GuiCatalyzationChamber;
 import com.verdantartifice.thaumicwonders.client.gui.GuiMeatyOrb;
 import com.verdantartifice.thaumicwonders.client.gui.GuiMeteorb;
+import com.verdantartifice.thaumicwonders.client.gui.GuiStructureDiviner;
 import com.verdantartifice.thaumicwonders.client.gui.GuiTimewinder;
 import com.verdantartifice.thaumicwonders.common.containers.ContainerCatalyzationChamber;
 import com.verdantartifice.thaumicwonders.common.misc.GuiIds;
@@ -23,6 +24,8 @@ public class ProxyGUI {
             return new GuiMeteorb(new BlockPos(x, y, z));
         case GuiIds.MEATY_ORB:
             return new GuiMeatyOrb(new BlockPos(x, y, z));
+        case GuiIds.STRUCTURE_DIVINER:
+            return new GuiStructureDiviner();
         default:
             return null;
         }

@@ -3,13 +3,19 @@ package com.verdantartifice.thaumicwonders.common.items.misc;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.items.base.ItemTW;
+import com.verdantartifice.thaumicwonders.common.misc.GuiIds;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItemFrame;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -20,6 +26,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ItemStructureDiviner extends ItemTW {
     public ItemStructureDiviner() {
         super("structure_diviner");
+        this.setMaxStackSize(1);
+        this.setNoRepair();
         
         this.addPropertyOverride(new ResourceLocation("angle"), new IItemPropertyGetter() {
             @SideOnly(Side.CLIENT)
@@ -91,5 +99,11 @@ public class ItemStructureDiviner extends ItemTW {
                 return Math.atan2((double)targetPoint.getZ() - entity.posZ, (double)targetPoint.getX() - entity.posX) / (Math.PI * 2.0D);
             }
         });
+    }
+    
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
+        playerIn.openGui(ThaumicWonders.INSTANCE, GuiIds.STRUCTURE_DIVINER, worldIn, 0, 0, 0);
+        return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
     }
 }
