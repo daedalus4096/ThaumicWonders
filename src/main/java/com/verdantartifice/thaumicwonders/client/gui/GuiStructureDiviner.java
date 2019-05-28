@@ -5,6 +5,8 @@ import java.io.IOException;
 import org.lwjgl.opengl.GL11;
 
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
+import com.verdantartifice.thaumicwonders.common.network.PacketHandler;
+import com.verdantartifice.thaumicwonders.common.network.packets.PacketStructureDivinerAction;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
@@ -61,8 +63,7 @@ public class GuiStructureDiviner extends GuiScreen {
     
     @Override
     protected void actionPerformed(GuiButton button) throws IOException {
-        // TODO Fire structure diviner action packet
-        ThaumicWonders.LOGGER.info("Firing structure diviner action packet for button {}", button.id);
+        PacketHandler.INSTANCE.sendToServer(new PacketStructureDivinerAction(button.id));
         this.mc.player.closeScreen();
     }
     

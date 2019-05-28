@@ -207,6 +207,12 @@ event.ore_diviner.found.east=You sense something to the east!
 event.meaty_orb.used=It's raining meat!
 event.meaty_orb.offworld=The Meaty Orb doesn't seem to function here.
 event.meaty_orb.unfueled=The Meaty Orb needs more essentia for that.
+event.structure_diviner.not_found=The diviner doesn't detect anything.
+event.structure_diviner.found.here=The diviner detects something right on top of you!
+event.structure_diviner.found.near=The diviner detects something nearby!
+event.structure_diviner.found.far=The diviner detects something far away!
+event.structure_diviner.found.very_far=The diviner detects something very far away!
+event.structure_diviner.found.extreme=The diviner detects something extremely far away!
 
 // Misc
 itemGroup.thaumicwonders=Thaumic Wonders
