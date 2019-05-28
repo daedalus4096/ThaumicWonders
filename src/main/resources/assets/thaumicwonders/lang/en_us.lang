@@ -145,6 +145,10 @@ thaumicwonders.research.meaty_orb.title=Meaty Orb
 thaumicwonders.research.meaty_orb.text.stage.1=I had a dream last night.  In it, I used the Meteorb to change the weather, but instead of rain, what fell from the sky was meat.  All kinds of meat.  I wonder if I can make this dream a reality.  Or if I even should.
 thaumicwonders.research.meaty_orb.text.stage.2=For better or for worse, I've succeeded.  I've created a new form of Meteorb, one which I'm calling, not to put too fine a point on things, a Meaty Orb.  It's kind of gross to hold, honestly.<BR>Bending the fabric of reality to my whim isn't cheap, though.  In order to work, the Meaty Orb needs 250 *each* of Aqua, Victus, and Alienis essentia.  Plus it generates a significant quantity of flux when activated.<BR>Once used, though, it really does make the sky rain meat.  For short time and within a short distance, anyway.
 
+thaumicwonders.research.structure_diviner.title=Structure Divination
+thaumicwonders.research.structure_diviner.text.stage.1=My creations are not the only ones in this world, but seeking out others is a very hit-or-miss prospect.  Simply picking a direction and walking will work eventually, but it's hardly efficient.  A thaumaturge of my caliber should be able to divine these things ahead of time.
+thaumicwonders.research.structure_diviner.text.stage.2=Such a simple-looking device, for one with such potential.  This Structure Diviner can find the nearest naturally generating structure in my current dimension with the press of a button.  Upon use, it will point the way to my destination as well as give me a very rough indication of how far away it is.
+
 // Theorycraft Cards
 card.induced_inspiration.name=Induced Inspiration
 card.induced_inspiration.text=The Inspiration Engine feeds ideas directly into your mind, ones highly relevant to the research you're currently pursuing. You gain %1$s %2$s, 1 inspiration, and a bonus draw.

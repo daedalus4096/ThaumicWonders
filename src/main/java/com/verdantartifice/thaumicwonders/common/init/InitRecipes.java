@@ -490,6 +490,22 @@ public class InitRecipes {
                         new ItemStack(Items.RABBIT)
                 }
         ));
+        
+        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "structure_diviner"), new InfusionRecipe(
+                "TWOND_STRUCTURE_DIVINER",
+                new ItemStack(ItemsTW.STRUCTURE_DIVINER),
+                6,
+                new AspectList().add(Aspect.SENSES, 100).add(Aspect.MECHANISM, 50).add(Aspect.MAGIC, 50).add(Aspect.EARTH, 50),
+                new ItemStack(Items.COMPASS),
+                new Object[] {
+                        new ItemStack(Items.ENDER_EYE),
+                        new ItemStack(Items.EMERALD),
+                        new ItemStack(Items.ENDER_EYE),
+                        new ItemStack(Blocks.NETHER_BRICK),
+                        new ItemStack(Items.ENDER_EYE),
+                        new ItemStack(Items.PRISMARINE_CRYSTALS)
+                }
+        ));
     }
     
     private static void initSmelting() {

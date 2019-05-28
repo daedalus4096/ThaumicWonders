@@ -115,6 +115,29 @@
                 }
             ],
             "addenda": []
+        },
+        {
+            "key": "TWOND_STRUCTURE_DIVINER",
+            "name": "thaumicwonders.research.structure_diviner.title",
+            "icons": ["thaumicwonders:structure_diviner"],
+            "category": "THAUMIC_WONDERS",
+            "parents": ["TWOND_ORE_DIVINER"],
+            "siblings": [],
+            "meta": [],
+            "location": [6, 4],
+            "reward_item": [],
+            "reward_knowledge": [],
+            "stages": [
+                {
+                    "text": "thaumicwonders.research.structure_diviner.text.stage.1",
+                    "required_knowledge": ["THEORY;INFUSION;2"]
+                },
+                {
+                    "text": "thaumicwonders.research.structure_diviner.text.stage.2", 
+                    "recipes": ["thaumicwonders:structure_diviner"]
+                }
+            ],
+            "addenda": []
         }
     ]
 }
