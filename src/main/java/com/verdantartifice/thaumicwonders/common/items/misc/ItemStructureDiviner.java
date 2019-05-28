@@ -1,10 +1,13 @@
 package com.verdantartifice.thaumicwonders.common.items.misc;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import com.verdantartifice.thaumicwonders.common.items.base.ItemTW;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItemFrame;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -29,8 +32,30 @@ public class ItemStructureDiviner extends ItemTW {
             @SideOnly(Side.CLIENT)
             @Override
             public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
-                // TODO Auto-generated method stub
-                return 0;
+                if (entityIn == null && !stack.isOnItemFrame()) {
+                    return 0.0F;
+                } else {
+                    boolean held = (entityIn != null);
+                    Entity entity = (held ? entityIn : stack.getItemFrame());
+                    if (worldIn == null) {
+                        worldIn = entity.getEntityWorld();
+                    }
+                    
+                    double angle;
+                    BlockPos targetPoint = this.getTargetPoint(stack);
+                    if (targetPoint != null) {
+                        double entityYaw = held ? (double)entity.rotationYaw : this.getFrameRotation(stack.getItemFrame());
+                        entityYaw = MathHelper.positiveModulo(entityYaw / 360.0D, 1.0D);
+                        angle = 0.5D - (entityYaw - 0.25D - this.getTargetPointToAngle(targetPoint, entity));
+                    } else {
+                        angle = Math.random();
+                    }
+                    
+                    if (held) {
+                        angle = this.wobble(worldIn, angle);
+                    }
+                    return MathHelper.positiveModulo((float)angle, 1.0F);
+                }
             }
             
             @SideOnly(Side.CLIENT)
@@ -47,9 +72,23 @@ public class ItemStructureDiviner extends ItemTW {
             }
             
             @SideOnly(Side.CLIENT)
+            private double getFrameRotation(EntityItemFrame frame) {
+                return (double)MathHelper.wrapDegrees(180 + frame.facingDirection.getHorizontalIndex() * 90);
+            }
+
+            @SideOnly(Side.CLIENT)
             @Nullable
             private BlockPos getTargetPoint(ItemStack stack) {
-                return null;
+                if (stack != null && !stack.isEmpty() && stack.hasTagCompound() && stack.getTagCompound().hasKey("targetPoint")) {
+                    return BlockPos.fromLong(stack.getTagCompound().getLong("targetPoint"));
+                } else {
+                    return null;
+                }
+            }
+            
+            @SideOnly(Side.CLIENT)
+            private double getTargetPointToAngle(@Nonnull BlockPos targetPoint, @Nonnull Entity entity) {
+                return Math.atan2((double)targetPoint.getZ() - entity.posZ, (double)targetPoint.getX() - entity.posX) / (Math.PI * 2.0D);
             }
         });
     }
