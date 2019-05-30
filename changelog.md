@@ -1,6 +1,7 @@
 v1.6.0
 ------
 * Added Meaty Orb, for when the weather forecast should be "cloudy with a chance of meatballs"
+* Added Structure Diviner, to track down interesting spots in the world
 * Fixed a mod compatibility bug in ore detection logic
 * Fixed an ore-matching issue with the Ore Diviner
 * Fixed item duplication bug with Catalyzation Chamber

@@ -20,4 +20,5 @@ public class ItemsTW {
     public static final ItemArmor VOID_FORTRESS_HELM = null;
     public static final ItemArmor VOID_FORTRESS_CHEST = null;
     public static final ItemArmor VOID_FORTRESS_LEGS = null;
+    public static final Item STRUCTURE_DIVINER = null;
 }

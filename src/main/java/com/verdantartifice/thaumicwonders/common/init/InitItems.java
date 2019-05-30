@@ -11,6 +11,7 @@ import com.verdantartifice.thaumicwonders.common.items.catalysts.ItemAlienistSto
 import com.verdantartifice.thaumicwonders.common.items.catalysts.ItemTransmuterStone;
 import com.verdantartifice.thaumicwonders.common.items.entities.ItemFlyingCarpet;
 import com.verdantartifice.thaumicwonders.common.items.misc.ItemDisjunctionCloth;
+import com.verdantartifice.thaumicwonders.common.items.misc.ItemStructureDiviner;
 import com.verdantartifice.thaumicwonders.common.items.misc.ItemTimewinder;
 import com.verdantartifice.thaumicwonders.common.items.tools.ItemPrimalDestroyer;
 
@@ -34,6 +35,7 @@ public class InitItems {
         registerItem(forgeRegistry, new ItemVoidFortressArmor("void_fortress_helm", ItemVoidFortressArmor.MATERIAL, 4, EntityEquipmentSlot.HEAD));
         registerItem(forgeRegistry, new ItemVoidFortressArmor("void_fortress_chest", ItemVoidFortressArmor.MATERIAL, 4, EntityEquipmentSlot.CHEST));
         registerItem(forgeRegistry, new ItemVoidFortressArmor("void_fortress_legs", ItemVoidFortressArmor.MATERIAL, 4, EntityEquipmentSlot.LEGS));
+        registerItem(forgeRegistry, new ItemStructureDiviner());
     }
     
     private static void registerItem(IForgeRegistry<Item> forgeRegistry, Item item) {
