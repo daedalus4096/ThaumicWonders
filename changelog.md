@@ -8,6 +8,7 @@ v1.6.0
 * Render tooltips in Catalyzation Chamber GUI
 * Added visual effect for Void Portal destabilization
 * Fixed Z-clipping issue with the Void Fortress Helmet and skins with hats
+* Added star field effect to the business end of Dimensional Rippers
 
 v1.5.0
 ------
