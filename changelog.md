@@ -1,3 +1,7 @@
+v1.7.0
+------
+* Added Night-Vision Goggles, for a different kind of revealing
+
 v1.6.0
 ------
 * Added Meaty Orb, for when the weather forecast should be "cloudy with a chance of meatballs"

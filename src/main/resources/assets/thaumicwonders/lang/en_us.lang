@@ -45,6 +45,7 @@ item.thaumicwonders.void_fortress_helm.name=Void Fortress Helm
 item.thaumicwonders.void_fortress_chest.name=Void Fortress Cuirass
 item.thaumicwonders.void_fortress_legs.name=Void Fortress Thigh Guards
 item.thaumicwonders.structure_diviner.name=Structure Diviner
+item.thaumicwonders.night_vision_goggles.name=Night-Vision Goggles
 
 // Entities
 entity.flying_carpet.name=Flying Carpet
@@ -148,6 +149,10 @@ thaumicwonders.research.meaty_orb.text.stage.2=For better or for worse, I've suc
 thaumicwonders.research.structure_diviner.title=Structure Divination
 thaumicwonders.research.structure_diviner.text.stage.1=My creations are not the only ones in this world, but seeking out others is a very hit-or-miss prospect.  Simply picking a direction and walking will work eventually, but it's hardly efficient.  A thaumaturge of my caliber should be able to divine these things ahead of time.
 thaumicwonders.research.structure_diviner.text.stage.2=Such a simple-looking device, for one with such potential.  This Structure Diviner can find the nearest naturally generating structure in my current dimension with the press of a button.  Upon use, it will point the way to my destination as well as give me a very rough indication of how far away it is.
+
+thaumicwonders.research.night_vision_goggles.title=Night-Vision Goggles
+thaumicwonders.research.night_vision_goggles.text.stage.1=The night is a perilous time, but some things can only be done then.  The monsters are manageable; what I really want is to not bumble into a chasm and fall to my death.<BR>I suppose I could carry night-vision potions with me, but who wants to chug that vile-tasting swill every few minutes?  I can do better.
+thaumicwonders.research.night_vision_goggles.text.stage.2=If my eyes cannot see in the dark, then clearly the solution is to craft lenses that can do it for me.<BR>By infusing a pair of Goggles of Revealing with the right essence, I've created a pair of Night-Vision Goggles.  They have to be charged on a Recharge Pedestal, but they last longer than any potion.<BR>What they don't do, however, is reveal.  The functions of a basic pair of Goggles of Revealing are lost in the process, so I'll need to carry those with me as well.
 
 // Theorycraft Cards
 card.induced_inspiration.name=Induced Inspiration

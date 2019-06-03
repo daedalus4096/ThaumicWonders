@@ -138,6 +138,30 @@
                 }
             ],
             "addenda": []
+        },
+        {
+            "key": "TWOND_NV_GOGGLES",
+            "name": "thaumicwonders.research.night_vision_goggles.title",
+            "icons": ["thaumicwonders:night_vision_goggles"],
+            "category": "THAUMIC_WONDERS",
+            "parents": ["TWOND_FLYING_CARPET"],
+            "siblings": [],
+            "meta": [],
+            "location": [0, -4],
+            "reward_item": [],
+            "reward_knowledge": [],
+            "stages": [
+                {
+                    "text": "thaumicwonders.research.night_vision_goggles.text.stage.1",
+                    "required_knowledge":["THEORY;INFUSION;1","OBSERVATION;ARTIFICE;1"],
+                    "required_research": ["!sensus"]
+                },
+                {
+                    "text": "thaumicwonders.research.night_vision_goggles.text.stage.2", 
+                    "recipes": ["thaumicwonders:night_vision_goggles"]
+                }
+            ],
+            "addenda": []
         }
     ]
 }

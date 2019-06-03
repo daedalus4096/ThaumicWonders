@@ -506,6 +506,20 @@ public class InitRecipes {
                         new ItemStack(Items.PRISMARINE_CRYSTALS)
                 }
         ));
+        
+        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "night_vision_goggles"), new InfusionRecipe(
+                "TWOND_NV_GOGGLES",
+                new ItemStack(ItemsTW.NIGHT_VISION_GOGGLES),
+                4,
+                new AspectList().add(Aspect.SENSES, 50).add(Aspect.LIGHT, 50).add(Aspect.MAGIC, 25).add(Aspect.ENERGY, 25),
+                new ItemStack(ItemsTC.goggles),
+                new Object[] {
+                        new ItemStack(Items.GOLDEN_CARROT),
+                        "nitor",
+                        ThaumcraftApiHelper.makeCrystal(Aspect.SENSES),
+                        ThaumcraftApiHelper.makeCrystal(Aspect.SENSES)
+                }
+        ));
     }
     
     private static void initSmelting() {
