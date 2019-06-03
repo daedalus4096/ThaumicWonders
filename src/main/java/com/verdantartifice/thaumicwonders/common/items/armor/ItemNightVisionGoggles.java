@@ -10,11 +10,14 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagInt;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import thaumcraft.api.ThaumcraftMaterials;
@@ -68,7 +71,19 @@ public class ItemNightVisionGoggles extends ItemArmor implements IBauble, IRende
     
     @Override
     public void onWornTick(ItemStack stack, EntityLivingBase player) {
+        this.doTick(stack, player);
+    }
+    
+    @Override
+    public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) {
+        this.doTick(itemStack, player);
+    }
+    
+    protected void doTick(ItemStack stack, EntityLivingBase player) {
         this.consumeEnergy(stack, player);
+        if (this.hasEnergy(stack)) {
+            player.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION, 300, 0, true, false));
+        }
     }
     
     protected void consumeEnergy(ItemStack stack, EntityLivingBase player) {
