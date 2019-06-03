@@ -3,6 +3,7 @@ package com.verdantartifice.thaumicwonders.common.init;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.verdantartifice.thaumicwonders.common.items.armor.ItemNightVisionGoggles;
 import com.verdantartifice.thaumicwonders.common.items.armor.ItemVoidFortressArmor;
 import com.verdantartifice.thaumicwonders.common.items.base.IVariantItem;
 import com.verdantartifice.thaumicwonders.common.items.base.ItemTW;
@@ -36,6 +37,7 @@ public class InitItems {
         registerItem(forgeRegistry, new ItemVoidFortressArmor("void_fortress_chest", ItemVoidFortressArmor.MATERIAL, 4, EntityEquipmentSlot.CHEST));
         registerItem(forgeRegistry, new ItemVoidFortressArmor("void_fortress_legs", ItemVoidFortressArmor.MATERIAL, 4, EntityEquipmentSlot.LEGS));
         registerItem(forgeRegistry, new ItemStructureDiviner());
+        registerItem(forgeRegistry, new ItemNightVisionGoggles());
     }
     
     private static void registerItem(IForgeRegistry<Item> forgeRegistry, Item item) {

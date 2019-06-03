@@ -45,6 +45,7 @@ item.thaumicwonders.void_fortress_helm.name=Void Fortress Helm
 item.thaumicwonders.void_fortress_chest.name=Void Fortress Cuirass
 item.thaumicwonders.void_fortress_legs.name=Void Fortress Thigh Guards
 item.thaumicwonders.structure_diviner.name=Structure Diviner
+item.thaumicwonders.night_vision_goggles.name=Night-Vision Goggles
 
 // Entities
 entity.flying_carpet.name=Flying Carpet
