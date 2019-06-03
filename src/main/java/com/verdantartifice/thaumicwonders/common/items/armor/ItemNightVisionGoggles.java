@@ -8,19 +8,25 @@ import baubles.api.render.IRenderBauble;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagInt;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import thaumcraft.api.ThaumcraftMaterials;
+import thaumcraft.api.items.IRechargable;
 import thaumcraft.api.items.ItemsTC;
+import thaumcraft.api.items.RechargeHelper;
 import thaumcraft.client.lib.UtilsFX;
 
-public class ItemNightVisionGoggles extends ItemArmor implements IBauble, IRenderBauble {
+public class ItemNightVisionGoggles extends ItemArmor implements IBauble, IRenderBauble, IRechargable {
     protected static final ResourceLocation BAUBLE_TEXTURE = new ResourceLocation(ThaumicWonders.MODID, "textures/items/night_vision_goggles_bauble.png");
+    protected static final int VIS_CAPACITY = 100;
+    protected static final int ENERGY_PER_VIS = (20 * 60 * 15) / VIS_CAPACITY;
     
     public ItemNightVisionGoggles() {
         super(ThaumcraftMaterials.ARMORMAT_SPECIAL, 4, EntityEquipmentSlot.HEAD);
@@ -58,5 +64,46 @@ public class ItemNightVisionGoggles extends ItemArmor implements IBauble, IRende
     @Override
     public BaubleType getBaubleType(ItemStack itemstack) {
         return BaubleType.HEAD;
+    }
+    
+    @Override
+    public void onWornTick(ItemStack stack, EntityLivingBase player) {
+        this.consumeEnergy(stack, player);
+    }
+    
+    protected void consumeEnergy(ItemStack stack, EntityLivingBase player) {
+        int energy = this.getEnergy(stack);
+        if (energy > 0) {
+            energy--;
+        } else if (RechargeHelper.consumeCharge(stack, player, 1)) {
+            energy = ENERGY_PER_VIS;
+        }
+        this.setEnergy(stack, energy);
+    }
+    
+    protected int getEnergy(ItemStack stack) {
+        if (stack.hasTagCompound()) {
+            return stack.getTagCompound().getInteger("energy");
+        } else {
+            return 0;
+        }
+    }
+    
+    protected void setEnergy(ItemStack stack, int energy) {
+        stack.setTagInfo("energy", new NBTTagInt(energy));
+    }
+    
+    protected boolean hasEnergy(ItemStack stack) {
+        return (this.getEnergy(stack) > 0 || RechargeHelper.getCharge(stack) > 0);
+    }
+    
+    @Override
+    public int getMaxCharge(ItemStack stack, EntityLivingBase player) {
+        return VIS_CAPACITY;
+    }
+
+    @Override
+    public EnumChargeDisplay showInHud(ItemStack stack, EntityLivingBase player) {
+        return IRechargable.EnumChargeDisplay.NORMAL;
     }
 }
