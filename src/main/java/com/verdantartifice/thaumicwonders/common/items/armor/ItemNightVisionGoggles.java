@@ -29,7 +29,7 @@ import thaumcraft.client.lib.UtilsFX;
 public class ItemNightVisionGoggles extends ItemArmor implements IBauble, IRenderBauble, IRechargable {
     protected static final ResourceLocation BAUBLE_TEXTURE = new ResourceLocation(ThaumicWonders.MODID, "textures/items/night_vision_goggles_bauble.png");
     protected static final int VIS_CAPACITY = 100;
-    protected static final int ENERGY_PER_VIS = (20 * 60 * 15) / VIS_CAPACITY;
+    protected static final int ENERGY_PER_VIS = (20 * 60 * 30) / VIS_CAPACITY;
     
     public ItemNightVisionGoggles() {
         super(ThaumcraftMaterials.ARMORMAT_SPECIAL, 4, EntityEquipmentSlot.HEAD);
