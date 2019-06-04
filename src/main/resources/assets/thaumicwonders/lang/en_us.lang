@@ -18,6 +18,7 @@ tile.thaumicwonders.flux_capacitor.tooltip.flux=Flux: %1$d
 tile.thaumicwonders.meteorb.name=Meteorb
 tile.thaumicwonders.ore_diviner.name=Ore Diviner
 tile.thaumicwonders.meaty_orb.name=Meaty Orb
+tile.thaumicwonders.void_beacon.name=Void Beacon
 
 // Misc Tiles
 tile.thaumicwonders.fluid_quicksilver.name=Quicksilver

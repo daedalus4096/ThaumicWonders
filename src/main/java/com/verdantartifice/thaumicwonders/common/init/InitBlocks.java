@@ -15,6 +15,7 @@ import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockMeteorb;
 import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockOreDiviner;
 import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockPortalAnchor;
 import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockPortalGenerator;
+import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockVoidBeacon;
 import com.verdantartifice.thaumicwonders.common.blocks.devices.ItemBlockFluxCapacitor;
 import com.verdantartifice.thaumicwonders.common.blocks.devices.ItemBlockPortalGenerator;
 import com.verdantartifice.thaumicwonders.common.blocks.essentia.BlockCreativeEssentiaJar;
@@ -33,6 +34,7 @@ import com.verdantartifice.thaumicwonders.common.tiles.devices.TileMeteorb;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileOreDiviner;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TilePortalAnchor;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TilePortalGenerator;
+import com.verdantartifice.thaumicwonders.common.tiles.devices.TileVoidBeacon;
 import com.verdantartifice.thaumicwonders.common.tiles.essentia.TileCreativeEssentiaJar;
 
 import net.minecraft.block.Block;
@@ -60,6 +62,7 @@ public class InitBlocks {
         registerBlock(forgeRegistry, new BlockMeteorb());
         registerBlock(forgeRegistry, new BlockOreDiviner());
         registerBlock(forgeRegistry, new BlockMeatyOrb());
+        registerBlock(forgeRegistry, new BlockVoidBeacon());
         
         registerBlock(forgeRegistry, new BlockTWPlaceholder("placeholder_arcane_stone"));
         registerBlock(forgeRegistry, new BlockTWPlaceholder("placeholder_obsidian"));
@@ -104,5 +107,6 @@ public class InitBlocks {
         GameRegistry.registerTileEntity(TileMeteorb.class, new ResourceLocation(ThaumicWonders.MODID, "TileMeteorb"));
         GameRegistry.registerTileEntity(TileOreDiviner.class, new ResourceLocation(ThaumicWonders.MODID, "TileOreDiviner"));
         GameRegistry.registerTileEntity(TileMeatyOrb.class, new ResourceLocation(ThaumicWonders.MODID, "TileMeatyOrb"));
+        GameRegistry.registerTileEntity(TileVoidBeacon.class, new ResourceLocation(ThaumicWonders.MODID, "TileVoidBeacon"));
     }
 }
