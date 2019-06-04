@@ -1,12 +1,21 @@
 package com.verdantartifice.thaumicwonders.common.tiles.devices;
 
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.tiles.base.TileTW;
 
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import thaumcraft.api.ThaumcraftApiHelper;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
@@ -17,10 +26,18 @@ import thaumcraft.api.aura.AuraHelper;
 public class TileVoidBeacon extends TileTW implements ITickable, IAspectContainer, IEssentiaTransport {
     private static final int CAPACITY = 100;
     
+    protected final List<TileVoidBeacon.BeamSegment> beamSegments = new ArrayList<TileVoidBeacon.BeamSegment>();
+    
     protected Aspect essentiaType = null;
     protected int essentiaAmount = 0;
     protected int tickCounter = 0;
+    protected boolean validPlacement = false;
     
+    @SideOnly(Side.CLIENT)
+    private long beamRenderCounter;
+    @SideOnly(Side.CLIENT)
+    private float beamRenderScale;
+
     @Override
     protected void readFromTileNBT(NBTTagCompound compound) {
         this.essentiaType = Aspect.getAspect(compound.getString("essentiaType"));
@@ -42,6 +59,71 @@ public class TileVoidBeacon extends TileTW implements ITickable, IAspectContaine
         if (!this.world.isRemote && (this.tickCounter % 5 == 0)) {
             this.fill();
         }
+        if (this.tickCounter % 80 == 0) {
+            this.updateBeam();
+            this.updateLevels();
+        }
+    }
+    
+    protected void updateBeam() {
+        this.beamSegments.clear();
+        this.validPlacement = true;
+        Color beamColor = new Color(Aspect.ELDRITCH.getColor());
+        TileVoidBeacon.BeamSegment segment = new TileVoidBeacon.BeamSegment(beamColor.getRGBColorComponents(null));
+        this.beamSegments.add(segment);
+        BlockPos.MutableBlockPos mbp = new BlockPos.MutableBlockPos();
+        
+        for (int y = this.pos.getY() + 1; y < this.world.getActualHeight(); y++) {
+            mbp.setPos(this.pos.getX(), y, this.pos.getZ());
+            IBlockState blockState = this.world.getBlockState(mbp);
+            if (blockState.getLightOpacity(this.world, mbp) >= 15 && blockState.getBlock() != Blocks.BEDROCK) {
+                this.validPlacement = false;
+                this.beamSegments.clear();
+                break;
+            } else {
+                segment.incrementHeight();
+            }
+        }
+    }
+    
+    @SideOnly(Side.CLIENT)
+    public List<TileVoidBeacon.BeamSegment> getBeamSegments() {
+        return this.beamSegments;
+    }
+    
+    @SideOnly(Side.CLIENT)
+    public float shouldBeamRender() {
+        if (!this.validPlacement) {
+            return 0.0F;
+        } else {
+            int i = (int)(this.world.getTotalWorldTime() - this.beamRenderCounter);
+            this.beamRenderCounter = this.world.getTotalWorldTime();
+
+            if (i > 1) {
+                this.beamRenderScale -= (float)i / 40.0F;
+                if (this.beamRenderScale < 0.0F) {
+                    this.beamRenderScale = 0.0F;
+                }
+            }
+
+            this.beamRenderScale += 0.025F;
+
+            if (this.beamRenderScale > 1.0F) {
+                this.beamRenderScale = 1.0F;
+            }
+
+            return this.beamRenderScale;
+        }
+    }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public double getMaxRenderDistanceSquared() {
+        return 65536.0D;
+    }
+    
+    protected void updateLevels() {
+        
     }
     
     protected void fill() {
@@ -221,4 +303,28 @@ public class TileVoidBeacon extends TileTW implements ITickable, IAspectContaine
         }
     }
 
+    public static class BeamSegment {
+        /** RGB (0 to 1.0) colors of this beam segment */
+        private final float[] colors;
+        private int height;
+
+        public BeamSegment(float[] colorsIn) {
+            this.colors = colorsIn;
+            this.height = 1;
+        }
+
+        protected void incrementHeight() {
+            ++this.height;
+        }
+
+        /** Returns RGB (0 to 1.0) colors of this beam segment */
+        public float[] getColors() {
+            return this.colors;
+        }
+
+        @SideOnly(Side.CLIENT)
+        public int getHeight() {
+            return this.height;
+        }
+    }
 }
