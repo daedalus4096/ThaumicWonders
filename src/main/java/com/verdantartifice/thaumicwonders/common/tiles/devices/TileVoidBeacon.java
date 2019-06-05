@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.tiles.base.TileTW;
 
@@ -39,6 +41,21 @@ public class TileVoidBeacon extends TileTW implements ITickable, IAspectContaine
     private long beamRenderCounter;
     @SideOnly(Side.CLIENT)
     private float beamRenderScale;
+    
+    @Nullable
+    public Aspect getEssentiaType() {
+        return this.essentiaType;
+    }
+    
+    public int getEssentiaAmount() {
+        return this.essentiaAmount;
+    }
+    
+    public void clearEssentia() {
+        this.essentiaType = null;
+        this.essentiaAmount = 0;
+        this.markDirty();
+    }
 
     @Override
     protected void readFromTileNBT(NBTTagCompound compound) {
