@@ -20,7 +20,7 @@ public class TesrVoidBeacon extends TileEntitySpecialRenderer<TileVoidBeacon> {
 
     @Override
     public void render(TileVoidBeacon te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
-        this.renderBeacon(x, y, z, (double)partialTicks, (double)te.shouldBeamRender(), te.getBeamSegments(), (double)te.getWorld().getTotalWorldTime());
+        this.renderBeacon(x, y + 0.19D, z, (double)partialTicks, (double)te.shouldBeamRender(), te.getBeamSegments(), (double)te.getWorld().getTotalWorldTime());
     }
 
     protected void renderBeacon(double x, double y, double z, double partialTicks, double textureScale, List<TileVoidBeacon.BeamSegment> beamSegments, double totalWorldTime) {
