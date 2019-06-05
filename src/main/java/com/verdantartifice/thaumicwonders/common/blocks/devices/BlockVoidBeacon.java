@@ -1,5 +1,6 @@
 package com.verdantartifice.thaumicwonders.common.blocks.devices;
 
+import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.blocks.base.BlockDeviceTW;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileVoidBeacon;
 
@@ -54,6 +55,8 @@ public class BlockVoidBeacon extends BlockDeviceTW<TileVoidBeacon> implements IB
                     AuraHelper.polluteAura(worldIn, pos, tileEntity.getEssentiaAmount(), true);
                 }
                 tileEntity.clearEssentia();
+            } else {
+                ThaumicWonders.LOGGER.info("Void beacon levels: {}", tileEntity.getLevels());
             }
         }
         return true;

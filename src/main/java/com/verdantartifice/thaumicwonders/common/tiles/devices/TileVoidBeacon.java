@@ -25,6 +25,7 @@ import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.aspects.IAspectContainer;
 import thaumcraft.api.aspects.IEssentiaTransport;
 import thaumcraft.api.aura.AuraHelper;
+import thaumcraft.api.blocks.BlocksTC;
 import thaumcraft.common.blocks.IBlockEnabled;
 
 public class TileVoidBeacon extends TileTW implements ITickable, IAspectContainer, IEssentiaTransport {
@@ -36,6 +37,7 @@ public class TileVoidBeacon extends TileTW implements ITickable, IAspectContaine
     protected int essentiaAmount = 0;
     protected int tickCounter = 0;
     protected boolean validPlacement = false;
+    protected int levels = -1;
     
     @SideOnly(Side.CLIENT)
     private long beamRenderCounter;
@@ -56,11 +58,16 @@ public class TileVoidBeacon extends TileTW implements ITickable, IAspectContaine
         this.essentiaAmount = 0;
         this.markDirty();
     }
+    
+    public int getLevels() {
+        return this.levels;
+    }
 
     @Override
     protected void readFromTileNBT(NBTTagCompound compound) {
         this.essentiaType = Aspect.getAspect(compound.getString("essentiaType"));
         this.essentiaAmount = compound.getShort("essentiaAmount");
+        this.levels = compound.getShort("levels");
     }
     
     @Override
@@ -69,6 +76,7 @@ public class TileVoidBeacon extends TileTW implements ITickable, IAspectContaine
             compound.setString("essentiaType", this.essentiaType.getTag());
             compound.setShort("essentiaAmount", (short)this.essentiaAmount);
         }
+        compound.setShort("levels", (short)this.levels);
         return compound;
     }
     
@@ -106,7 +114,29 @@ public class TileVoidBeacon extends TileTW implements ITickable, IAspectContaine
     }
     
     protected void updateLevels() {
-        
+        this.levels = 0;
+        if (this.validPlacement) {
+            for (int yOffset = 1; yOffset <= 4; yOffset++) {
+                if (this.isLevelComplete(yOffset)) {
+                    this.levels++;
+                } else {
+                    break;
+                }
+            }
+        }
+    }
+    
+    private boolean isLevelComplete(int yOffset) {
+        for (int x = this.pos.getX() - yOffset; x <= this.pos.getX() + yOffset; x++) {
+            for (int z = this.pos.getZ() - yOffset; z <= this.pos.getZ() + yOffset; z++) {
+                int y = this.pos.getY() - yOffset;
+                IBlockState state = this.world.getBlockState(new BlockPos(x, y, z));
+                if (state.getBlock() != BlocksTC.metalBlockVoid) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
     
     protected void fill() {
