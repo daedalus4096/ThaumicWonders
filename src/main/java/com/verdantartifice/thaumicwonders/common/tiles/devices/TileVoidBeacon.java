@@ -13,6 +13,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -84,42 +85,6 @@ public class TileVoidBeacon extends TileTW implements ITickable, IAspectContaine
                 segment.incrementHeight();
             }
         }
-    }
-    
-    @SideOnly(Side.CLIENT)
-    public List<TileVoidBeacon.BeamSegment> getBeamSegments() {
-        return this.beamSegments;
-    }
-    
-    @SideOnly(Side.CLIENT)
-    public float shouldBeamRender() {
-        if (!this.validPlacement) {
-            return 0.0F;
-        } else {
-            int i = (int)(this.world.getTotalWorldTime() - this.beamRenderCounter);
-            this.beamRenderCounter = this.world.getTotalWorldTime();
-
-            if (i > 1) {
-                this.beamRenderScale -= (float)i / 40.0F;
-                if (this.beamRenderScale < 0.0F) {
-                    this.beamRenderScale = 0.0F;
-                }
-            }
-
-            this.beamRenderScale += 0.025F;
-
-            if (this.beamRenderScale > 1.0F) {
-                this.beamRenderScale = 1.0F;
-            }
-
-            return this.beamRenderScale;
-        }
-    }
-    
-    @Override
-    @SideOnly(Side.CLIENT)
-    public double getMaxRenderDistanceSquared() {
-        return 65536.0D;
     }
     
     protected void updateLevels() {
@@ -303,6 +268,48 @@ public class TileVoidBeacon extends TileTW implements ITickable, IAspectContaine
         }
     }
 
+    @SideOnly(Side.CLIENT)
+    public List<TileVoidBeacon.BeamSegment> getBeamSegments() {
+        return this.beamSegments;
+    }
+    
+    @SideOnly(Side.CLIENT)
+    public float shouldBeamRender() {
+        if (!this.validPlacement) {
+            return 0.0F;
+        } else {
+            int i = (int)(this.world.getTotalWorldTime() - this.beamRenderCounter);
+            this.beamRenderCounter = this.world.getTotalWorldTime();
+
+            if (i > 1) {
+                this.beamRenderScale -= (float)i / 40.0F;
+                if (this.beamRenderScale < 0.0F) {
+                    this.beamRenderScale = 0.0F;
+                }
+            }
+
+            this.beamRenderScale += 0.025F;
+
+            if (this.beamRenderScale > 1.0F) {
+                this.beamRenderScale = 1.0F;
+            }
+
+            return this.beamRenderScale;
+        }
+    }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public double getMaxRenderDistanceSquared() {
+        return 65536.0D;
+    }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public AxisAlignedBB getRenderBoundingBox() {
+        return INFINITE_EXTENT_AABB;
+    }
+    
     public static class BeamSegment {
         /** RGB (0 to 1.0) colors of this beam segment */
         private final float[] colors;
