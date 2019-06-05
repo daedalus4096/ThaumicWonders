@@ -5,6 +5,8 @@
         "transform": "forge:default-block"
      },
     "variants": {
-        "normal": [{}], "inventory": [{}]
+        "normal": [{}], "inventory": [{}],
+        "enabled=false": [{}],
+        "enabled=true": [{}]
     }
 }

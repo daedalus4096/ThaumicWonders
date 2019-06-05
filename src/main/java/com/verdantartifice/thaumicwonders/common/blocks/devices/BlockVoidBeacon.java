@@ -8,8 +8,9 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import thaumcraft.common.blocks.IBlockEnabled;
 
-public class BlockVoidBeacon extends BlockDeviceTW<TileVoidBeacon> {
+public class BlockVoidBeacon extends BlockDeviceTW<TileVoidBeacon> implements IBlockEnabled {
     public BlockVoidBeacon() {
         super(Material.GLASS, TileVoidBeacon.class, "void_beacon");
     }

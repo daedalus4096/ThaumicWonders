@@ -23,6 +23,7 @@ import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.aspects.IAspectContainer;
 import thaumcraft.api.aspects.IEssentiaTransport;
 import thaumcraft.api.aura.AuraHelper;
+import thaumcraft.common.blocks.IBlockEnabled;
 
 public class TileVoidBeacon extends TileTW implements ITickable, IAspectContainer, IEssentiaTransport {
     private static final int CAPACITY = 100;
@@ -275,7 +276,9 @@ public class TileVoidBeacon extends TileTW implements ITickable, IAspectContaine
     
     @SideOnly(Side.CLIENT)
     public float shouldBeamRender() {
-        if (!this.validPlacement) {
+        IBlockState state = this.world.getBlockState(this.pos);
+        boolean enabled = state.getValue(IBlockEnabled.ENABLED);
+        if (!this.validPlacement || !enabled) {
             return 0.0F;
         } else {
             int i = (int)(this.world.getTotalWorldTime() - this.beamRenderCounter);
