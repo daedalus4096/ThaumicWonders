@@ -56,7 +56,7 @@ public class BlockVoidBeacon extends BlockDeviceTW<TileVoidBeacon> implements IB
                 }
                 tileEntity.clearEssentia();
             } else {
-                ThaumicWonders.LOGGER.info("Void beacon levels: {}", tileEntity.getLevels());
+                ThaumicWonders.LOGGER.info("Void beacon levels: {}, progress: {}", tileEntity.getLevels(), tileEntity.getProgress());
             }
         }
         return true;

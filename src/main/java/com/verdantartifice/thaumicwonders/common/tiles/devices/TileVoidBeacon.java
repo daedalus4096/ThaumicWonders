@@ -11,12 +11,14 @@ import com.verdantartifice.thaumicwonders.common.tiles.base.TileTW;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import thaumcraft.api.ThaumcraftApiHelper;
@@ -26,10 +28,15 @@ import thaumcraft.api.aspects.IAspectContainer;
 import thaumcraft.api.aspects.IEssentiaTransport;
 import thaumcraft.api.aura.AuraHelper;
 import thaumcraft.api.blocks.BlocksTC;
-import thaumcraft.common.blocks.IBlockEnabled;
+import thaumcraft.client.fx.FXDispatcher;
+import thaumcraft.common.entities.EntityFluxRift;
+import thaumcraft.common.lib.utils.BlockStateUtils;
+import thaumcraft.common.lib.utils.EntityUtils;
 
 public class TileVoidBeacon extends TileTW implements ITickable, IAspectContainer, IEssentiaTransport {
     private static final int CAPACITY = 100;
+    private static final int PROGRESS_REQUIRED = 200;
+    private static final int PLAY_EFFECTS = 4;
     
     protected final List<TileVoidBeacon.BeamSegment> beamSegments = new ArrayList<TileVoidBeacon.BeamSegment>();
     
@@ -38,6 +45,7 @@ public class TileVoidBeacon extends TileTW implements ITickable, IAspectContaine
     protected int tickCounter = 0;
     protected boolean validPlacement = false;
     protected int levels = -1;
+    protected int progress = 0;
     
     @SideOnly(Side.CLIENT)
     private long beamRenderCounter;
@@ -62,12 +70,17 @@ public class TileVoidBeacon extends TileTW implements ITickable, IAspectContaine
     public int getLevels() {
         return this.levels;
     }
+    
+    public int getProgress() {
+        return this.progress;
+    }
 
     @Override
     protected void readFromTileNBT(NBTTagCompound compound) {
         this.essentiaType = Aspect.getAspect(compound.getString("essentiaType"));
         this.essentiaAmount = compound.getShort("essentiaAmount");
         this.levels = compound.getShort("levels");
+        this.progress = compound.getShort("progress");
     }
     
     @Override
@@ -77,6 +90,7 @@ public class TileVoidBeacon extends TileTW implements ITickable, IAspectContaine
             compound.setShort("essentiaAmount", (short)this.essentiaAmount);
         }
         compound.setShort("levels", (short)this.levels);
+        compound.setShort("progress", (short)this.progress);
         return compound;
     }
     
@@ -90,6 +104,70 @@ public class TileVoidBeacon extends TileTW implements ITickable, IAspectContaine
             this.updateBeam();
             this.updateLevels();
         }
+        if (!this.world.isRemote && this.tickCounter % 20 == 0 && BlockStateUtils.isEnabled(this.getBlockMetadata()) && this.canEject()) {
+            this.drainRifts();
+            while (this.progress >= PROGRESS_REQUIRED) {
+                this.progress -= PROGRESS_REQUIRED;
+                ItemStack stack = this.getConjuredItem(this.essentiaType);
+                this.eject(stack);
+                this.syncTile(false);
+                this.markDirty();
+            }
+        }
+    }
+    
+    protected void eject(ItemStack stack) {
+        // TODO place the given stack into an adjacent IItemHandler
+        ThaumicWonders.LOGGER.info("Void beacon ejecting {}", stack);
+    }
+    
+    protected ItemStack getConjuredItem(Aspect aspect) {
+        // TODO choose a weighted random registered item based on the given aspect
+        return new ItemStack(Blocks.STONE);
+    }
+    
+    protected boolean canEject() {
+        // TODO check IItemHandler capabilities of surrounding blocks
+        return true;
+    }
+    
+    protected void drainRifts() {
+        List<EntityFluxRift> riftList = this.getValidRifts();
+        boolean found = false;
+        for (EntityFluxRift rift : riftList) {
+            double drained = Math.sqrt(rift.getRiftSize());
+            this.progress += (int)drained;
+            rift.setRiftStability(rift.getRiftStability() - (float)(drained / 15.0D));
+            if (this.world.rand.nextInt(33) == 0) {
+                rift.setRiftSize(rift.getRiftSize() - 1);
+            }
+            if (drained >= 1.0D) {
+                found = true;
+            }
+        }
+        if (found) {
+            this.syncTile(false);
+            this.markDirty();
+            if (this.tickCounter % 40 == 0) {
+                this.world.addBlockEvent(this.pos, this.getBlockType(), PLAY_EFFECTS, this.tickCounter);
+            }
+        }
+    }
+    
+    private List<EntityFluxRift> getValidRifts() {
+        List<EntityFluxRift> retVal = new ArrayList<EntityFluxRift>();
+        List<EntityFluxRift> riftList = EntityUtils.getEntitiesInRange(this.world, this.pos, null, EntityFluxRift.class, 16.0D);
+        for (EntityFluxRift rift : riftList) {
+            if (!rift.isDead && rift.getRiftSize() > 1) {
+                Vec3d v1 = new Vec3d(this.pos.getX() + 0.5D, this.pos.getY() + 1.0D, this.pos.getZ() + 0.5D);
+                Vec3d v2 = new Vec3d(rift.posX, rift.posY, rift.posZ);
+                v1 = v1.add(v2.subtract(v1).normalize());
+                if (EntityUtils.canEntityBeSeen(rift, v1.x, v1.y, v1.z)) {
+                    retVal.add(rift);
+                }
+            }
+        }
+        return retVal;
     }
     
     protected void updateBeam() {
@@ -323,9 +401,7 @@ public class TileVoidBeacon extends TileTW implements ITickable, IAspectContaine
     
     @SideOnly(Side.CLIENT)
     public float shouldBeamRender() {
-        IBlockState state = this.world.getBlockState(this.pos);
-        boolean enabled = state.getValue(IBlockEnabled.ENABLED);
-        if (!this.validPlacement || !enabled) {
+        if (!this.validPlacement || !BlockStateUtils.isEnabled(this.getBlockMetadata())) {
             return 0.0F;
         } else {
             int i = (int)(this.world.getTotalWorldTime() - this.beamRenderCounter);
@@ -358,6 +434,29 @@ public class TileVoidBeacon extends TileTW implements ITickable, IAspectContaine
     @SideOnly(Side.CLIENT)
     public AxisAlignedBB getRenderBoundingBox() {
         return INFINITE_EXTENT_AABB;
+    }
+    
+    @Override
+    public boolean receiveClientEvent(int id, int type) {
+        if (id == PLAY_EFFECTS) {
+            if (this.world.isRemote) {
+                List<EntityFluxRift> riftList = this.getValidRifts();
+                for (EntityFluxRift rift : riftList) {
+                    FXDispatcher.INSTANCE.voidStreak(
+                            rift.posX, 
+                            rift.posY, 
+                            rift.posZ, 
+                            this.pos.getX() + 0.5D, 
+                            this.pos.getY() + 1.0D, 
+                            this.pos.getZ() + 0.5D, 
+                            type, 
+                            0.04F);
+                }
+            }
+            return true;
+        } else {
+            return super.receiveClientEvent(id, type);
+        }
     }
     
     public static class BeamSegment {
