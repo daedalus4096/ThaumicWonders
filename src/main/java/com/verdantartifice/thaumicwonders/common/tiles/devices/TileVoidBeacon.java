@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
@@ -21,6 +22,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
 import thaumcraft.api.ThaumcraftApiHelper;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
@@ -161,19 +164,49 @@ public class TileVoidBeacon extends TileTW implements ITickable, IAspectContaine
         }
     }
     
-    protected void eject(ItemStack stack) {
-        // TODO place the given stack into an adjacent IItemHandler
+    protected void eject(@Nonnull ItemStack stack) {
         ThaumicWonders.LOGGER.info("Void beacon ejecting {}", stack);
+        if (stack.isEmpty()) {
+            return;
+        }
+        for (EnumFacing face : EnumFacing.HORIZONTALS) {
+            BlockPos otherPos = this.pos.offset(face);
+            TileEntity te = this.world.getTileEntity(otherPos);
+            if (te != null && te.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, face.getOpposite())) {
+                IItemHandler handler = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, face.getOpposite());
+                for (int slot = 0; slot < handler.getSlots(); slot++) {
+                    stack = handler.insertItem(slot, stack, false);
+                    if (stack.isEmpty()) {
+                        return;
+                    }
+                }
+            }
+        }
+        if (!stack.isEmpty()) {
+            ThaumicWonders.LOGGER.warn("Failed to eject {}!", stack);
+        }
     }
     
+    @Nonnull
     protected ItemStack getConjuredItem(Aspect aspect) {
         // TODO choose a weighted random registered item based on the given aspect
         return new ItemStack(Blocks.STONE);
     }
     
     protected boolean canEject() {
-        // TODO check IItemHandler capabilities of surrounding blocks
-        return true;
+        for (EnumFacing face : EnumFacing.HORIZONTALS) {
+            BlockPos otherPos = this.pos.offset(face);
+            TileEntity te = this.world.getTileEntity(otherPos);
+            if (te != null && te.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, face.getOpposite())) {
+                IItemHandler handler = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, face.getOpposite());
+                for (int slot = 0; slot < handler.getSlots(); slot++) {
+                    if (handler.getStackInSlot(slot).isEmpty()) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
     
     protected void drainRifts() {
