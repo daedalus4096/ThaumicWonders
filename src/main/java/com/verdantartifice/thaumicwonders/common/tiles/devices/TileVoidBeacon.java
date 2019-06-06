@@ -65,6 +65,7 @@ public class TileVoidBeacon extends TileTW implements ITickable, IAspectContaine
         this.essentiaType = null;
         this.essentiaAmount = 0;
         this.markDirty();
+        this.syncTile(false);
     }
     
     public int getLevels() {
@@ -104,15 +105,59 @@ public class TileVoidBeacon extends TileTW implements ITickable, IAspectContaine
             this.updateBeam();
             this.updateLevels();
         }
-        if (!this.world.isRemote && this.tickCounter % 20 == 0 && BlockStateUtils.isEnabled(this.getBlockMetadata()) && this.canEject()) {
-            this.drainRifts();
-            while (this.progress >= PROGRESS_REQUIRED) {
-                this.progress -= PROGRESS_REQUIRED;
-                ItemStack stack = this.getConjuredItem(this.essentiaType);
-                this.eject(stack);
-                this.syncTile(false);
-                this.markDirty();
+        if (!this.world.isRemote && this.tickCounter % 20 == 0) {
+            if (this.canMakeProgress()) {
+                this.drainRifts();
             }
+            while (this.canConjureItem()) {
+                this.progress -= PROGRESS_REQUIRED;
+                this.essentiaAmount -= this.getRequiredEssentia();
+                if (this.essentiaAmount <= 0) {
+                    this.essentiaType = null;
+                }
+                this.eject(this.getConjuredItem(this.essentiaType));
+                this.markDirty();
+                this.syncTile(false);
+            }
+        }
+    }
+    
+    protected boolean canMakeProgress() {
+        return this.validPlacement &&
+            BlockStateUtils.isEnabled(this.getBlockMetadata()) &&
+            this.hasEnoughEssentia() &&
+            this.progress < PROGRESS_REQUIRED;
+    }
+    
+    protected boolean canConjureItem() {
+        return this.validPlacement &&
+            BlockStateUtils.isEnabled(this.getBlockMetadata()) &&
+            this.hasEnoughEssentia() &&
+            this.canEject() &&
+            this.progress >= PROGRESS_REQUIRED;
+    }
+    
+    protected boolean hasEnoughEssentia() {
+        if (this.essentiaType == null || this.levels < 0) {
+            return false;
+        } else {
+            return (this.essentiaAmount >= this.getRequiredEssentia());
+        }
+    }
+    
+    protected int getRequiredEssentia() {
+        switch (this.levels) {
+        case 4:
+            return 1;
+        case 3:
+            return 2;
+        case 2:
+            return 5;
+        case 1:
+            return 10;
+        case 0:
+        default:
+            return 20;
         }
     }
     
@@ -154,7 +199,7 @@ public class TileVoidBeacon extends TileTW implements ITickable, IAspectContaine
         }
     }
     
-    private List<EntityFluxRift> getValidRifts() {
+    protected List<EntityFluxRift> getValidRifts() {
         List<EntityFluxRift> retVal = new ArrayList<EntityFluxRift>();
         List<EntityFluxRift> riftList = EntityUtils.getEntitiesInRange(this.world, this.pos, null, EntityFluxRift.class, 16.0D);
         for (EntityFluxRift rift : riftList) {
@@ -204,7 +249,7 @@ public class TileVoidBeacon extends TileTW implements ITickable, IAspectContaine
         }
     }
     
-    private boolean isLevelComplete(int yOffset) {
+    protected boolean isLevelComplete(int yOffset) {
         for (int x = this.pos.getX() - yOffset; x <= this.pos.getX() + yOffset; x++) {
             for (int z = this.pos.getZ() - yOffset; z <= this.pos.getZ() + yOffset; z++) {
                 int y = this.pos.getY() - yOffset;
@@ -323,8 +368,8 @@ public class TileVoidBeacon extends TileTW implements ITickable, IAspectContaine
             retVal = toAdd;
         }
         
-        this.syncTile(false);
         this.markDirty();
+        this.syncTile(false);
         return retVal;
     }
 
@@ -366,6 +411,8 @@ public class TileVoidBeacon extends TileTW implements ITickable, IAspectContaine
         if (aspectList != null && aspectList.size() > 0) {
             this.essentiaType = aspectList.getAspectsSortedByAmount()[0];
             this.essentiaAmount = aspectList.getAmount(this.essentiaType);
+            this.markDirty();
+            this.syncTile(false);
         }
     }
 
@@ -386,8 +433,11 @@ public class TileVoidBeacon extends TileTW implements ITickable, IAspectContaine
     public boolean takeFromContainer(Aspect aspect, int amt) {
         if (this.essentiaType == aspect && this.essentiaAmount >= amt) {
             this.essentiaAmount -= amt;
-            this.syncTile(false);
+            if (this.essentiaAmount <= 0) {
+                this.essentiaType = null;
+            }
             this.markDirty();
+            this.syncTile(false);
             return true;
         } else {
             return false;
