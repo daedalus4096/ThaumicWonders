@@ -5,6 +5,7 @@ import com.verdantartifice.thaumicwonders.common.tiles.devices.TileVoidBeacon;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import thaumcraft.api.blocks.BlocksTC;
 
 public class InitVoidBeacon {
     public static void init() {
@@ -13,6 +14,8 @@ public class InitVoidBeacon {
     }
     
     private static void registerEntries() {
+        int meta = 0;
+        
         TileVoidBeacon.registerOreDict("oreLapis");
         TileVoidBeacon.registerOreDict("oreDiamond");
         TileVoidBeacon.registerOreDict("oreRedstone");
@@ -53,9 +56,18 @@ public class InitVoidBeacon {
         TileVoidBeacon.registerItemStack(new ItemStack(Blocks.MOSSY_COBBLESTONE));
         TileVoidBeacon.registerOreDict("obsidian");
         
-        TileVoidBeacon.registerOreDict("logWood");
-        TileVoidBeacon.registerOreDict("treeSapling");
-        TileVoidBeacon.registerOreDict("treeLeaves");
+        for (meta = 0; meta < 6; meta++) {
+            TileVoidBeacon.registerItemStack(new ItemStack(Blocks.LOG, 1, meta));
+            TileVoidBeacon.registerItemStack(new ItemStack(Blocks.LEAVES, 1, meta));
+            TileVoidBeacon.registerItemStack(new ItemStack(Blocks.SAPLING, 1, meta));
+        }
+        TileVoidBeacon.registerItemStack(new ItemStack(BlocksTC.logGreatwood));
+        TileVoidBeacon.registerItemStack(new ItemStack(BlocksTC.leafGreatwood));
+        TileVoidBeacon.registerItemStack(new ItemStack(BlocksTC.saplingGreatwood));
+        TileVoidBeacon.registerItemStack(new ItemStack(BlocksTC.logSilverwood));
+        TileVoidBeacon.registerItemStack(new ItemStack(BlocksTC.leafSilverwood));
+        TileVoidBeacon.registerItemStack(new ItemStack(BlocksTC.saplingSilverwood));
+        TileVoidBeacon.registerItemStack(new ItemStack(BlocksTC.taintLog));
         
         TileVoidBeacon.registerItemStack(new ItemStack(Blocks.TALLGRASS));
         TileVoidBeacon.registerItemStack(new ItemStack(Blocks.DOUBLE_PLANT, 1, 32767));
