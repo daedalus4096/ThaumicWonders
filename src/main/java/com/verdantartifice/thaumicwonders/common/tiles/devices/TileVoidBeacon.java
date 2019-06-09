@@ -12,8 +12,10 @@ import javax.annotation.Nullable;
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.tiles.base.TileTW;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -569,6 +571,17 @@ public class TileVoidBeacon extends TileTW implements ITickable, IAspectContaine
         }
         stack = stack.copy();
         stack.setCount(1);
+        if (stack.getItemDamage() == 32767 && stack.getItem() instanceof ItemBlock) {
+            Block block = ((ItemBlock)stack.getItem()).getBlock();
+            for (IBlockState state : block.getBlockState().getValidStates()) {
+                registerItemStackInternal(new ItemStack(stack.getItem(), 1, block.getMetaFromState(state)));
+            }
+        } else {
+            registerItemStackInternal(stack);
+        }
+    }
+    
+    private static void registerItemStackInternal(@Nonnull ItemStack stack) {
         AspectList aspects = AspectHelper.getObjectAspects(stack);
         if (aspects != null) {
             for (Aspect aspect : aspects.getAspects()) {
@@ -603,6 +616,19 @@ public class TileVoidBeacon extends TileTW implements ITickable, IAspectContaine
         @Override
         public double getWeight() {
             return weight;
+        }
+        
+        @Override
+        public boolean equals(Object obj) {
+            if (obj == null || !(obj instanceof RegistryEntry)) {
+                return false;
+            }
+            return ItemStack.areItemStacksEqual(stack, ((RegistryEntry)obj).stack);
+        }
+        
+        @Override
+        public int hashCode() {
+            return stack.hashCode();
         }
     }
     
