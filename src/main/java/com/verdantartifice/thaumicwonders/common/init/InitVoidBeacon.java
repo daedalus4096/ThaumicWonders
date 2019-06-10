@@ -44,7 +44,8 @@ public class InitVoidBeacon {
         TileVoidBeacon.registerOreDict("cobblestone");
         TileVoidBeacon.registerOreDict("dirt");
         TileVoidBeacon.registerItemStack(new ItemStack(Blocks.DIRT, 1, 2));
-        TileVoidBeacon.registerOreDict("sand");
+        TileVoidBeacon.registerItemStack(new ItemStack(Blocks.SAND, 1, 0));
+        TileVoidBeacon.registerItemStack(new ItemStack(Blocks.SAND, 1, 1));
         TileVoidBeacon.registerItemStack(new ItemStack(Blocks.SANDSTONE));
         TileVoidBeacon.registerItemStack(new ItemStack(Blocks.RED_SANDSTONE));
         TileVoidBeacon.registerOreDict("grass");
