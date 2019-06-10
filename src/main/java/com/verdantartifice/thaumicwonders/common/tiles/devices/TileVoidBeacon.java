@@ -572,6 +572,7 @@ public class TileVoidBeacon extends TileTW implements ITickable, IAspectContaine
         stack = stack.copy();
         stack.setCount(1);
         if (stack.getItemDamage() == 32767 && stack.getItem() instanceof ItemBlock) {
+            ThaumicWonders.LOGGER.warn("Wildcard meta detected for {} in void beacon registration; this can result in invalid result blocks", stack);
             Block block = ((ItemBlock)stack.getItem()).getBlock();
             for (IBlockState state : block.getBlockState().getValidStates()) {
                 registerItemStackInternal(new ItemStack(stack.getItem(), 1, block.getMetaFromState(state)));
