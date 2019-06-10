@@ -129,7 +129,6 @@ public class InitVoidBeacon {
         TileVoidBeacon.registerItemStack(new ItemStack(Items.RABBIT_HIDE));
 
         TileVoidBeacon.registerItemStack(new ItemStack(Items.BLAZE_ROD));
-        TileVoidBeacon.registerItemStack(new ItemStack(Items.BLAZE_POWDER));
         TileVoidBeacon.registerOreDict("enderpearl");
         TileVoidBeacon.registerItemStack(new ItemStack(Items.GHAST_TEAR));
         for (meta = 0; meta < 5; meta++) {
@@ -143,10 +142,7 @@ public class InitVoidBeacon {
         TileVoidBeacon.registerItemStack(new ItemStack(Items.PRISMARINE_CRYSTALS));
 
         TileVoidBeacon.registerItemStack(new ItemStack(Items.DYE, 1, 0));
-        TileVoidBeacon.registerItemStack(new ItemStack(Items.DYE, 1, 2));
         TileVoidBeacon.registerItemStack(new ItemStack(Items.DYE, 1, 3));
-        TileVoidBeacon.registerItemStack(new ItemStack(Items.DYE, 1, 4));
-        TileVoidBeacon.registerItemStack(new ItemStack(Items.DYE, 1, 15));
         
         TileVoidBeacon.registerOreDict("oreCinnabar");
         TileVoidBeacon.registerOreDict("oreAmber");
