@@ -173,7 +173,6 @@ public class TileVoidBeacon extends TileTW implements ITickable, IAspectContaine
     }
     
     protected void eject(@Nonnull ItemStack stack) {
-        ThaumicWonders.LOGGER.info("Void beacon ejecting {}", stack);
         if (stack.isEmpty()) {
             return;
         }
@@ -191,7 +190,7 @@ public class TileVoidBeacon extends TileTW implements ITickable, IAspectContaine
             }
         }
         if (!stack.isEmpty()) {
-            ThaumicWonders.LOGGER.warn("Failed to eject {}!", stack);
+            ThaumicWonders.LOGGER.warn("Void beacon failed to eject {}!", stack);
         }
     }
     
@@ -589,7 +588,6 @@ public class TileVoidBeacon extends TileTW implements ITickable, IAspectContaine
                 RegistryEntry entry = new RegistryEntry(stack, aspects.getAmount(aspect));
                 List<RandomItemChooser.Item> list = REGISTRY.get(aspect);
                 if (list != null && !list.contains(entry)) {
-                    ThaumicWonders.LOGGER.info("Void beacon registering {} in list {} with weight {}", stack, aspect.getName(), aspects.getAmount(aspect));
                     list.add(entry);
                 }
             }
