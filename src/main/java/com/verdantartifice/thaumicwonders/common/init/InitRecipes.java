@@ -520,6 +520,24 @@ public class InitRecipes {
                         ThaumcraftApiHelper.makeCrystal(Aspect.SENSES)
                 }
         ));
+        
+        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "void_beacon"), new InfusionRecipe(
+                "TWOND_VOID_BEACON",
+                new ItemStack(BlocksTW.VOID_BEACON),
+                10,
+                new AspectList().add(Aspect.ELDRITCH, 200).add(Aspect.VOID, 200).add(Aspect.MAGIC, 200).add(Aspect.AURA, 150).add(Aspect.FLUX, 150).add(Aspect.AIR, 100).add(Aspect.EARTH, 100).add(Aspect.FIRE, 100).add(Aspect.WATER, 100).add(Aspect.ORDER, 100).add(Aspect.ENTROPY, 100),
+                new ItemStack(Blocks.BEACON),
+                new Object[] {
+                        Ingredient.fromItem(ItemsTC.primordialPearl),
+                        "plateVoid",
+                        Ingredient.fromItem(ItemsTC.primordialPearl),
+                        "plateVoid",
+                        Ingredient.fromItem(ItemsTC.primordialPearl),
+                        "plateVoid",
+                        Ingredient.fromItem(ItemsTC.primordialPearl),
+                        "plateVoid"
+                }
+        ));
     }
     
     private static void initSmelting() {

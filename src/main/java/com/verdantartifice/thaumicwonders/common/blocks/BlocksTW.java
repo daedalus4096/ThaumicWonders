@@ -23,4 +23,5 @@ public class BlocksTW {
     public static final Block METEORB = null;
     public static final Block ORE_DIVINER = null;
     public static final Block MEATY_ORB = null;
+    public static final Block VOID_BEACON = null;
 }
