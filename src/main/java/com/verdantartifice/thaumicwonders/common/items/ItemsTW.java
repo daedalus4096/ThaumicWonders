@@ -22,4 +22,5 @@ public class ItemsTW {
     public static final ItemArmor VOID_FORTRESS_LEGS = null;
     public static final Item STRUCTURE_DIVINER = null;
     public static final ItemArmor NIGHT_VISION_GOGGLES = null;
+    public static final Item CLEANSING_CHARM = null;
 }
