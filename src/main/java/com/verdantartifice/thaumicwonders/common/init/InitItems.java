@@ -7,6 +7,7 @@ import com.verdantartifice.thaumicwonders.common.items.armor.ItemNightVisionGogg
 import com.verdantartifice.thaumicwonders.common.items.armor.ItemVoidFortressArmor;
 import com.verdantartifice.thaumicwonders.common.items.base.IVariantItem;
 import com.verdantartifice.thaumicwonders.common.items.base.ItemTW;
+import com.verdantartifice.thaumicwonders.common.items.baubles.ItemCleansingCharm;
 import com.verdantartifice.thaumicwonders.common.items.catalysts.ItemAlchemistStone;
 import com.verdantartifice.thaumicwonders.common.items.catalysts.ItemAlienistStone;
 import com.verdantartifice.thaumicwonders.common.items.catalysts.ItemTransmuterStone;
@@ -38,6 +39,7 @@ public class InitItems {
         registerItem(forgeRegistry, new ItemVoidFortressArmor("void_fortress_legs", ItemVoidFortressArmor.MATERIAL, 4, EntityEquipmentSlot.LEGS));
         registerItem(forgeRegistry, new ItemStructureDiviner());
         registerItem(forgeRegistry, new ItemNightVisionGoggles());
+        registerItem(forgeRegistry, new ItemCleansingCharm());
     }
     
     private static void registerItem(IForgeRegistry<Item> forgeRegistry, Item item) {

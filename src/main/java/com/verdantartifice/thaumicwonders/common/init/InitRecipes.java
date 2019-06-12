@@ -538,6 +538,20 @@ public class InitRecipes {
                         "plateVoid"
                 }
         ));
+        
+        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "cleansing_charm"), new InfusionRecipe(
+                "TWOND_CLEANSING_CHARM",
+                new ItemStack(ItemsTW.CLEANSING_CHARM),
+                8,
+                new AspectList().add(Aspect.MIND, 225).add(Aspect.ORDER, 225).add(Aspect.ELDRITCH, 150).add(Aspect.LIFE, 150),
+                new ItemStack(Items.ENDER_PEARL),
+                new Object[] {
+                        Ingredient.fromItem(ItemsTC.primordialPearl),
+                        new ItemStack(Items.GOLD_INGOT),
+                        new ItemStack(Items.GOLD_INGOT),
+                        new ItemStack(Items.GOLD_INGOT)
+                }
+        ));
     }
     
     private static void initSmelting() {

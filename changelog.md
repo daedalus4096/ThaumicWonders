@@ -2,6 +2,7 @@ v1.7.0
 ------
 * Added Night-Vision Goggles, for a different kind of revealing
 * Added Void Beacon, to conjure something from (almost) nothing
+* Added Cleansing Charm, to help you with your Warp problem
 
 v1.6.0
 ------
