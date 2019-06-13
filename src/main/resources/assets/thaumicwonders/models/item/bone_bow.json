@@ -35,14 +35,14 @@
         {
             "predicate": {
                 "pulling": 1,
-                "thaumicwonders:pull": 0.65
+                "thaumicwonders:pull": 0.5
             },
             "model": "thaumicwonders:item/bone_bow_pulling_1"
         },
         {
             "predicate": {
                 "pulling": 1,
-                "thaumicwonders:pull": 0.9
+                "thaumicwonders:pull": 0.8
             },
             "model": "thaumicwonders:item/bone_bow_pulling_2"
         }
