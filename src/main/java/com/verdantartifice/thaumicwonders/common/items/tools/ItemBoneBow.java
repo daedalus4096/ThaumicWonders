@@ -41,6 +41,11 @@ public class ItemBoneBow extends ItemBow {
     }
     
     @Override
+    public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
+        return repair.isItemEqual(new ItemStack(Items.BONE)) ? true : super.getIsRepairable(toRepair, repair);
+    }
+    
+    @Override
     public int getMaxItemUseDuration(ItemStack stack) {
         return 5;
     }
