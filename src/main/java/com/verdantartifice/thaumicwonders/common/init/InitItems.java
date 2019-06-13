@@ -15,6 +15,7 @@ import com.verdantartifice.thaumicwonders.common.items.entities.ItemFlyingCarpet
 import com.verdantartifice.thaumicwonders.common.items.misc.ItemDisjunctionCloth;
 import com.verdantartifice.thaumicwonders.common.items.misc.ItemStructureDiviner;
 import com.verdantartifice.thaumicwonders.common.items.misc.ItemTimewinder;
+import com.verdantartifice.thaumicwonders.common.items.tools.ItemBoneBow;
 import com.verdantartifice.thaumicwonders.common.items.tools.ItemPrimalDestroyer;
 
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -40,6 +41,7 @@ public class InitItems {
         registerItem(forgeRegistry, new ItemStructureDiviner());
         registerItem(forgeRegistry, new ItemNightVisionGoggles());
         registerItem(forgeRegistry, new ItemCleansingCharm());
+        registerItem(forgeRegistry, new ItemBoneBow());
     }
     
     private static void registerItem(IForgeRegistry<Item> forgeRegistry, Item item) {

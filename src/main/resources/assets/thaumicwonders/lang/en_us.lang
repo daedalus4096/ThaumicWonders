@@ -49,6 +49,7 @@ item.thaumicwonders.structure_diviner.name=Structure Diviner
 item.thaumicwonders.night_vision_goggles.name=Night-Vision Goggles
 item.thaumicwonders.cleansing_charm.name=Cleansing Charm
 item.thaumicwonders.cleansing_charm.tooltip.progress=Progress: %1$d%%
+item.thaumicwonders.bone_bow.name=Bone Bow
 
 // Entities
 entity.flying_carpet.name=Flying Carpet
