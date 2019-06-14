@@ -19,8 +19,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
+import thaumcraft.api.items.IRechargable;
+import thaumcraft.api.items.RechargeHelper;
 
-public class ItemBoneBow extends ItemBow {
+public class ItemBoneBow extends ItemBow implements IRechargable {
+    protected static final int VIS_CAPACITY = 200;
+    protected static final int POWERED_CHARGE_TIME = 4;
+    protected static final int UNPOWERED_CHARGE_TIME = 20;
+    
     public ItemBoneBow() {
         this.setCreativeTab(ThaumicWonders.CREATIVE_TAB);
         this.setRegistryName(ThaumicWonders.MODID, "bone_bow");
@@ -34,7 +40,8 @@ public class ItemBoneBow extends ItemBow {
                 if (entityIn == null) {
                     return 0.0F;
                 } else {
-                    return entityIn.getActiveItemStack().getItem() != ItemsTW.BONE_BOW ? 0.0F : (float)(stack.getMaxItemUseDuration() - entityIn.getItemInUseCount()) / (float)(stack.getMaxItemUseDuration());
+                    float maxCharge = (RechargeHelper.getCharge(stack) > 0) ? (float)POWERED_CHARGE_TIME : (float)UNPOWERED_CHARGE_TIME;
+                    return entityIn.getActiveItemStack().getItem() != ItemsTW.BONE_BOW ? 0.0F : (float)(stack.getMaxItemUseDuration() - entityIn.getItemInUseCount()) / maxCharge;
                 }
             }
         });
@@ -46,19 +53,16 @@ public class ItemBoneBow extends ItemBow {
     }
     
     @Override
-    public int getMaxItemUseDuration(ItemStack stack) {
-        return 5;
-    }
-    
-    @Override
     public void onUsingTick(ItemStack stack, EntityLivingBase player, int count) {
-        if (count <= 1) {
+        int ticks = this.getMaxItemUseDuration(stack) - count;
+        if (ticks >= POWERED_CHARGE_TIME && RechargeHelper.getCharge(stack) > 0) {
             player.stopActiveHand();
         }
     }
     
-    public static float getArrowVelocity(int charge) {
-        float f = (float)charge / 4.0F;
+    public static float getArrowVelocity(ItemStack stack, int charge) {
+        float maxCharge = (RechargeHelper.getCharge(stack) > 0) ? (float)POWERED_CHARGE_TIME : (float)UNPOWERED_CHARGE_TIME;
+        float f = (float)charge / maxCharge;
         f = (f * f + f * 2.0F) / 3.0F;
         if (f > 1.0F) {
             f = 1.0F;
@@ -100,14 +104,16 @@ public class ItemBoneBow extends ItemBow {
                     itemstack = new ItemStack(Items.ARROW);
                 }
 
-                float velocity = getArrowVelocity(charge);
+                float velocity = getArrowVelocity(stack, charge);
                 if ((double)velocity >= 0.1D) {
                     boolean flag1 = entityplayer.capabilities.isCreativeMode || (itemstack.getItem() instanceof ItemArrow && ((ItemArrow) itemstack.getItem()).isInfinite(itemstack, stack, entityplayer));
                     if (!worldIn.isRemote) {
                         ItemArrow itemarrow = (ItemArrow)(itemstack.getItem() instanceof ItemArrow ? itemstack.getItem() : Items.ARROW);
                         EntityArrow entityarrow = itemarrow.createArrow(worldIn, itemstack, entityplayer);
-                        entityarrow.shoot(entityplayer, entityplayer.rotationPitch, entityplayer.rotationYaw, 0.0F, velocity * 4.0F, 1.0F);
-
+                        float velocityMultiplier = (RechargeHelper.getCharge(stack) > 0) ? 4.0F : 3.0F;
+                        entityarrow.shoot(entityplayer, entityplayer.rotationPitch, entityplayer.rotationYaw, 0.0F, velocity * velocityMultiplier, 1.0F);
+                        RechargeHelper.consumeCharge(stack, entityplayer, 1);
+                        
                         if (velocity == 1.0F) {
                             entityarrow.setIsCritical(true);
                         }
@@ -144,6 +150,26 @@ public class ItemBoneBow extends ItemBow {
                     }
                 }
             }
+        }
+    }
+
+    @Override
+    public int getMaxCharge(ItemStack stack, EntityLivingBase player) {
+        return VIS_CAPACITY;
+    }
+
+    @Override
+    public EnumChargeDisplay showInHud(ItemStack stack, EntityLivingBase player) {
+        return IRechargable.EnumChargeDisplay.NORMAL;
+    }
+    
+    @Override
+    public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
+        if (oldStack.getItem() == newStack.getItem() && !slotChanged) {
+            // Suppress the re-equip animation if only the NBT data has changed
+            return false;
+        } else {
+            return super.shouldCauseReequipAnimation(oldStack, newStack, slotChanged);
         }
     }
 }
