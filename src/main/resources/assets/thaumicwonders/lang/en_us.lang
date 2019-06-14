@@ -166,6 +166,10 @@ thaumicwonders.research.cleansing_charm.title=Cleansing Charm
 thaumicwonders.research.cleansing_charm.text.stage.1=These headaches are becoming too much for me to bear.  I can only make Sanity Soap so quickly, and it only does so much.  There has to be a better way of managing this problem.
 thaumicwonders.research.cleansing_charm.text.stage.2=Relief, at last.  This new Cleansing Charm will draw the Warp from my body and disperse it into the aura as flux.  Not a perfect solution, but all I have to do is wear it.<BR>The process is slow and draining, however.  The charm must be charged with vis on a pedestal, and it takes a full charge to remove a single point of Warp.  The process generates approximately one point of flux every thirty seconds, and I can expect it to take an hour for the charm to do its work.<BR>The charm only works on normal, "sticky" Warp.  Temporary Warp vanishes more quickly than the charm can affect, and permanent Warp is beyond even its power to help me.
 
+thaumicwonders.research.bone_bow.title=Bone Bow
+thaumicwonders.research.bone_bow.text.stage.1=A memory tickles at my mind, something long forgotten...  It was a powerful weapon, but I can't quite reach it.  Perhaps some research will jog my memory.
+thaumicwonders.research.bone_bow.text.stage.2=Ah yes, I remember now.  The Bone Bow.<BR>When charged with vis, this bow pulls extremely rapidly, with hardly any effort at all.  In addition, its arrows will fly farther and fire automatically as soon as they're at maximum power.  The effect is quite potent.<BR>The bow consumes one point of vis per shot.  When its charge is depleted, it functions like an ordinary bow.
+
 // Theorycraft Cards
 card.induced_inspiration.name=Induced Inspiration
 card.induced_inspiration.text=The Inspiration Engine feeds ideas directly into your mind, ones highly relevant to the research you're currently pursuing. You gain %1$s %2$s, 1 inspiration, and a bonus draw.

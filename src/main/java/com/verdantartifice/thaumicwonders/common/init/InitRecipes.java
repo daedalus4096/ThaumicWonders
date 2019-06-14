@@ -173,6 +173,21 @@ public class InitRecipes {
                         Character.valueOf('G'), new ItemStack(Items.GUNPOWDER)
                 }
         ));
+        ThaumcraftApi.addArcaneCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "bone_bow"), new ShapedArcaneRecipe(
+                defaultGroup,
+                "TWOND_BONE_BOW",
+                50,
+                new AspectList().add(Aspect.AIR, 2).add(Aspect.ENTROPY, 2),
+                ItemsTW.BONE_BOW,
+                new Object[] {
+                        " BS",
+                        "BVS",
+                        " BS",
+                        Character.valueOf('B'), new ItemStack(Items.BONE),
+                        Character.valueOf('S'), new ItemStack(Items.STRING),
+                        Character.valueOf('V'), ThaumcraftApiHelper.makeCrystal(Aspect.ENTROPY)
+                }
+        ));
     }
 
     private static void initCrucibleRecipes() {

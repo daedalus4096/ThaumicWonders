@@ -53,6 +53,33 @@
                 }
             ],
             "addenda": []
+        },
+        {
+            "key": "TWOND_BONE_BOW",
+            "name": "thaumicwonders.research.bone_bow.title",
+            "icons": ["thaumicwonders:bone_bow"],
+            "category": "THAUMIC_WONDERS",
+            "parents": ["TWOND_FLYING_CARPET"],
+            "siblings": [],
+            "meta": [],
+            "location": [2, -4],
+            "reward_item": [],
+            "reward_knowledge": [],
+            "stages": [
+                {
+                    "text": "thaumicwonders.research.bone_bow.text.stage.1",
+                    "required_knowledge": ["THEORY;ARTIFICE;1","OBSERVATION;GOLEMANCY;1"],
+                    "required_research": ["!volatus"],
+                    "required_item": ["minecraft:bone", "minecraft:bow"]
+                },
+                {
+                    "text": "thaumicwonders.research.bone_bow.text.stage.2",
+                    "recipes": [
+                        "thaumicwonders:bone_bow"
+                    ]
+                }
+            ],
+            "addenda": []
         }
     ]
 }
