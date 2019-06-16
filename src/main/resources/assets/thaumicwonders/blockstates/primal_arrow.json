@@ -1,0 +1,35 @@
+{
+    "forge_marker": 1,
+    "variants": {
+        "air": {
+            "model": "forge:item-layer", 
+            "transform": "forge:default-item",
+            "textures": { "layer0": "thaumicwonders:items/primal_arrow_air" }
+        },
+        "earth": {
+            "model": "forge:item-layer", 
+            "transform": "forge:default-item",
+            "textures": { "layer0": "thaumicwonders:items/primal_arrow_earth" }
+        },
+        "fire": {
+            "model": "forge:item-layer", 
+            "transform": "forge:default-item",
+            "textures": { "layer0": "thaumicwonders:items/primal_arrow_fire" }
+        },
+        "water": {
+            "model": "forge:item-layer", 
+            "transform": "forge:default-item",
+            "textures": { "layer0": "thaumicwonders:items/primal_arrow_water" }
+        },
+        "order": {
+            "model": "forge:item-layer", 
+            "transform": "forge:default-item",
+            "textures": { "layer0": "thaumicwonders:items/primal_arrow_order" }
+        },
+        "entropy": {
+            "model": "forge:item-layer", 
+            "transform": "forge:default-item",
+            "textures": { "layer0": "thaumicwonders:items/primal_arrow_entropy" }
+        }
+    }
+}

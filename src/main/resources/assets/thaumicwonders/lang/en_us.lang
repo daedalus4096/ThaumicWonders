@@ -50,6 +50,12 @@ item.thaumicwonders.night_vision_goggles.name=Night-Vision Goggles
 item.thaumicwonders.cleansing_charm.name=Cleansing Charm
 item.thaumicwonders.cleansing_charm.tooltip.progress=Progress: %1$d%%
 item.thaumicwonders.bone_bow.name=Bone Bow
+item.thaumicwonders.primal_arrow.air.name=Air Arrow
+item.thaumicwonders.primal_arrow.earth.name=Earth Arrow
+item.thaumicwonders.primal_arrow.fire.name=Fire Arrow
+item.thaumicwonders.primal_arrow.water.name=Water Arrow
+item.thaumicwonders.primal_arrow.order.name=Order Arrow
+item.thaumicwonders.primal_arrow.entropy.name=Entropy Arrow
 
 // Entities
 entity.flying_carpet.name=Flying Carpet
