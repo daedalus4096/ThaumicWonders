@@ -3,8 +3,11 @@ package com.verdantartifice.thaumicwonders.proxy;
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.init.InitAspects;
 import com.verdantartifice.thaumicwonders.common.init.InitResearch;
+import com.verdantartifice.thaumicwonders.common.items.ItemsTW;
+import com.verdantartifice.thaumicwonders.common.misc.BehaviorDispensePrimalArrow;
 import com.verdantartifice.thaumicwonders.common.network.PacketHandler;
 
+import net.minecraft.block.BlockDispenser;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -24,6 +27,7 @@ public class CommonProxy implements IProxyTW, IGuiHandler {
         PacketHandler.registerMessages();
         InitResearch.initResearch();
         NetworkRegistry.INSTANCE.registerGuiHandler(ThaumicWonders.INSTANCE, this);
+        BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(ItemsTW.PRIMAL_ARROW, new BehaviorDispensePrimalArrow());
     }
     
     @Override
