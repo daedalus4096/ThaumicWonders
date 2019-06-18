@@ -1,13 +1,16 @@
 package com.verdantartifice.thaumicwonders.common.items.consumables;
 
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
+import com.verdantartifice.thaumicwonders.common.entities.EntityPrimalArrow;
 import com.verdantartifice.thaumicwonders.common.items.base.IVariantItem;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.init.Enchantments;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArrow;
 import net.minecraft.item.ItemStack;
@@ -81,13 +84,19 @@ public class ItemPrimalArrow extends ItemArrow implements IVariantItem {
     
     @Override
     public EntityArrow createArrow(World worldIn, ItemStack stack, EntityLivingBase shooter) {
-        // TODO Auto-generated method stub
-        return super.createArrow(worldIn, stack, shooter);
+        EntityPrimalArrow entity = new EntityPrimalArrow(worldIn, shooter);
+        entity.setArrowType(stack.getMetadata());
+        return entity;
     }
     
     @Override
     public boolean isInfinite(ItemStack stack, ItemStack bow, EntityPlayer player) {
-        // TODO Auto-generated method stub
-        return super.isInfinite(stack, bow, player);
+        int enchantLevel = EnchantmentHelper.getEnchantmentLevel(Enchantments.INFINITY, bow);
+        if (enchantLevel <= 0) {
+            return false;
+        } else {
+            // Primal arrows have only a 1-in-3 chance of being affected by an Infinity enchant
+            return (player.world.rand.nextInt(3) == 0);
+        }
     }
 }
