@@ -30,6 +30,7 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.network.play.server.SPacketChangeGameState;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EntityDamageSourceIndirect;
 import net.minecraft.util.EntitySelectors;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
@@ -231,19 +232,42 @@ public class EntityPrimalArrow extends EntityArrow {
     
     protected float computeTotalDamage() {
         float motionMagnitude = MathHelper.sqrt(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
-        int totalDamage = MathHelper.ceil((double)motionMagnitude * this.getDamage());
+        int baseDamage = MathHelper.ceil((double)motionMagnitude * this.getDamage());
         if (this.getIsCritical()) {
-            totalDamage += this.rand.nextInt(totalDamage / 2 + 2);
+            baseDamage += this.rand.nextInt(baseDamage / 2 + 2);
         }
-        return (float)totalDamage;
+        double retVal = (double)baseDamage;
+        switch (this.getArrowType()) {
+        case 1:
+            // Earth arrows do more damage than normal
+            retVal = retVal * 1.5D;
+            break;
+        case 4:
+        case 5:
+            // Order and entropy arrows do less damage than normal
+            retVal = retVal * 0.8D;
+            break;
+        }
+        return (float)retVal;
     }
     
     protected DamageSource getDamageSource() {
-        DamageSource damageSource;
-        if (this.shootingEntity == null) {
-            damageSource = DamageSource.causeArrowDamage(this, this);
-        } else {
-            damageSource = DamageSource.causeArrowDamage(this, this.shootingEntity);
+        Entity shooter = (this.shootingEntity == null) ? this : this.shootingEntity;
+        DamageSource damageSource = new EntityDamageSourceIndirect("arrow", this, shooter);
+        switch (this.getArrowType()) {
+        case 0:
+        case 4:
+            // Air and order arrows ignore armor
+            damageSource = damageSource.setProjectile().setDamageBypassesArmor();
+            break;
+        case 2:
+            // Fire arrows do fire damage
+            damageSource = damageSource.setProjectile().setFireDamage();
+            break;
+        default:
+            // Fire, order, and entropy arrows do normal damage
+            damageSource = damageSource.setProjectile();
+            break;
         }
         return damageSource;
     }
