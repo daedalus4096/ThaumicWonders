@@ -20,6 +20,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -27,6 +28,7 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.network.play.server.SPacketChangeGameState;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntitySelectors;
 import net.minecraft.util.EnumParticleTypes;
@@ -343,8 +345,21 @@ public class EntityPrimalArrow extends EntityArrow {
     
     @Override
     protected void arrowHit(EntityLivingBase living) {
-        // TODO Apply potion effects if applicable
         super.arrowHit(living);
+        switch (this.getArrowType()) {
+        case 3:
+            // Water arrows apply a slowing effect
+            living.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 200, 4));
+            break;
+        case 4:
+            // Order arrows apply a weakening effect
+            living.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, 200, 4));
+            break;
+        case 5:
+            // Entropy arrows apply a withering effect
+            living.addPotionEffect(new PotionEffect(MobEffects.WITHER, 100));
+            break;
+        }
     }
     
     @Override
