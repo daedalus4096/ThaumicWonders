@@ -24,7 +24,7 @@ import thaumcraft.api.items.RechargeHelper;
 
 public class ItemBoneBow extends ItemBow implements IRechargable {
     protected static final int VIS_CAPACITY = 200;
-    protected static final int POWERED_CHARGE_TIME = 4;
+    protected static final int POWERED_CHARGE_TIME = 10;
     protected static final int UNPOWERED_CHARGE_TIME = 20;
     
     public ItemBoneBow() {
