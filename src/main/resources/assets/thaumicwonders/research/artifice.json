@@ -80,6 +80,51 @@
                 }
             ],
             "addenda": []
+        },
+        {
+            "key": "TWOND_PRIMAL_ARROWS",
+            "name": "thaumicwonders.research.primal_arrow.title",
+            "icons": [
+                "thaumicwonders:textures/items/primal_arrow_air.png",
+                "thaumicwonders:textures/items/primal_arrow_earth.png",
+                "thaumicwonders:textures/items/primal_arrow_fire.png",
+                "thaumicwonders:textures/items/primal_arrow_water.png",
+                "thaumicwonders:textures/items/primal_arrow_order.png",
+                "thaumicwonders:textures/items/primal_arrow_entropy.png"
+            ],
+            "category": "THAUMIC_WONDERS",
+            "parents": ["TWOND_BONE_BOW"],
+            "siblings": [],
+            "meta": [],
+            "location": [2, -6],
+            "reward_item": [],
+            "reward_knowledge": [],
+            "stages": [
+                {
+                    "text": "thaumicwonders.research.primal_arrow.text.stage.1",
+                    "required_knowledge": ["THEORY;ARTIFICE;1","OBSERVATION;BASICS;1"],
+                    "required_item": [
+                        "thaumcraft:crystal_essence;1;0;{Aspects:[{amount:1,key:'aer'}]}",
+                        "thaumcraft:crystal_essence;1;0;{Aspects:[{amount:1,key:'terra'}]}",
+                        "thaumcraft:crystal_essence;1;0;{Aspects:[{amount:1,key:'ignis'}]}",
+                        "thaumcraft:crystal_essence;1;0;{Aspects:[{amount:1,key:'aqua'}]}",
+                        "thaumcraft:crystal_essence;1;0;{Aspects:[{amount:1,key:'ordo'}]}",
+                        "thaumcraft:crystal_essence;1;0;{Aspects:[{amount:1,key:'perditio'}]}"
+                    ]
+                },
+                {
+                    "text": "thaumicwonders.research.primal_arrow.text.stage.2",
+                    "recipes": [
+                        "thaumicwonders:primal_arrow_air",
+                        "thaumicwonders:primal_arrow_earth",
+                        "thaumicwonders:primal_arrow_fire",
+                        "thaumicwonders:primal_arrow_water",
+                        "thaumicwonders:primal_arrow_order",
+                        "thaumicwonders:primal_arrow_entropy"
+                    ]
+                }
+            ],
+            "addenda": []
         }
     ]
 }

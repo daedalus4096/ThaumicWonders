@@ -188,6 +188,90 @@ public class InitRecipes {
                         Character.valueOf('V'), ThaumcraftApiHelper.makeCrystal(Aspect.ENTROPY)
                 }
         ));
+        ThaumcraftApi.addArcaneCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "primal_arrow_air"), new ShapedArcaneRecipe(
+                defaultGroup,
+                "TWOND_PRIMAL_ARROWS",
+                10,
+                new AspectList(),
+                new ItemStack(ItemsTW.PRIMAL_ARROW, 9, 0),
+                new Object[] {
+                        "AAA",
+                        "AVA",
+                        "AAA",
+                        Character.valueOf('A'), new ItemStack(Items.ARROW),
+                        Character.valueOf('V'), new IngredientNBTTC(ThaumcraftApiHelper.makeCrystal(Aspect.AIR))
+                }
+        ));
+        ThaumcraftApi.addArcaneCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "primal_arrow_earth"), new ShapedArcaneRecipe(
+                defaultGroup,
+                "TWOND_PRIMAL_ARROWS",
+                10,
+                new AspectList(),
+                new ItemStack(ItemsTW.PRIMAL_ARROW, 9, 1),
+                new Object[] {
+                        "AAA",
+                        "AVA",
+                        "AAA",
+                        Character.valueOf('A'), new ItemStack(Items.ARROW),
+                        Character.valueOf('V'), new IngredientNBTTC(ThaumcraftApiHelper.makeCrystal(Aspect.EARTH))
+                }
+        ));
+        ThaumcraftApi.addArcaneCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "primal_arrow_fire"), new ShapedArcaneRecipe(
+                defaultGroup,
+                "TWOND_PRIMAL_ARROWS",
+                10,
+                new AspectList(),
+                new ItemStack(ItemsTW.PRIMAL_ARROW, 9, 2),
+                new Object[] {
+                        "AAA",
+                        "AVA",
+                        "AAA",
+                        Character.valueOf('A'), new ItemStack(Items.ARROW),
+                        Character.valueOf('V'), new IngredientNBTTC(ThaumcraftApiHelper.makeCrystal(Aspect.FIRE))
+                }
+        ));
+        ThaumcraftApi.addArcaneCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "primal_arrow_water"), new ShapedArcaneRecipe(
+                defaultGroup,
+                "TWOND_PRIMAL_ARROWS",
+                10,
+                new AspectList(),
+                new ItemStack(ItemsTW.PRIMAL_ARROW, 9, 3),
+                new Object[] {
+                        "AAA",
+                        "AVA",
+                        "AAA",
+                        Character.valueOf('A'), new ItemStack(Items.ARROW),
+                        Character.valueOf('V'), new IngredientNBTTC(ThaumcraftApiHelper.makeCrystal(Aspect.WATER))
+                }
+        ));
+        ThaumcraftApi.addArcaneCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "primal_arrow_order"), new ShapedArcaneRecipe(
+                defaultGroup,
+                "TWOND_PRIMAL_ARROWS",
+                10,
+                new AspectList(),
+                new ItemStack(ItemsTW.PRIMAL_ARROW, 9, 4),
+                new Object[] {
+                        "AAA",
+                        "AVA",
+                        "AAA",
+                        Character.valueOf('A'), new ItemStack(Items.ARROW),
+                        Character.valueOf('V'), new IngredientNBTTC(ThaumcraftApiHelper.makeCrystal(Aspect.ORDER))
+                }
+        ));
+        ThaumcraftApi.addArcaneCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "primal_arrow_entropy"), new ShapedArcaneRecipe(
+                defaultGroup,
+                "TWOND_PRIMAL_ARROWS",
+                10,
+                new AspectList(),
+                new ItemStack(ItemsTW.PRIMAL_ARROW, 9, 5),
+                new Object[] {
+                        "AAA",
+                        "AVA",
+                        "AAA",
+                        Character.valueOf('A'), new ItemStack(Items.ARROW),
+                        Character.valueOf('V'), new IngredientNBTTC(ThaumcraftApiHelper.makeCrystal(Aspect.ENTROPY))
+                }
+        ));
     }
 
     private static void initCrucibleRecipes() {

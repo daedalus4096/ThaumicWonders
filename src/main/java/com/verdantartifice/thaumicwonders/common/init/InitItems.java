@@ -11,6 +11,7 @@ import com.verdantartifice.thaumicwonders.common.items.baubles.ItemCleansingChar
 import com.verdantartifice.thaumicwonders.common.items.catalysts.ItemAlchemistStone;
 import com.verdantartifice.thaumicwonders.common.items.catalysts.ItemAlienistStone;
 import com.verdantartifice.thaumicwonders.common.items.catalysts.ItemTransmuterStone;
+import com.verdantartifice.thaumicwonders.common.items.consumables.ItemPrimalArrow;
 import com.verdantartifice.thaumicwonders.common.items.entities.ItemFlyingCarpet;
 import com.verdantartifice.thaumicwonders.common.items.misc.ItemDisjunctionCloth;
 import com.verdantartifice.thaumicwonders.common.items.misc.ItemStructureDiviner;
@@ -42,6 +43,7 @@ public class InitItems {
         registerItem(forgeRegistry, new ItemNightVisionGoggles());
         registerItem(forgeRegistry, new ItemCleansingCharm());
         registerItem(forgeRegistry, new ItemBoneBow());
+        registerItem(forgeRegistry, new ItemPrimalArrow());
     }
     
     private static void registerItem(IForgeRegistry<Item> forgeRegistry, Item item) {

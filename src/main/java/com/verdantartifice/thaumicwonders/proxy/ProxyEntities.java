@@ -2,9 +2,11 @@ package com.verdantartifice.thaumicwonders.proxy;
 
 import com.verdantartifice.thaumicwonders.client.renderers.entity.RenderFlyingCarpet;
 import com.verdantartifice.thaumicwonders.client.renderers.entity.RenderHexamitePrimed;
+import com.verdantartifice.thaumicwonders.client.renderers.entity.RenderPrimalArrow;
 import com.verdantartifice.thaumicwonders.client.renderers.entity.RenderVoidPortal;
 import com.verdantartifice.thaumicwonders.common.entities.EntityFlyingCarpet;
 import com.verdantartifice.thaumicwonders.common.entities.EntityHexamitePrimed;
+import com.verdantartifice.thaumicwonders.common.entities.EntityPrimalArrow;
 import com.verdantartifice.thaumicwonders.common.entities.EntityVoidPortal;
 
 import net.minecraft.client.renderer.entity.Render;
@@ -30,6 +32,12 @@ public class ProxyEntities {
             @Override
             public Render<? super EntityHexamitePrimed> createRenderFor(RenderManager manager) {
                 return new RenderHexamitePrimed(manager);
+            }
+        });
+        RenderingRegistry.registerEntityRenderingHandler(EntityPrimalArrow.class, new IRenderFactory<EntityPrimalArrow>() {
+            @Override
+            public Render<? super EntityPrimalArrow> createRenderFor(RenderManager manager) {
+                return new RenderPrimalArrow(manager);
             }
         });
     }
