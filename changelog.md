@@ -5,6 +5,7 @@ v1.7.0
 * Added Cleansing Charm, to help you with your Warp problem
 * Added Bone Bow, revisiting a blast from the past
 * Added Primal Arrows, to spice up your archery
+* Fixed crafting recipe bug with Bone Bow and Hexamite
 
 v1.6.0
 ------

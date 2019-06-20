@@ -169,7 +169,7 @@ public class InitRecipes {
                         "VGV",
                         "AVA",
                         Character.valueOf('A'), new ItemStack(ItemsTC.alumentum),
-                        Character.valueOf('V'), ThaumcraftApiHelper.makeCrystal(Aspect.FLUX),
+                        Character.valueOf('V'), new IngredientNBTTC(ThaumcraftApiHelper.makeCrystal(Aspect.FLUX)),
                         Character.valueOf('G'), new ItemStack(Items.GUNPOWDER)
                 }
         ));
@@ -185,7 +185,7 @@ public class InitRecipes {
                         " BS",
                         Character.valueOf('B'), new ItemStack(Items.BONE),
                         Character.valueOf('S'), new ItemStack(Items.STRING),
-                        Character.valueOf('V'), ThaumcraftApiHelper.makeCrystal(Aspect.ENTROPY)
+                        Character.valueOf('V'), new IngredientNBTTC(ThaumcraftApiHelper.makeCrystal(Aspect.ENTROPY))
                 }
         ));
         ThaumcraftApi.addArcaneCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "primal_arrow_air"), new ShapedArcaneRecipe(
