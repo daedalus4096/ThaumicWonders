@@ -5,11 +5,13 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.verdantartifice.thaumicwonders.common.items.ItemsTW;
+import com.verdantartifice.thaumicwonders.common.items.entities.ItemFlyingCarpet;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagInt;
@@ -29,6 +31,7 @@ import thaumcraft.api.items.RechargeHelper;
 public class EntityFlyingCarpet extends Entity {
     private static final DataParameter<Integer> VIS_CHARGE = EntityDataManager.<Integer>createKey(EntityFlyingCarpet.class, DataSerializers.VARINT);
     private static final DataParameter<Integer> ENERGY = EntityDataManager.<Integer>createKey(EntityFlyingCarpet.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> DYE_COLOR = EntityDataManager.<Integer>createKey(EntityFlyingCarpet.class, DataSerializers.VARINT);
 
     private float momentum;
     private int lerpSteps;
@@ -67,6 +70,7 @@ public class EntityFlyingCarpet extends Entity {
     protected void entityInit() {
         this.dataManager.register(VIS_CHARGE, Integer.valueOf(0));
         this.dataManager.register(ENERGY, Integer.valueOf(0));
+        this.dataManager.register(DYE_COLOR, Integer.valueOf(-1));
     }
 
     @Override
@@ -242,6 +246,10 @@ public class EntityFlyingCarpet extends Entity {
         if (!this.world.isRemote) {
             if (player.isSneaking()) {
                 ItemStack itemStack = new ItemStack(ItemsTW.FLYING_CARPET, 1, 0);
+                EnumDyeColor color = this.getDyeColor();
+                if (color != null) {
+                    ((ItemFlyingCarpet)itemStack.getItem()).setDyeColor(itemStack, color);
+                }
                 itemStack.setTagInfo(RechargeHelper.NBT_TAG, new NBTTagInt(this.getVisCharge()));
                 itemStack.setTagInfo("energy", new NBTTagInt(this.getEnergy()));
                 this.entityDropItem(itemStack, 0.0F);
@@ -267,6 +275,23 @@ public class EntityFlyingCarpet extends Entity {
     
     public int getEnergy() {
         return this.dataManager.get(ENERGY).intValue();
+    }
+    
+    public void setDyeColor(EnumDyeColor color) {
+        if (color == null) {
+            this.dataManager.set(DYE_COLOR, Integer.valueOf(-1));
+        } else {
+            this.dataManager.set(DYE_COLOR, Integer.valueOf(color.getMetadata()));
+        }
+    }
+    
+    public EnumDyeColor getDyeColor() {
+        int value = this.dataManager.get(DYE_COLOR).intValue();
+        if (value == -1) {
+            return null;
+        } else {
+            return EnumDyeColor.byMetadata(value);
+        }
     }
 
     @Override

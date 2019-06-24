@@ -59,6 +59,7 @@ public class ItemFlyingCarpet extends ItemTW implements IRechargable {
             if (player.getHeldItem(hand).hasTagCompound()) {
                 entityCarpet.setVisCharge(RechargeHelper.getCharge(player.getHeldItem(hand)));
                 entityCarpet.setEnergy(player.getHeldItem(hand).getTagCompound().getInteger("energy"));
+                entityCarpet.setDyeColor(this.getDyeColor(player.getHeldItem(hand)));
             }
             entityCarpet.rotationYaw = player.rotationYaw;
             world.spawnEntity(entityCarpet);
