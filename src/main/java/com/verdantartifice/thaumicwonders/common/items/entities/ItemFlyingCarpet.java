@@ -6,8 +6,11 @@ import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.entities.EntityFlyingCarpet;
 import com.verdantartifice.thaumicwonders.common.items.base.ItemTW;
 
+import net.minecraft.block.BlockCauldron;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.IItemPropertyGetter;
@@ -48,7 +51,17 @@ public class ItemFlyingCarpet extends ItemTW implements IRechargable {
     
     @Override
     public EnumActionResult onItemUseFirst(EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, EnumHand hand) {
-        if (!world.isRemote && world.getBlockState(pos).getBlock() != BlocksTC.rechargePedestal) {
+        IBlockState state = world.getBlockState(pos);
+        if (!world.isRemote && state.getBlock() == Blocks.CAULDRON) {
+            int level = state.getValue(BlockCauldron.LEVEL).intValue();
+            if (level > 0) {
+                this.removeDyeColor(player.getHeldItem(hand));
+                Blocks.CAULDRON.setWaterLevel(world, pos, state, level - 1);
+                return EnumActionResult.SUCCESS;
+            } else {
+                return EnumActionResult.PASS;
+            }
+        } else if (!world.isRemote && state.getBlock() != BlocksTC.rechargePedestal) {
             if (side != EnumFacing.UP) {
                 return EnumActionResult.PASS;
             }
