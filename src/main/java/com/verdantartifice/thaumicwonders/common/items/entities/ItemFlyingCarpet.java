@@ -92,6 +92,9 @@ public class ItemFlyingCarpet extends ItemTW implements IRechargable {
     }
     
     public void setDyeColor(ItemStack stack, EnumDyeColor color) {
+        if (color == null) {
+            return;
+        }
         if (!stack.hasTagCompound()) {
             stack.setTagCompound(new NBTTagCompound());
         }
