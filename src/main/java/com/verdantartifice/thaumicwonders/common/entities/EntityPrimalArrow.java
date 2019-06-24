@@ -210,7 +210,10 @@ public class EntityPrimalArrow extends EntityArrow {
                 for (int i = 0; i < 4; ++i) {
                     this.world.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX - this.motionX * 0.25D, this.posY - this.motionY * 0.25D, this.posZ - this.motionZ * 0.25D, this.motionX, this.motionY, this.motionZ);
                 }
-                motionMultiplier = 0.6F;
+                if (this.getArrowType() != 3) {
+                    // Water arrows fly normally underwater
+                    motionMultiplier = 0.6F;
+                }
             }
 
             if (this.isWet()) {
@@ -265,7 +268,7 @@ public class EntityPrimalArrow extends EntityArrow {
             damageSource = damageSource.setProjectile().setFireDamage();
             break;
         default:
-            // Fire, order, and entropy arrows do normal damage
+            // Water, earth, and entropy arrows do normal damage
             damageSource = damageSource.setProjectile();
             break;
         }
