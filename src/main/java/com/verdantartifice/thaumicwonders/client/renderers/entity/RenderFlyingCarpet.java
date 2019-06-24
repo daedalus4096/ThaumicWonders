@@ -8,10 +8,26 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.util.ResourceLocation;
 
 public class RenderFlyingCarpet extends Render<EntityFlyingCarpet> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation(ThaumicWonders.MODID, "textures/entities/flying_carpet.png");
+    private static final ResourceLocation TEXTURE_WHITE = new ResourceLocation(ThaumicWonders.MODID, "textures/entities/flying_carpet_white.png");
+    private static final ResourceLocation TEXTURE_ORANGE = new ResourceLocation(ThaumicWonders.MODID, "textures/entities/flying_carpet_orange.png");
+    private static final ResourceLocation TEXTURE_MAGENTA = new ResourceLocation(ThaumicWonders.MODID, "textures/entities/flying_carpet_magenta.png");
+    private static final ResourceLocation TEXTURE_LIGHT_BLUE = new ResourceLocation(ThaumicWonders.MODID, "textures/entities/flying_carpet_light_blue.png");
+    private static final ResourceLocation TEXTURE_YELLOW = new ResourceLocation(ThaumicWonders.MODID, "textures/entities/flying_carpet_yellow.png");
+    private static final ResourceLocation TEXTURE_LIME = new ResourceLocation(ThaumicWonders.MODID, "textures/entities/flying_carpet_lime.png");
+    private static final ResourceLocation TEXTURE_PINK = new ResourceLocation(ThaumicWonders.MODID, "textures/entities/flying_carpet_pink.png");
+    private static final ResourceLocation TEXTURE_GRAY = new ResourceLocation(ThaumicWonders.MODID, "textures/entities/flying_carpet_gray.png");
+    private static final ResourceLocation TEXTURE_SILVER = new ResourceLocation(ThaumicWonders.MODID, "textures/entities/flying_carpet_silver.png");
+    private static final ResourceLocation TEXTURE_CYAN = new ResourceLocation(ThaumicWonders.MODID, "textures/entities/flying_carpet_cyan.png");
+    private static final ResourceLocation TEXTURE_PURPLE = new ResourceLocation(ThaumicWonders.MODID, "textures/entities/flying_carpet_purple.png");
+    private static final ResourceLocation TEXTURE_BLUE = new ResourceLocation(ThaumicWonders.MODID, "textures/entities/flying_carpet_blue.png");
+    private static final ResourceLocation TEXTURE_BROWN = new ResourceLocation(ThaumicWonders.MODID, "textures/entities/flying_carpet_brown.png");
+    private static final ResourceLocation TEXTURE_GREEN = new ResourceLocation(ThaumicWonders.MODID, "textures/entities/flying_carpet_green.png");
+    private static final ResourceLocation TEXTURE_RED = new ResourceLocation(ThaumicWonders.MODID, "textures/entities/flying_carpet_red.png");
+    private static final ResourceLocation TEXTURE_BLACK = new ResourceLocation(ThaumicWonders.MODID, "textures/entities/flying_carpet_black.png");
 
     protected ModelBase modelFlyingCarpet = new ModelFlyingCarpet();
 
@@ -22,7 +38,46 @@ public class RenderFlyingCarpet extends Render<EntityFlyingCarpet> {
 
     @Override
     protected ResourceLocation getEntityTexture(EntityFlyingCarpet entity) {
-        return TEXTURE;
+        EnumDyeColor color = entity.getDyeColor();
+        if (color == null) {
+            return TEXTURE_RED;
+        } else {
+            switch (color) {
+            case WHITE:
+                return TEXTURE_WHITE;
+            case ORANGE:
+                return TEXTURE_ORANGE;
+            case MAGENTA:
+                return TEXTURE_MAGENTA;
+            case LIGHT_BLUE:
+                return TEXTURE_LIGHT_BLUE;
+            case YELLOW:
+                return TEXTURE_YELLOW;
+            case LIME:
+                return TEXTURE_LIME;
+            case PINK:
+                return TEXTURE_PINK;
+            case GRAY:
+                return TEXTURE_GRAY;
+            case SILVER:
+                return TEXTURE_SILVER;
+            case CYAN:
+                return TEXTURE_CYAN;
+            case PURPLE:
+                return TEXTURE_PURPLE;
+            case BLUE:
+                return TEXTURE_BLUE;
+            case BROWN:
+                return TEXTURE_BROWN;
+            case GREEN:
+                return TEXTURE_GREEN;
+            case BLACK:
+                return TEXTURE_BLACK;
+            case RED:
+            default:
+                return TEXTURE_RED;
+            }
+        }
     }
     
     @Override
