@@ -1,15 +1,25 @@
 package com.verdantartifice.thaumicwonders.common.items.entities;
 
+import javax.annotation.Nullable;
+
+import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.entities.EntityFlyingCarpet;
 import com.verdantartifice.thaumicwonders.common.items.base.ItemTW;
 
+import net.minecraft.block.BlockCauldron;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.EnumDyeColor;
+import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -22,11 +32,36 @@ public class ItemFlyingCarpet extends ItemTW implements IRechargable {
     
     public ItemFlyingCarpet() {
         super("flying_carpet");
+        
+        this.addPropertyOverride(new ResourceLocation(ThaumicWonders.MODID, "color"), new IItemPropertyGetter() {
+            @Override
+            public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
+                EnumDyeColor color = null;
+                if (stack != null && stack.getItem() instanceof ItemFlyingCarpet) {
+                    color = ((ItemFlyingCarpet)stack.getItem()).getDyeColor(stack);
+                }
+                if (color == null) {
+                    // Default to red if no dye color is applied
+                    color = EnumDyeColor.RED;
+                }
+                return ((float)color.getMetadata() / 16.0F);
+            }
+        });
     }
     
     @Override
     public EnumActionResult onItemUseFirst(EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, EnumHand hand) {
-        if (!world.isRemote && world.getBlockState(pos).getBlock() != BlocksTC.rechargePedestal) {
+        IBlockState state = world.getBlockState(pos);
+        if (!world.isRemote && state.getBlock() == Blocks.CAULDRON) {
+            int level = state.getValue(BlockCauldron.LEVEL).intValue();
+            if (level > 0) {
+                this.removeDyeColor(player.getHeldItem(hand));
+                Blocks.CAULDRON.setWaterLevel(world, pos, state, level - 1);
+                return EnumActionResult.SUCCESS;
+            } else {
+                return EnumActionResult.PASS;
+            }
+        } else if (!world.isRemote && state.getBlock() != BlocksTC.rechargePedestal) {
             if (side != EnumFacing.UP) {
                 return EnumActionResult.PASS;
             }
@@ -37,6 +72,7 @@ public class ItemFlyingCarpet extends ItemTW implements IRechargable {
             if (player.getHeldItem(hand).hasTagCompound()) {
                 entityCarpet.setVisCharge(RechargeHelper.getCharge(player.getHeldItem(hand)));
                 entityCarpet.setEnergy(player.getHeldItem(hand).getTagCompound().getInteger("energy"));
+                entityCarpet.setDyeColor(this.getDyeColor(player.getHeldItem(hand)));
             }
             entityCarpet.rotationYaw = player.rotationYaw;
             world.spawnEntity(entityCarpet);
@@ -56,5 +92,40 @@ public class ItemFlyingCarpet extends ItemTW implements IRechargable {
     @Override
     public IRechargable.EnumChargeDisplay showInHud(ItemStack stack, EntityLivingBase player) {
         return IRechargable.EnumChargeDisplay.NORMAL;
+    }
+    
+    public EnumDyeColor getDyeColor(ItemStack stack) {
+        NBTTagCompound compound = stack.getTagCompound();
+        if (compound != null) {
+            NBTTagCompound innerCompound = compound.getCompoundTag("display");
+            if (innerCompound != null && innerCompound.hasKey("color")) {
+                return EnumDyeColor.byMetadata(innerCompound.getInteger("color"));
+            }
+        }
+        return null;
+    }
+    
+    public void setDyeColor(ItemStack stack, EnumDyeColor color) {
+        if (color == null) {
+            return;
+        }
+        if (!stack.hasTagCompound()) {
+            stack.setTagCompound(new NBTTagCompound());
+        }
+        NBTTagCompound compound = stack.getTagCompound();
+        if (!compound.hasKey("display")) {
+            compound.setTag("display", new NBTTagCompound());
+        }
+        compound.getCompoundTag("display").setInteger("color", color.getMetadata());
+    }
+    
+    public void removeDyeColor(ItemStack stack) {
+        NBTTagCompound compound = stack.getTagCompound();
+        if (compound != null) {
+            NBTTagCompound innerCompound = compound.getCompoundTag("display");
+            if (innerCompound != null && innerCompound.hasKey("color")) {
+                innerCompound.removeTag("color");
+            }
+        }
     }
 }

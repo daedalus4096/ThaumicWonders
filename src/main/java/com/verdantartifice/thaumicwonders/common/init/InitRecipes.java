@@ -9,6 +9,7 @@ import javax.annotation.Nullable;
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.blocks.BlocksTW;
 import com.verdantartifice.thaumicwonders.common.crafting.recipes.RecipeDisjunctionClothUse;
+import com.verdantartifice.thaumicwonders.common.crafting.recipes.RecipeFlyingCarpetDyes;
 import com.verdantartifice.thaumicwonders.common.fluids.FluidQuicksilver;
 import com.verdantartifice.thaumicwonders.common.items.ItemsTW;
 
@@ -89,6 +90,7 @@ public class InitRecipes {
     
     private static void initNormalRecipes(IForgeRegistry<IRecipe> forgeRegistry) {
         forgeRegistry.register(new RecipeDisjunctionClothUse());
+        forgeRegistry.register(new RecipeFlyingCarpetDyes());
         
         ResourceLocation qsGroup = new ResourceLocation(ThaumicWonders.MODID, "quicksilver_bucket_group");
         shapelessOreDictRecipe("quicksilver_bucket", qsGroup, FluidUtil.getFilledBucket(new FluidStack(FluidQuicksilver.INSTANCE, 1000)), new Object[] { 

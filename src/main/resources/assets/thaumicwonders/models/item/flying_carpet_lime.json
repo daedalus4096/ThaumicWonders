@@ -1,0 +1,6 @@
+{
+    "parent": "thaumicwonders:item/flying_carpet",
+    "textures": {
+        "layer0": "thaumicwonders:items/flying_carpet_lime"
+    }
+}
