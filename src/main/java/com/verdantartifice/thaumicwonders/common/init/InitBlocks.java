@@ -8,6 +8,7 @@ import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockCatalyzatio
 import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockDimensionalRipper;
 import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockEverburningUrn;
 import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockFluxCapacitor;
+import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockFluxDistiller;
 import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockInspirationEngine;
 import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockMadnessEngine;
 import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockMeatyOrb;
@@ -17,6 +18,7 @@ import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockPortalAncho
 import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockPortalGenerator;
 import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockVoidBeacon;
 import com.verdantartifice.thaumicwonders.common.blocks.devices.ItemBlockFluxCapacitor;
+import com.verdantartifice.thaumicwonders.common.blocks.devices.ItemBlockFluxDistiller;
 import com.verdantartifice.thaumicwonders.common.blocks.devices.ItemBlockPortalGenerator;
 import com.verdantartifice.thaumicwonders.common.blocks.essentia.BlockCreativeEssentiaJar;
 import com.verdantartifice.thaumicwonders.common.blocks.essentia.ItemBlockCreativeEssentiaJar;
@@ -27,6 +29,7 @@ import com.verdantartifice.thaumicwonders.common.fluids.FluidQuicksilver;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileCatalyzationChamber;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileDimensionalRipper;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileEverburningUrn;
+import com.verdantartifice.thaumicwonders.common.tiles.devices.TileFluxDistiller;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileInspirationEngine;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileMadnessEngine;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileMeatyOrb;
@@ -63,6 +66,7 @@ public class InitBlocks {
         registerBlock(forgeRegistry, new BlockOreDiviner());
         registerBlock(forgeRegistry, new BlockMeatyOrb());
         registerBlock(forgeRegistry, new BlockVoidBeacon());
+        registerBlock(forgeRegistry, new BlockFluxDistiller(), ItemBlockFluxDistiller.class);
         
         registerBlock(forgeRegistry, new BlockTWPlaceholder("placeholder_arcane_stone"));
         registerBlock(forgeRegistry, new BlockTWPlaceholder("placeholder_obsidian"));
@@ -108,5 +112,6 @@ public class InitBlocks {
         GameRegistry.registerTileEntity(TileOreDiviner.class, new ResourceLocation(ThaumicWonders.MODID, "TileOreDiviner"));
         GameRegistry.registerTileEntity(TileMeatyOrb.class, new ResourceLocation(ThaumicWonders.MODID, "TileMeatyOrb"));
         GameRegistry.registerTileEntity(TileVoidBeacon.class, new ResourceLocation(ThaumicWonders.MODID, "TileVoidBeacon"));
+        GameRegistry.registerTileEntity(TileFluxDistiller.class, new ResourceLocation(ThaumicWonders.MODID, "TileFluxDistiller"));
     }
 }

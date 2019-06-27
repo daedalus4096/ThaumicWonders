@@ -19,6 +19,7 @@ tile.thaumicwonders.meteorb.name=Meteorb
 tile.thaumicwonders.ore_diviner.name=Ore Diviner
 tile.thaumicwonders.meaty_orb.name=Meaty Orb
 tile.thaumicwonders.void_beacon.name=Void Beacon
+tile.thaumicwonders.flux_distiller.name=Flux Distiller
 
 // Misc Tiles
 tile.thaumicwonders.fluid_quicksilver.name=Quicksilver

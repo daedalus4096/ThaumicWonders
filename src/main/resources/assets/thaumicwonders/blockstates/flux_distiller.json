@@ -1,0 +1,21 @@
+{
+    "forge_marker": 1,
+    "defaults":
+    {
+        "transform": "forge:default-block",
+        "model": "thaumicwonders:flux_distiller_0"
+    },
+    "variants": {
+        "charge=0":  { "model": "thaumicwonders:flux_distiller_0" },
+        "charge=1":  { "model": "thaumicwonders:flux_distiller_1" },
+        "charge=2":  { "model": "thaumicwonders:flux_distiller_2" },
+        "charge=3":  { "model": "thaumicwonders:flux_distiller_3" },
+        "charge=4":  { "model": "thaumicwonders:flux_distiller_4" },
+        "charge=5":  { "model": "thaumicwonders:flux_distiller_5" },
+        "charge=6":  { "model": "thaumicwonders:flux_distiller_6" },
+        "charge=7":  { "model": "thaumicwonders:flux_distiller_7" },
+        "charge=8":  { "model": "thaumicwonders:flux_distiller_8" },
+        "charge=9":  { "model": "thaumicwonders:flux_distiller_9" },
+        "charge=10": { "model": "thaumicwonders:flux_distiller_10" }
+    }
+}

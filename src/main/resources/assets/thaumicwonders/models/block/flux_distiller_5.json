@@ -1,0 +1,6 @@
+{
+    "parent": "thaumicwonders:block/flux_distiller_0",
+    "textures": {
+        "core": "thaumicwonders:blocks/flux_distiller_core_5"
+    }
+}

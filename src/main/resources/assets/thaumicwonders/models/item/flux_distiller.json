@@ -1,0 +1,49 @@
+{
+    "parent": "thaumicwonders:block/flux_distiller_0",
+    "overrides": [
+        {
+            "predicate": { "thaumicwonders:flux": 0 },
+            "model": "thaumicwonders:block/flux_distiller_0"
+        },
+        {
+            "predicate": { "thaumicwonders:flux": 1 },
+            "model": "thaumicwonders:block/flux_distiller_1"
+        },
+        {
+            "predicate": { "thaumicwonders:flux": 2 },
+            "model": "thaumicwonders:block/flux_distiller_2"
+        },
+        {
+            "predicate": { "thaumicwonders:flux": 3 },
+            "model": "thaumicwonders:block/flux_distiller_3"
+        },
+        {
+            "predicate": { "thaumicwonders:flux": 4 },
+            "model": "thaumicwonders:block/flux_distiller_4"
+        },
+        {
+            "predicate": { "thaumicwonders:flux": 5 },
+            "model": "thaumicwonders:block/flux_distiller_5"
+        },
+        {
+            "predicate": { "thaumicwonders:flux": 6 },
+            "model": "thaumicwonders:block/flux_distiller_6"
+        },
+        {
+            "predicate": { "thaumicwonders:flux": 7 },
+            "model": "thaumicwonders:block/flux_distiller_7"
+        },
+        {
+            "predicate": { "thaumicwonders:flux": 8 },
+            "model": "thaumicwonders:block/flux_distiller_8"
+        },
+        {
+            "predicate": { "thaumicwonders:flux": 9 },
+            "model": "thaumicwonders:block/flux_distiller_9"
+        },
+        {
+            "predicate": { "thaumicwonders:flux": 10 },
+            "model": "thaumicwonders:block/flux_distiller_10"
+        }
+    ]
+}
