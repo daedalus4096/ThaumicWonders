@@ -71,122 +71,142 @@ public class TileFluxDistiller extends TileTW implements IAspectContainer, IEsse
 
     @Override
     public int addEssentia(Aspect aspect, int amt, EnumFacing face) {
-        // TODO Auto-generated method stub
+        // Can't input, so always return zero
         return 0;
     }
 
     @Override
     public boolean canInputFrom(EnumFacing face) {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean canOutputTo(EnumFacing face) {
-        // TODO Auto-generated method stub
-        return false;
+        return face == EnumFacing.UP;
     }
 
     @Override
     public int getEssentiaAmount(EnumFacing face) {
-        // TODO Auto-generated method stub
-        return 0;
+        return this.amount;
     }
 
     @Override
     public Aspect getEssentiaType(EnumFacing face) {
-        // TODO Auto-generated method stub
-        return null;
+        return Aspect.FLUX;
     }
 
     @Override
     public int getMinimumSuction() {
-        // TODO Auto-generated method stub
         return 0;
     }
 
     @Override
     public int getSuctionAmount(EnumFacing face) {
-        // TODO Auto-generated method stub
         return 0;
     }
 
     @Override
     public Aspect getSuctionType(EnumFacing face) {
-        // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public boolean isConnectable(EnumFacing face) {
-        // TODO Auto-generated method stub
-        return false;
+        return face == EnumFacing.UP;
     }
 
     @Override
-    public void setSuction(Aspect arg0, int arg1) {
-        // TODO Auto-generated method stub
-
+    public void setSuction(Aspect aspect, int amt) {
+        // Do nothing
     }
 
     @Override
-    public int takeEssentia(Aspect arg0, int arg1, EnumFacing face) {
-        // TODO Auto-generated method stub
-        return 0;
+    public int takeEssentia(Aspect aspect, int amt, EnumFacing face) {
+        return (this.canOutputTo(face) && this.takeFromContainer(aspect, amt)) ? amt : 0;
     }
 
     @Override
-    public int addToContainer(Aspect arg0, int arg1) {
-        // TODO Auto-generated method stub
-        return 0;
+    public int addToContainer(Aspect aspect, int toAdd) {
+        if (toAdd == 0) {
+            return 0;
+        } else if (this.amount >= MAX_ESSENTIA || aspect != Aspect.FLUX) {
+            // Incompatible addition; return all of it
+            this.syncTile(false);
+            this.markDirty();
+            return toAdd;
+        } else {
+            // Add as much as possible and return the remainder
+            int added = Math.min(toAdd, MAX_ESSENTIA - this.amount);
+            this.amount += added;
+            this.syncTile(false);
+            this.markDirty();
+            return (toAdd - added);
+        }
     }
 
     @Override
-    public int containerContains(Aspect arg0) {
-        // TODO Auto-generated method stub
-        return 0;
+    public int containerContains(Aspect aspect) {
+        return (aspect == Aspect.FLUX) ? this.amount : 0;
     }
 
     @Override
-    public boolean doesContainerAccept(Aspect arg0) {
-        // TODO Auto-generated method stub
-        return false;
+    public boolean doesContainerAccept(Aspect aspect) {
+        return (aspect == Aspect.FLUX);
     }
 
     @Override
-    public boolean doesContainerContain(AspectList arg0) {
-        // TODO Auto-generated method stub
-        return false;
+    public boolean doesContainerContain(AspectList aspectList) {
+        boolean satisfied = true;
+        for (Aspect aspect : aspectList.getAspects()) {
+            satisfied = satisfied && this.doesContainerContainAmount(aspect, aspectList.getAmount(aspect));
+        }
+        return satisfied;
     }
 
     @Override
-    public boolean doesContainerContainAmount(Aspect arg0, int arg1) {
-        // TODO Auto-generated method stub
-        return false;
+    public boolean doesContainerContainAmount(Aspect aspect, int amt) {
+        return (aspect == Aspect.FLUX && this.amount >= amt);
     }
 
     @Override
     public AspectList getAspects() {
-        // TODO Auto-generated method stub
-        return null;
+        AspectList list = new AspectList();
+        if (this.amount > 0) {
+            list.add(Aspect.FLUX, this.amount);
+        }
+        return list;
     }
 
     @Override
-    public void setAspects(AspectList arg0) {
-        // TODO Auto-generated method stub
-
+    public void setAspects(AspectList aspectList) {
+        if (aspectList != null && aspectList.size() > 0) {
+            this.amount = aspectList.getAmount(Aspect.FLUX);
+        }
     }
 
     @Override
-    public boolean takeFromContainer(AspectList arg0) {
-        // TODO Auto-generated method stub
-        return false;
+    public boolean takeFromContainer(AspectList aspectList) {
+        if (!this.doesContainerContain(aspectList)) {
+            return false;
+        } else {
+            boolean satisfied = true;
+            for (Aspect aspect : aspectList.getAspects()) {
+                satisfied = satisfied && this.takeFromContainer(aspect, aspectList.getAmount(aspect));
+            }
+            return satisfied;
+        }
     }
 
     @Override
-    public boolean takeFromContainer(Aspect arg0, int arg1) {
-        // TODO Auto-generated method stub
-        return false;
+    public boolean takeFromContainer(Aspect aspect, int amt) {
+        if (aspect == Aspect.FLUX && this.amount >= amt) {
+            this.amount -= amt;
+            this.syncTile(false);
+            this.markDirty();
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }
