@@ -3,6 +3,7 @@ v1.8.0
 * Added Flux Distiller, to clean out your capacitors
 * Clarified dyeing process for the Flying Carpet
 * Renamed Bone Bow to Bow of Bone
+* Adjusted essentia costs for Void Beacon recipe
 
 v1.7.0
 ------

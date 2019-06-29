@@ -643,7 +643,7 @@ public class InitRecipes {
                 "TWOND_VOID_BEACON",
                 new ItemStack(BlocksTW.VOID_BEACON),
                 10,
-                new AspectList().add(Aspect.ELDRITCH, 200).add(Aspect.VOID, 200).add(Aspect.MAGIC, 200).add(Aspect.AURA, 150).add(Aspect.FLUX, 150).add(Aspect.AIR, 100).add(Aspect.EARTH, 100).add(Aspect.FIRE, 100).add(Aspect.WATER, 100).add(Aspect.ORDER, 100).add(Aspect.ENTROPY, 100),
+                new AspectList().add(Aspect.ELDRITCH, 250).add(Aspect.VOID, 250).add(Aspect.MAGIC, 250).add(Aspect.FLUX, 200).add(Aspect.AIR, 100).add(Aspect.EARTH, 100).add(Aspect.FIRE, 100).add(Aspect.WATER, 100).add(Aspect.ORDER, 100).add(Aspect.ENTROPY, 100),
                 new ItemStack(Blocks.BEACON),
                 new Object[] {
                         Ingredient.fromItem(ItemsTC.primordialPearl),
