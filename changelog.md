@@ -1,6 +1,7 @@
 v1.8.0
 ------
 * Added Flux Distiller, to clean out your capacitors
+* Clarified dyeing process for the Flying Carpet
 
 v1.7.0
 ------
