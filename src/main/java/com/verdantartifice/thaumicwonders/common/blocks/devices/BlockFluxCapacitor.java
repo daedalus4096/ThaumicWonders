@@ -2,6 +2,7 @@ package com.verdantartifice.thaumicwonders.common.blocks.devices;
 
 import java.util.Random;
 
+import com.verdantartifice.thaumicwonders.common.blocks.BlocksTW;
 import com.verdantartifice.thaumicwonders.common.blocks.base.BlockTW;
 
 import net.minecraft.block.Block;
@@ -108,5 +109,23 @@ public class BlockFluxCapacitor extends BlockTW {
         }
         drop.getTagCompound().setInteger("charge", this.getMetaFromState(state));
         spawnAsEntity(worldIn, pos, drop);
+    }
+    
+    public int getCharge(World worldIn, BlockPos pos) {
+        IBlockState state = worldIn.getBlockState(pos);
+        if (state.getBlock() == BlocksTW.FLUX_CAPACITOR) {
+            return state.getBlock().getMetaFromState(state);
+        } else {
+            return 0;
+        }
+    }
+    
+    public void decrementCharge(World worldIn, BlockPos pos, int amount) {
+        IBlockState state = worldIn.getBlockState(pos);
+        if (state.getBlock() == BlocksTW.FLUX_CAPACITOR) {
+            int charge = this.getMetaFromState(state);
+            int newCharge = Math.max(0, charge - amount);
+            worldIn.setBlockState(pos, state.withProperty(CHARGE, Integer.valueOf(newCharge)));
+        }
     }
 }
