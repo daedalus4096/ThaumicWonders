@@ -43,7 +43,7 @@ public class InitEntities {
                 .entity(EntityPrimalArrow.class)
                 .id(new ResourceLocation(ThaumicWonders.MODID, "primal_arrow"), id++)
                 .name("primal_arrow")
-                .tracker(64, 20, true)
+                .tracker(64, 1, true)
                 .build();
         iForgeRegistry.register(primalArrowEntry);
     }

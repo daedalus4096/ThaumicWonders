@@ -1,6 +1,7 @@
 v1.8.0
 ------
 * Added Flux Distiller, to clean out your capacitors
+* Fixed syncing bug when firing Primal Arrows from a Bone Bow
 * Clarified dyeing process for the Flying Carpet
 * Renamed Bone Bow to Bow of Bone
 * Adjusted essentia costs for Void Beacon recipe
