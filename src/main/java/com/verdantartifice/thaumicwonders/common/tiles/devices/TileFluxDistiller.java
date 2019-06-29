@@ -48,6 +48,11 @@ public class TileFluxDistiller extends TileTW implements IAspectContainer, IEsse
                 if (capacitorCharge > 0 && distillerCharge < MAX_CHARGE) {
                     capacitorBlock.decrementCharge(this.world, this.pos.down(), 1);
                     this.setCharge(distillerCharge + 1);
+                } else if (distillerCharge >= MAX_CHARGE && this.amount < MAX_ESSENTIA) {
+                    this.amount++;
+                    this.setCharge(0);
+                    this.syncTile(false);
+                    this.markDirty();
                 }
             }
         }
