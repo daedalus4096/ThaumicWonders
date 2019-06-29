@@ -274,6 +274,23 @@ public class InitRecipes {
                         Character.valueOf('V'), new IngredientNBTTC(ThaumcraftApiHelper.makeCrystal(Aspect.ENTROPY))
                 }
         ));
+        ThaumcraftApi.addArcaneCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "flux_distiller"), new ShapedArcaneRecipe(
+                defaultGroup,
+                "TWOND_FLUX_DISTILLER",
+                750,
+                new AspectList().add(Aspect.AIR, 8).add(Aspect.WATER, 8).add(Aspect.ORDER, 8),
+                BlocksTW.FLUX_DISTILLER,
+                new Object[] {
+                        "VLV",
+                        "MCM",
+                        "VAV",
+                        Character.valueOf('V'), "plateVoid",
+                        Character.valueOf('M'), ItemsTC.mechanismComplex,
+                        Character.valueOf('L'), BlocksTC.condenserlattice,
+                        Character.valueOf('C'), BlocksTC.condenser,
+                        Character.valueOf('A'), BlocksTC.metalAlchemicalAdvanced
+                }
+        ));
     }
 
     private static void initCrucibleRecipes() {

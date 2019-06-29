@@ -130,6 +130,31 @@
                     "required_research": ["BASICTURRET"]
                 }
             ]
+        },
+        {
+            "key": "TWOND_FLUX_DISTILLER",
+            "name": "thaumicwonders.research.flux_distiller.title",
+            "icons": ["thaumicwonders:flux_distiller"],
+            "category": "THAUMIC_WONDERS",
+            "parents": ["TWOND_FLUX_CAPACITOR"],
+            "siblings": [],
+            "meta": [],
+            "location": [-6, -5],
+            "reward_item": [],
+            "reward_knowledge": [],
+            "stages": [
+                {
+                    "text": "thaumicwonders.research.flux_distiller.text.stage.1",
+                    "required_knowledge": ["THEORY;AUROMANCY;1","THEORY;ALCHEMY;1","THEORY;ELDRITCH;1"]
+                },
+                {
+                    "text": "thaumicwonders.research.flux_distiller.text.stage.2",
+                    "recipes": [
+                        "thaumicwonders:flux_distiller"
+                    ]
+                }
+            ],
+            "addenda": []
         }
     ]
 }
