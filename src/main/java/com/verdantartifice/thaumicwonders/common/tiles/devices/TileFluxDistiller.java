@@ -17,7 +17,7 @@ import thaumcraft.api.aspects.IEssentiaTransport;
 public class TileFluxDistiller extends TileTW implements IAspectContainer, IEssentiaTransport, ITickable {
     protected static final int PROCESS_TIME = 20;
     protected static final int MAX_CHARGE = 10;
-    protected static final int MAX_ESSENTIA = 10;
+    protected static final int MAX_ESSENTIA = 1;
     
     protected int amount = 0;
     protected int tickCounter = 0;
