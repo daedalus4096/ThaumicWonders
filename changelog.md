@@ -1,3 +1,7 @@
+v1.8.0
+------
+* Added Flux Distiller, to clean out your capacitors
+
 v1.7.0
 ------
 * Added Night-Vision Goggles, for a different kind of revealing
