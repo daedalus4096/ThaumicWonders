@@ -2,6 +2,7 @@ v1.8.0
 ------
 * Added Flux Distiller, to clean out your capacitors
 * Clarified dyeing process for the Flying Carpet
+* Renamed Bone Bow to Bow of Bone
 
 v1.7.0
 ------

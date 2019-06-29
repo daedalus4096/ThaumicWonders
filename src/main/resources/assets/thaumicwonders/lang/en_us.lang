@@ -51,7 +51,7 @@ item.thaumicwonders.structure_diviner.name=Structure Diviner
 item.thaumicwonders.night_vision_goggles.name=Night-Vision Goggles
 item.thaumicwonders.cleansing_charm.name=Cleansing Charm
 item.thaumicwonders.cleansing_charm.tooltip.progress=Progress: %1$d%%
-item.thaumicwonders.bone_bow.name=Bone Bow
+item.thaumicwonders.bone_bow.name=Bow of Bone
 item.thaumicwonders.primal_arrow.air.name=Air Arrow
 item.thaumicwonders.primal_arrow.earth.name=Earth Arrow
 item.thaumicwonders.primal_arrow.fire.name=Fire Arrow
@@ -174,12 +174,12 @@ thaumicwonders.research.cleansing_charm.title=Cleansing Charm
 thaumicwonders.research.cleansing_charm.text.stage.1=These headaches are becoming too much for me to bear.  I can only make Sanity Soap so quickly, and it only does so much.  There has to be a better way of managing this problem.
 thaumicwonders.research.cleansing_charm.text.stage.2=Relief, at last.  This new Cleansing Charm will draw the Warp from my body and disperse it into the aura as flux.  Not a perfect solution, but all I have to do is wear it.<BR>The process is slow and draining, however.  The charm must be charged with vis on a pedestal, and it takes a full charge to remove a single point of Warp.  The process generates approximately one point of flux every thirty seconds, and I can expect it to take an hour for the charm to do its work.<BR>The charm only works on normal, "sticky" Warp.  Temporary Warp vanishes more quickly than the charm can affect, and permanent Warp is beyond even its power to help me.
 
-thaumicwonders.research.bone_bow.title=Bone Bow
+thaumicwonders.research.bone_bow.title=Bow of Bone
 thaumicwonders.research.bone_bow.text.stage.1=A memory tickles at my mind, something long forgotten...  It was a powerful weapon, but I can't quite reach it.  Perhaps some research will jog my memory.
-thaumicwonders.research.bone_bow.text.stage.2=Ah yes, I remember now.  The Bone Bow.<BR>When charged with vis, this bow pulls quite rapidly, with hardly any effort at all.  In addition, its arrows will fly farther and fire automatically as soon as they're at maximum power.  The effect is quite potent.<BR>The bow consumes one point of vis per shot.  When its charge is depleted, it functions like an ordinary bow.
+thaumicwonders.research.bone_bow.text.stage.2=Ah yes, I remember now.  The Bow of Bone.<BR>When charged with vis, this bow pulls quite rapidly, with hardly any effort at all.  In addition, its arrows will fly farther and fire automatically as soon as they're at maximum power.  The effect is quite potent.<BR>The bow consumes one point of vis per shot.  When its charge is depleted, it functions like an ordinary bow.
 
 thaumicwonders.research.primal_arrow.title=Primal Arrows
-thaumicwonders.research.primal_arrow.text.stage.1=With my success at re-inventing the Bone Bow, another memory comes to mind: superior magical ammunition.  How did that recipe go again?  
+thaumicwonders.research.primal_arrow.text.stage.1=With my success at re-inventing the Bow of Bone, another memory comes to mind: superior magical ammunition.  How did that recipe go again?  
 thaumicwonders.research.primal_arrow.text.stage.2=My experimentation has been a success.  By tipping normal arrows with fragments of primal vis shards, I can imbue them with extraordinary effects.  Primal arrows cannot be picked up from the ground, however, and an Infinity enchantment has only a 1-in-3 chance of preserving each arrow due to the magical nature.<PAGE>§oAir Arrow§r<BR>These arrows do normal damage, but their partially intangible nature allows them to bypass any armor that the target may be wearing.<PAGE>§oEarth Arrow§r<BR>These arrows, weighted with the essence of earth, do significantly more damage than a normal arrow.<PAGE>§oFire Arrow§r<BR>These arrows do fire damage and also set their target ablaze.<PAGE>§oWater Arrow§r<BR>These arrows do normal damage and also chill the target to the bone, dramatically reducing its speed.  In addition, they are not hindered when fired underwater.<PAGE>§oOrder Arrow§r<BR>These arrows do somewhat less damage than a normal arrow, but pierce armor and leave the target weakened.<PAGE>§oEntropy Arrow§r<BR>These arrows do somewhat less damage than a normal arrow, but their chaotic nature eats away at the target for a few seconds after impact.
 thaumicwonders.research.primal_arrow.text.addenda.1=Curious...  Apparently these new arrows don't work with the Automated Crossbow.  It will happily consume them, but something about its inner mechanism strips the arrows of their primal energy before firing.  I'm not sure how to fix this.
 
