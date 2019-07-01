@@ -44,6 +44,7 @@ public class InitItems {
         registerItem(forgeRegistry, new ItemCleansingCharm());
         registerItem(forgeRegistry, new ItemBoneBow());
         registerItem(forgeRegistry, new ItemPrimalArrow());
+        registerItem(forgeRegistry, new ItemTW("primordial_grain"));
     }
     
     private static void registerItem(IForgeRegistry<Item> forgeRegistry, Item item) {

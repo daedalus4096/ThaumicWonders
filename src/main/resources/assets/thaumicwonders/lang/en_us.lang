@@ -58,6 +58,7 @@ item.thaumicwonders.primal_arrow.fire.name=Fire Arrow
 item.thaumicwonders.primal_arrow.water.name=Water Arrow
 item.thaumicwonders.primal_arrow.order.name=Order Arrow
 item.thaumicwonders.primal_arrow.entropy.name=Entropy Arrow
+item.thaumicwonders.primordial_grain.name=Primordial Grain
 
 // Entities
 entity.flying_carpet.name=Flying Carpet
