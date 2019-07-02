@@ -21,6 +21,9 @@ tile.thaumicwonders.meaty_orb.name=Meaty Orb
 tile.thaumicwonders.void_beacon.name=Void Beacon
 tile.thaumicwonders.flux_distiller.name=Flux Distiller
 tile.thaumicwonders.flux_distiller.tooltip.flux=Flux: %1$d
+tile.thaumicwonders.primordial_accelerator.name=Primordial Accelerator
+tile.thaumicwonders.primordial_accelerator_tunnel.name=Primordial Accelerator Tunnel
+tile.thaumicwonders.primordial_accelerator_terminus.name=Primordial Accelerator Terminus
 
 // Misc Tiles
 tile.thaumicwonders.fluid_quicksilver.name=Quicksilver

@@ -25,4 +25,7 @@ public class BlocksTW {
     public static final Block MEATY_ORB = null;
     public static final Block VOID_BEACON = null;
     public static final Block FLUX_DISTILLER = null;
+    public static final Block PRIMORDIAL_ACCELERATOR = null;
+    public static final Block PRIMORDIAL_ACCELERATOR_TUNNEL = null;
+    public static final Block PRIMORDIAL_ACCELERATOR_TERMINUS = null;
 }
