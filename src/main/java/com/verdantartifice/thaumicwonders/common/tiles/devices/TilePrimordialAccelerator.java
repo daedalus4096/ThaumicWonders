@@ -37,7 +37,7 @@ public class TilePrimordialAccelerator extends TileTWInventory implements ITicka
             boolean powered = !state.getValue(IBlockEnabled.ENABLED);   // "enabled" means no redstone signal in TC
             ItemStack pearlStack = this.getStackInSlot(0);
             
-            if (powered && pearlStack != null && !pearlStack.isEmpty() && pearlStack.getItem() == ItemsTC.primordialPearl) {
+            if (powered && pearlStack != null && !pearlStack.isEmpty() && pearlStack.getItem() == ItemsTC.primordialPearl && pearlStack.getItemDamage() < 7) {
                 EnumFacing facing = state.getValue(IBlockFacingHorizontal.FACING);
                 BlockPos curPos = this.pos;
                 int tunnelCount = 0;
@@ -91,7 +91,7 @@ public class TilePrimordialAccelerator extends TileTWInventory implements ITicka
     }
 
     protected void completeReaction(BlockPos terminusPos, int tunnelCount, ItemStack pearlStack) {
-        int count = MathHelper.clamp(pearlStack.getMaxDamage() - pearlStack.getItemDamage() + 1, 0, 9);
+        int count = MathHelper.clamp(pearlStack.getMaxDamage() - pearlStack.getItemDamage(), 0, 8);
         for (int index = 0; index < count; index++) {
             this.ejectGrain(terminusPos);
             if (this.world.rand.nextInt(MAX_TUNNELS) < tunnelCount) {

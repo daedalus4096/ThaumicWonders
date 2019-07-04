@@ -12,7 +12,7 @@ public class SlotPrimordialPearl extends Slot {
     
     @Override
     public boolean isItemValid(ItemStack stack) {
-        return stack != null && !stack.isEmpty() && stack.getItem() == ItemsTC.primordialPearl;
+        return stack != null && !stack.isEmpty() && stack.getItem() == ItemsTC.primordialPearl && stack.getItemDamage() < 7;
     }
     
     @Override
