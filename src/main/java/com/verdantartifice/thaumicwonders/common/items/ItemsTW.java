@@ -26,4 +26,5 @@ public class ItemsTW {
     public static final Item CLEANSING_CHARM = null;
     public static final ItemBow BONE_BOW = null;
     public static final Item PRIMAL_ARROW = null;
+    public static final Item PRIMORDIAL_GRAIN = null;
 }

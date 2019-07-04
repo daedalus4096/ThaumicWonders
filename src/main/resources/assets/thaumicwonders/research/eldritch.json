@@ -239,6 +239,40 @@
                 }
             ],
             "addenda": []
+        },
+        {
+            "key": "TWOND_PRIMORDIAL_ACCELERATOR",
+            "name": "thaumicwonders.research.primordial_accelerator.title",
+            "icons": ["thaumicwonders:primordial_accelerator"],
+            "category": "THAUMIC_WONDERS",
+            "parents": ["TWOND_FLUX_CAPACITOR", "~ESSENTIASMELTERVOID@1"],
+            "siblings": [],
+            "meta": ["SPIKY"],
+            "location": [-8, -3],
+            "reward_item": [],
+            "reward_knowledge": [],
+            "stages": [
+                {
+                    "text": "thaumicwonders.research.primordial_accelerator.text.stage.1",
+                    "required_knowledge":["THEORY;ARTIFICE;2","THEORY;ELDRITCH;2"],
+                    "warp": 3
+                },
+                {
+                    "text": "thaumicwonders.research.primordial_accelerator.text.stage.2", 
+                    "recipes": [
+                        "thaumicwonders:primordial_accelerator",
+                        "thaumicwonders:primordial_accelerator_tunnel",
+                        "thaumicwonders:primordial_accelerator_terminus"
+                    ]
+                }
+            ],
+            "addenda": [
+                {
+                    "text": "thaumicwonders.research.primordial_accelerator.text.addenda.1",
+                    "required_research": ["!TWOND_PRIMORDIAL_GRAIN"],
+                    "recipes": ["thaumicwonders:primordial_pearl_reconstitution"]
+                }
+            ]
         }
     ]
 }
