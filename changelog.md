@@ -1,6 +1,7 @@
 v1.8.0
 ------
 * Added Flux Distiller, to clean out your capacitors
+* Added Primordial Accelerator, to smash your Primordial Pearls to bits, for science!
 * Fixed syncing bug when firing Primal Arrows from a Bone Bow
 * Clarified dyeing process for the Flying Carpet
 * Renamed Bone Bow to Bow of Bone
