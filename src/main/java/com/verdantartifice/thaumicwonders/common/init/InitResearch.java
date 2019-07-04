@@ -1,15 +1,19 @@
 package com.verdantartifice.thaumicwonders.common.init;
 
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
+import com.verdantartifice.thaumicwonders.common.items.ItemsTW;
 import com.verdantartifice.thaumicwonders.common.research.theorycraft.AidInspirationEngine;
 import com.verdantartifice.thaumicwonders.common.research.theorycraft.AidMadnessEngine;
 import com.verdantartifice.thaumicwonders.common.research.theorycraft.CardInducedInspiration;
 import com.verdantartifice.thaumicwonders.common.research.theorycraft.CardInducedMadness;
 
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.research.ResearchCategories;
+import thaumcraft.api.research.ScanItem;
+import thaumcraft.api.research.ScanningManager;
 import thaumcraft.api.research.theorycraft.TheorycraftManager;
 
 public class InitResearch {
@@ -17,6 +21,7 @@ public class InitResearch {
         initCategories();
         initResearchLocations();
         initTheorycraft();
+        initScannables();
     }
 
     private static void initCategories() {
@@ -43,5 +48,9 @@ public class InitResearch {
         TheorycraftManager.registerAid(new AidMadnessEngine());
         TheorycraftManager.registerCard(CardInducedInspiration.class);
         TheorycraftManager.registerCard(CardInducedMadness.class);
+    }
+    
+    private static void initScannables() {
+        ScanningManager.addScannableThing(new ScanItem("!TWOND_PRIMORDIAL_GRAIN", new ItemStack(ItemsTW.PRIMORDIAL_GRAIN)));
     }
 }

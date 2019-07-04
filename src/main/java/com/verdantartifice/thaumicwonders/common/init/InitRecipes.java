@@ -291,6 +291,35 @@ public class InitRecipes {
                         Character.valueOf('A'), BlocksTC.metalAlchemicalAdvanced
                 }
         ));
+        ThaumcraftApi.addArcaneCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "primordial_accelerator_tunnel"), new ShapedArcaneRecipe(
+                defaultGroup,
+                "TWOND_PRIMORDIAL_ACCELERATOR",
+                100,
+                new AspectList().add(Aspect.AIR, 2).add(Aspect.ORDER, 2),
+                BlocksTW.PRIMORDIAL_ACCELERATOR_TUNNEL,
+                new Object[] {
+                        "VEV",
+                        "ETE",
+                        "VEV",
+                        Character.valueOf('V'), "plateVoid",
+                        Character.valueOf('E'), new ItemStack(ItemsTC.nuggets, 1, 10),
+                        Character.valueOf('T'), BlocksTC.tube
+                }
+        ));
+        ThaumcraftApi.addArcaneCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "primordial_accelerator_terminus"), new ShapedArcaneRecipe(
+                defaultGroup,
+                "TWOND_PRIMORDIAL_ACCELERATOR",
+                250,
+                new AspectList().add(Aspect.EARTH, 5).add(Aspect.ORDER, 5),
+                BlocksTW.PRIMORDIAL_ACCELERATOR_TERMINUS,
+                new Object[] {
+                        " V ",
+                        "VCV",
+                        " V ",
+                        Character.valueOf('V'), "plateVoid",
+                        Character.valueOf('C'), new ItemStack(Blocks.CONCRETE, 1, 32767)
+                }
+        ));
     }
 
     private static void initCrucibleRecipes() {
@@ -347,6 +376,12 @@ public class InitRecipes {
                 new ItemStack(ItemsTW.TRANSMUTER_STONE),
                 new ItemStack(ItemsTW.ALCHEMIST_STONE),
                 new AspectList().add(Aspect.EXCHANGE, 50).add(Aspect.ALCHEMY, 10)
+        ));
+        ThaumcraftApi.addCrucibleRecipe(new ResourceLocation(ThaumicWonders.MODID, "primordial_pearl_reconstitution"), new CrucibleRecipe(
+                "TWOND_PRIMORDIAL_ACCELERATOR&&!TWOND_PRIMORDIAL_GRAIN",
+                new ItemStack(ItemsTC.primordialPearl, 1, 7),
+                new ItemStack(ItemsTW.PRIMORDIAL_GRAIN),
+                new AspectList().add(Aspect.AIR, 250).add(Aspect.EARTH, 250).add(Aspect.FIRE, 250).add(Aspect.WATER, 250).add(Aspect.ORDER, 250).add(Aspect.ENTROPY, 250)
         ));
     }
     
@@ -668,6 +703,24 @@ public class InitRecipes {
                         new ItemStack(Items.GOLD_INGOT),
                         new ItemStack(Items.GOLD_INGOT),
                         new ItemStack(Items.GOLD_INGOT)
+                }
+        ));
+        
+        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "primordial_accelerator"), new InfusionRecipe(
+                "TWOND_PRIMORDIAL_ACCELERATOR",
+                new ItemStack(BlocksTW.PRIMORDIAL_ACCELERATOR),
+                10,
+                new AspectList().add(Aspect.MOTION, 250).add(Aspect.MECHANISM, 200).add(Aspect.ENERGY, 200).add(Aspect.ELDRITCH, 100),
+                new ItemStack(Blocks.DISPENSER),
+                new Object[] {
+                        new ItemStack(BlocksTW.PRIMORDIAL_ACCELERATOR_TUNNEL),
+                        "plateVoid",
+                        new ItemStack(ItemsTC.mechanismComplex),
+                        "plateVoid",
+                        new ItemStack(BlocksTC.metalAlchemicalAdvanced),
+                        "plateVoid",
+                        new ItemStack(ItemsTC.mechanismComplex),
+                        "plateVoid"
                 }
         ));
     }
