@@ -13,6 +13,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.MobEffects;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
@@ -134,5 +135,10 @@ public class ItemPrimalDestroyer extends ItemSword implements IWarpingGear {
         tooltip.add(TextFormatting.GOLD + I18n.format("enchantment.special.sapgreat"));
         tooltip.add(TextFormatting.GOLD + I18n.format("enchantment.special.voidflame"));
         super.addInformation(stack, worldIn, tooltip, flagIn);
+    }
+    
+    @Override
+    public EnumRarity getRarity(ItemStack stack) {
+        return EnumRarity.EPIC;
     }
 }

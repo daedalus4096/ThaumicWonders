@@ -6,6 +6,7 @@ import com.verdantartifice.thaumicwonders.common.misc.GuiIds;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemClock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
@@ -55,5 +56,10 @@ public class ItemTimewinder extends ItemClock implements IRechargable {
     @Override
     public EnumChargeDisplay showInHud(ItemStack stack, EntityLivingBase player) {
         return IRechargable.EnumChargeDisplay.NORMAL;
+    }
+    
+    @Override
+    public EnumRarity getRarity(ItemStack stack) {
+        return EnumRarity.RARE;
     }
 }

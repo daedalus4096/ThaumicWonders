@@ -10,6 +10,7 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagInt;
 import net.minecraft.world.World;
@@ -118,5 +119,10 @@ public class ItemCleansingCharm extends ItemTW implements IBauble, IRechargable 
         int percent = (int)(((double)this.getProgress(stack) / (double)MAX_PROGRESS) * 100);
         tooltip.add(I18n.format("item.thaumicwonders.cleansing_charm.tooltip.progress", percent));
         super.addInformation(stack, worldIn, tooltip, flagIn);
+    }
+    
+    @Override
+    public EnumRarity getRarity(ItemStack stack) {
+        return EnumRarity.RARE;
     }
 }

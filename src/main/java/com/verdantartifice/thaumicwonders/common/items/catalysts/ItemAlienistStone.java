@@ -5,6 +5,7 @@ import com.verdantartifice.thaumicwonders.common.items.ItemsTW;
 import com.verdantartifice.thaumicwonders.common.items.base.ItemTW;
 import com.verdantartifice.thaumicwonders.common.misc.OreHelper;
 
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.items.ItemsTC;
@@ -62,5 +63,10 @@ public class ItemAlienistStone extends ItemTW implements ICatalystStone {
     @Override
     public int getItemEnchantability() {
         return 10;
+    }
+    
+    @Override
+    public EnumRarity getRarity(ItemStack stack) {
+        return EnumRarity.UNCOMMON;
     }
 }
