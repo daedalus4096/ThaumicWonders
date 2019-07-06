@@ -94,7 +94,12 @@ public class TilePrimordialAccelerator extends TileTWInventory implements ITicka
         int count = MathHelper.clamp(pearlStack.getMaxDamage() - pearlStack.getItemDamage(), 0, 8);
         for (int index = 0; index < count; index++) {
             this.ejectGrain(terminusPos);
-            if (this.world.rand.nextInt(MAX_TUNNELS) < tunnelCount) {
+            if (this.world.rand.nextInt(2 * MAX_TUNNELS) < (MAX_TUNNELS + tunnelCount)) {
+                // 50-100% chance of second grain
+                this.ejectGrain(terminusPos);
+            }
+            if (this.world.rand.nextInt(2 * MAX_TUNNELS) < (tunnelCount)) {
+                // 0-50% chance of third grain
                 this.ejectGrain(terminusPos);
             }
         }
