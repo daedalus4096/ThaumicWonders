@@ -24,11 +24,15 @@ tile.thaumicwonders.flux_distiller.tooltip.flux=Flux: %1$d
 tile.thaumicwonders.primordial_accelerator.name=Primordial Accelerator
 tile.thaumicwonders.primordial_accelerator_tunnel.name=Primordial Accelerator Tunnel
 tile.thaumicwonders.primordial_accelerator_terminus.name=Primordial Accelerator Terminus
+tile.thaumicwonders.primordial_accretion_chamber.name=Primordial Accretion Chamber
 
 // Misc Tiles
 tile.thaumicwonders.fluid_quicksilver.name=Quicksilver
 tile.thaumicwonders.placeholder_arcane_stone.name=Catalyzation Chamber
 tile.thaumicwonders.placeholder_obsidian.name=Catalyzation Chamber
+tile.thaumicwonders.placeholder_thaumium_block.name=Primordial Accretion Chamber
+tile.thaumicwonders.placeholder_void_metal_block.name=Primordial Accretion Chamber
+tile.thaumicwonders.placeholder_adv_alch_construct.name=Primordial Accretion Chamber
 
 // Items
 item.thaumicwonders.disjunction_cloth.name=Disjunction Cloth
@@ -195,6 +199,10 @@ thaumicwonders.research.primordial_accelerator.title=Primordial Accelerator
 thaumicwonders.research.primordial_accelerator.text.stage.1=These Primordial Pearls have remained a mystery despite my every attempt at studying them.  I've found a number of uses for them, yes, but the truth of their nature remains hidden.  Well, I think I've found a way to fix that: by smashing them into their smallest component parts.  For science!
 thaumicwonders.research.primordial_accelerator.text.stage.2=I've drawn up plans for a complex device that I've dubbed a Primordial Accelerator.  It does exactly what it says on the tin: accelerate Primordial Pearls to impossible speeds.<BR>This is a highly energetic and dangerous device, so I'll need to be sure to use it within the following guidelines.  First, the accelerator needs an appropriate terminus to absorb the force of impact and shatter the pearl.  A block of magically-reinforced concrete should do the trick, but I must be sure to angle the flat side toward the accelerator.  Any lateral deflection could cause an explosion on impact.<BR>Second, there must not be any open air between the accelerator and the terminus.  If there is, the pearl will spin off into the atmosphere and be lost.<BR>Third, I can increase the speed of the pearl by placing specially crafted magnetic tunnels between the accelerator and the terminus.  Each tunnel will make the pearl's impact more potent and more likely to yield... whatever this will yield.  This is a limited possibility, however; containment will fail if more than ten tunnels are used, or of any other block intersects the tunnel, causing an explosion.  Also, the tunnels must be facing the right way or, you guessed it, kaboom.  I've painted arrows on them that must be pointed toward the terminus for safe operation.<BR>Finally, the pearl I use must have some heft to it.  The smallest motes are unlikely to yield any relevant data and thus will be rejected by the accelerator.<BR>This is some dangerous research, but I'm confident it will be fruitful.  I must make sure to closely examine whatever is yielded from this experiment.
 thaumicwonders.research.primordial_accelerator.text.addenda.1=Fascinating!  These grains contain the essential, primordial nature of the pearls without any discernable aspects.  I believe that they could be reconstituted into proper Primordial Pearls with exposure to sufficient essentia, but it would take a lot.  This merits further investigation.
+
+thaumicwonders.research.primordial_accretion_chamber.title=Primordial Accretion Chamber
+thaumicwonders.research.primordial_accretion_chamber.text.stage.1=Dousing these Primordial Grains in primal essentia works, but feels very wasteful.  I suspect that by carefully controlling the type and rate of essentia exposure, I can reconstitute these grains more efficiently.
+thaumicwonders.research.primordial_accretion_chamber.text.stage.2=My initial hypothesis was correct, as I suspected.  By properly layering essentia onto these grains in an ordered fashion, I can reconstitute them with only half the essentia that I was using before.  In addition, the resulting pearls will sometimes be larger.
 
 // Theorycraft Cards
 card.induced_inspiration.name=Induced Inspiration

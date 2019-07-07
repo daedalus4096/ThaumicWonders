@@ -6,6 +6,7 @@ import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.blocks.BlocksTW;
 import com.verdantartifice.thaumicwonders.common.blocks.base.BlockTW;
 import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockCatalyzationChamber;
+import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockPrimordialAccretionChamber;
 import com.verdantartifice.thaumicwonders.common.misc.GuiIds;
 
 import net.minecraft.block.SoundType;
@@ -61,6 +62,12 @@ public class BlockTWPlaceholder extends BlockTW {
             return Item.getItemFromBlock(BlocksTC.stoneArcane);
         } else if (state.getBlock() == BlocksTW.PLACEHOLDER_OBSIDIAN) {
             return Item.getItemFromBlock(Blocks.OBSIDIAN);
+        } else if (state.getBlock() == BlocksTW.PLACEHOLDER_THAUMIUM_BLOCK) {
+            return Item.getItemFromBlock(BlocksTC.metalBlockThaumium);
+        } else if (state.getBlock() == BlocksTW.PLACEHOLDER_VOID_METAL_BLOCK) {
+            return Item.getItemFromBlock(BlocksTC.metalBlockVoid);
+        } else if (state.getBlock() == BlocksTW.PLACEHOLDER_ADV_ALCH_CONSTRUCT) {
+            return Item.getItemFromBlock(BlocksTC.metalAlchemicalAdvanced);
         } else {
             return Item.getItemById(0);
         }
@@ -97,6 +104,8 @@ public class BlockTWPlaceholder extends BlockTW {
     public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
         if ((state.getBlock() == BlocksTW.PLACEHOLDER_ARCANE_STONE || state.getBlock() == BlocksTW.PLACEHOLDER_OBSIDIAN) && !BlockCatalyzationChamber.ignoreDestroy && !worldIn.isRemote) {
             this.destroyCatalyzer(worldIn, pos);
+        } else if ((state.getBlock() == BlocksTW.PLACEHOLDER_THAUMIUM_BLOCK || state.getBlock() == BlocksTW.PLACEHOLDER_VOID_METAL_BLOCK || state.getBlock() == BlocksTW.PLACEHOLDER_ADV_ALCH_CONSTRUCT) && !BlockPrimordialAccretionChamber.ignoreDestroy && !worldIn.isRemote) {
+            this.destroyAccretor(worldIn, pos);
         }
         super.breakBlock(worldIn, pos, state);
     }
@@ -109,6 +118,21 @@ public class BlockTWPlaceholder extends BlockTW {
                     IBlockState targetState = worldIn.getBlockState(targetPos);
                     if (targetState.getBlock() == BlocksTW.CATALYZATION_CHAMBER) {
                         BlockCatalyzationChamber.destroyChamber(worldIn, targetPos, targetState, pos);
+                        return;
+                    }
+                }
+            }
+        }
+    }
+    
+    private void destroyAccretor(World worldIn, BlockPos pos) {
+        for (int i = -1; i <= 1; i++) {
+            for (int j = -1; j <= 1; j++) {
+                for (int k = -1; k <= 1; k++) {
+                    BlockPos targetPos = pos.add(i, j, k);
+                    IBlockState targetState = worldIn.getBlockState(targetPos);
+                    if (targetState.getBlock() == BlocksTW.PRIMORDIAL_ACCRETION_CHAMBER) {
+                        BlockPrimordialAccretionChamber.destroyChamber(worldIn, targetPos, targetState, pos);
                         return;
                     }
                 }
