@@ -45,7 +45,7 @@
             "from": [ 0, 0, 17 ], 
             "to": [ 16, 16, 18 ], 
             "faces": {
-                "south": { "texture": "#bars", "uv": [ 14, 8, 16, 10 ] }
+                "south": { "texture": "#bars", "uv": [ 0, 0, 16, 16 ] }
             }
         },
         {
