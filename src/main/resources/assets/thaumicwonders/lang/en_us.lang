@@ -116,7 +116,7 @@ thaumicwonders.research.timewinder.text.stage.2=While the possibility of traveli
 
 thaumicwonders.research.inspiration_engine.title=Inspiration Engine
 thaumicwonders.research.inspiration_engine.text.stage.1=Crafting thaumaturgical theories is a laborious process.  I know that certain items can aid me with my research, but they feel so... limited in scope.  Perhaps I can create a superior research aid with my magic.
-thaumicwonders.research.inspiration_engine.text.stage.2=I've drawn up plans for a device I've dubbed the Inspiration Engine.  When fueled with Cognitio essentia, it will generate ideas to help me with my theorycrafting and transmit them into my mind.  It's a strange sensation, these foreign thoughts, almost ticklish, but from all my testing a benign one.
+thaumicwonders.research.inspiration_engine.text.stage.2=I've drawn up plans for a device I've dubbed the Inspiration Engine.<BR>Like other research aids, it must be placed within four blocks of a Research Table, at the same height or just above or below it.  Placed correctly, I will be able to select it from the Research Table's interface to use it.  Then, when fueled with Cognitio essentia, it will generate ideas to help me with my theorycrafting and transmit them into my mind.<BR>It's a strange sensation, these foreign thoughts, almost ticklish, but from all my testing a benign one.
 
 thaumicwonders.research.madness_engine.title=Madness Engine
 thaumicwonders.research.madness_engine.text.stage.1=My Inspiration Engine has proven very valuable in my theorycrafting work, but it's not enough.  If I'm going to crack the secrets of the Eldritch, I need more.  Something to open my mind to new vistas of thought, ones that part of me is... reluctant to explore.

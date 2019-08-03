@@ -5,6 +5,7 @@ v1.8.0
 * Set rarity for several items
 * Fixed syncing bug when firing Primal Arrows from a Bone Bow
 * Clarified dyeing process for the Flying Carpet
+* Clarified how to place the Inspiration Engine for use with a Research Table
 * Renamed Bone Bow to Bow of Bone
 * Adjusted essentia costs for Void Beacon recipe
 
