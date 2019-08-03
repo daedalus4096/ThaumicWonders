@@ -35,7 +35,7 @@
             "from": [ 0, -16, -16 ], 
             "to": [ 16, 0, 32 ], 
             "faces": {
-                "north": { "texture": "#side", "uv": [ 2, 4, 4, 6 ] },
+                "north": { "texture": "#side", "uv": [ 2, 14, 4, 16 ] },
                 "south": { "texture": "#side", "uv": [ 10, 4, 12, 6 ] },
                 "up": { "texture": "#side", "uv": [ 6, 4, 8, 10 ] },
                 "down": { "texture": "#side", "uv": [ 2, 10, 4, 16 ] }
