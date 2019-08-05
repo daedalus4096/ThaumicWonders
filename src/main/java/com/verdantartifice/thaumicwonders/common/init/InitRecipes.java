@@ -54,6 +54,11 @@ public class InitRecipes {
     }
     
     private static void initMultiblockRecipes() {
+        initCatalyzationChamber();
+        initPrimordialAccretionChamber();
+    }
+    
+    private static void initCatalyzationChamber() {
         Part AS = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTW.PLACEHOLDER_ARCANE_STONE));
         Part OB = new Part(Blocks.OBSIDIAN, new ItemStack(BlocksTW.PLACEHOLDER_OBSIDIAN));
         Part IB = new Part(Blocks.IRON_BARS, "AIR");
@@ -82,6 +87,43 @@ public class InitRecipes {
                 new ItemStack[] {
                         new ItemStack(BlocksTC.stoneArcane, 12),
                         new ItemStack(Blocks.OBSIDIAN, 12),
+                        new ItemStack(Blocks.IRON_BARS),
+                        FluidUtil.getFilledBucket(new FluidStack(FluidQuicksilver.INSTANCE, 1000))
+                }
+        ));
+    }
+    
+    private static void initPrimordialAccretionChamber() {
+        Part TH = new Part(BlocksTC.metalBlockThaumium, new ItemStack(BlocksTW.PLACEHOLDER_THAUMIUM_BLOCK));
+        Part VM = new Part(BlocksTC.metalBlockVoid, new ItemStack(BlocksTW.PLACEHOLDER_VOID_METAL_BLOCK));
+        Part AA = new Part(BlocksTC.metalAlchemicalAdvanced, new ItemStack(BlocksTW.PLACEHOLDER_ADV_ALCH_CONSTRUCT));
+        Part IB = new Part(Blocks.IRON_BARS, "AIR");
+        Part QS = new Part(BlocksTW.FLUID_QUICKSILVER, BlocksTW.PRIMORDIAL_ACCRETION_CHAMBER, true);
+        Part[][][] accretionChamberBlueprint = {
+                {
+                    { VM, TH, VM },
+                    { TH, null, TH },
+                    { VM, TH, VM }
+                },
+                {
+                    { AA, TH, AA },
+                    { AA, QS, AA },
+                    { AA, IB, AA }
+                },
+                {
+                    { VM, TH, VM },
+                    { TH, TH, TH },
+                    { VM, TH, VM }
+                }
+        };
+        IDustTrigger.registerDustTrigger(new DustTriggerMultiblock("TWOND_PRIMORDIAL_ACCRETION_CHAMBER", accretionChamberBlueprint));
+        ThaumcraftApi.addMultiblockRecipeToCatalog(new ResourceLocation(ThaumicWonders.MODID, "primordial_accretion_chamber"), new ThaumcraftApi.BluePrint(
+                "TWOND_PRIMORDIAL_ACCRETION_CHAMBER", 
+                accretionChamberBlueprint, 
+                new ItemStack[] {
+                        new ItemStack(BlocksTC.metalBlockThaumium, 10),
+                        new ItemStack(BlocksTC.metalBlockVoid, 8),
+                        new ItemStack(BlocksTC.metalAlchemicalAdvanced, 6),
                         new ItemStack(Blocks.IRON_BARS),
                         FluidUtil.getFilledBucket(new FluidStack(FluidQuicksilver.INSTANCE, 1000))
                 }
