@@ -11,8 +11,11 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.MobEffects;
 import net.minecraft.item.Item;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -103,7 +106,29 @@ public class BlockPrimordialAccretionChamber extends BlockDeviceTW<TilePrimordia
 
     @Override
     public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
-        // TODO Add items to tile inventory and poison living entities
+        if (entityIn.posX < pos.getX() + 0.3F) {
+            entityIn.motionX += 0.0001D;
+        }
+        if (entityIn.posX > pos.getX() + 0.7F) {
+            entityIn.motionX -= 0.0001D;
+        }
+        if (entityIn.posZ < pos.getZ() + 0.3F) {
+            entityIn.motionZ += 0.0001D;
+        }
+        if (entityIn.posZ > pos.getZ() + 0.7F) {
+            entityIn.motionZ -= 0.0001D;
+        }
+        if (!worldIn.isRemote && (entityIn.ticksExisted % 10 == 0)) {
+            if (entityIn instanceof EntityItem) {
+                entityIn.motionY = 0.025D;
+                if (entityIn.onGround) {
+                    TilePrimordialAccretionChamber tpac = (TilePrimordialAccretionChamber)worldIn.getTileEntity(pos);
+                    ((EntityItem)entityIn).setItem(tpac.addItemsToInventory(((EntityItem)entityIn).getItem()));
+                }
+            } else if (entityIn instanceof EntityLivingBase) {
+                ((EntityLivingBase)entityIn).addPotionEffect(new PotionEffect(MobEffects.POISON, 100));
+            }
+        }
         super.onEntityCollidedWithBlock(worldIn, pos, state, entityIn);
     }
 }

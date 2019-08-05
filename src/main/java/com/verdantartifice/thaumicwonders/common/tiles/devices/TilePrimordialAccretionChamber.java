@@ -1,21 +1,38 @@
 package com.verdantartifice.thaumicwonders.common.tiles.devices;
 
-import com.verdantartifice.thaumicwonders.ThaumicWonders;
+import com.verdantartifice.thaumicwonders.common.blocks.BlocksTW;
+import com.verdantartifice.thaumicwonders.common.items.ItemsTW;
 import com.verdantartifice.thaumicwonders.common.tiles.base.TileTWInventory;
 
+import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import thaumcraft.api.ThaumcraftInvHelper;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.aspects.IAspectContainer;
+import thaumcraft.api.aura.AuraHelper;
+import thaumcraft.api.items.ItemsTC;
+import thaumcraft.client.fx.FXDispatcher;
+import thaumcraft.common.lib.utils.BlockStateUtils;
+import thaumcraft.common.lib.utils.InventoryUtils;
 
 public class TilePrimordialAccretionChamber extends TileTWInventory implements IAspectContainer, ITickable {
     private static final int CAPACITY = 125;
     private static final AspectList REQUIRED_FUEL = new AspectList().add(Aspect.AIR, 125).add(Aspect.EARTH, 125).add(Aspect.FIRE, 125).add(Aspect.WATER, 125).add(Aspect.ORDER, 125).add(Aspect.ENTROPY, 125);
+    private static final int PLAY_EFFECTS = 4;
     
+    protected int refineTime = 0;
+    protected int maxRefineTime = 0;
+    protected int speedyTime = 0;
+        
     protected AspectList essentia = new AspectList();
     
     public TilePrimordialAccretionChamber() {
@@ -44,10 +61,92 @@ public class TilePrimordialAccretionChamber extends TileTWInventory implements I
 
     @Override
     public void update() {
-        // TODO Auto-generated method stub
-
+        if (!this.world.isRemote) {
+            boolean refinedFlag = false;
+            if (this.refineTime > 0 && this.isEssentiaFull()) {
+                // Only refine if all necessary essentia is present
+                this.refineTime--;
+                refinedFlag = true;
+            }
+            if (this.maxRefineTime <= 0) {
+                this.maxRefineTime = this.calcRefineTime();
+            }
+            if (this.refineTime > this.maxRefineTime) {
+                this.refineTime = this.maxRefineTime;
+            }
+            if (this.refineTime <= 0 && refinedFlag) {
+                for (int slot = 0; slot < this.getSizeInventory(); slot++) {
+                    ItemStack stack = this.getStackInSlot(slot);
+                    if (stack != null && !stack.isEmpty() && this.isEssentiaFull()) {
+                        ItemStack resultStack = this.getResultStack(stack);
+                        if (this.speedyTime > 0) {
+                            this.speedyTime--;
+                        }
+                        this.takeFromContainer(REQUIRED_FUEL);
+                        this.ejectItem(resultStack.copy());
+                        this.world.addBlockEvent(this.getPos(), BlocksTW.PRIMORDIAL_ACCRETION_CHAMBER, PLAY_EFFECTS, 0);
+                        this.decrStackSize(slot, resultStack.getCount());
+                        break;
+                    }
+                }
+            }
+            if (this.speedyTime <= 0) {
+                this.speedyTime = (int)AuraHelper.drainVis(this.getWorld(), this.getPos(), 20.0F, false);
+            }
+            if (this.refineTime == 0 && !refinedFlag) {
+                for (int slot = 0; slot < this.getSizeInventory(); slot++) {
+                    if (this.canRefine(this.getStackInSlot(slot))) {
+                        this.maxRefineTime = this.calcRefineTime();
+                        this.refineTime = this.maxRefineTime;
+                        break;
+                    } else {
+                        this.ejectItem(this.getStackInSlot(slot).copy());
+                        this.setInventorySlotContents(slot, ItemStack.EMPTY);
+                    }
+                }
+            }
+        }
     }
     
+    private ItemStack getResultStack(ItemStack inputStack) {
+        if (inputStack.getItem() == ItemsTW.PRIMORDIAL_GRAIN) {
+            int chance = this.world.rand.nextInt(10);
+            if (chance == 0) {
+                return new ItemStack(ItemsTC.primordialPearl, 1, 5);
+            } else if (chance < 3) {
+                return new ItemStack(ItemsTC.primordialPearl, 1, 6);
+            } else {
+                return new ItemStack(ItemsTC.primordialPearl, 1, 7);
+            }
+        } else {
+            return inputStack;
+        }
+    }
+    
+    public ItemStack addItemsToInventory(ItemStack items) {
+        if (this.canRefine(items)) {
+            return ThaumcraftInvHelper.insertStackAt(this.getWorld(), this.getPos(), EnumFacing.UP, items, false);
+        } else {
+            this.ejectItem(items);
+            return ItemStack.EMPTY;
+        }
+    }
+
+    private boolean canRefine(ItemStack items) {
+        return (items != null && !items.isEmpty() && items.getItem() == ItemsTW.PRIMORDIAL_GRAIN && this.isEssentiaFull());
+    }
+
+    private void ejectItem(ItemStack itemStack) {
+        if (!itemStack.isEmpty()) {
+            EnumFacing facing = BlockStateUtils.getFacing(getBlockMetadata()).getOpposite();
+            InventoryUtils.ejectStackAt(getWorld(), getPos(), facing, itemStack);
+        }
+    }
+
+    private int calcRefineTime() {
+        return this.speedyTime > 0 ? 80 : 140;
+    }
+
     public Aspect getCurrentSuction() {
         for (Aspect aspect : REQUIRED_FUEL.getAspectsSortedByName()) {
             if (!this.doesContainerContainAmount(aspect, CAPACITY)) {
@@ -76,7 +175,6 @@ public class TilePrimordialAccretionChamber extends TileTWInventory implements I
             this.essentia.add(aspect, added);
             this.syncTile(false);
             this.markDirty();
-            ThaumicWonders.LOGGER.info("Added {} {} to central accretion chamber, new total {}", added, aspect.getName(), this.essentia.getAmount(aspect));
             return (toAdd - added);
         }
     }
@@ -139,6 +237,25 @@ public class TilePrimordialAccretionChamber extends TileTWInventory implements I
             return true;
         } else {
             return false;
+        }
+    }
+    
+    @Override
+    public boolean receiveClientEvent(int id, int type) {
+        if (id == PLAY_EFFECTS) {
+            if (this.world.isRemote) {
+                for (int i = 0; i < 5; i++) {
+                    BlockPos targetPos = this.getPos().offset(this.getFacing().getOpposite(), 2);
+                    FXDispatcher.INSTANCE.visSparkle(
+                            this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 
+                            targetPos.getX(), targetPos.getY(), targetPos.getZ(), 
+                            Aspect.MAGIC.getColor());
+                }
+            }
+            this.world.playSound(null, this.getPos(), SoundEvents.BLOCK_LAVA_POP, SoundCategory.BLOCKS, 0.8F, 0.9F + this.world.rand.nextFloat() * 0.2F);
+            return true;
+        } else {
+            return super.receiveClientEvent(id, type);
         }
     }
 }
