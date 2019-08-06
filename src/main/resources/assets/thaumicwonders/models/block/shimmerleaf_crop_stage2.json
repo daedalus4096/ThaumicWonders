@@ -1,0 +1,6 @@
+{
+    "parent": "block/cross",
+    "textures": {
+        "cross": "thaumicwonders:blocks/shimmerleaf_crop_stage_2"
+    }
+}
