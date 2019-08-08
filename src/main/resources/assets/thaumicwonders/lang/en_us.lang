@@ -34,6 +34,7 @@ tile.thaumicwonders.placeholder_thaumium_block.name=Primordial Accretion Chamber
 tile.thaumicwonders.placeholder_void_metal_block.name=Primordial Accretion Chamber
 tile.thaumicwonders.placeholder_adv_alch_construct.name=Primordial Accretion Chamber
 tile.thaumicwonders.shimmerleaf_crop.name=Shimmerleaf
+tile.thaumicwonders.cinderpearl_crop.name=Cinderpearl
 
 // Items
 item.thaumicwonders.disjunction_cloth.name=Disjunction Cloth
@@ -68,6 +69,7 @@ item.thaumicwonders.primal_arrow.order.name=Order Arrow
 item.thaumicwonders.primal_arrow.entropy.name=Entropy Arrow
 item.thaumicwonders.primordial_grain.name=Primordial Grain
 item.thaumicwonders.shimmerleaf_seed.name=Shimmerleaf Seed
+item.thaumicwonders.cinderpearl_seed.name=Cinderpearl Seed
 
 // Entities
 entity.flying_carpet.name=Flying Carpet

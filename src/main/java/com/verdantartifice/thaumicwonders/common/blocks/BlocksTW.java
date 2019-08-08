@@ -33,4 +33,5 @@ public class BlocksTW {
     public static final Block PLACEHOLDER_ADV_ALCH_CONSTRUCT = null;
     public static final Block PRIMORDIAL_ACCRETION_CHAMBER = null;
     public static final Block SHIMMERLEAF_CROP = null;
+    public static final Block CINDERPEARL_CROP = null;
 }
