@@ -34,4 +34,5 @@ public class BlocksTW {
     public static final Block PRIMORDIAL_ACCRETION_CHAMBER = null;
     public static final Block SHIMMERLEAF_CROP = null;
     public static final Block CINDERPEARL_CROP = null;
+    public static final Block VISHROOM_CROP = null;
 }
