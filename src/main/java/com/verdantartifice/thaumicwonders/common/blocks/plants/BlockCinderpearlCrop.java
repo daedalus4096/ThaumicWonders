@@ -5,15 +5,12 @@ import com.verdantartifice.thaumicwonders.common.items.ItemsTW;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.EnumPlantType;
 import thaumcraft.api.blocks.BlocksTC;
 
 public class BlockCinderpearlCrop extends AbstractBlockMysticCrop {
-    protected static final AxisAlignedBB CINDERPEARL_AABB = new AxisAlignedBB(0.3D, 0.0D, 0.3D, 0.7D, 0.6D, 0.7D);
-
     public BlockCinderpearlCrop() {
         super("cinderpearl_crop");
     }
@@ -42,10 +39,5 @@ public class BlockCinderpearlCrop extends AbstractBlockMysticCrop {
     @Override
     public EnumOffsetType getOffsetType() {
         return EnumOffsetType.XZ;
-    }
-    
-    @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return CINDERPEARL_AABB;
     }
 }

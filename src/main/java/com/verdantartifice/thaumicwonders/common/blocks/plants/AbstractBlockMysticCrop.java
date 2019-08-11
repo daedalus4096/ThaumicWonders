@@ -6,10 +6,14 @@ import com.verdantartifice.thaumicwonders.ThaumicWonders;
 
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public abstract class AbstractBlockMysticCrop extends BlockCrops {
+    protected static final AxisAlignedBB CROP_AABB = new AxisAlignedBB(0.3D, 0.0D, 0.3D, 0.7D, 0.6D, 0.7D);
+
     public AbstractBlockMysticCrop(String name) {
         super();
         this.setRegistryName(ThaumicWonders.MODID, name);
@@ -32,5 +36,10 @@ public abstract class AbstractBlockMysticCrop extends BlockCrops {
         if (this.isMaxAge(worldIn.getBlockState(pos))) {
             worldIn.setBlockState(pos, this.getMatureBlockState(), 3);
         }
+    }
+    
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+        return CROP_AABB;
     }
 }

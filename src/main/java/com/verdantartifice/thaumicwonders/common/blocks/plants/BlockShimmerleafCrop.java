@@ -5,15 +5,12 @@ import com.verdantartifice.thaumicwonders.common.items.ItemsTW;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.EnumPlantType;
 import thaumcraft.api.blocks.BlocksTC;
 
 public class BlockShimmerleafCrop extends AbstractBlockMysticCrop {
-    protected static final AxisAlignedBB SHIMMERLEAF_AABB = new AxisAlignedBB(0.3D, 0.0D, 0.3D, 0.7D, 0.6D, 0.7D);
-
     public BlockShimmerleafCrop() {
         super("shimmerleaf_crop");
     }
@@ -41,10 +38,5 @@ public class BlockShimmerleafCrop extends AbstractBlockMysticCrop {
     @Override
     public EnumOffsetType getOffsetType() {
         return EnumOffsetType.XZ;
-    }
-    
-    @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return SHIMMERLEAF_AABB;
     }
 }
