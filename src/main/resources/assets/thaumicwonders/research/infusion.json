@@ -186,6 +186,38 @@
                 }
             ],
             "addenda": []
+        },
+        {
+            "key": "TWOND_MYSTIC_GARDENING",
+            "name": "thaumicwonders.research.mystic_gardening.title",
+            "icons": ["thaumicwonders:shimmerleaf_seed", "thaumicwonders:cinderpearl_seed", "thaumicwonders:vishroom_spore"],
+            "category": "THAUMIC_WONDERS",
+            "parents": ["TWOND_BASE", "~INFUSION", "~!PLANTCINDERPEARL", "~!PLANTSHIMMERLEAF", "~!PLANTVISHROOM"],
+            "siblings": [],
+            "meta": ["HIDDEN"],
+            "location": [2, -2],
+            "reward_item": [],
+            "reward_knowledge": [],
+            "stages": [
+                {
+                    "text": "thaumicwonders.research.mystic_gardening.text.stage.1",
+                    "required_knowledge":["THEORY;INFUSION;1","OBSERVATION;BASICS;1"],
+                    "required_item": [
+                        "thaumcraft:shimmerleaf",
+                        "thaumcraft:cinderpearl",
+                        "thaumcraft:vishroom"
+                    ]
+                },
+                {
+                    "text": "thaumicwonders.research.mystic_gardening.text.stage.2", 
+                    "recipes": [
+                        "thaumicwonders:shimmerleaf_seed", 
+                        "thaumicwonders:cinderpearl_seed", 
+                        "thaumicwonders:vishroom_spore"
+                    ]
+                }
+            ],
+            "addenda": []
         }
     ]
 }

@@ -33,6 +33,9 @@ tile.thaumicwonders.placeholder_obsidian.name=Catalyzation Chamber
 tile.thaumicwonders.placeholder_thaumium_block.name=Primordial Accretion Chamber
 tile.thaumicwonders.placeholder_void_metal_block.name=Primordial Accretion Chamber
 tile.thaumicwonders.placeholder_adv_alch_construct.name=Primordial Accretion Chamber
+tile.thaumicwonders.shimmerleaf_crop.name=Shimmerleaf
+tile.thaumicwonders.cinderpearl_crop.name=Cinderpearl
+tile.thaumicwonders.vishroom_crop.name=Vishroom
 
 // Items
 item.thaumicwonders.disjunction_cloth.name=Disjunction Cloth
@@ -66,6 +69,9 @@ item.thaumicwonders.primal_arrow.water.name=Water Arrow
 item.thaumicwonders.primal_arrow.order.name=Order Arrow
 item.thaumicwonders.primal_arrow.entropy.name=Entropy Arrow
 item.thaumicwonders.primordial_grain.name=Primordial Grain
+item.thaumicwonders.shimmerleaf_seed.name=Shimmerleaf Seed
+item.thaumicwonders.cinderpearl_seed.name=Cinderpearl Seed
+item.thaumicwonders.vishroom_spore.name=Vishroom Spore
 
 // Entities
 entity.flying_carpet.name=Flying Carpet
@@ -203,6 +209,10 @@ thaumicwonders.research.primordial_accelerator.text.addenda.1=Fascinating!  Thes
 thaumicwonders.research.primordial_accretion_chamber.title=Primordial Accretion Chamber
 thaumicwonders.research.primordial_accretion_chamber.text.stage.1=Dousing these Primordial Grains in primal essentia works, but feels very wasteful.  I suspect that by carefully controlling the type and rate of essentia exposure, I can reconstitute these grains more efficiently.
 thaumicwonders.research.primordial_accretion_chamber.text.stage.2=My initial hypothesis was correct, as I suspected.  By properly layering essentia onto these grains in an ordered fashion, I can reconstitute them with only half the essentia that I was using before.  In addition, the resulting pearls will sometimes be larger.<BR>Essentia is fed into the chamber through any of the six ports on its side.  The grains are fed into the stabilizing quicksilver bath at the top, and the resulting pearls are ejected from the front grille.
+
+thaumicwonders.research.mystic_gardening.title=Mystic Gardening
+thaumicwonders.research.mystic_gardening.text.stage.1=I've encountered a number of magical plant species in my explorations.  I'd like to be able to grow them myself, but it's not obvious how they reproduce.  This mystery intrigues me.
+thaumicwonders.research.mystic_gardening.text.stage.2=While it's still not clear how these species reproduce in the wild, I've managed to solve my breeding problem anyway.  By infusing ordinary wheat seeds with the essence of these plants and some salis mundus, I can create seeds that will yield new, magical growth.<BR>Shimmerleaf seeds can be planted on dirt, grass, or farmland.  Cinderpearl seeds can be planted on sand or hardened clay, but strangely not in ordinary dirt, even though mature Cinderpearls can thrive there.  Vishroom spores can be sown basically anywhere with a solid surface.<BR>All three types of mystic seeds can have their growth accelerated with bone meal or other mechanisms, as normal.
 
 // Theorycraft Cards
 card.induced_inspiration.name=Induced Inspiration

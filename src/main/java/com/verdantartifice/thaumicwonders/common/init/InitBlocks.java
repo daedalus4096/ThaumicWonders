@@ -30,6 +30,9 @@ import com.verdantartifice.thaumicwonders.common.blocks.misc.BlockPrimordialAcce
 import com.verdantartifice.thaumicwonders.common.blocks.misc.BlockPrimordialAcceleratorTunnel;
 import com.verdantartifice.thaumicwonders.common.blocks.misc.BlockPrimordialAccretionChamberPlaceholder;
 import com.verdantartifice.thaumicwonders.common.blocks.misc.BlockTWPlaceholder;
+import com.verdantartifice.thaumicwonders.common.blocks.plants.BlockCinderpearlCrop;
+import com.verdantartifice.thaumicwonders.common.blocks.plants.BlockShimmerleafCrop;
+import com.verdantartifice.thaumicwonders.common.blocks.plants.BlockVishroomCrop;
 import com.verdantartifice.thaumicwonders.common.fluids.FluidQuicksilver;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileCatalyzationChamber;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileDimensionalRipper;
@@ -79,6 +82,9 @@ public class InitBlocks {
         registerBlock(forgeRegistry, new BlockPrimordialAcceleratorTunnel());
         registerBlock(forgeRegistry, new BlockPrimordialAcceleratorTerminus());
         registerBlock(forgeRegistry, new BlockPrimordialAccretionChamber());
+        registerBlock(forgeRegistry, new BlockShimmerleafCrop());
+        registerBlock(forgeRegistry, new BlockCinderpearlCrop());
+        registerBlock(forgeRegistry, new BlockVishroomCrop());
         
         registerBlock(forgeRegistry, new BlockTWPlaceholder("placeholder_arcane_stone"));
         registerBlock(forgeRegistry, new BlockTWPlaceholder("placeholder_obsidian"));

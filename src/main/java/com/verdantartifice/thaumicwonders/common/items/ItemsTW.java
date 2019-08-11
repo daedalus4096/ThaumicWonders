@@ -27,4 +27,7 @@ public class ItemsTW {
     public static final ItemBow BONE_BOW = null;
     public static final Item PRIMAL_ARROW = null;
     public static final Item PRIMORDIAL_GRAIN = null;
+    public static final Item SHIMMERLEAF_SEED = null;
+    public static final Item CINDERPEARL_SEED = null;
+    public static final Item VISHROOM_SPORE = null;
 }
