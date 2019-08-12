@@ -425,6 +425,18 @@ public class InitRecipes {
                 new ItemStack(ItemsTW.PRIMORDIAL_GRAIN),
                 new AspectList().add(Aspect.AIR, 250).add(Aspect.EARTH, 250).add(Aspect.FIRE, 250).add(Aspect.WATER, 250).add(Aspect.ORDER, 250).add(Aspect.ENTROPY, 250)
         ));
+        ThaumcraftApi.addCrucibleRecipe(new ResourceLocation(ThaumicWonders.MODID, "panacea"), new CrucibleRecipe(
+                "TWOND_PANACEA",
+                new ItemStack(ItemsTW.PANACEA),
+                new ItemStack(Items.GOLDEN_APPLE),
+                new AspectList().add(Aspect.LIFE, 20).add(Aspect.ORDER, 20).add(Aspect.VOID, 20)
+        ));
+        ThaumcraftApi.addCrucibleRecipe(new ResourceLocation(ThaumicWonders.MODID, "enchanted_panacea"), new CrucibleRecipe(
+                "TWOND_PANACEA",
+                new ItemStack(ItemsTW.PANACEA, 1, 1),
+                new ItemStack(Items.GOLDEN_APPLE, 1, 1),
+                new AspectList().add(Aspect.LIFE, 40).add(Aspect.ORDER, 40).add(Aspect.VOID, 40).add(Aspect.MIND, 40).add(Aspect.PROTECT, 40)
+        ));
     }
     
     private static void initInfusionRecipes() {

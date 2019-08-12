@@ -153,6 +153,32 @@
                 }
             ],
             "addenda": []
+        },
+        {
+            "key": "TWOND_PANACEA",
+            "name": "thaumicwonders.research.panacea.title",
+            "icons": ["thaumicwonders:panacea"],
+            "category": "THAUMIC_WONDERS",
+            "parents": ["TWOND_END_HEDGE"],
+            "siblings": [],
+            "meta": [],
+            "location": [0, 6],
+            "reward_item": [],
+            "reward_knowledge": [],
+            "stages": [
+                {
+                    "text": "thaumicwonders.research.panacea.text.stage.1",
+                    "required_knowledge": ["THEORY;ALCHEMY;1"]
+                },
+                {
+                    "text": "thaumicwonders.research.panacea.text.stage.2",
+                    "recipes": [
+                        "thaumicwonders:panacea",
+                        "thaumicwonders:enchanted_panacea"
+                    ]
+                }
+            ],
+            "addenda": []
         }
     ]
 }
