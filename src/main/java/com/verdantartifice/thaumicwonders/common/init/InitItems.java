@@ -11,6 +11,7 @@ import com.verdantartifice.thaumicwonders.common.items.baubles.ItemCleansingChar
 import com.verdantartifice.thaumicwonders.common.items.catalysts.ItemAlchemistStone;
 import com.verdantartifice.thaumicwonders.common.items.catalysts.ItemAlienistStone;
 import com.verdantartifice.thaumicwonders.common.items.catalysts.ItemTransmuterStone;
+import com.verdantartifice.thaumicwonders.common.items.consumables.ItemPanacea;
 import com.verdantartifice.thaumicwonders.common.items.consumables.ItemPrimalArrow;
 import com.verdantartifice.thaumicwonders.common.items.entities.ItemFlyingCarpet;
 import com.verdantartifice.thaumicwonders.common.items.misc.ItemDisjunctionCloth;
@@ -51,6 +52,7 @@ public class InitItems {
         registerItem(forgeRegistry, new ItemShimmerleafSeed());
         registerItem(forgeRegistry, new ItemCinderpearlSeed());
         registerItem(forgeRegistry, new ItemVishroomSpore());
+        registerItem(forgeRegistry, new ItemPanacea());
     }
     
     private static void registerItem(IForgeRegistry<Item> forgeRegistry, Item item) {
