@@ -32,7 +32,7 @@ public class ItemPanacea extends ItemFood {
             Iterator<PotionEffect> iterator = player.getActivePotionEffects().iterator();
             while (iterator.hasNext()) {
                 PotionEffect effect = iterator.next();
-                if (!effect.getPotion().isBeneficial()) {
+                if (effect.getPotion().isBadEffect()) {
                     player.removePotionEffect(effect.getPotion());
                 }
             }
