@@ -25,6 +25,7 @@ tile.thaumicwonders.primordial_accelerator.name=Primordial Accelerator
 tile.thaumicwonders.primordial_accelerator_tunnel.name=Primordial Accelerator Tunnel
 tile.thaumicwonders.primordial_accelerator_terminus.name=Primordial Accelerator Terminus
 tile.thaumicwonders.primordial_accretion_chamber.name=Primordial Accretion Chamber
+tile.thaumicwonders.alkahest_vat.name=Alkahest Vat
 
 // Misc Tiles
 tile.thaumicwonders.fluid_quicksilver.name=Quicksilver
