@@ -9,10 +9,18 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import thaumcraft.api.damagesource.DamageSourceThaumcraft;
 
 public class BlockAlkahestVat extends BlockDeviceTW<TileAlkahestVat> {
     protected static final AxisAlignedBB AABB_LEGS = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.3125D, 1.0D);
@@ -20,6 +28,8 @@ public class BlockAlkahestVat extends BlockDeviceTW<TileAlkahestVat> {
     protected static final AxisAlignedBB AABB_WALL_SOUTH = new AxisAlignedBB(0.0D, 0.0D, 0.875D, 1.0D, 1.0D, 1.0D);
     protected static final AxisAlignedBB AABB_WALL_EAST = new AxisAlignedBB(0.875D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
     protected static final AxisAlignedBB AABB_WALL_WEST = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.125D, 1.0D, 1.0D);
+    
+    protected int delay = 0;
 
     public BlockAlkahestVat() {
         super(Material.IRON, TileAlkahestVat.class, "alkahest_vat");
@@ -48,5 +58,38 @@ public class BlockAlkahestVat extends BlockDeviceTW<TileAlkahestVat> {
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
         return FULL_BLOCK_AABB;
+    }
+    
+    @Override
+    public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
+        if (!worldIn.isRemote) {
+            if (entityIn instanceof EntityItem) {
+                entityIn.setDead();
+                this.playHissSound(worldIn, pos);
+            } else {
+                this.delay++;
+                if (this.delay >= 10) {
+                    this.delay = 0;
+                    if (entityIn instanceof EntityLivingBase) {
+                        entityIn.attackEntityFrom(DamageSourceThaumcraft.dissolve, 1.0F);
+                        this.playHissSound(worldIn, pos);
+                    }
+                }
+            }
+        }
+        super.onEntityCollidedWithBlock(worldIn, pos, state, entityIn);
+    }
+    
+    @Override
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        if (!worldIn.isRemote && facing == EnumFacing.UP) {
+            playerIn.inventory.decrStackSize(playerIn.inventory.currentItem, 1);
+            this.playHissSound(worldIn, pos);
+        }
+        return true;
+    }
+    
+    protected void playHissSound(World worldIn, BlockPos pos) {
+        worldIn.playSound(null, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 0.4F, 2.0F + worldIn.rand.nextFloat() * 0.4F);
     }
 }
