@@ -13,14 +13,19 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import thaumcraft.api.aspects.AspectList;
+import thaumcraft.api.aura.AuraHelper;
 import thaumcraft.api.damagesource.DamageSourceThaumcraft;
+import thaumcraft.common.lib.crafting.ThaumcraftCraftingManager;
 
 public class BlockAlkahestVat extends BlockDeviceTW<TileAlkahestVat> {
     protected static final AxisAlignedBB AABB_LEGS = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.3125D, 1.0D);
@@ -64,6 +69,7 @@ public class BlockAlkahestVat extends BlockDeviceTW<TileAlkahestVat> {
     public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
         if (!worldIn.isRemote) {
             if (entityIn instanceof EntityItem) {
+                this.releaseVis(worldIn, pos, ((EntityItem)entityIn).getItem());
                 entityIn.setDead();
                 this.playHissSound(worldIn, pos);
             } else {
@@ -83,10 +89,25 @@ public class BlockAlkahestVat extends BlockDeviceTW<TileAlkahestVat> {
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (!worldIn.isRemote && facing == EnumFacing.UP) {
+            ItemStack tempStack = playerIn.getHeldItem(hand).copy();
+            tempStack.setCount(1);
+            this.releaseVis(worldIn, pos, tempStack);
             playerIn.inventory.decrStackSize(playerIn.inventory.currentItem, 1);
             this.playHissSound(worldIn, pos);
         }
         return true;
+    }
+    
+    protected void releaseVis(World worldIn, BlockPos pos, ItemStack stack) {
+        if (stack != null && !stack.isEmpty()) {
+            ItemStack tempStack = stack.copy();
+            tempStack.setCount(1);
+            AspectList aspects = ThaumcraftCraftingManager.getObjectTags(tempStack);
+            float toRelease = stack.getCount() * 0.25F * MathHelper.sqrt(aspects.visSize());
+            if (toRelease > 0.0F) {
+                AuraHelper.addVis(worldIn, pos, toRelease);
+            }
+        }
     }
     
     protected void playHissSound(World worldIn, BlockPos pos) {
