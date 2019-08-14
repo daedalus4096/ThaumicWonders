@@ -103,7 +103,7 @@ public class BlockAlkahestVat extends BlockDeviceTW<TileAlkahestVat> {
             ItemStack tempStack = stack.copy();
             tempStack.setCount(1);
             AspectList aspects = ThaumcraftCraftingManager.getObjectTags(tempStack);
-            float toRelease = stack.getCount() * 0.25F * MathHelper.sqrt(aspects.visSize());
+            float toRelease = stack.getCount() * 0.01F * MathHelper.sqrt(aspects.visSize());
             if (toRelease > 0.0F) {
                 AuraHelper.addVis(worldIn, pos, toRelease);
             }
