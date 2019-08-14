@@ -179,6 +179,31 @@
                 }
             ],
             "addenda": []
+        },
+        {
+            "key": "TWOND_ALKAHEST",
+            "name": "thaumicwonders.research.alkahest.title",
+            "icons": ["thaumicwonders:alkahest_vat"],
+            "category": "THAUMIC_WONDERS",
+            "parents": ["TWOND_PANACEA"],
+            "siblings": [],
+            "meta": [],
+            "location": [0, 8],
+            "reward_item": [],
+            "reward_knowledge": [],
+            "stages": [
+                {
+                    "text": "thaumicwonders.research.alkahest.text.stage.1",
+                    "required_knowledge": ["THEORY;ALCHEMY;1"]
+                },
+                {
+                    "text": "thaumicwonders.research.alkahest.text.stage.2",
+                    "recipes": [
+                        "thaumicwonders:alkahest_vat"
+                    ]
+                }
+            ],
+            "addenda": []
         }
     ]
 }

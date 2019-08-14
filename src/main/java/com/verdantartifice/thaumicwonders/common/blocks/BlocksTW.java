@@ -35,4 +35,5 @@ public class BlocksTW {
     public static final Block SHIMMERLEAF_CROP = null;
     public static final Block CINDERPEARL_CROP = null;
     public static final Block VISHROOM_CROP = null;
+    public static final Block ALKAHEST_VAT = null;
 }

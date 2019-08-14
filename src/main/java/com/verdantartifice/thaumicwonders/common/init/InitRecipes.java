@@ -437,6 +437,12 @@ public class InitRecipes {
                 new ItemStack(Items.GOLDEN_APPLE, 1, 1),
                 new AspectList().add(Aspect.LIFE, 40).add(Aspect.ORDER, 40).add(Aspect.VOID, 40).add(Aspect.MIND, 40).add(Aspect.PROTECT, 40)
         ));
+        ThaumcraftApi.addCrucibleRecipe(new ResourceLocation(ThaumicWonders.MODID, "alkahest_vat"), new CrucibleRecipe(
+                "TWOND_ALKAHEST",
+                new ItemStack(BlocksTW.ALKAHEST_VAT),
+                new ItemStack(BlocksTC.crucible),
+                new AspectList().add(Aspect.ALCHEMY, 25).add(Aspect.WATER, 25).add(Aspect.ENTROPY, 100).add(Aspect.PROTECT, 25)
+        ));
     }
     
     private static void initInfusionRecipes() {

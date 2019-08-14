@@ -25,6 +25,7 @@ tile.thaumicwonders.primordial_accelerator.name=Primordial Accelerator
 tile.thaumicwonders.primordial_accelerator_tunnel.name=Primordial Accelerator Tunnel
 tile.thaumicwonders.primordial_accelerator_terminus.name=Primordial Accelerator Terminus
 tile.thaumicwonders.primordial_accretion_chamber.name=Primordial Accretion Chamber
+tile.thaumicwonders.alkahest_vat.name=Alkahest Vat
 
 // Misc Tiles
 tile.thaumicwonders.fluid_quicksilver.name=Quicksilver
@@ -219,6 +220,10 @@ thaumicwonders.research.mystic_gardening.text.stage.2=While it's still not clear
 thaumicwonders.research.panacea.title=Panacea
 thaumicwonders.research.panacea.text.stage.1=I've been feeling ill of late, and none of the food or medicine at my disposal has helped.  Perhaps there's an alchemical solution to my current malady?
 thaumicwonders.research.panacea.text.stage.2=Much better!  Treating a golden apple with some health-promoting essentia has created a new type of food that I am calling Panacea, as it has cured all my ills.<BR>In addition to being delicious and nutritious, consuming Panacea will remove all ill effects that plague me at the time.  Plus, it still has the protective and healing effects of a normal golden apple.<BR>Should I be lucky enough to find an enchanted golden apple in my travels, I can create an even more potent version of Panacea.  On top of removing all negative effects currently on me, it will protect me in both mind and body.  Enchanted Panacea will protect me from harm like an enchanted golden apple would, and it will also shield my mind from the ravages of Warp for a short time.
+
+thaumicwonders.research.alkahest.title=Alkahest
+thaumicwonders.research.alkahest.text.stage.1=I have way too much stuff lying around, taking up precious chest space.  I suppose I could toss it in some lava, but then I'd have to have lava sitting around randomly starting fires.  No, I'd like to magic this stuff away, and I bet that alchemy is just the ticket.
+thaumicwonders.research.alkahest.text.stage.2=Behold, alkahest, or as a layman might call it, universal solvent.<BR>This stuff is so caustic it will eat up anything not specially treated to withstand it.  As a bonus, however, anything it dissolves is broken down into minute amounts of vis, which is released into the aura.  That and I don't have to worry about my house randomly burning down.  I just have to make sure not to spill it...
 
 // Theorycraft Cards
 card.induced_inspiration.name=Induced Inspiration
