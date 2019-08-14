@@ -25,10 +25,9 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import thaumcraft.api.aspects.AspectList;
+import thaumcraft.api.aspects.AspectHelper;
 import thaumcraft.api.aura.AuraHelper;
 import thaumcraft.api.damagesource.DamageSourceThaumcraft;
-import thaumcraft.common.lib.crafting.ThaumcraftCraftingManager;
 
 public class BlockAlkahestVat extends BlockDeviceTW<TileAlkahestVat> {
     protected static final AxisAlignedBB AABB_LEGS = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.3125D, 1.0D);
@@ -105,8 +104,7 @@ public class BlockAlkahestVat extends BlockDeviceTW<TileAlkahestVat> {
         if (stack != null && !stack.isEmpty()) {
             ItemStack tempStack = stack.copy();
             tempStack.setCount(1);
-            AspectList aspects = ThaumcraftCraftingManager.getObjectTags(tempStack);
-            float toRelease = stack.getCount() * 0.01F * MathHelper.sqrt(aspects.visSize());
+            float toRelease = stack.getCount() * 0.01F * MathHelper.sqrt(AspectHelper.getObjectAspects(tempStack).visSize());
             if (toRelease > 0.0F) {
                 AuraHelper.addVis(worldIn, pos, toRelease);
             }
