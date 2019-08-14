@@ -1,6 +1,7 @@
 package com.verdantartifice.thaumicwonders.common.blocks.devices;
 
 import java.util.List;
+import java.util.Random;
 
 import com.verdantartifice.thaumicwonders.common.blocks.base.BlockDeviceTW;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileAlkahestVat;
@@ -22,6 +23,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.aura.AuraHelper;
 import thaumcraft.api.damagesource.DamageSourceThaumcraft;
@@ -112,5 +115,14 @@ public class BlockAlkahestVat extends BlockDeviceTW<TileAlkahestVat> {
     
     protected void playHissSound(World worldIn, BlockPos pos) {
         worldIn.playSound(null, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 0.4F, 2.0F + worldIn.rand.nextFloat() * 0.4F);
+    }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+        if (rand.nextInt(10) == 0) {
+            worldIn.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_LAVA_POP, SoundCategory.BLOCKS, 
+                    0.1F + (rand.nextFloat() * 0.1F), 1.2F + (rand.nextFloat() * 0.2F), false);
+        }
     }
 }
