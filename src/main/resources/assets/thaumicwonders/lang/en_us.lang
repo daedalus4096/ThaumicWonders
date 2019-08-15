@@ -75,6 +75,7 @@ item.thaumicwonders.cinderpearl_seed.name=Cinderpearl Seed
 item.thaumicwonders.vishroom_spore.name=Vishroom Spore
 item.thaumicwonders.panacea.normal.name=Panacea
 item.thaumicwonders.panacea.enchanted.name=Enchanted Panacea
+item.thaumicwonders.lethe_water.name=Lethe Water
 
 // Entities
 entity.flying_carpet.name=Flying Carpet
