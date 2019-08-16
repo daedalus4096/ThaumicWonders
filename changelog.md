@@ -6,6 +6,7 @@ v1.8.0
 * Added Mystic Gardening, to cultivate your magical plant life
 * Added Panacea, to cure what ails you
 * Added Alkahest, to dissolve your excess stuff
+* Added Lethe Water, for power at a price
 * Set rarity for several items
 * Fixed syncing bug when firing Primal Arrows from a Bone Bow
 * Clarified dyeing process for the Flying Carpet
