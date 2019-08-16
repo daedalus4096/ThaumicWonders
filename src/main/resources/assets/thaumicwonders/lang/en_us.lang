@@ -226,6 +226,10 @@ thaumicwonders.research.alkahest.title=Alkahest
 thaumicwonders.research.alkahest.text.stage.1=I have way too much stuff lying around, taking up precious chest space.  I suppose I could toss it in some lava, but then I'd have to have lava sitting around randomly starting fires.  No, I'd like to magic this stuff away, and I bet that alchemy is just the ticket.
 thaumicwonders.research.alkahest.text.stage.2=Behold, alkahest, or as a layman might call it, universal solvent.<BR>This stuff is so caustic it will eat up anything not specially treated to withstand it.  As a bonus, however, anything it dissolves is broken down into minute amounts of vis, which is released into the aura.  That and I don't have to worry about my house randomly burning down.  I just have to make sure not to spill it...
 
+thaumicwonders.research.lethe_water.title=Lethe Water
+thaumicwonders.research.lethe_water.text.stage.1=Enchanting things uses up an awful lot of magical energy, and hunting monsters for that precious resource is both tedious and dangerous.  I'd much rather stay at home, where it's warm and well-lit.  Perhaps there's a way I can generate this energy alchemically?
+thaumicwonders.research.lethe_water.text.stage.2=I'm writing this down before I repeat my experiment what will apparently be for the fourth time.<BR>My concoction is a qualified success.  It certainly grants me magical energy that I can use for enchanting, but it has a curious side effect: it makes me forget things.<BR>After some controlled experiments, I've determined that each dose of this brew, which I'm calling Lethe Water, makes me forget one of my precious magical theories.  Research that I've completed and committed to paper is safe, as are basic observations, but the theories floating in my head are not.<BR>Curiously, if I don't have any unspent theories, then the potion seems to have no effect.
+
 // Theorycraft Cards
 card.induced_inspiration.name=Induced Inspiration
 card.induced_inspiration.text=The Inspiration Engine feeds ideas directly into your mind, ones highly relevant to the research you're currently pursuing. You gain %1$s %2$s, 1 inspiration, and a bonus draw.

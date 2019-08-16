@@ -15,9 +15,11 @@ import com.verdantartifice.thaumicwonders.common.items.ItemsTW;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.init.PotionTypes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.potion.PotionUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
@@ -442,6 +444,12 @@ public class InitRecipes {
                 new ItemStack(BlocksTW.ALKAHEST_VAT),
                 new ItemStack(BlocksTC.crucible),
                 new AspectList().add(Aspect.ALCHEMY, 25).add(Aspect.WATER, 25).add(Aspect.ENTROPY, 100).add(Aspect.PROTECT, 25)
+        ));
+        ThaumcraftApi.addCrucibleRecipe(new ResourceLocation(ThaumicWonders.MODID, "lethe_water"), new CrucibleRecipe(
+                "TWOND_LETHE_WATER",
+                new ItemStack(ItemsTW.LETHE_WATER),
+                PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.WATER),
+                new AspectList().add(Aspect.MAGIC, 20).add(Aspect.MIND, 20).add(Aspect.VOID, 20)
         ));
     }
     
