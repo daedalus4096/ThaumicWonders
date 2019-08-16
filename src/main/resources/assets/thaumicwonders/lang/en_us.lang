@@ -294,6 +294,8 @@ event.structure_diviner.found.near=The diviner detects something nearby!
 event.structure_diviner.found.far=The diviner detects something far away!
 event.structure_diviner.found.very_far=The diviner detects something very far away!
 event.structure_diviner.found.extreme=The diviner detects something extremely far away!
+event.lethe_water.forgot=You feel like you've forgotten something.
+event.lethe_water.not_found=You don't feel any different.
 
 // Misc
 itemGroup.thaumicwonders=Thaumic Wonders
