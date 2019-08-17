@@ -71,7 +71,12 @@ public class EntityCorruptionAvatar extends EntityThaumcraftBoss implements IRan
     
     @Override
     public boolean isOnSameTeam(Entity el) {
-        return (el instanceof IEldritchMob) || (el instanceof ITaintedMob);
+        return (el instanceof IEldritchMob) || (el instanceof ITaintedMob) || super.isOnSameTeam(el);
+    }
+    
+    @Override
+    public boolean canAttackClass(Class<? extends EntityLivingBase> cls) {
+        return !IEldritchMob.class.isAssignableFrom(cls) && !ITaintedMob.class.isAssignableFrom(cls) && super.canAttackClass(cls);
     }
 
     @Override
