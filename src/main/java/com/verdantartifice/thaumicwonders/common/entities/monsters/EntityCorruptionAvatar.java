@@ -18,6 +18,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import thaumcraft.api.aura.AuraHelper;
@@ -123,5 +124,20 @@ public class EntityCorruptionAvatar extends EntityThaumcraftBoss implements IRan
             return false;
         }
         return super.attackEntityFrom(source, amount);
+    }
+    
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return SoundsTC.egidle;
+    }
+    
+    @Override
+    protected SoundEvent getDeathSound() {
+        return SoundsTC.egdeath;
+    }
+    
+    @Override
+    public int getTalkInterval() {
+        return 500;
     }
 }
