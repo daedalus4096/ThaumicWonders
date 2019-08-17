@@ -301,6 +301,7 @@ event.structure_diviner.found.very_far=The diviner detects something very far aw
 event.structure_diviner.found.extreme=The diviner detects something extremely far away!
 event.lethe_water.forgot=You feel like you've forgotten something.
 event.lethe_water.not_found=You don't feel any different.
+event.corruption_avatar.empower=The Avatar of Corruption is empowered by a nearby rift!
 
 // Misc
 itemGroup.thaumicwonders=Thaumic Wonders

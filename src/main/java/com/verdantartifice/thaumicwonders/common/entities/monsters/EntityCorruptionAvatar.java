@@ -3,7 +3,8 @@ package com.verdantartifice.thaumicwonders.common.entities.monsters;
 import java.util.List;
 
 import com.verdantartifice.thaumicwonders.common.network.PacketHandler;
-import com.verdantartifice.thaumicwonders.common.network.packets.PacketAvatarSummonSeedFx;
+import com.verdantartifice.thaumicwonders.common.network.packets.PacketAvatarZapFx;
+import com.verdantartifice.thaumicwonders.common.network.packets.PacketLocalizedMessage;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -21,7 +22,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
@@ -30,6 +30,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import thaumcraft.api.aura.AuraHelper;
 import thaumcraft.api.entities.IEldritchMob;
 import thaumcraft.api.entities.ITaintedMob;
+import thaumcraft.common.entities.EntityFluxRift;
 import thaumcraft.common.entities.monster.boss.EntityThaumcraftBoss;
 import thaumcraft.common.entities.monster.tainted.EntityTaintSeed;
 import thaumcraft.common.entities.monster.tainted.EntityTaintSeedPrime;
@@ -146,15 +147,33 @@ public class EntityCorruptionAvatar extends EntityThaumcraftBoss implements IRan
                     if (diff != EnumDifficulty.PEACEFUL && seed.isNotColliding() && this.world.spawnEntity(seed)) {
                         this.getLookHelper().setLookPositionWithEntity(seed, this.getHorizontalFaceSpeed(), this.getVerticalFaceSpeed());
                         PacketHandler.INSTANCE.sendToAllAround(
-                                new PacketAvatarSummonSeedFx(this.getEntityId(), seed.getEntityId()), 
+                                new PacketAvatarZapFx(this.getEntityId(), seed.getEntityId()), 
                                 new NetworkRegistry.TargetPoint(this.world.provider.getDimension(), this.posX, this.posY, this.posZ, 32.0D));
-                        this.world.playSound(null, this.getPosition(), SoundsTC.zap, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                        this.playSound(SoundsTC.zap, 1.0F, 1.0F);
                         this.seedCooldown = 0;
                     }
                 }
             }
             
-            // TODO Empower if near rift
+            // Empower if near a rift
+            if (this.ticksExisted % 200 == 0) {
+                List<EntityFluxRift> riftsNearby = EntityUtils.getEntitiesInRange(this.world, this.getPosition(), this, EntityFluxRift.class, 16.0D);
+                int riftCount = riftsNearby.size();
+                if (riftCount > 0) {
+                    this.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, 200, 3 + riftCount));
+                    this.addPotionEffect(new PotionEffect(MobEffects.HASTE, 200, riftCount));
+                    for (EntityFluxRift rift : riftsNearby) {
+                        PacketHandler.INSTANCE.sendToAllAround(
+                                new PacketAvatarZapFx(rift.getEntityId(), this.getEntityId()), 
+                                new NetworkRegistry.TargetPoint(this.world.provider.getDimension(), rift.posX, rift.posY, rift.posZ, 32.0D));
+                        rift.playSound(SoundsTC.zap, 1.0F, 1.0F);
+                    }
+                    PacketHandler.INSTANCE.sendToAllAround(
+                            new PacketLocalizedMessage("event.corruption_avatar.empower"), 
+                            new NetworkRegistry.TargetPoint(this.world.provider.getDimension(), this.posX, this.posY, this.posZ, 32.0D));
+                }
+            }
+            
             // TODO Teleport near attack target if too far away, then explode
         }
         super.updateAITasks();

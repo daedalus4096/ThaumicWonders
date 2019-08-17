@@ -1,7 +1,7 @@
 package com.verdantartifice.thaumicwonders.common.network;
 
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
-import com.verdantartifice.thaumicwonders.common.network.packets.PacketAvatarSummonSeedFx;
+import com.verdantartifice.thaumicwonders.common.network.packets.PacketAvatarZapFx;
 import com.verdantartifice.thaumicwonders.common.network.packets.PacketDimensionalRipperFx;
 import com.verdantartifice.thaumicwonders.common.network.packets.PacketLocalizedMessage;
 import com.verdantartifice.thaumicwonders.common.network.packets.PacketMeatyOrbAction;
@@ -39,6 +39,6 @@ public class PacketHandler {
         INSTANCE.registerMessage(PacketMeteorbFx.Handler.class, PacketMeteorbFx.class, nextId(), Side.CLIENT);
         INSTANCE.registerMessage(PacketMeatyOrbAction.Handler.class, PacketMeatyOrbAction.class, nextId(), Side.SERVER);
         INSTANCE.registerMessage(PacketStructureDivinerAction.Handler.class, PacketStructureDivinerAction.class, nextId(), Side.SERVER);
-        INSTANCE.registerMessage(PacketAvatarSummonSeedFx.Handler.class, PacketAvatarSummonSeedFx.class, nextId(), Side.CLIENT);
+        INSTANCE.registerMessage(PacketAvatarZapFx.Handler.class, PacketAvatarZapFx.class, nextId(), Side.CLIENT);
     }
 }

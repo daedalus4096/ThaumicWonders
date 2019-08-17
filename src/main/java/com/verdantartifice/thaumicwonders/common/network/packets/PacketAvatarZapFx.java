@@ -15,16 +15,16 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.client.fx.FXDispatcher;
 
-public class PacketAvatarSummonSeedFx implements IMessage {
+public class PacketAvatarZapFx implements IMessage {
     protected int source;
     protected int target;
     
-    public PacketAvatarSummonSeedFx() {
+    public PacketAvatarZapFx() {
         this.source = 0;
         this.target = 0;
     }
     
-    public PacketAvatarSummonSeedFx(int source, int target) {
+    public PacketAvatarZapFx(int source, int target) {
         this.source = source;
         this.target = target;
     }
@@ -41,15 +41,15 @@ public class PacketAvatarSummonSeedFx implements IMessage {
         buf.writeInt(this.target);
     }
 
-    public static class Handler implements IMessageHandler<PacketAvatarSummonSeedFx, IMessage> {
+    public static class Handler implements IMessageHandler<PacketAvatarZapFx, IMessage> {
         @Override
-        public IMessage onMessage(PacketAvatarSummonSeedFx message, MessageContext ctx) {
+        public IMessage onMessage(PacketAvatarZapFx message, MessageContext ctx) {
             FMLCommonHandler.instance().getWorldThread(ctx.netHandler).addScheduledTask(() -> handle(message, ctx));
             return null;
         }
         
         @SideOnly(Side.CLIENT)
-        private void handle(PacketAvatarSummonSeedFx message, MessageContext ctx) {
+        private void handle(PacketAvatarZapFx message, MessageContext ctx) {
             WorldClient world = FMLClientHandler.instance().getClient().world;
             Entity sourceEntity = world.getEntityByID(message.source);
             Entity targetEntity = world.getEntityByID(message.target);
