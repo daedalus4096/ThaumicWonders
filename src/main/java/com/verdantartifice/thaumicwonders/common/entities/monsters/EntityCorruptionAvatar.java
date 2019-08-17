@@ -2,6 +2,9 @@ package com.verdantartifice.thaumicwonders.common.entities.monsters;
 
 import java.util.List;
 
+import com.verdantartifice.thaumicwonders.common.network.PacketHandler;
+import com.verdantartifice.thaumicwonders.common.network.packets.PacketAvatarSummonSeedFx;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
@@ -18,19 +21,26 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 import thaumcraft.api.aura.AuraHelper;
 import thaumcraft.api.entities.IEldritchMob;
 import thaumcraft.api.entities.ITaintedMob;
 import thaumcraft.common.entities.monster.boss.EntityThaumcraftBoss;
+import thaumcraft.common.entities.monster.tainted.EntityTaintSeed;
+import thaumcraft.common.entities.monster.tainted.EntityTaintSeedPrime;
 import thaumcraft.common.entities.projectile.EntityGolemOrb;
 import thaumcraft.common.lib.SoundsTC;
 import thaumcraft.common.lib.potions.PotionInfectiousVisExhaust;
 import thaumcraft.common.lib.utils.EntityUtils;
 
 public class EntityCorruptionAvatar extends EntityThaumcraftBoss implements IRangedAttackMob, IEldritchMob, ITaintedMob {
+    protected int seedCooldown = 0;
+    
     public EntityCorruptionAvatar(World world) {
         super(world);
         this.setSize(0.75F, 2.25F);
@@ -111,7 +121,34 @@ public class EntityCorruptionAvatar extends EntityThaumcraftBoss implements IRan
                 player.addPotionEffect(new PotionEffect(PotionInfectiousVisExhaust.instance, 300, 0));
             }
             
-            // TODO Spawn taint seeds
+            // Spawn taint seeds
+            if (++this.seedCooldown >= 200) {
+                EnumDifficulty diff = this.world.getDifficulty();
+                int maxSeeds = diff == EnumDifficulty.EASY ? 1 : (diff == EnumDifficulty.HARD ? 4 : 2);
+                List<EntityTaintSeed> seedsNearby = EntityUtils.getEntitiesInRange(this.world, this.getPosition(), this, EntityTaintSeed.class, 16.0);
+                if (seedsNearby.size() < maxSeeds) {
+                    int primeThreshold = diff == EnumDifficulty.EASY ? -1 : (diff == EnumDifficulty.HARD ? 1 : 0);
+                    int boost = diff == EnumDifficulty.EASY ? 50 : (diff == EnumDifficulty.HARD ? 200 : 100);
+                    EntityTaintSeed seed = this.rand.nextInt(10) <= primeThreshold ?
+                        new EntityTaintSeedPrime(this.world) :
+                        new EntityTaintSeed(this.world);
+                    seed.boost = boost;
+                    seed.setLocationAndAngles(
+                            (int)(this.posX + this.rand.nextGaussian() * 5.0D) + 0.5D, 
+                            (int)(this.posY + this.rand.nextGaussian() * 5.0D), 
+                            (int)(this.posZ + this.rand.nextGaussian() * 5.0D) + 0.5D, 
+                            this.rand.nextInt(360), 0.0F);
+                    if (diff != EnumDifficulty.PEACEFUL && seed.isNotColliding() && this.world.spawnEntity(seed)) {
+                        this.getLookHelper().setLookPositionWithEntity(seed, this.getHorizontalFaceSpeed(), this.getVerticalFaceSpeed());
+                        PacketHandler.INSTANCE.sendToAllAround(
+                                new PacketAvatarSummonSeedFx(this.getEntityId(), seed.getEntityId()), 
+                                new NetworkRegistry.TargetPoint(this.world.provider.getDimension(), this.posX, this.posY, this.posZ, 32.0D));
+                        this.world.playSound(null, this.getPosition(), SoundsTC.zap, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                        this.seedCooldown = 0;
+                    }
+                }
+            }
+            
             // TODO Empower if near rift
             // TODO Teleport near attack target if too far away, then explode
         }
