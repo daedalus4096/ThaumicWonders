@@ -81,6 +81,7 @@ item.thaumicwonders.lethe_water.name=Lethe Water
 entity.flying_carpet.name=Flying Carpet
 entity.void_portal.name=Void Portal
 entity.hexamite_primed.name=Hexamite
+entity.corruption_avatar.name=Avatar of Corruption
 
 // Fluids
 fluid.fluid_quicksilver=Quicksilver
