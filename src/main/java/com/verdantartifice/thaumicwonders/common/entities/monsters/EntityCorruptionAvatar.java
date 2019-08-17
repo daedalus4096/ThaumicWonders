@@ -1,5 +1,7 @@
 package com.verdantartifice.thaumicwonders.common.entities.monsters;
 
+import java.util.List;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
@@ -13,12 +15,19 @@ import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.MobEffects;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import thaumcraft.api.aura.AuraHelper;
 import thaumcraft.api.entities.IEldritchMob;
 import thaumcraft.api.entities.ITaintedMob;
 import thaumcraft.common.entities.monster.boss.EntityThaumcraftBoss;
 import thaumcraft.common.entities.projectile.EntityGolemOrb;
 import thaumcraft.common.lib.SoundsTC;
+import thaumcraft.common.lib.potions.PotionInfectiousVisExhaust;
+import thaumcraft.common.lib.utils.EntityUtils;
 
 public class EntityCorruptionAvatar extends EntityThaumcraftBoss implements IRangedAttackMob, IEldritchMob, ITaintedMob {
     public EntityCorruptionAvatar(World world) {
@@ -56,7 +65,7 @@ public class EntityCorruptionAvatar extends EntityThaumcraftBoss implements IRan
 
     @Override
     public void attackEntityWithRangedAttack(EntityLivingBase target, float distanceFactor) {
-        // FIXME Do real attack
+        // FIXME Do real attack (flux fireball)
         if (this.canEntityBeSeen(target)) {
             swingArm(getActiveHand());
             getLookHelper().setLookPosition(target.posX, target.getEntityBoundingBox().minY + target.height / 2.0F, target.posZ, 30.0F, 30.0F);
@@ -82,7 +91,37 @@ public class EntityCorruptionAvatar extends EntityThaumcraftBoss implements IRan
     
     @Override
     protected void updateAITasks() {
-        // TODO Regenerate based on local flux
+        if (!this.world.isRemote) {
+            // Generate flux, 1/sec
+            if (this.ticksExisted % 5 == 0) {
+                AuraHelper.polluteAura(this.world, this.getPosition().up(), 0.25F, true);
+            }
+            
+            // Regenerate based on local flux
+            if (this.ticksExisted % 40 == 0) {
+                float flux = Math.min(100.0F, AuraHelper.getFlux(this.world, this.getPosition()));
+                int amp = (int)(0.5F * MathHelper.sqrt(flux));
+                this.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 40, amp, false, false));
+            }
+            
+            // Generate flux phage aura
+            List<EntityPlayer> playersNearby = EntityUtils.getEntitiesInRange(this.world, this.getPosition(), this, EntityPlayer.class, 10.0D);
+            for (EntityPlayer player : playersNearby) {
+                player.addPotionEffect(new PotionEffect(PotionInfectiousVisExhaust.instance, 300, 0));
+            }
+            
+            // TODO Spawn taint seeds
+            // TODO Empower if near rift
+            // TODO Teleport near attack target if too far away, then explode
+        }
         super.updateAITasks();
+    }
+    
+    @Override
+    public boolean attackEntityFrom(DamageSource source, float amount) {
+        if (source.getTrueSource() instanceof EntityCorruptionAvatar) {
+            return false;
+        }
+        return super.attackEntityFrom(source, amount);
     }
 }
