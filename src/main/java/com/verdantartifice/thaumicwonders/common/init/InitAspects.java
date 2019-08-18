@@ -6,6 +6,7 @@ import com.verdantartifice.thaumicwonders.common.items.ItemsTW;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
+import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.internal.CommonInternals;
@@ -14,6 +15,7 @@ import thaumcraft.common.lib.crafting.ThaumcraftCraftingManager;
 public class InitAspects {
     public static void initAspects() {
         registerItemAspects();
+        registerEntityAspects();
     }
     
     private static void registerItemAspects() {
@@ -27,6 +29,11 @@ public class InitAspects {
         appendAspects(new ItemStack(ItemsTW.ELDRITCH_CLUSTER, 1, 6), new AspectList().add(Aspect.METAL, 20).add(Aspect.EARTH, 5).add(Aspect.FLUX, 10).add(Aspect.ALCHEMY, 10).add(Aspect.DEATH, 10));
         appendAspects(new ItemStack(ItemsTW.ELDRITCH_CLUSTER, 1, 7), new AspectList().add(Aspect.FLUX, 10).add(Aspect.CRYSTAL, 15));
         appendAspects(new ItemStack(ItemsTW.ELDRITCH_CLUSTER, 1, 8), new AspectList().add(Aspect.METAL, 10).add(Aspect.FLUX, 20));
+    }
+    
+    @SuppressWarnings("deprecation")
+    private static void registerEntityAspects() {
+        ThaumcraftApi.registerEntityTag("thaumicwonders.corruption_avatar", new AspectList().add(Aspect.ELDRITCH, 40).add(Aspect.MAN, 40).add(Aspect.FLUX, 40), new ThaumcraftApi.EntityTagsNBT[0]);
     }
     
     private static void appendAspects(ItemStack stack, AspectList toAdd) {
