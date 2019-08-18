@@ -2,6 +2,7 @@ package com.verdantartifice.thaumicwonders.common.entities.monsters;
 
 import java.util.List;
 
+import com.verdantartifice.thaumicwonders.common.misc.FluxExplosion;
 import com.verdantartifice.thaumicwonders.common.network.PacketHandler;
 import com.verdantartifice.thaumicwonders.common.network.packets.PacketAvatarZapFx;
 import com.verdantartifice.thaumicwonders.common.network.packets.PacketLocalizedMessage;
@@ -41,6 +42,7 @@ import thaumcraft.common.lib.utils.EntityUtils;
 
 public class EntityCorruptionAvatar extends EntityThaumcraftBoss implements IRangedAttackMob, IEldritchMob, ITaintedMob {
     protected int seedCooldown = 0;
+    protected boolean isSuffocating = false;
     
     public EntityCorruptionAvatar(World world) {
         super(world);
@@ -174,17 +176,25 @@ public class EntityCorruptionAvatar extends EntityThaumcraftBoss implements IRan
                 }
             }
             
-            // TODO Teleport near attack target if too far away, then explode
+            // Explode if suffocating
+            if (this.isSuffocating && this.ticksExisted % 20 == 0) {
+                FluxExplosion.create(this.world, this, this.posX, this.posY, this.posZ, 7.0F, false, true, true);
+                this.isSuffocating = false;
+            }
         }
         super.updateAITasks();
     }
     
     @Override
     public boolean attackEntityFrom(DamageSource source, float amount) {
-        if (source.getTrueSource() instanceof EntityCorruptionAvatar) {
+        if (source == DamageSource.DROWN || source.getTrueSource() instanceof EntityCorruptionAvatar) {
             return false;
+        } else {
+            if (source == DamageSource.IN_WALL) {
+                this.isSuffocating = true;
+            }
+            return super.attackEntityFrom(source, amount);
         }
-        return super.attackEntityFrom(source, amount);
     }
     
     @Override
