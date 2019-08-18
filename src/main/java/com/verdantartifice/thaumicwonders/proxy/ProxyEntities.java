@@ -1,10 +1,12 @@
 package com.verdantartifice.thaumicwonders.proxy;
 
+import com.verdantartifice.thaumicwonders.client.renderers.entity.RenderFluxFireball;
 import com.verdantartifice.thaumicwonders.client.renderers.entity.RenderFlyingCarpet;
 import com.verdantartifice.thaumicwonders.client.renderers.entity.RenderHexamitePrimed;
 import com.verdantartifice.thaumicwonders.client.renderers.entity.RenderPrimalArrow;
 import com.verdantartifice.thaumicwonders.client.renderers.entity.RenderVoidPortal;
 import com.verdantartifice.thaumicwonders.client.renderers.entity.monsters.RenderCorruptionAvatar;
+import com.verdantartifice.thaumicwonders.common.entities.EntityFluxFireball;
 import com.verdantartifice.thaumicwonders.common.entities.EntityFlyingCarpet;
 import com.verdantartifice.thaumicwonders.common.entities.EntityHexamitePrimed;
 import com.verdantartifice.thaumicwonders.common.entities.EntityPrimalArrow;
@@ -46,6 +48,12 @@ public class ProxyEntities {
             @Override
             public Render<? super EntityCorruptionAvatar> createRenderFor(RenderManager manager) {
                 return new RenderCorruptionAvatar(manager);
+            }
+        });
+        RenderingRegistry.registerEntityRenderingHandler(EntityFluxFireball.class, new IRenderFactory<EntityFluxFireball>() {
+            @Override
+            public Render<? super EntityFluxFireball> createRenderFor(RenderManager manager) {
+                return new RenderFluxFireball(manager);
             }
         });
     }

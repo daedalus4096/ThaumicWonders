@@ -9,7 +9,10 @@ import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class RenderCorruptionAvatar extends RenderBiped<EntityCorruptionAvatar> {
     protected static final ResourceLocation SKIN = new ResourceLocation(ThaumicWonders.MODID, "textures/entities/monsters/corruption_avatar.png");
     

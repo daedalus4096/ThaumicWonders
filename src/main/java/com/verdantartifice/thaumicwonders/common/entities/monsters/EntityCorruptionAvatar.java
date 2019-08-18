@@ -2,12 +2,15 @@ package com.verdantartifice.thaumicwonders.common.entities.monsters;
 
 import java.util.List;
 
+import com.google.common.base.Predicate;
+import com.verdantartifice.thaumicwonders.common.entities.EntityFluxFireball;
 import com.verdantartifice.thaumicwonders.common.misc.FluxExplosion;
 import com.verdantartifice.thaumicwonders.common.network.PacketHandler;
 import com.verdantartifice.thaumicwonders.common.network.packets.PacketAvatarZapFx;
 import com.verdantartifice.thaumicwonders.common.network.packets.PacketLocalizedMessage;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -35,7 +38,6 @@ import thaumcraft.common.entities.EntityFluxRift;
 import thaumcraft.common.entities.monster.boss.EntityThaumcraftBoss;
 import thaumcraft.common.entities.monster.tainted.EntityTaintSeed;
 import thaumcraft.common.entities.monster.tainted.EntityTaintSeedPrime;
-import thaumcraft.common.entities.projectile.EntityGolemOrb;
 import thaumcraft.common.lib.SoundsTC;
 import thaumcraft.common.lib.potions.PotionInfectiousVisExhaust;
 import thaumcraft.common.lib.utils.EntityUtils;
@@ -43,6 +45,13 @@ import thaumcraft.common.lib.utils.EntityUtils;
 public class EntityCorruptionAvatar extends EntityThaumcraftBoss implements IRangedAttackMob, IEldritchMob, ITaintedMob {
     protected int seedCooldown = 0;
     protected boolean isSuffocating = false;
+    
+    protected static final Predicate<Entity> NOT_HORROR = new Predicate<Entity>() {
+        @Override
+        public boolean apply(Entity input) {
+            return !(input instanceof IEldritchMob) && !(input instanceof ITaintedMob);
+        }
+    };
     
     public EntityCorruptionAvatar(World world) {
         super(world);
@@ -59,7 +68,7 @@ public class EntityCorruptionAvatar extends EntityThaumcraftBoss implements IRan
         this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(9, new EntityAILookIdle(this));
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false, new Class[0]));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<EntityPlayer>(this, EntityPlayer.class, true));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<EntityLiving>(this, EntityLiving.class, 0, false, false, NOT_HORROR));
     }
     
     @Override
@@ -84,24 +93,22 @@ public class EntityCorruptionAvatar extends EntityThaumcraftBoss implements IRan
 
     @Override
     public void attackEntityWithRangedAttack(EntityLivingBase target, float distanceFactor) {
-        // FIXME Do real attack (flux fireball)
         if (this.canEntityBeSeen(target)) {
-            swingArm(getActiveHand());
-            getLookHelper().setLookPosition(target.posX, target.getEntityBoundingBox().minY + target.height / 2.0F, target.posZ, 30.0F, 30.0F);
+            this.swingArm(this.getActiveHand());
+            this.getLookHelper().setLookPosition(target.posX, target.getEntityBoundingBox().minY + target.height / 2.0F, target.posZ, 30.0F, 30.0F);
             
-            EntityGolemOrb blast = new EntityGolemOrb(this.world, this, target, true);
-            blast.posX += blast.motionX / 2.0D;
-            blast.posZ += blast.motionZ / 2.0D;
-            blast.setPosition(blast.posX, blast.posY, blast.posZ);
+            double sourceY = this.posY + this.height / 2.0F;
+            double deltaX = target.posX - this.posX;
+            double deltaY = target.getEntityBoundingBox().minY + target.height / 2.0F - sourceY;
+            double deltaZ = target.posZ - this.posZ;
             
-            double d0 = target.posX - this.posX;
-            double d1 = target.getEntityBoundingBox().minY + target.height / 2.0F - (this.posY + this.height / 2.0F);
-            double d2 = target.posZ - this.posZ;
+            EntityFluxFireball fireball = new EntityFluxFireball(this.world, this, deltaX, deltaY, deltaZ);
+            fireball.posX = this.posX;
+            fireball.posY = sourceY;
+            fireball.posZ = this.posZ;
             
-            blast.shoot(d0, d1 + 2.0D, d2, 0.66F, 3.0F);
-            
-            playSound(SoundsTC.egattack, 1.0F, 1.0F + this.rand.nextFloat() * 0.1F);
-            this.world.spawnEntity(blast);
+            this.playSound(SoundsTC.egattack, 1.0F, 1.0F + this.rand.nextFloat() * 0.1F);
+            this.world.spawnEntity(fireball);
         }
     }
 
