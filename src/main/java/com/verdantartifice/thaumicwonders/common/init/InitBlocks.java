@@ -6,6 +6,7 @@ import java.util.Set;
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockAlkahestVat;
 import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockCatalyzationChamber;
+import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockCoalescenceMatrix;
 import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockDimensionalRipper;
 import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockEverburningUrn;
 import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockFluxCapacitor;
@@ -37,6 +38,7 @@ import com.verdantartifice.thaumicwonders.common.blocks.plants.BlockVishroomCrop
 import com.verdantartifice.thaumicwonders.common.fluids.FluidQuicksilver;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileAlkahestVat;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileCatalyzationChamber;
+import com.verdantartifice.thaumicwonders.common.tiles.devices.TileCoalescenceMatrix;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileDimensionalRipper;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileEverburningUrn;
 import com.verdantartifice.thaumicwonders.common.tiles.devices.TileFluxDistiller;
@@ -88,6 +90,7 @@ public class InitBlocks {
         registerBlock(forgeRegistry, new BlockCinderpearlCrop());
         registerBlock(forgeRegistry, new BlockVishroomCrop());
         registerBlock(forgeRegistry, new BlockAlkahestVat());
+        registerBlock(forgeRegistry, new BlockCoalescenceMatrix());
         
         registerBlock(forgeRegistry, new BlockTWPlaceholder("placeholder_arcane_stone"));
         registerBlock(forgeRegistry, new BlockTWPlaceholder("placeholder_obsidian"));
@@ -141,5 +144,6 @@ public class InitBlocks {
         GameRegistry.registerTileEntity(TilePrimordialAccretionChamber.class, new ResourceLocation(ThaumicWonders.MODID, "TilePrimordialAccretionChamber"));
         GameRegistry.registerTileEntity(TilePrimordialAccretionChamberPlaceholder.class, new ResourceLocation(ThaumicWonders.MODID, "TilePrimordialAccretionChamberPlaceholder"));
         GameRegistry.registerTileEntity(TileAlkahestVat.class, new ResourceLocation(ThaumicWonders.MODID, "TileAlkahestVat"));
+        GameRegistry.registerTileEntity(TileCoalescenceMatrix.class, new ResourceLocation(ThaumicWonders.MODID, "TileCoalescenceMatrix"));
     }
 }

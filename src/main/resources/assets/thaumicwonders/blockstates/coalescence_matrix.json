@@ -1,0 +1,22 @@
+{
+    "forge_marker": 1,
+    "defaults":
+    {
+        "transform": "forge:default-block",
+        "model": "thaumicwonders:coalescence_matrix_0"
+    },
+    "variants": {
+        "normal": [{}], "inventory": [{}],
+        "charge=0":  { "model": "thaumicwonders:coalescence_matrix_0" },
+        "charge=1":  { "model": "thaumicwonders:coalescence_matrix_1" },
+        "charge=2":  { "model": "thaumicwonders:coalescence_matrix_2" },
+        "charge=3":  { "model": "thaumicwonders:coalescence_matrix_3" },
+        "charge=4":  { "model": "thaumicwonders:coalescence_matrix_4" },
+        "charge=5":  { "model": "thaumicwonders:coalescence_matrix_5" },
+        "charge=6":  { "model": "thaumicwonders:coalescence_matrix_6" },
+        "charge=7":  { "model": "thaumicwonders:coalescence_matrix_7" },
+        "charge=8":  { "model": "thaumicwonders:coalescence_matrix_8" },
+        "charge=9":  { "model": "thaumicwonders:coalescence_matrix_9" },
+        "charge=10": { "model": "thaumicwonders:coalescence_matrix_10" }
+    }
+}
