@@ -1,0 +1,16 @@
+{
+    "forge_marker": 1,
+    "defaults": 
+    {
+        "transform": "forge:default-block",
+        "model": "cube_bottom_top", 
+        "textures": {
+            "bottom": "blocks/gold_block",
+            "top": "blocks/gold_block",
+            "side": "thaumicwonders:blocks/coalescence_matrix_0"
+        }
+     },
+    "variants": {
+        "normal": [{}], "inventory": [{}]
+    }
+}

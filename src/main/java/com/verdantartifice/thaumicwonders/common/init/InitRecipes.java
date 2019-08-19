@@ -20,6 +20,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.potion.PotionUtils;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
@@ -40,6 +41,7 @@ import thaumcraft.api.crafting.IngredientNBTTC;
 import thaumcraft.api.crafting.Part;
 import thaumcraft.api.crafting.ShapedArcaneRecipe;
 import thaumcraft.api.items.ItemsTC;
+import thaumcraft.common.blocks.basic.BlockPillar;
 import thaumcraft.common.lib.crafting.DustTriggerMultiblock;
 import thaumcraft.common.lib.enchantment.EnumInfusionEnchantment;
 
@@ -58,6 +60,7 @@ public class InitRecipes {
     private static void initMultiblockRecipes() {
         initCatalyzationChamber();
         initPrimordialAccretionChamber();
+        initCoalescencePlatform();
     }
     
     private static void initCatalyzationChamber() {
@@ -128,6 +131,63 @@ public class InitRecipes {
                         new ItemStack(BlocksTC.metalAlchemicalAdvanced, 6),
                         new ItemStack(Blocks.IRON_BARS),
                         FluidUtil.getFilledBucket(new FluidStack(FluidQuicksilver.INSTANCE, 1000))
+                }
+        ));
+    }
+    
+    private static void initCoalescencePlatform() {
+        Part VMET = new Part(BlocksTC.metalBlockVoid, null);
+        Part ASBR = new Part(BlocksTC.stoneArcaneBrick, null);
+        Part SNTP = new Part(BlocksTC.stoneArcane, "AIR");
+        Part SNB1 = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTC.pillarArcane, 1, BlockPillar.calcMeta(EnumFacing.EAST)));
+        Part SNB2 = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTC.pillarArcane, 1, BlockPillar.calcMeta(EnumFacing.NORTH)));
+        Part SNB3 = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTC.pillarArcane, 1, BlockPillar.calcMeta(EnumFacing.SOUTH)));
+        Part SNB4 = new Part(BlocksTC.stoneArcane, new ItemStack(BlocksTC.pillarArcane, 1, BlockPillar.calcMeta(EnumFacing.WEST)));
+        Part CMAT = new Part(BlocksTW.COALESCENCE_MATRIX_PRECURSOR, new ItemStack(BlocksTW.COALESCENCE_MATRIX));
+        Part[][][] coalescencePlatformBlueprint = {
+                {
+                    { null, null, SNTP, null, null, null, SNTP, null, null },
+                    { null, null, null, null, null, null, null, null, null },
+                    { SNTP, null, null, null, null, null, null, null, SNTP },
+                    { null, null, null, null, null, null, null, null, null },
+                    { null, null, null, null, null, null, null, null, null },
+                    { null, null, null, null, null, null, null, null, null },
+                    { SNTP, null, null, null, null, null, null, null, SNTP },
+                    { null, null, null, null, null, null, null, null, null },
+                    { null, null, SNTP, null, null, null, SNTP, null, null },
+                },
+                {
+                    { null, null, SNB1, null, null, null, SNB2, null, null },
+                    { null, null, null, null, null, null, null, null, null },
+                    { SNB1, null, null, null, null, null, null, null, SNB2 },
+                    { null, null, null, null, null, null, null, null, null },
+                    { null, null, null, null, CMAT, null, null, null, null },
+                    { null, null, null, null, null, null, null, null, null },
+                    { SNB3, null, null, null, null, null, null, null, SNB4 },
+                    { null, null, null, null, null, null, null, null, null },
+                    { null, null, SNB3, null, null, null, SNB4, null, null },
+                },
+                {
+                    { null, null, ASBR, ASBR, ASBR, ASBR, ASBR, null, null },
+                    { null, ASBR, VMET, VMET, VMET, VMET, VMET, ASBR, null },
+                    { ASBR, VMET, VMET, VMET, VMET, VMET, VMET, VMET, ASBR },
+                    { ASBR, VMET, VMET, VMET, VMET, VMET, VMET, VMET, ASBR },
+                    { ASBR, VMET, VMET, VMET, VMET, VMET, VMET, VMET, ASBR },
+                    { ASBR, VMET, VMET, VMET, VMET, VMET, VMET, VMET, ASBR },
+                    { ASBR, VMET, VMET, VMET, VMET, VMET, VMET, VMET, ASBR },
+                    { null, ASBR, VMET, VMET, VMET, VMET, VMET, ASBR, null },
+                    { null, null, ASBR, ASBR, ASBR, ASBR, ASBR, null, null },
+                }
+        };
+        IDustTrigger.registerDustTrigger(new DustTriggerMultiblock("TWOND_COALESCENCE_MATRIX", coalescencePlatformBlueprint));
+        ThaumcraftApi.addMultiblockRecipeToCatalog(new ResourceLocation(ThaumicWonders.MODID, "coalescence_platform"), new ThaumcraftApi.BluePrint(
+                "TWOND_COALESCENCE_MATRIX", 
+                coalescencePlatformBlueprint, 
+                new ItemStack[] {
+                        new ItemStack(BlocksTC.metalBlockVoid, 45),
+                        new ItemStack(BlocksTC.stoneArcaneBrick, 24),
+                        new ItemStack(BlocksTC.stoneArcane, 16),
+                        new ItemStack(BlocksTW.COALESCENCE_MATRIX_PRECURSOR)
                 }
         ));
     }
@@ -825,6 +885,22 @@ public class InitRecipes {
                 new Object[] {
                         new ItemStack(BlocksTC.vishroom),
                         new ItemStack(ItemsTC.salisMundus)
+                }
+        ));
+        
+        ThaumcraftApi.addInfusionCraftingRecipe(new ResourceLocation(ThaumicWonders.MODID, "coalescence_matrix"), new InfusionRecipe(
+                "TWOND_COALESCENCE_MATRIX",
+                new ItemStack(BlocksTW.COALESCENCE_MATRIX_PRECURSOR),
+                10,
+                new AspectList().add(Aspect.FLUX, 200).add(Aspect.MAN, 100).add(Aspect.MAGIC, 200).add(Aspect.ENERGY, 100),
+                new ItemStack(Blocks.GOLD_BLOCK),
+                new Object[] {
+                        Ingredient.fromItem(ItemsTC.primordialPearl),
+                        new ItemStack(BlocksTC.inlay),
+                        new ItemStack(BlocksTC.inlay),
+                        new ItemStack(Items.NETHER_STAR),
+                        new ItemStack(BlocksTC.inlay),
+                        new ItemStack(BlocksTC.inlay)
                 }
         ));
     }

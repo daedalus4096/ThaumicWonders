@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
+import com.verdantartifice.thaumicwonders.common.blocks.base.BlockTW;
 import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockAlkahestVat;
 import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockCatalyzationChamber;
 import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockCoalescenceMatrix;
@@ -56,6 +57,7 @@ import com.verdantartifice.thaumicwonders.common.tiles.essentia.TileCreativeEsse
 import com.verdantartifice.thaumicwonders.common.tiles.misc.TilePrimordialAccretionChamberPlaceholder;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
@@ -91,6 +93,7 @@ public class InitBlocks {
         registerBlock(forgeRegistry, new BlockVishroomCrop());
         registerBlock(forgeRegistry, new BlockAlkahestVat());
         registerBlock(forgeRegistry, new BlockCoalescenceMatrix());
+        registerBlock(forgeRegistry, new BlockTW(Material.IRON, "coalescence_matrix_precursor"));
         
         registerBlock(forgeRegistry, new BlockTWPlaceholder("placeholder_arcane_stone"));
         registerBlock(forgeRegistry, new BlockTWPlaceholder("placeholder_obsidian"));
