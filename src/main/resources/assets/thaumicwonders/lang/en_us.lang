@@ -237,6 +237,9 @@ thaumicwonders.research.coalescence_matrix.title=Coalescence Matrix
 thaumicwonders.research.coalescence_matrix.text.stage.1=Every time I look into the void, I can't help but feel that something is looking back at me.  It's time to force an introduction.
 thaumicwonders.research.coalescence_matrix.text.stage.2=Using what I've learned about void rift energies, I believe I've developed a means to force them to coalesce into humanoid form in our reality.  The process requires a stabilizing platform and a nearby active flux rift.<BR>After forming the platform with some Salis Mundus, the Coalescence Matrix will begin siphoning energy from nearby flux rifts.  Once it's full, I can trigger the final sequence by using a caster such as my Caster's Gauntlet on it.  The matrix itself is unlikely to survive the process, but most of the platform should be salvagable.<BR>I don't know what will take shape from this ritual, but I don't think it will be friendly.  I should be ready for a difficult fight.
 
+thaumicwonders.research.corruption_avatar.title=Avatar of Corruption
+thaumicwonders.research.corruption_avatar.text.stage.1=The forces of taint and corruption, forced into humanoid form by my magical ritual.  It doesn't seem to appreciate that, either.<BR>The Avatar is a tough and dangerous foe.  It hurls explosive orbs at anything around it not eldritch or tainted.  What's worse, it constantly warps and pollutes the area around it, in turn gaining strength from that corruption.
+
 // Theorycraft Cards
 card.induced_inspiration.name=Induced Inspiration
 card.induced_inspiration.text=The Inspiration Engine feeds ideas directly into your mind, ones highly relevant to the research you're currently pursuing. You gain %1$s %2$s, 1 inspiration, and a bonus draw.

@@ -1,6 +1,7 @@
 package com.verdantartifice.thaumicwonders.common.init;
 
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
+import com.verdantartifice.thaumicwonders.common.entities.monsters.EntityCorruptionAvatar;
 import com.verdantartifice.thaumicwonders.common.items.ItemsTW;
 import com.verdantartifice.thaumicwonders.common.research.theorycraft.AidInspirationEngine;
 import com.verdantartifice.thaumicwonders.common.research.theorycraft.AidMadnessEngine;
@@ -12,6 +13,7 @@ import net.minecraft.util.ResourceLocation;
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.research.ResearchCategories;
+import thaumcraft.api.research.ScanEntity;
 import thaumcraft.api.research.ScanItem;
 import thaumcraft.api.research.ScanningManager;
 import thaumcraft.api.research.theorycraft.TheorycraftManager;
@@ -41,6 +43,7 @@ public class InitResearch {
         ThaumcraftApi.registerResearchLocation(new ResourceLocation(ThaumicWonders.MODID, "research/artifice" ));
         ThaumcraftApi.registerResearchLocation(new ResourceLocation(ThaumicWonders.MODID, "research/infusion" ));
         ThaumcraftApi.registerResearchLocation(new ResourceLocation(ThaumicWonders.MODID, "research/eldritch" ));
+        ThaumcraftApi.registerResearchLocation(new ResourceLocation(ThaumicWonders.MODID, "research/scans" ));
     }
     
     private static void initTheorycraft() {
@@ -52,5 +55,6 @@ public class InitResearch {
     
     private static void initScannables() {
         ScanningManager.addScannableThing(new ScanItem("!TWOND_PRIMORDIAL_GRAIN", new ItemStack(ItemsTW.PRIMORDIAL_GRAIN)));
+        ScanningManager.addScannableThing(new ScanEntity("!TWOND_CORRUPTION_AVATAR", EntityCorruptionAvatar.class, true));
     }
 }
