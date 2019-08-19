@@ -1,11 +1,12 @@
 package com.verdantartifice.thaumicwonders.common.tiles.devices;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.blocks.BlocksTW;
 import com.verdantartifice.thaumicwonders.common.blocks.devices.BlockCoalescenceMatrix;
+import com.verdantartifice.thaumicwonders.common.entities.monsters.EntityCorruptionAvatar;
 import com.verdantartifice.thaumicwonders.common.tiles.base.TileTW;
 
 import net.minecraft.block.state.IBlockState;
@@ -15,15 +16,18 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.blocks.BlocksTC;
 import thaumcraft.api.casters.IInteractWithCaster;
 import thaumcraft.client.fx.FXDispatcher;
 import thaumcraft.common.blocks.basic.BlockPillar;
 import thaumcraft.common.entities.EntityFluxRift;
+import thaumcraft.common.lib.SoundsTC;
 import thaumcraft.common.lib.utils.EntityUtils;
 
 public class TileCoalescenceMatrix extends TileTW implements ITickable, IInteractWithCaster {
@@ -98,10 +102,8 @@ public class TileCoalescenceMatrix extends TileTW implements ITickable, IInterac
         this.tickCounter++;
         if (!this.world.isRemote && this.tickCounter % 20 == 0) {
             if (this.canMakeProgress()) {
-                ThaumicWonders.LOGGER.info("Matrix draining rifts");
                 this.drainRifts();
             } else {
-                ThaumicWonders.LOGGER.info("Matrix bleeding progress");
                 this.decrementProgress(1);
             }
         }
@@ -227,7 +229,50 @@ public class TileCoalescenceMatrix extends TileTW implements ITickable, IInterac
 
     @Override
     public boolean onCasterRightClick(World world, ItemStack stack, EntityPlayer player, BlockPos pos, EnumFacing facing, EnumHand hand) {
-        ThaumicWonders.LOGGER.info("Caster used on matrix!");
+        if (this.getCharge() >= MAX_CHARGE) {
+            List<BlockPos> pillarList = new ArrayList<BlockPos>();
+            pillarList.add(pos.add(-4, 1, -2));
+            pillarList.add(pos.add(-4, 1, 2));
+            pillarList.add(pos.add(4, 1, -2));
+            pillarList.add(pos.add(4, 1, 2));
+            pillarList.add(pos.add(-2, 1, -4));
+            pillarList.add(pos.add(-2, 1, 4));
+            pillarList.add(pos.add(2, 1, -4));
+            pillarList.add(pos.add(2, 1, 4));
+
+            if (this.world.isRemote) {
+                // Zap the matrix from the pillars
+                Color color = new Color(Aspect.FLUX.getColor());
+                float r = color.getRed() / 255.0F;
+                float g = color.getGreen() / 255.0F;
+                float b = color.getBlue() / 255.0F;
+                for (BlockPos pillarPos : pillarList) {
+                    FXDispatcher.INSTANCE.arcBolt(
+                            pillarPos.getX() + 0.5D, 
+                            pillarPos.getY() + 1.0D, 
+                            pillarPos.getZ() + 0.5D, 
+                            pos.getX() + 0.5D, 
+                            pos.getY() + 1.0D, 
+                            pos.getZ() + 0.5D, 
+                            r, g, b, 0.6F);            
+                }
+            } else {
+                // Play sound effects
+                world.playSound(null, pos, SoundsTC.zap, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                
+                // Detonate
+                world.setBlockToAir(pos);
+                world.createExplosion(null, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, 2.0F, true);
+                for (BlockPos pillarPos : pillarList) {
+                    world.createExplosion(null, pillarPos.getX() + 0.5D, pillarPos.getY() + 0.5D, pillarPos.getZ() + 0.5D, 2.0F, true);
+                }
+                
+                // Summon the avatar
+                EntityCorruptionAvatar avatar = new EntityCorruptionAvatar(world);
+                avatar.setLocationAndAngles(pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, (float)world.rand.nextInt(360), 0.0F);
+                world.spawnEntity(avatar);
+            }
+        }
         return true;
     }
 
