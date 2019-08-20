@@ -1,0 +1,22 @@
+{
+    "entries": [
+        {
+            "key": "!TWOND_CORRUPTION_AVATAR",
+            "name": "thaumicwonders.research.corruption_avatar.title",
+            "icons": ["thaumicwonders:textures/research/r_corruption_avatar.png"],
+            "category": "THAUMIC_WONDERS",
+            "parents": [],
+            "siblings": [],
+            "meta": ["HEX", "HIDDEN"],
+            "location": [-10, 2],
+            "reward_item": [],
+            "reward_knowledge": [],
+            "stages": [
+                {
+                    "text": "thaumicwonders.research.corruption_avatar.text.stage.1"
+                }
+            ],
+            "addenda": []
+        }
+    ]
+}

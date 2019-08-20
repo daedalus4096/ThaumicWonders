@@ -36,4 +36,6 @@ public class BlocksTW {
     public static final Block CINDERPEARL_CROP = null;
     public static final Block VISHROOM_CROP = null;
     public static final Block ALKAHEST_VAT = null;
+    public static final Block COALESCENCE_MATRIX = null;
+    public static final Block COALESCENCE_MATRIX_PRECURSOR = null;
 }

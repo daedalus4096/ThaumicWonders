@@ -1,10 +1,12 @@
 package com.verdantartifice.thaumicwonders.common.init;
 
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
+import com.verdantartifice.thaumicwonders.common.entities.EntityFluxFireball;
 import com.verdantartifice.thaumicwonders.common.entities.EntityFlyingCarpet;
 import com.verdantartifice.thaumicwonders.common.entities.EntityHexamitePrimed;
 import com.verdantartifice.thaumicwonders.common.entities.EntityPrimalArrow;
 import com.verdantartifice.thaumicwonders.common.entities.EntityVoidPortal;
+import com.verdantartifice.thaumicwonders.common.entities.monsters.EntityCorruptionAvatar;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.EntityEntry;
@@ -46,5 +48,22 @@ public class InitEntities {
                 .tracker(64, 1, true)
                 .build();
         iForgeRegistry.register(primalArrowEntry);
+        
+        EntityEntry corruptionAvatarEntry = EntityEntryBuilder.create()
+                .entity(EntityCorruptionAvatar.class)
+                .id(new ResourceLocation(ThaumicWonders.MODID, "corruption_avatar"), id++)
+                .name("corruption_avatar")
+                .egg(0x800080, 0x6A0005)
+                .tracker(64, 1, true)
+                .build();
+        iForgeRegistry.register(corruptionAvatarEntry);
+        
+        EntityEntry fluxFireballEntry = EntityEntryBuilder.create()
+                .entity(EntityFluxFireball.class)
+                .id(new ResourceLocation(ThaumicWonders.MODID, "flux_fireball"), id++)
+                .name("flux_fireball")
+                .tracker(64, 1, true)
+                .build();
+        iForgeRegistry.register(fluxFireballEntry);
     }
 }
