@@ -14,7 +14,7 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIAttackRanged;
+import net.minecraft.entity.ai.EntityAIAttackMelee;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
@@ -34,7 +34,9 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import thaumcraft.api.aura.AuraHelper;
 import thaumcraft.api.entities.IEldritchMob;
 import thaumcraft.api.entities.ITaintedMob;
+import thaumcraft.api.potions.PotionFluxTaint;
 import thaumcraft.common.entities.EntityFluxRift;
+import thaumcraft.common.entities.ai.combat.AILongRangeAttack;
 import thaumcraft.common.entities.monster.boss.EntityThaumcraftBoss;
 import thaumcraft.common.entities.monster.tainted.EntityTaintSeed;
 import thaumcraft.common.entities.monster.tainted.EntityTaintSeedPrime;
@@ -62,7 +64,8 @@ public class EntityCorruptionAvatar extends EntityThaumcraftBoss implements IRan
     @Override
     protected void initEntityAI() {
         this.tasks.addTask(1, new EntityAISwimming(this));
-        this.tasks.addTask(2, new EntityAIAttackRanged(this, 1.0D, 40, 20.0F));
+        this.tasks.addTask(2, new AILongRangeAttack(this, 4.0D, 0.8D, 30, 40, 24.0F));
+        this.tasks.addTask(3, new EntityAIAttackMelee(this, 0.8D, false));
         this.tasks.addTask(6, new EntityAIMoveTowardsRestriction(this, 0.8D));
         this.tasks.addTask(7, new EntityAIWander(this, 0.8D));
         this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
@@ -76,8 +79,8 @@ public class EntityCorruptionAvatar extends EntityThaumcraftBoss implements IRan
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.32D);
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(300.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(5.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(4.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(8.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(6.0D);
     }
     
     @Override
@@ -117,9 +120,9 @@ public class EntityCorruptionAvatar extends EntityThaumcraftBoss implements IRan
     @Override
     protected void updateAITasks() {
         if (!this.world.isRemote) {
-            // Generate flux, 1/sec
+            // Generate flux, 4/sec
             if (this.ticksExisted % 5 == 0) {
-                AuraHelper.polluteAura(this.world, this.getPosition().up(), 0.25F, true);
+                AuraHelper.polluteAura(this.world, this.getPosition().up(), 1.0F, true);
             }
             
             // Regenerate based on local flux
@@ -129,10 +132,13 @@ public class EntityCorruptionAvatar extends EntityThaumcraftBoss implements IRan
                 this.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 40, amp, false, false));
             }
             
-            // Generate flux phage aura
-            List<EntityPlayer> playersNearby = EntityUtils.getEntitiesInRange(this.world, this.getPosition(), this, EntityPlayer.class, 10.0D);
-            for (EntityPlayer player : playersNearby) {
-                player.addPotionEffect(new PotionEffect(PotionInfectiousVisExhaust.instance, 300, 0));
+            // Generate flux phage and taint poison aura
+            if (this.ticksExisted % 20 == 0) {
+                List<EntityLivingBase> livingNearby = EntityUtils.getEntitiesInRange(this.world, this.getPosition(), this, EntityLivingBase.class, 8.0D);
+                for (EntityLivingBase creature : livingNearby) {
+                    creature.addPotionEffect(new PotionEffect(PotionInfectiousVisExhaust.instance, 100, 3));
+                    creature.addPotionEffect(new PotionEffect(PotionFluxTaint.instance, 100, 0));
+                }
             }
             
             // Spawn taint seeds
