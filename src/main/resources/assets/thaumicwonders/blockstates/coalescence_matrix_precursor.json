@@ -5,8 +5,8 @@
         "transform": "forge:default-block",
         "model": "cube_bottom_top", 
         "textures": {
-            "bottom": "blocks/gold_block",
-            "top": "blocks/gold_block",
+            "bottom": "thaumicwonders:blocks/coalescence_matrix_top",
+            "top": "thaumicwonders:blocks/coalescence_matrix_top",
             "side": "thaumicwonders:blocks/coalescence_matrix_0"
         }
      },

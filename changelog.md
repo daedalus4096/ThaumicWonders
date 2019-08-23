@@ -1,3 +1,7 @@
+v1.8.1
+------
+* Coalescence Matrix has a new texture, thanks TechnoMysterio!
+
 v1.8.0
 ------
 * Added Flux Distiller, to clean out your capacitors
