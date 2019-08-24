@@ -1,6 +1,7 @@
 v1.8.1
 ------
 * Coalescence Matrix has a new texture, thanks TechnoMysterio!
+* Added Russian translations, thanks xRoBoTx!
 
 v1.8.0
 ------

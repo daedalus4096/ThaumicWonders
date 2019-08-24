@@ -259,15 +259,15 @@ key.carpet_forward=Летающий Ковер - Вперед
 key.carpet_backward=Летающий Ковер - Назад
 
 // GUI
-thaumicwonders.gui.Маховик Времени.0=Полная Луна
-thaumicwonders.gui.Маховик Времени.1=Убывающая Луна
-thaumicwonders.gui.Маховик Времени.2=Третья четверть
-thaumicwonders.gui.Маховик Времени.3=Убывающий Месяц
-thaumicwonders.gui.Маховик Времени.4=Новая Луна
-thaumicwonders.gui.Маховик Времени.5=Восходящий Месяц
-thaumicwonders.gui.Маховик Времени.6=Первая четверть
-thaumicwonders.gui.Маховик Времени.7=Восходящая Луна
-thaumicwonders.gui.Маховик Времени.8=День
+thaumicwonders.gui.timewinder.0=Полная Луна
+thaumicwonders.gui.timewinder.1=Убывающая Луна
+thaumicwonders.gui.timewinder.2=Третья четверть
+thaumicwonders.gui.timewinder.3=Убывающий Месяц
+thaumicwonders.gui.timewinder.4=Новая Луна
+thaumicwonders.gui.timewinder.5=Восходящий Месяц
+thaumicwonders.gui.timewinder.6=Первая четверть
+thaumicwonders.gui.timewinder.7=Восходящая Луна
+thaumicwonders.gui.timewinder.8=День
 thaumicwonders.gui.meteorb.0=Чистое Небо
 thaumicwonders.gui.meteorb.1=Дождь
 thaumicwonders.gui.meteorb.2=Гроза
