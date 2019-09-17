@@ -1,3 +1,7 @@
+v1.8.2
+------
+* Fixed a crash when using Panacea
+
 v1.8.1
 ------
 * Coalescence Matrix has a new texture, thanks TechnoMysterio!

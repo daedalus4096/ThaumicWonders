@@ -1,6 +1,7 @@
 package com.verdantartifice.thaumicwonders.common.items.consumables;
 
-import java.util.Iterator;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.verdantartifice.thaumicwonders.ThaumicWonders;
 import com.verdantartifice.thaumicwonders.common.items.base.IVariantItem;
@@ -13,6 +14,7 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
@@ -61,12 +63,15 @@ public class ItemPanacea extends ItemFood implements IVariantItem {
     @Override
     protected void onFoodEaten(ItemStack stack, World worldIn, EntityPlayer player) {
         if (!worldIn.isRemote) {
-            Iterator<PotionEffect> iterator = player.getActivePotionEffects().iterator();
-            while (iterator.hasNext()) {
-                PotionEffect effect = iterator.next();
+            List<Potion> activeBadPotions = new ArrayList<>();
+            for (PotionEffect effect : player.getActivePotionEffects()) {
                 if (effect.getPotion().isBadEffect()) {
-                    player.removePotionEffect(effect.getPotion());
+                    activeBadPotions.add(effect.getPotion());
                 }
+            }
+            for (Potion potion : activeBadPotions) {
+                // Have to do this in two passes to avoid concurrent modification exceptions
+                player.removePotionEffect(potion);
             }
             if (stack.getMetadata() > 0) {
                 player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 400, 1));
