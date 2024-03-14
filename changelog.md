@@ -1,3 +1,7 @@
+v1.8.3
+------
+* Fixed a memory leak with Void Fortress Armor, thanks Aqua!
+
 v1.8.2
 ------
 * Fixed a crash when using Panacea
