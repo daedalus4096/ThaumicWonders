@@ -1,3 +1,7 @@
+v1.8.4
+------
+* Reverted to Forge 14.23.5.2768
+
 v1.8.3
 ------
 * Fixed a memory leak with Void Fortress Armor, thanks Aqua!
