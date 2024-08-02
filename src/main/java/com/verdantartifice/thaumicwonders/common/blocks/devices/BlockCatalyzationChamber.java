@@ -123,9 +123,14 @@ public class BlockCatalyzationChamber extends BlockDeviceTW<TileCatalyzationCham
         if (!worldIn.isRemote && (entityIn.ticksExisted % 10 == 0)) {
             if (entityIn instanceof EntityItem) {
                 entityIn.motionY = 0.025D;
-                if (entityIn.onGround) {
+                if (entityIn.onGround && !entityIn.isDead) {
                     TileCatalyzationChamber tcc = (TileCatalyzationChamber)worldIn.getTileEntity(pos);
-                    ((EntityItem)entityIn).setItem(tcc.addItemsToInventory(((EntityItem)entityIn).getItem()));
+                    ItemStack remainder = tcc.addItemsToInventory(((EntityItem)entityIn).getItem());
+                    if(remainder != null && !remainder.isEmpty()) {
+                        ((EntityItem)entityIn).setItem(remainder);
+                    } else {
+                    	entityIn.setDead();
+                    }
                 }
             } else if (entityIn instanceof EntityLivingBase) {
                 ((EntityLivingBase)entityIn).addPotionEffect(new PotionEffect(MobEffects.POISON, 100));
